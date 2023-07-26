@@ -26,7 +26,7 @@ export type Hold = {
 
 export type HoldItem = {
     quantity: number;
-    boughtAtPrice: number;
+    lastBuyPrice: number;
 };
 
 export type HoldItems = {
@@ -35,5 +35,6 @@ export type HoldItems = {
 
 export type GameState = {
     turnsLeft: number;
+    balance: number;
     hold: Hold;
 };

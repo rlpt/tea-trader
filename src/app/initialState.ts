@@ -2,48 +2,49 @@ import { TeaInfo, Tea, GameState } from "./types";
 
 export const initialState: GameState = {
     turnsLeft: 30,
+    balance: 1000,
     hold: {
         maxSize: 100,
         items: {
             [Tea.EarlGrey]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.Assam]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.Darjeeling]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.LapsangSouchong]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.GreenTea]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.WhiteTea]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.Matcha]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.EnglishBreakfast]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.LadyGrey]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
             [Tea.Longjing]: {
                 quantity: 0,
-                boughtAtPrice: 0,
+                lastBuyPrice: 0,
             },
         },
     },
