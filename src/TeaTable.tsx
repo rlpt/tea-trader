@@ -5,7 +5,7 @@ import { randomInRange } from "./app/rng";
 import { RootState } from "./app/store";
 import { createSelector } from "@reduxjs/toolkit";
 import { holdSelector } from "./app/selectors";
-import { buyTea } from "./app/gameReducer";
+import { buyTea, sellTea } from "./app/gameReducer";
 
 type TeaTableItem = {
     teaName: string;
@@ -70,6 +70,15 @@ function TeaTable() {
                         }
                     >
                         Buy
+                    </button>
+                </td>
+                <td>
+                    <button
+                        onClick={() =>
+                            dispatch(sellTea({ teaName, price, quantity: 1 }))
+                        }
+                    >
+                        Sell
                     </button>
                 </td>
             </tr>

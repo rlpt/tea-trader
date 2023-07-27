@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
+import { MAX_TURNS, initialState } from "./initialState";
 import { holdTotalSelector } from "./selectors";
 
 export const buyTea = createAction<{
@@ -8,25 +8,64 @@ export const buyTea = createAction<{
     quantity: number;
 }>("buyTea");
 
+export const sellTea = createAction<{
+    teaName: string;
+    price: number;
+    quantity: number;
+}>("sellTea");
+
+export const nextTurn = createAction("nextTurn");
+
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
-        builder.addCase(buyTea, (state, action) => {
-            const { teaName, price, quantity } = action.payload;
+        builder
+            .addCase(nextTurn, (state) => {
+                if (state.turnNumber === MAX_TURNS) {
+                    return state;
+                }
 
-            const holdTotal = holdTotalSelector(state);
+                state.turnNumber += 1;
 
-            const totalPrice = price * quantity;
-
-            if (totalPrice > state.cash) {
                 return state;
-            }
+            })
+            .addCase(buyTea, (state, action) => {
+                const { teaName, price, quantity } = action.payload;
 
-            if (holdTotal.current + quantity > holdTotal.max) {
+                const holdTotal = holdTotalSelector(state);
+
+                const totalPrice = price * quantity;
+
+                if (totalPrice > state.cash) {
+                    return state;
+                }
+
+                if (holdTotal.current + quantity > holdTotal.max) {
+                    return state;
+                }
+
+                const newTeaQuantity =
+                    state.hold.items[teaName].quantity + quantity;
+
+                state.hold.items[teaName].quantity = newTeaQuantity;
+                state.hold.items[teaName].lastBuyPrice = price;
+
+                state.cash = state.cash - totalPrice;
+
                 return state;
-            }
+            })
+            .addCase(sellTea, (state, action) => {
+                const { teaName, price, quantity } = action.payload;
 
-            console.log("ok");
+                const teaInHold = state.hold.items[teaName].quantity;
 
-            return state;
-        });
+                if (quantity > teaInHold) {
+                    return state;
+                }
+
+                state.cash = state.cash + quantity * price;
+
+                state.hold.items[teaName].quantity = teaInHold - quantity;
+
+                return state;
+            });
     });

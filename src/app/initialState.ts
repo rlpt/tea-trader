@@ -4,6 +4,8 @@ import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
 export const STARTING_CASH = 20000;
+export const STARTING_DEBT = 50000;
+export const DEBT_INTEREST_RATE = 0.1;
 export const STARTING_HOLD_SIZE = 100;
 
 export const ALL_TEA_NAMES = Object.values(Tea);

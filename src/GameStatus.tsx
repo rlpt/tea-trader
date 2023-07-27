@@ -1,10 +1,12 @@
 import { RootState } from "./app/store";
 import { useAppSelector } from "./app/hooks";
 import { holdTotalSelector } from "./app/selectors";
+import { MAX_TURNS } from "./app/initialState";
 
-function ShipStatus() {
+function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
     const hold = useAppSelector(holdTotalSelector);
+    const turnNumber = useAppSelector((state: RootState) => state.turnNumber);
 
     return (
         <div>
@@ -12,8 +14,11 @@ function ShipStatus() {
             <div>
                 Hold: {hold.current} / {hold.max}
             </div>
+            <div>
+                Turn: {turnNumber} / {MAX_TURNS}
+            </div>
         </div>
     );
 }
 
-export default ShipStatus;
+export default GameStatus;
