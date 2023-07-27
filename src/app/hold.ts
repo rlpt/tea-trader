@@ -1,5 +1,4 @@
-import { Tea, HoldItems } from "./types";
-import { teaInfo } from "./initialState";
+import { HoldItems } from "./types";
 
 export function totalItems(holdItems: HoldItems): number {
     let total = 0;
@@ -9,8 +8,4 @@ export function totalItems(holdItems: HoldItems): number {
     }
 
     return total;
-}
-
-export function getBasePrice(tea: Tea): number {
-    return teaInfo[tea].basePrice;
 }

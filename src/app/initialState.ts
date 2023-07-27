@@ -1,88 +1,67 @@
 import { TeaInfo, Tea, GameState } from "./types";
+import * as _ from "lodash";
 
 export const MAX_TURNS = 30;
+export const STARTING_CASH = 20000;
 
 export const ALL_TEA_KEYS = Object.keys(Tea);
 
 export const initialState: GameState = {
-    turnsLeft: 30,
-    balance: 1000,
+    turnsLeft: MAX_TURNS,
+    cash: STARTING_CASH,
     hold: {
         maxSize: 100,
-        items: {
-            [Tea.EarlGrey]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.Assam]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.Darjeeling]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.LapsangSouchong]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.GreenTea]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.WhiteTea]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.Matcha]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.EnglishBreakfast]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.LadyGrey]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-            [Tea.Longjing]: {
-                quantity: 0,
-                lastBuyPrice: 0,
-            },
-        },
+        items: _.fromPairs(
+            ALL_TEA_KEYS.map((teaKey) => [
+                teaKey,
+                {
+                    quantity: 0,
+                    lastBuyPrice: 0,
+                },
+            ]),
+        ),
     },
 };
 
 export const teaInfo: Readonly<TeaInfo> = {
     [Tea.EarlGrey]: {
-        basePrice: 100,
+        lowPrice: 600,
+        highPrice: 1400,
     },
     [Tea.Assam]: {
-        basePrice: 130,
+        lowPrice: 100,
+        highPrice: 700,
     },
     [Tea.Darjeeling]: {
-        basePrice: 120,
+        lowPrice: 5000,
+        highPrice: 14000,
     },
     [Tea.LapsangSouchong]: {
-        basePrice: 230,
+        lowPrice: 1500,
+        highPrice: 4500,
     },
     [Tea.GreenTea]: {
-        basePrice: 10,
+        lowPrice: 70,
+        highPrice: 250,
     },
     [Tea.WhiteTea]: {
-        basePrice: 70,
+        lowPrice: 300,
+        highPrice: 900,
     },
     [Tea.Matcha]: {
-        basePrice: 50,
+        lowPrice: 1000,
+        highPrice: 4500,
     },
     [Tea.EnglishBreakfast]: {
-        basePrice: 10,
+        lowPrice: 10,
+        highPrice: 60,
     },
     [Tea.LadyGrey]: {
-        basePrice: 20,
+        lowPrice: 500,
+        highPrice: 1300,
     },
     [Tea.Longjing]: {
-        basePrice: 180,
+        lowPrice: 15000,
+        highPrice: 30000,
     },
 };

@@ -27,3 +27,13 @@ export function getRngTables(seed: string): RngTable[] {
 
     return rngTableList;
 }
+
+export function randomInRange(
+    min: number,
+    max: number,
+    randomFraction: number,
+): number {
+    const toAdd = Math.floor((max - min) * randomFraction);
+
+    return min + toAdd;
+}
