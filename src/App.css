@@ -1,13 +1,6 @@
-/* apply a natural box layout model to all elements, but allowing components to change */
-html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-
 html {
     font-size: 18px;
+    font-family: 'Russo One', sans-serif;
 }
 
 #main-wrapper {
@@ -16,4 +9,5 @@ html {
     padding: 18px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
