@@ -1,3 +1,5 @@
+import { State, StatefulPRNG } from "seedrandom";
+
 // Keep most core types in this module to try and avoid circular imports
 
 export enum Tea {
@@ -37,4 +39,10 @@ export type GameState = {
     turnsLeft: number;
     balance: number;
     hold: Hold;
+};
+
+export type RngTable = {
+    teaPrice: {
+        [key: string]: number;
+    };
 };

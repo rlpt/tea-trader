@@ -1,5 +1,9 @@
 import { TeaInfo, Tea, GameState } from "./types";
 
+export const MAX_TURNS = 30;
+
+export const ALL_TEA_KEYS = Object.keys(Tea);
+
 export const initialState: GameState = {
     turnsLeft: 30,
     balance: 1000,
