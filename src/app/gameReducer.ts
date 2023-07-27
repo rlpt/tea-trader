@@ -1,18 +1,32 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
-import { Tea } from "./types";
+import { holdTotalSelector } from "./selectors";
 
-const passTurn = createAction("passTurn");
-const buyTea = createAction<{ tea: Tea; quantity: number }>("buyTea");
+export const buyTea = createAction<{
+    teaName: string;
+    price: number;
+    quantity: number;
+}>("buyTea");
 
-export const gameReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(passTurn, (state) => state)
-        .addCase(buyTea, (state, action) => {
-            const { tea, quantity } = action.payload;
+export const gameReducer = (seed: string) =>
+    createReducer(initialState(seed), (builder) => {
+        builder.addCase(buyTea, (state, action) => {
+            const { teaName, price, quantity } = action.payload;
 
-            let teaInHold = state.hold.items[tea];
+            const holdTotal = holdTotalSelector(state);
+
+            const totalPrice = price * quantity;
+
+            if (totalPrice > state.cash) {
+                return state;
+            }
+
+            if (holdTotal.current + quantity > holdTotal.max) {
+                return state;
+            }
+
+            console.log("ok");
 
             return state;
         });
-});
+    });

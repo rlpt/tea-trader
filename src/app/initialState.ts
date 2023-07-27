@@ -1,26 +1,31 @@
+import _ from "lodash";
 import { TeaInfo, Tea, GameState } from "./types";
-import * as _ from "lodash";
+import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
 export const STARTING_CASH = 20000;
+export const STARTING_HOLD_SIZE = 100;
 
-export const ALL_TEA_KEYS = Object.keys(Tea);
+export const ALL_TEA_NAMES = Object.values(Tea);
 
-export const initialState: GameState = {
-    turnsLeft: MAX_TURNS,
-    cash: STARTING_CASH,
-    hold: {
-        maxSize: 100,
-        items: _.fromPairs(
-            ALL_TEA_KEYS.map((teaKey) => [
-                teaKey,
-                {
-                    quantity: 0,
-                    lastBuyPrice: 0,
-                },
-            ]),
-        ),
-    },
+export const initialState = (seed: string): GameState => {
+    return {
+        turnNumber: 1,
+        cash: STARTING_CASH,
+        hold: {
+            maxSize: STARTING_HOLD_SIZE,
+            items: _.fromPairs(
+                ALL_TEA_NAMES.map((teaName) => [
+                    teaName,
+                    {
+                        quantity: 0,
+                        lastBuyPrice: 0,
+                    },
+                ]),
+            ),
+        },
+        rngTables: rng.getRngTables(seed),
+    };
 };
 
 export const teaInfo: Readonly<TeaInfo> = {

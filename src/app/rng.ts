@@ -1,6 +1,6 @@
-import seedrandom, { State, StatefulPRNG } from "seedrandom";
+import seedrandom from "seedrandom";
 import { RngTable } from "./types";
-import { ALL_TEA_KEYS, MAX_TURNS } from "./initialState";
+import { ALL_TEA_NAMES, MAX_TURNS } from "./initialState";
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front
@@ -18,7 +18,7 @@ export function getRngTables(seed: string): RngTable[] {
     for (let i = 0; i < MAX_TURNS; i += 1) {
         let teaPrice: { [key: string]: number } = {};
 
-        for (let tea of ALL_TEA_KEYS) {
+        for (let tea of ALL_TEA_NAMES) {
             teaPrice[tea] = prng();
         }
 
