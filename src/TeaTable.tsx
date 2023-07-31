@@ -5,7 +5,8 @@ import { randomInRange } from "./app/rng";
 import { RootState } from "./app/store";
 import { createSelector } from "@reduxjs/toolkit";
 import { holdSelector } from "./app/selectors";
-import { buyTea, sellTea } from "./app/gameReducer";
+import "./TeaTable.css";
+import Cash from "./Cash";
 
 type TeaTableItem = {
     teaName: string;
@@ -43,8 +44,6 @@ const teaTableSelector = createSelector(
 );
 
 function TeaTable() {
-    const dispatch = useAppDispatch();
-
     const teaList = useAppSelector(teaTableSelector);
 
     const rows = teaList.map(({ teaName, price, quantity, lastBuyPrice }) => {
@@ -62,13 +61,15 @@ function TeaTable() {
             <tr key={teaName}>
                 <td>{teaName}</td>
                 {quantityEl}
-                <td>£{price}</td>
+                <td>
+                    <Cash amount={price} />
+                </td>
             </tr>
         );
     });
 
     return (
-        <table>
+        <table className="tea-table">
             <tbody>{rows}</tbody>
         </table>
     );
