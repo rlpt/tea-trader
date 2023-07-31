@@ -63,24 +63,6 @@ function TeaTable() {
                 <td>{teaName}</td>
                 {quantityEl}
                 <td>£{price}</td>
-                <td>
-                    <button
-                        onClick={() =>
-                            dispatch(buyTea({ teaName, price, quantity: 1 }))
-                        }
-                    >
-                        Buy
-                    </button>
-                </td>
-                <td>
-                    <button
-                        onClick={() =>
-                            dispatch(sellTea({ teaName, price, quantity: 1 }))
-                        }
-                    >
-                        Sell
-                    </button>
-                </td>
             </tr>
         );
     });
