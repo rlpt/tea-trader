@@ -9,9 +9,9 @@ import { Town } from "./app/types";
 function ChangeLocationModal() {
     const dispatch = useAppDispatch();
 
-    const [nextTown, setNextTown] = useState<keyof typeof Town>();
-
     let currentTown = useAppSelector(townSelector);
+
+    const [nextTown, setNextTown] = useState(currentTown);
 
     const townList = ALL_TOWN_NAMES.filter((town) => town !== currentTown).map(
         (town) => (
@@ -35,11 +35,9 @@ function ChangeLocationModal() {
 
             <div className="buttons">
                 <button
-                    disabled={!nextTown}
+                    disabled={nextTown === currentTown}
                     onClick={() => {
-                        if (nextTown) {
-                            dispatch(nextTurn({ nextTown: Town[nextTown] }));
-                        }
+                        dispatch(nextTurn({ nextTown: Town[nextTown] }));
                     }}
                 >
                     Change Location
