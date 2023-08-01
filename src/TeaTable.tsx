@@ -20,13 +20,14 @@ type TeaTableItem = {
     specialEvent: SpecialEvent;
 };
 
+const townSelector = (state: RootState) => state.town;
 const turnNumberSelector = (state: RootState) => state.turnNumber;
 const rngTablesSelector = (state: RootState) => state.rngTables;
 
 const teaTableSelector = createSelector(
-    [turnNumberSelector, holdSelector, rngTablesSelector],
-    (turnNumber, hold, rngTables) => {
-        const rngTable = rngTables[turnNumber];
+    [townSelector, turnNumberSelector, holdSelector, rngTablesSelector],
+    (town, turnNumber, hold, rngTables) => {
+        const rngTable = rngTables[turnNumber][town];
 
         const status: TeaTableItem[] = ALL_TEA_NAMES.map((teaName) => {
             const { lowPrice, highPrice } = teaInfo[teaName];

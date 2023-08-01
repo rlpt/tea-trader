@@ -2,13 +2,14 @@
 
 export type GameState = {
     turnNumber: number;
+    town: Town;
     cash: number;
     bank: number;
     hold: Hold;
     rngTables: RngTable[];
 };
 
-export enum Towns {
+export enum Town {
     London = "London",
     Portsmouth = "Portsmouth",
     Liverpool = "Liverpool",
@@ -56,7 +57,9 @@ export type HoldItems = {
 };
 
 export type RngTable = {
-    teaPrice: TeaRng;
+    [key: string]: {
+        teaPrice: TeaRng;
+    };
 };
 
 export type TeaRng = {

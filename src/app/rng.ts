@@ -1,6 +1,11 @@
 import seedrandom from "seedrandom";
 import { RngTable, SpecialEvent, TeaRng } from "./types";
-import { ALL_TEA_NAMES, MAX_TURNS, SPECIAL_EVENT_CHANCE } from "./initialState";
+import {
+    ALL_TEA_NAMES,
+    ALL_TOWN_NAMES,
+    MAX_TURNS,
+    SPECIAL_EVENT_CHANCE,
+} from "./initialState";
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front
@@ -13,33 +18,37 @@ import { ALL_TEA_NAMES, MAX_TURNS, SPECIAL_EVENT_CHANCE } from "./initialState";
 export function getRngTables(seed: string): RngTable[] {
     const prng = seedrandom(seed);
 
-    // TODO rng tea table per town
-
     let rngTableList = [];
 
     for (let i = 0; i < MAX_TURNS; i += 1) {
-        let teaPrice: TeaRng = {};
+        let rngTable: RngTable = {};
 
-        for (let tea of ALL_TEA_NAMES) {
-            let specialEventRand = Math.floor(SPECIAL_EVENT_CHANCE * prng());
+        for (let town of ALL_TOWN_NAMES) {
+            let teaPrice: TeaRng = {};
 
-            let specialEvent = SpecialEvent.NoSpecialEvent;
+            for (let tea of ALL_TEA_NAMES) {
+                let specialEventRand = Math.floor(
+                    SPECIAL_EVENT_CHANCE * prng(),
+                );
 
-            if (specialEventRand === 0) {
-                specialEvent = SpecialEvent.HighPrice;
-            } else if (specialEventRand === 1) {
-                specialEvent = SpecialEvent.LowPrice;
+                let specialEvent = SpecialEvent.NoSpecialEvent;
+
+                if (specialEventRand === 0) {
+                    specialEvent = SpecialEvent.HighPrice;
+                } else if (specialEventRand === 1) {
+                    specialEvent = SpecialEvent.LowPrice;
+                }
+
+                teaPrice[tea] = {
+                    randomNumber: prng(),
+                    specialEvent: specialEvent,
+                };
             }
 
-            teaPrice[tea] = {
-                randomNumber: prng(),
-                specialEvent: specialEvent,
-            };
+            rngTable[town] = { teaPrice };
         }
 
-        rngTableList[i] = {
-            teaPrice,
-        };
+        rngTableList[i] = rngTable;
     }
 
     return rngTableList;

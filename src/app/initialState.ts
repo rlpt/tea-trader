@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { TeaInfo, Tea, GameState } from "./types";
+import { TeaInfo, Tea, GameState, Town } from "./types";
 import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
@@ -14,9 +14,12 @@ export const SPECIAL_EVENT_MULTIPLIER = 3;
 
 export const ALL_TEA_NAMES = Object.values(Tea);
 
+export const ALL_TOWN_NAMES = Object.values(Town);
+
 export const initialState = (seed: string): GameState => {
     return {
         turnNumber: 1,
+        town: Town.London,
         cash: STARTING_CASH,
         bank: STARTING_DEBT,
         hold: {
