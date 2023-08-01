@@ -34,8 +34,7 @@ export const initialState = (seed: string): GameState => {
             ),
         },
         rngTables: rng.getRngTables(seed),
-        // UI
-        modal: ActiveModal.ChangeLocation,
+        modal: { modalType: "NoModal" },
     };
 };
 

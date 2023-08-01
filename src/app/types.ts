@@ -7,8 +7,7 @@ export type GameState = {
     bank: number;
     hold: Hold;
     rngTables: RngTable[];
-    // UI
-    modal: ActiveModal;
+    modal: NoModal | ChangeLocationModal | BuySellModal;
 };
 
 export enum Town {
@@ -74,4 +73,18 @@ export type TeaRng = {
 export enum ActiveModal {
     NoModal,
     ChangeLocation,
+    BuyOrSell,
 }
+
+type ChangeLocationModal = {
+    modalType: "ChangeLocationModal";
+};
+
+type BuySellModal = {
+    modalType: "BuySellModal";
+    tea: string;
+};
+
+type NoModal = {
+    modalType: "NoModal";
+};

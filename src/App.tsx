@@ -9,19 +9,26 @@ import "almond.css";
 import { townSelector } from "./app/selectors";
 import { ActiveModal, GameState } from "./app/types";
 import ChangeLocation from "./ChangeLocation";
+import BuySellModal from "./BuySell";
 
 function App() {
     const dispatch = useAppDispatch();
     const town = useAppSelector(townSelector);
 
-    const activeModal = useAppSelector((state: GameState) => state.modal);
+    const modal = useAppSelector((state: GameState) => state.modal);
 
-    let modal;
+    let modalEl;
 
-    if (activeModal === ActiveModal.ChangeLocation) {
-        modal = (
+    if (modal.modalType === "ChangeLocationModal") {
+        modalEl = (
             <Modal>
                 <ChangeLocation />
+            </Modal>
+        );
+    } else if (modal.modalType === "BuySellModal") {
+        modalEl = (
+            <Modal>
+                <BuySellModal tea={modal.tea} />
             </Modal>
         );
     }
@@ -36,7 +43,7 @@ function App() {
                     Change Location
                 </button>
             </div>
-            {modal}
+            {modalEl}
         </div>
     );
 }

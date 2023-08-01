@@ -17,6 +17,7 @@ import {
 import "./TeaTable.css";
 import Cash from "./Cash";
 import { SpecialEvent } from "./app/types";
+import { showBuySellModal } from "./app/gameReducer";
 
 type TeaTableItem = {
     teaName: string;
@@ -59,6 +60,7 @@ const teaTableSelector = createSelector(
 );
 
 function TeaTable() {
+    const dispatch = useAppDispatch();
     const teaList = useAppSelector(teaTableSelector);
 
     const rows = teaList.map(({ teaName, price, quantity }) => {
@@ -69,7 +71,10 @@ function TeaTable() {
         }
 
         return (
-            <tr key={teaName}>
+            <tr
+                key={teaName}
+                onClick={() => dispatch(showBuySellModal({ tea: teaName }))}
+            >
                 <td>{teaName}</td>
                 {quantityEl}
                 <td>
