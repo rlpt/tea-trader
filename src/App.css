@@ -25,10 +25,19 @@ body {
 #main-wrapper {
     background-color: white;
     width: 375px;
-    /* height: 600px; */
+    min-height: 600px;
     padding: 18px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     border-radius: 10px;
+}
+
+.current-location {
+  text-align: center;
+}
+
+.actions {
+  margin-top: 1rem;
+  text-align: center;
 }

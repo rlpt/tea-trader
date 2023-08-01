@@ -2,6 +2,7 @@ import { RootState } from "./app/store";
 import { useAppSelector } from "./app/hooks";
 import { holdTotalSelector } from "./app/selectors";
 import { MAX_TURNS } from "./app/initialState";
+import Cash from "./Cash";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
@@ -10,7 +11,9 @@ function GameStatus() {
 
     return (
         <div>
-            <div>Cash: £{cash}</div>
+            <div>
+                Cash: <Cash amount={cash} />
+            </div>
             <div>
                 Hold: {hold.current} / {hold.max}
             </div>

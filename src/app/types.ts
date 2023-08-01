@@ -3,6 +3,7 @@
 export type GameState = {
     turnNumber: number;
     cash: number;
+    bank: number;
     hold: Hold;
     rngTables: RngTable[];
 };

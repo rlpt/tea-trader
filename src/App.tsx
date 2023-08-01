@@ -13,11 +13,13 @@ function App() {
     return (
         <div id="main-wrapper">
             <GameStatus />
-            <div>
-                Location: Liverpool <button>Visit Bank</button>
-            </div>
+            <h3 className="current-location">Liverpool</h3>
             <TeaTable />
-            <button onClick={() => dispatch(nextTurn())}>Next Turn</button>
+            <div className="actions">
+                <button onClick={() => dispatch(nextTurn())}>
+                    Change Location
+                </button>
+            </div>
         </div>
     );
 }

@@ -3,8 +3,8 @@ import { TeaInfo, Tea, GameState } from "./types";
 import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
-export const STARTING_CASH = 20000;
-export const STARTING_DEBT = 50000;
+export const STARTING_CASH = 2000;
+export const STARTING_DEBT = -50000;
 export const DEBT_INTEREST_RATE = 0.1;
 export const STARTING_HOLD_SIZE = 100;
 
@@ -14,6 +14,7 @@ export const initialState = (seed: string): GameState => {
     return {
         turnNumber: 1,
         cash: STARTING_CASH,
+        bank: STARTING_DEBT,
         hold: {
             maxSize: STARTING_HOLD_SIZE,
             items: _.fromPairs(
