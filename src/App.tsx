@@ -7,7 +7,7 @@ import { showChangeLocationModal } from "./app/gameReducer";
 import Modal from "./Modal";
 import "almond.css";
 import { townSelector } from "./app/selectors";
-import { ActiveModal, GameState } from "./app/types";
+import { GameState } from "./app/types";
 import ChangeLocation from "./ChangeLocation";
 import BuySellModal from "./BuySell";
 
