@@ -11,8 +11,6 @@ describe("applyInterest", () => {
     test("small balance", () => {
         const balance = bank.applyInterest(0.05, 1);
 
-        console.log(balance);
-
-        // expect(balance).toBe(-52500);
+        expect(balance).toBe(2);
     });
 });
