@@ -5,11 +5,9 @@ test("totalItemsInHold", () => {
     let holdItems: HoldItems = {
         [Tea.EarlGrey]: {
             quantity: 10,
-            lastBuyPrice: 100,
         },
         [Tea.Assam]: {
             quantity: 15,
-            lastBuyPrice: 100,
         },
     };
 

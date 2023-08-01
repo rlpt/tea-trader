@@ -47,7 +47,6 @@ export const gameReducer = (seed: string) =>
                     state.hold.items[teaName].quantity + quantity;
 
                 state.hold.items[teaName].quantity = newTeaQuantity;
-                state.hold.items[teaName].lastBuyPrice = price;
 
                 state.cash = state.cash - totalPrice;
 

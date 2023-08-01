@@ -21,6 +21,12 @@ export enum Tea {
     Longjing = "Longjing",
 }
 
+export enum SpecialEvent {
+    NoSpecialEvent,
+    HighPrice,
+    LowPrice,
+}
+
 export type TeaInfo = {
     [key: string]: {
         lowPrice: number;
@@ -35,7 +41,6 @@ export type Hold = {
 
 export type HoldItem = {
     quantity: number;
-    lastBuyPrice: number;
 };
 
 export type HoldItems = {
@@ -43,7 +48,12 @@ export type HoldItems = {
 };
 
 export type RngTable = {
-    teaPrice: {
-        [key: string]: number;
+    teaPrice: TeaRng;
+};
+
+export type TeaRng = {
+    [key: string]: {
+        randomNumber: number;
+        specialEvent: SpecialEvent;
     };
 };
