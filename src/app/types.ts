@@ -7,6 +7,8 @@ export type GameState = {
     bank: number;
     hold: Hold;
     rngTables: RngTable[];
+    // UI
+    modal: ActiveModal;
 };
 
 export enum Town {
@@ -68,3 +70,8 @@ export type TeaRng = {
         specialEvent: SpecialEvent;
     };
 };
+
+export enum ActiveModal {
+    NoModal,
+    ChangeLocation,
+}

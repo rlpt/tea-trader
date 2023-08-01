@@ -8,7 +8,12 @@ import {
 import { randomInRange } from "./app/rng";
 import { RootState } from "./app/store";
 import { createSelector } from "@reduxjs/toolkit";
-import { holdSelector } from "./app/selectors";
+import {
+    holdSelector,
+    rngTablesSelector,
+    townSelector,
+    turnNumberSelector,
+} from "./app/selectors";
 import "./TeaTable.css";
 import Cash from "./Cash";
 import { SpecialEvent } from "./app/types";
@@ -19,10 +24,6 @@ type TeaTableItem = {
     quantity: number;
     specialEvent: SpecialEvent;
 };
-
-const townSelector = (state: RootState) => state.town;
-const turnNumberSelector = (state: RootState) => state.turnNumber;
-const rngTablesSelector = (state: RootState) => state.rngTables;
 
 const teaTableSelector = createSelector(
     [townSelector, turnNumberSelector, holdSelector, rngTablesSelector],

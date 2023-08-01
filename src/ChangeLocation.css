@@ -1,0 +1,20 @@
+.change-location {
+    & .town-list {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+
+        & label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        & input {
+            margin-right: 1rem;
+        }
+    }
+
+    & .buttons {
+        text-align: center;
+    }
+}

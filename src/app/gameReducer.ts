@@ -1,6 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { MAX_TURNS, initialState } from "./initialState";
 import { holdTotalSelector } from "./selectors";
+import { ActiveModal, Town } from "./types";
 
 export const buyTea = createAction<{
     teaName: string;
@@ -14,17 +15,28 @@ export const sellTea = createAction<{
     quantity: number;
 }>("sellTea");
 
-export const nextTurn = createAction("nextTurn");
+export const showChangeLocationModal = createAction("showChangeLocationModal");
+
+export const nextTurn = createAction<{ nextTown: Town }>("nextTurn");
 
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
-            .addCase(nextTurn, (state) => {
-                if (state.turnNumber === MAX_TURNS) {
+            .addCase(nextTurn, (state, action) => {
+                const nextTurnNumber = state.turnNumber + 1;
+
+                if (nextTurnNumber === MAX_TURNS) {
                     return state;
                 }
 
-                state.turnNumber += 1;
+                state.turnNumber = nextTurnNumber;
+                state.town = action.payload.nextTown;
+                state.modal = ActiveModal.NoModal;
+
+                return state;
+            })
+            .addCase(showChangeLocationModal, (state) => {
+                state.modal = ActiveModal.ChangeLocation;
 
                 return state;
             })

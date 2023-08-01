@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { TeaInfo, Tea, GameState, Town } from "./types";
+import { TeaInfo, Tea, GameState, Town, ActiveModal } from "./types";
 import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
@@ -8,8 +8,7 @@ export const STARTING_DEBT = -50000;
 export const DEBT_INTEREST_RATE = 0.1;
 export const STARTING_HOLD_SIZE = 100;
 
-// for special events
-export const SPECIAL_EVENT_CHANCE = 10;
+export const SPECIAL_EVENT_CHANCE = 30;
 export const SPECIAL_EVENT_MULTIPLIER = 3;
 
 export const ALL_TEA_NAMES = Object.values(Tea);
@@ -35,6 +34,8 @@ export const initialState = (seed: string): GameState => {
             ),
         },
         rngTables: rng.getRngTables(seed),
+        // UI
+        modal: ActiveModal.ChangeLocation,
     };
 };
 
