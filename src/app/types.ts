@@ -8,6 +8,14 @@ export type GameState = {
     rngTables: RngTable[];
 };
 
+export enum Towns {
+    London = "London",
+    Portsmouth = "Portsmouth",
+    Liverpool = "Liverpool",
+    Glasgow = "Glasgow",
+    Belfast = "Belfast",
+}
+
 export enum Tea {
     Assam = "Assam",
     EarlGrey = "Earl Grey",

@@ -13,6 +13,8 @@ import { ALL_TEA_NAMES, MAX_TURNS, SPECIAL_EVENT_CHANCE } from "./initialState";
 export function getRngTables(seed: string): RngTable[] {
     const prng = seedrandom(seed);
 
+    // TODO rng tea table per town
+
     let rngTableList = [];
 
     for (let i = 0; i < MAX_TURNS; i += 1) {
