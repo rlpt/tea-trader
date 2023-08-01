@@ -1,3 +1,5 @@
-.tea-table td {
-    padding: 0.5rem;
+.tea-table {
+    & td {
+        padding: 0.5rem;
+    }
 }

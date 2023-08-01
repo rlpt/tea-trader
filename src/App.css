@@ -34,10 +34,10 @@ body {
 }
 
 .current-location {
-  text-align: center;
+    text-align: center;
 }
 
 .actions {
-  margin-top: 1rem;
-  text-align: center;
+    margin-top: 1rem;
+    text-align: center;
 }
