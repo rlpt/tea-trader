@@ -13,6 +13,8 @@ import {
     ALL_TEA_NAMES,
     teaInfo,
     SPECIAL_EVENT_MULTIPLIER,
+    MAX_TURNS,
+    ALL_TOWN_NAMES,
 } from "./initialState";
 import { randomInRange } from "./rng";
 import _ from "lodash";
@@ -47,6 +49,23 @@ export const holdTotalSelector = createSelector(
     },
 );
 
+const getPrice = (teaName: string, rngTable: TeaRng) => {
+    const { lowPrice, highPrice } = teaInfo[teaName];
+    const { randomNumber, specialEvent } = rngTable[teaName];
+
+    let price = randomInRange(lowPrice, highPrice, randomNumber);
+
+    if (specialEvent === SpecialEvent.HighPrice) {
+        price = price * SPECIAL_EVENT_MULTIPLIER;
+    }
+
+    if (specialEvent === SpecialEvent.LowPrice) {
+        price = Math.ceil(price / SPECIAL_EVENT_MULTIPLIER);
+    }
+
+    return { price, specialEvent };
+};
+
 export const teaPriceSelector = createSelector(
     [
         townSelector,
@@ -63,23 +82,6 @@ export const teaPriceSelector = createSelector(
         // we use previous rngTable to see if prices have increase or decreased compared
         // to previous town
         const prevRngTable = rngTables[prevTurnNumber][prevTown];
-
-        const getPrice = (teaName: string, rngTable: TeaRng) => {
-            const { lowPrice, highPrice } = teaInfo[teaName];
-            const { randomNumber, specialEvent } = rngTable[teaName];
-
-            let price = randomInRange(lowPrice, highPrice, randomNumber);
-
-            if (specialEvent === SpecialEvent.HighPrice) {
-                price = price * SPECIAL_EVENT_MULTIPLIER;
-            }
-
-            if (specialEvent === SpecialEvent.LowPrice) {
-                price = Math.ceil(price / SPECIAL_EVENT_MULTIPLIER);
-            }
-
-            return { price, specialEvent };
-        };
 
         const status: { [key: string]: TeaPrice } = _.fromPairs(
             ALL_TEA_NAMES.map((teaName) => {
@@ -114,5 +116,42 @@ export const teaPriceSelector = createSelector(
         );
 
         return status;
+    },
+);
+
+export const messageSelector = createSelector(
+    [turnNumberSelector, teaPriceSelector, rngTablesSelector, townSelector],
+    (turnNumber, teaPrice, rngTables, currentTown) => {
+        if (turnNumber === MAX_TURNS) {
+            return "";
+        }
+
+        // see if any towns next turn have a special event
+        const rngTable = rngTables[turnNumber + 1];
+
+        // don't include current town
+        const townsToCheck = ALL_TOWN_NAMES.filter(
+            (townName) => townName !== currentTown,
+        );
+
+        let messages = [];
+
+        for (let townName of townsToCheck) {
+            const teas = rngTable[townName].teaPrice;
+
+            for (let teaName of ALL_TEA_NAMES) {
+                const tea = teas[teaName];
+
+                if (tea.specialEvent === SpecialEvent.HighPrice) {
+                    messages.push(`Shortage of ${teaName} in ${townName}`);
+                }
+
+                if (tea.specialEvent === SpecialEvent.LowPrice) {
+                    messages.push(`Glut of ${teaName} in ${townName}`);
+                }
+            }
+        }
+
+        return "";
     },
 );
