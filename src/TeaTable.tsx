@@ -47,6 +47,13 @@ function TeaTable() {
 
     return (
         <table className="tea-table">
+            <thead>
+                <tr>
+                    <th>Tea</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
             <tbody>{rows}</tbody>
         </table>
     );

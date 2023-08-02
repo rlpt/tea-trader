@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { totalItems } from "./hold";
 import { RootState } from "./store";
-import { Hold, SpecialEvent } from "./types";
+import { Hold, PriceChange, SpecialEvent, TeaPrice } from "./types";
 import {
     ALL_TEA_NAMES,
     teaInfo,
@@ -10,7 +10,10 @@ import {
 import { randomInRange } from "./rng";
 import _ from "lodash";
 
-export const townSelector = (state: RootState) => state.town;
+export const townSelector = (state: RootState) => {
+    return state.townsVisited[state.turnNumber - 1];
+};
+
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const cashSelector = (state: RootState) => state.cash;
@@ -25,13 +28,6 @@ export const holdTotalSelector = createSelector(
         };
     },
 );
-
-type TeaPrice = {
-    teaName: string;
-    price: number;
-    quantity: number;
-    specialEvent: SpecialEvent;
-};
 
 export const teaPriceSelector = createSelector(
     [townSelector, turnNumberSelector, holdSelector, rngTablesSelector],
@@ -63,6 +59,7 @@ export const teaPriceSelector = createSelector(
                         price,
                         quantity,
                         specialEvent,
+                        priceChange: PriceChange.NoChange,
                     },
                 ];
             }),

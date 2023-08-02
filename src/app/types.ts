@@ -2,7 +2,7 @@
 
 export type GameState = {
     turnNumber: number;
-    town: Town;
+    townsVisited: Town[];
     cash: number;
     bank: number;
     hold: Hold;
@@ -87,4 +87,19 @@ type BuySellModal = {
 
 type NoModal = {
     modalType: "NoModal";
+};
+
+// PriceChange is relative to price in previous town
+export enum PriceChange {
+    PriceIncrease,
+    PriceDecrease,
+    NoChange,
+}
+
+export type TeaPrice = {
+    teaName: string;
+    price: number;
+    quantity: number;
+    priceChange: PriceChange;
+    specialEvent: SpecialEvent;
 };

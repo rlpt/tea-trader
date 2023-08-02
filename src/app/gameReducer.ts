@@ -36,7 +36,7 @@ export const gameReducer = (seed: string) =>
                 }
 
                 state.turnNumber = nextTurnNumber;
-                state.town = action.payload.nextTown;
+                state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
 
                 return state;

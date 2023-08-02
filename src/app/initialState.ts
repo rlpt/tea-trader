@@ -18,7 +18,7 @@ export const ALL_TOWN_NAMES = Object.values(Town);
 export const initialState = (seed: string): GameState => {
     return {
         turnNumber: 1,
-        town: Town.London,
+        townsVisited: [Town.London],
         cash: STARTING_CASH,
         bank: STARTING_DEBT,
         hold: {
