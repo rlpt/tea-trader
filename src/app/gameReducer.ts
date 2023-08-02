@@ -21,6 +21,8 @@ export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
 );
 
+export const closeModal = createAction("closeModal");
+
 export const nextTurn = createAction<{ nextTown: Town }>("nextTurn");
 
 export const gameReducer = (seed: string) =>
@@ -35,6 +37,11 @@ export const gameReducer = (seed: string) =>
 
                 state.turnNumber = nextTurnNumber;
                 state.town = action.payload.nextTown;
+                state.modal = { modalType: "NoModal" };
+
+                return state;
+            })
+            .addCase(closeModal, (state) => {
                 state.modal = { modalType: "NoModal" };
 
                 return state;

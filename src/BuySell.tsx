@@ -1,5 +1,5 @@
 import React, { ReactEventHandler, useState } from "react";
-import { useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     cashSelector,
     holdSelector,
@@ -7,6 +7,7 @@ import {
     teaPriceSelector,
 } from "./app/selectors";
 import Cash from "./Cash";
+import { buyTea, closeModal } from "./app/gameReducer";
 
 enum Status {
     Choose,
@@ -15,6 +16,8 @@ enum Status {
 }
 
 function BuySellModal(props: { tea: string }) {
+    const dispatch = useAppDispatch();
+
     const hold = useAppSelector(holdSelector);
     const cash = useAppSelector(cashSelector);
     const holdTotal = useAppSelector(holdTotalSelector);
@@ -41,7 +44,7 @@ function BuySellModal(props: { tea: string }) {
 
     const [status, setStatus] = useState(initialStatus);
     const [maxQty, setMaxQty] = useState(initialMaxQty);
-    const [qty, setQty] = useState<number | null>(initialMaxQty);
+    const [inputQty, setInputQty] = useState<number | null>(initialMaxQty);
 
     // CHOOSE
     // you own x units of y, do you want to buy or sell?
@@ -70,9 +73,9 @@ function BuySellModal(props: { tea: string }) {
     if (status === Status.Choose) {
         content = <div>Choose</div>;
     } else if (Status.Buy) {
-        const displayQty = qty === null ? 0 : qty;
+        const qty = inputQty === null ? 0 : inputQty;
 
-        const qtyInvalid = displayQty > maxQty || displayQty === 0;
+        const qtyInvalid = qty > maxQty || qty === 0;
 
         content = (
             <div>
@@ -81,20 +84,35 @@ function BuySellModal(props: { tea: string }) {
                     fit {canFit} in the hold.
                 </p>
                 <p>
-                    Total cost for {displayQty} is&nbsp;
-                    <Cash amount={displayQty * teaPrice.price} />
+                    Total cost for {qty} is&nbsp;
+                    <Cash amount={qty * teaPrice.price} />
                 </p>
                 <p>
                     <input
                         type="number"
-                        value={qty === null ? "" : qty}
+                        value={inputQty === null ? "" : inputQty}
                         onChange={(e) => {
-                            setQty(numberInput(e));
+                            setInputQty(numberInput(e));
                         }}
                     />
                 </p>
                 <p>
-                    <button disabled={qtyInvalid}>Buy</button>
+                    <button
+                        disabled={qtyInvalid}
+                        onClick={() => {
+                            dispatch(
+                                buyTea({
+                                    teaName: props.tea,
+                                    price: teaPrice.price,
+                                    quantity: qty,
+                                }),
+                            );
+
+                            dispatch(closeModal());
+                        }}
+                    >
+                        Buy
+                    </button>
                 </p>
             </div>
         );
