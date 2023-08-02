@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { ReactEventHandler, useState } from "react";
 import { useAppSelector } from "./app/hooks";
-import { holdSelector } from "./app/selectors";
+import {
+    cashSelector,
+    holdSelector,
+    holdTotalSelector,
+    teaPriceSelector,
+} from "./app/selectors";
+import Cash from "./Cash";
 
 enum Status {
     Choose,
@@ -10,24 +16,32 @@ enum Status {
 
 function BuySellModal(props: { tea: string }) {
     const hold = useAppSelector(holdSelector);
+    const cash = useAppSelector(cashSelector);
+    const holdTotal = useAppSelector(holdTotalSelector);
+    const teaPrices = useAppSelector(teaPriceSelector);
+
     const holdTeaQty = hold.items[props.tea].quantity;
 
     let initialStatus = Status.Buy;
+
+    const teaPrice = teaPrices[props.tea];
+
+    const canAfford = Math.floor(cash / teaPrice.price);
+    const canFit = holdTotal.max - holdTotal.current;
+
+    let initialMaxQty = canAfford;
+
+    if (canFit < canAfford) {
+        initialMaxQty = canFit;
+    }
 
     if (holdTeaQty > 0) {
         initialStatus = Status.Choose;
     }
 
     const [status, setStatus] = useState(initialStatus);
-    const [qty, setQty] = useState(0);
-
-    const { tea } = props;
-
-    const upQty = (qty: number) => {
-        return qty + 1;
-    };
-
-    console.log(status, qty);
+    const [maxQty, setMaxQty] = useState(initialMaxQty);
+    const [qty, setQty] = useState<number | null>(initialMaxQty);
 
     // CHOOSE
     // you own x units of y, do you want to buy or sell?
@@ -41,14 +55,54 @@ function BuySellModal(props: { tea: string }) {
     // hold for 85
     // Toal cost for 85 is £p
 
-    return (
-        <div>
-            {tea}
+    const numberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const result = event.target.value.replace(/\D/g, "");
 
-            <button onClick={() => setQty(upQty)}>UP</button>
-            <button onClick={() => setStatus(Status.Choose)}>CHOSE</button>
-        </div>
-    );
+        if (event.target.value === "") {
+            return null;
+        } else {
+            return +result;
+        }
+    };
+
+    let content;
+
+    if (status === Status.Choose) {
+        content = <div>Choose</div>;
+    } else if (Status.Buy) {
+        const displayQty = qty === null ? 0 : qty;
+
+        const qtyInvalid = displayQty > maxQty || displayQty === 0;
+
+        content = (
+            <div>
+                <p>
+                    You can afford {canAfford} of {teaPrice.teaName}, and can
+                    fit {canFit} in the hold.
+                </p>
+                <p>
+                    Total cost for {displayQty} is&nbsp;
+                    <Cash amount={displayQty * teaPrice.price} />
+                </p>
+                <p>
+                    <input
+                        type="number"
+                        value={qty === null ? "" : qty}
+                        onChange={(e) => {
+                            setQty(numberInput(e));
+                        }}
+                    />
+                </p>
+                <p>
+                    <button disabled={qtyInvalid}>Buy</button>
+                </p>
+            </div>
+        );
+    } else if (Status.Sell) {
+        content = <div>Sell</div>;
+    }
+
+    return <div>{content}</div>;
 }
 
 export default BuySellModal;

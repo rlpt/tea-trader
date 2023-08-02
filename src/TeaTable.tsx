@@ -11,6 +11,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import {
     holdSelector,
     rngTablesSelector,
+    teaPriceSelector,
     townSelector,
     turnNumberSelector,
 } from "./app/selectors";
@@ -19,51 +20,11 @@ import Cash from "./Cash";
 import { SpecialEvent } from "./app/types";
 import { showBuySellModal } from "./app/gameReducer";
 
-type TeaTableItem = {
-    teaName: string;
-    price: number;
-    quantity: number;
-    specialEvent: SpecialEvent;
-};
-
-const teaTableSelector = createSelector(
-    [townSelector, turnNumberSelector, holdSelector, rngTablesSelector],
-    (town, turnNumber, hold, rngTables) => {
-        const rngTable = rngTables[turnNumber][town];
-
-        const status: TeaTableItem[] = ALL_TEA_NAMES.map((teaName) => {
-            const { lowPrice, highPrice } = teaInfo[teaName];
-            const { randomNumber, specialEvent } = rngTable.teaPrice[teaName];
-
-            let price = randomInRange(lowPrice, highPrice, randomNumber);
-
-            if (specialEvent === SpecialEvent.HighPrice) {
-                price = price * SPECIAL_EVENT_MULTIPLIER;
-            }
-
-            if (specialEvent === SpecialEvent.LowPrice) {
-                price = Math.ceil(price / SPECIAL_EVENT_MULTIPLIER);
-            }
-
-            const { quantity } = hold.items[teaName];
-
-            return {
-                teaName,
-                price,
-                quantity,
-                specialEvent,
-            };
-        });
-
-        return status;
-    },
-);
-
 function TeaTable() {
     const dispatch = useAppDispatch();
-    const teaList = useAppSelector(teaTableSelector);
+    const teaMap = useAppSelector(teaPriceSelector);
 
-    const rows = teaList.map(({ teaName, price, quantity }) => {
+    const rows = Object.values(teaMap).map(({ teaName, price, quantity }) => {
         let quantityEl = <td></td>;
 
         if (quantity > 0) {
