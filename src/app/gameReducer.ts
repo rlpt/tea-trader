@@ -47,7 +47,7 @@ export const gameReducer = (seed: string) =>
                 return state;
             })
             .addCase(showChangeLocationModal, (state) => {
-                state.modal = { modalType: "NoModal" };
+                state.modal = { modalType: "ChangeLocationModal" };
 
                 return state;
             })

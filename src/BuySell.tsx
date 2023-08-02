@@ -7,7 +7,7 @@ import {
     teaPriceSelector,
 } from "./app/selectors";
 import Cash from "./Cash";
-import { buyTea, closeModal } from "./app/gameReducer";
+import { buyTea, closeModal, sellTea } from "./app/gameReducer";
 
 enum Status {
     Choose,
@@ -42,21 +42,9 @@ function BuySellModal(props: { tea: string }) {
         initialStatus = Status.Choose;
     }
 
-    const [status, setStatus] = useState(initialStatus);
-    const [maxQty, setMaxQty] = useState(initialMaxQty);
+    const [status, setStatus] = useState<Status>(initialStatus);
+    const [maxQty, setMaxQty] = useState<number>(initialMaxQty);
     const [inputQty, setInputQty] = useState<number | null>(initialMaxQty);
-
-    // CHOOSE
-    // you own x units of y, do you want to buy or sell?
-
-    // SELL
-    // You have x units of Y
-    // Sell z for $p?
-
-    // BUY
-    // You can afford 97 units of Y, and have room in the
-    // hold for 85
-    // Toal cost for 85 is £p
 
     const numberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const result = event.target.value.replace(/\D/g, "");
@@ -68,13 +56,31 @@ function BuySellModal(props: { tea: string }) {
         }
     };
 
+    const qty = inputQty === null ? 0 : inputQty;
+
     let content;
 
     if (status === Status.Choose) {
-        content = <div>Choose</div>;
-    } else if (Status.Buy) {
-        const qty = inputQty === null ? 0 : inputQty;
-
+        content = (
+            <div>
+                <p>
+                    You own {holdTeaQty} of {teaPrice.teaName}, do you want to
+                    buy or sell?
+                </p>
+                <p>
+                    <button onClick={() => setStatus(Status.Buy)}>Buy</button>
+                    <button
+                        onClick={() => {
+                            setStatus(Status.Sell);
+                            setInputQty(holdTeaQty);
+                        }}
+                    >
+                        Sell
+                    </button>
+                </p>
+            </div>
+        );
+    } else if (status === Status.Buy) {
         const qtyInvalid = qty > maxQty || qty === 0;
 
         content = (
@@ -116,8 +122,39 @@ function BuySellModal(props: { tea: string }) {
                 </p>
             </div>
         );
-    } else if (Status.Sell) {
-        content = <div>Sell</div>;
+    } else if (status === Status.Sell) {
+        const qtyInvalid = false;
+
+        content = (
+            <div>
+                <p>
+                    You have {holdTeaQty} of {teaPrice.teaName}.
+                </p>
+                <p>
+                    Sell {qty} of {teaPrice.teaName} for&nbsp;{" "}
+                    <Cash amount={qty * teaPrice.price} />
+                    ?.
+                </p>
+                <p>
+                    <button
+                        disabled={qtyInvalid}
+                        onClick={() => {
+                            dispatch(
+                                sellTea({
+                                    teaName: props.tea,
+                                    price: teaPrice.price,
+                                    quantity: qty,
+                                }),
+                            );
+
+                            dispatch(closeModal());
+                        }}
+                    >
+                        Sell
+                    </button>
+                </p>
+            </div>
+        );
     }
 
     return <div>{content}</div>;
