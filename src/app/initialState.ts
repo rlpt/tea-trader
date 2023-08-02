@@ -21,17 +21,9 @@ export const initialState = (seed: string): GameState => {
         townsVisited: [Town.London],
         cash: STARTING_CASH,
         bank: STARTING_DEBT,
-        hold: {
+        cargo: {
             maxSize: STARTING_HOLD_SIZE,
-            items: _.fromPairs(
-                ALL_TEA_NAMES.map((teaName) => [
-                    teaName,
-                    {
-                        quantity: 0,
-                        lastBuyPrice: 0,
-                    },
-                ]),
-            ),
+            items: _.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
         rngTables: rng.getRngTables(seed),
         modal: { modalType: "NoModal" },

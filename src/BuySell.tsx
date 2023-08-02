@@ -23,7 +23,7 @@ function BuySellModal(props: { tea: string }) {
     const holdTotal = useAppSelector(holdTotalSelector);
     const teaPrices = useAppSelector(teaPriceSelector);
 
-    const holdTeaQty = hold.items[props.tea].quantity;
+    const holdTeaQty = hold.items[props.tea];
 
     let initialStatus = Status.Buy;
 

@@ -5,7 +5,7 @@ export type GameState = {
     townsVisited: Town[];
     cash: number;
     bank: number;
-    hold: Hold;
+    cargo: Cargo;
     rngTables: RngTable[];
     modal: NoModal | ChangeLocationModal | BuySellModal;
 };
@@ -44,17 +44,17 @@ export type TeaInfo = {
     };
 };
 
-export type Hold = {
+export type Cargo = {
     maxSize: number;
-    items: HoldItems;
+    items: CargoItems;
 };
 
 export type HoldItem = {
     quantity: number;
 };
 
-export type HoldItems = {
-    [tea: string]: HoldItem;
+export type CargoItems = {
+    [tea: string]: number;
 };
 
 export type RngTable = {

@@ -1,8 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { totalItems } from "./hold";
+import { totalItems } from "./cargo";
 import { RootState } from "./store";
 import {
-    Hold,
+    Cargo,
     PriceChange,
     RngTable,
     SpecialEvent,
@@ -37,11 +37,11 @@ export const prevTownSelector = (state: RootState) => {
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const cashSelector = (state: RootState) => state.cash;
-export const holdSelector = (state: RootState) => state.hold;
+export const holdSelector = (state: RootState) => state.cargo;
 
 export const holdTotalSelector = createSelector(
     [holdSelector],
-    (hold: Hold) => {
+    (hold: Cargo) => {
         return {
             current: totalItems(hold.items),
             max: hold.maxSize,
@@ -100,7 +100,7 @@ export const teaPriceSelector = createSelector(
                     priceChange = PriceChange.PriceDecrease;
                 }
 
-                const { quantity } = hold.items[teaName];
+                const quantity = hold.items[teaName];
 
                 return [
                     teaName,
@@ -134,9 +134,9 @@ export const messageSelector = createSelector(
             (townName) => townName !== currentTown,
         );
 
-        // we pad out message list with blank messages to decrease the chance
+        // we pad out message list with some blank messages to decrease the chance
         // of getting a message every turn
-        let messages = ["", "", "", "", ""];
+        let messages = ["", ""];
 
         for (let townName of townsToCheck) {
             const teas = rngTable.towns[townName].teaPrice;

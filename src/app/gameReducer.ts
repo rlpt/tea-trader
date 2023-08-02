@@ -74,10 +74,9 @@ export const gameReducer = (seed: string) =>
                     return state;
                 }
 
-                const newTeaQuantity =
-                    state.hold.items[teaName].quantity + quantity;
+                const newTeaQuantity = state.cargo.items[teaName] + quantity;
 
-                state.hold.items[teaName].quantity = newTeaQuantity;
+                state.cargo.items[teaName] = newTeaQuantity;
 
                 state.cash = state.cash - totalPrice;
 
@@ -86,7 +85,7 @@ export const gameReducer = (seed: string) =>
             .addCase(sellTea, (state, action) => {
                 const { teaName, price, quantity } = action.payload;
 
-                const teaInHold = state.hold.items[teaName].quantity;
+                const teaInHold = state.cargo.items[teaName];
 
                 if (quantity > teaInHold) {
                     return state;
@@ -94,7 +93,7 @@ export const gameReducer = (seed: string) =>
 
                 state.cash = state.cash + quantity * price;
 
-                state.hold.items[teaName].quantity = teaInHold - quantity;
+                state.cargo.items[teaName] = teaInHold - quantity;
 
                 return state;
             });
