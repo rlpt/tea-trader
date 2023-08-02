@@ -21,7 +21,7 @@ export function getRngTables(seed: string): RngTable[] {
     let rngTableList = [];
 
     for (let i = 0; i < MAX_TURNS; i += 1) {
-        let rngTable: RngTable = {};
+        let rngTable: RngTable = { message: prng(), towns: {} };
 
         for (let town of ALL_TOWN_NAMES) {
             let teaPrice: TeaRng = {};
@@ -45,7 +45,7 @@ export function getRngTables(seed: string): RngTable[] {
                 };
             }
 
-            rngTable[town] = { teaPrice };
+            rngTable.towns[town] = { teaPrice };
         }
 
         rngTableList[i] = rngTable;
@@ -59,7 +59,7 @@ export function randomInRange(
     max: number,
     randomFraction: number,
 ): number {
-    const toAdd = Math.floor((max - min) * randomFraction);
+    const toAdd = Math.floor((max - min + 1) * randomFraction);
 
     return min + toAdd;
 }

@@ -75,13 +75,13 @@ export const teaPriceSelector = createSelector(
         rngTablesSelector,
     ],
     (town, prevTown, turnNumber, hold, rngTables) => {
-        const currentRngTable = rngTables[turnNumber][town];
+        const currentRngTable = rngTables[turnNumber].towns[town];
 
         const prevTurnNumber = turnNumber === 1 ? 1 : turnNumber - 1;
 
         // we use previous rngTable to see if prices have increase or decreased compared
         // to previous town
-        const prevRngTable = rngTables[prevTurnNumber][prevTown];
+        const prevRngTable = rngTables[prevTurnNumber].towns[prevTown];
 
         const status: { [key: string]: TeaPrice } = _.fromPairs(
             ALL_TEA_NAMES.map((teaName) => {
@@ -120,8 +120,8 @@ export const teaPriceSelector = createSelector(
 );
 
 export const messageSelector = createSelector(
-    [turnNumberSelector, teaPriceSelector, rngTablesSelector, townSelector],
-    (turnNumber, teaPrice, rngTables, currentTown) => {
+    [turnNumberSelector, rngTablesSelector, townSelector],
+    (turnNumber, rngTables, currentTown) => {
         if (turnNumber === MAX_TURNS) {
             return "";
         }
@@ -134,10 +134,12 @@ export const messageSelector = createSelector(
             (townName) => townName !== currentTown,
         );
 
-        let messages = [];
+        // we pad out message list with blank messages to decrease the chance
+        // of getting a message every turn
+        let messages = ["", "", "", "", ""];
 
         for (let townName of townsToCheck) {
-            const teas = rngTable[townName].teaPrice;
+            const teas = rngTable.towns[townName].teaPrice;
 
             for (let teaName of ALL_TEA_NAMES) {
                 const tea = teas[teaName];
@@ -152,6 +154,9 @@ export const messageSelector = createSelector(
             }
         }
 
-        return "";
+        // pick random message from list
+        const messageIdx = randomInRange(0, messages.length, rngTable.message);
+
+        return messages[messageIdx];
     },
 );

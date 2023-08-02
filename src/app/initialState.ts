@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { TeaInfo, Tea, GameState, Town, ActiveModal } from "./types";
+import { TeaInfo, Tea, GameState, Town } from "./types";
 import * as rng from "./rng";
 
 export const MAX_TURNS = 30;

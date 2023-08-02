@@ -42,3 +42,14 @@ body {
     margin-top: 1rem;
     text-align: center;
 }
+
+.current-location {
+  color: var(--primary);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.message {
+  text-align: center;
+}

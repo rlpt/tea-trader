@@ -54,17 +54,20 @@ export type HoldItem = {
 };
 
 export type HoldItems = {
-    [key: string]: HoldItem;
+    [tea: string]: HoldItem;
 };
 
 export type RngTable = {
-    [key: string]: {
-        teaPrice: TeaRng;
+    message: number;
+    towns: {
+        [town: string]: {
+            teaPrice: TeaRng;
+        };
     };
 };
 
 export type TeaRng = {
-    [key: string]: {
+    [tea: string]: {
         randomNumber: number;
         specialEvent: SpecialEvent;
     };

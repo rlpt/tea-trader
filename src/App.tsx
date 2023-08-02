@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { showChangeLocationModal } from "./app/gameReducer";
 import Modal from "./Modal";
 import "almond.css";
-import { townSelector } from "./app/selectors";
+import { messageSelector, townSelector } from "./app/selectors";
 import { GameState } from "./app/types";
 import ChangeLocation from "./ChangeLocation";
 import BuySellModal from "./BuySell";
@@ -14,6 +14,7 @@ import BuySellModal from "./BuySell";
 function App() {
     const dispatch = useAppDispatch();
     const town = useAppSelector(townSelector);
+    const message = useAppSelector(messageSelector);
 
     const modal = useAppSelector((state: GameState) => state.modal);
 
@@ -36,7 +37,8 @@ function App() {
     return (
         <div id="main-wrapper">
             <GameStatus />
-            <h3 className="current-location">{town}</h3>
+            <div className="current-location">{town}</div>
+            <div className={"message"}>{message}</div>
             <TeaTable />
             <div className="actions">
                 <button onClick={() => dispatch(showChangeLocationModal())}>
