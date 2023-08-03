@@ -57,6 +57,8 @@ function App() {
         );
     }
 
+    const wipeMessage = `Next Turn`;
+
     return (
         <div id="main-wrapper">
             <div className="current-location">{town}</div>
@@ -65,7 +67,9 @@ function App() {
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}
-            <div className={classNames(["turn-wipe", { wipe }])} />
+            <div className={classNames(["turn-wipe", { wipe }])}>
+                {wipeMessage}
+            </div>
         </div>
     );
 }
