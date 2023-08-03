@@ -64,3 +64,25 @@ body {
     height: 19px;
     font-weight: bold;
 }
+
+.turn-wipe {
+  background-color: #80CAF1;
+  display: flex;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  position: absolute;
+  transition: all 0.8s ease;
+  z-index: 20;
+  
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  clip-path:polygon(0 0,0% 0,-200px 100%,0 100%);
+}
+
+.turn-wipe.wipe {
+  clip-path:polygon(0 0,calc(100% + 200px) 0,100% 100%,0 100%);
+}

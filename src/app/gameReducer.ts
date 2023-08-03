@@ -21,6 +21,8 @@ export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
 );
 
+export const showEndGameModal = createAction("showEndGameModal");
+
 export const closeModal = createAction("closeModal");
 
 export const nextTurn = createAction<{ nextTown: Town }>("nextTurn");
@@ -38,6 +40,7 @@ export const gameReducer = (seed: string) =>
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
+                state.showWipe = true;
 
                 return state;
             })
@@ -56,6 +59,11 @@ export const gameReducer = (seed: string) =>
                     modalType: "BuySellModal",
                     tea: action.payload.tea,
                 };
+
+                return state;
+            })
+            .addCase(showEndGameModal, (state) => {
+                state.modal = { modalType: "EndGameModal" };
 
                 return state;
             })

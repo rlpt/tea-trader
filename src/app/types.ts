@@ -6,7 +6,8 @@ export type GameState = {
     cash: number;
     cargo: Cargo;
     rngTables: RngTable[];
-    modal: NoModal | ChangeLocationModal | BuySellModal;
+    modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
+    showWipe: boolean;
 };
 
 export enum Town {
@@ -48,10 +49,6 @@ export type Cargo = {
     items: CargoItems;
 };
 
-export type HoldItem = {
-    quantity: number;
-};
-
 export type CargoItems = {
     [tea: string]: number;
 };
@@ -85,6 +82,10 @@ type ChangeLocationModal = {
 type BuySellModal = {
     modalType: "BuySellModal";
     tea: string;
+};
+
+type EndGameModal = {
+    modalType: "EndGameModal";
 };
 
 type NoModal = {

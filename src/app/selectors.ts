@@ -31,6 +31,7 @@ export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const cashSelector = (state: RootState) => state.cash;
 export const cargoSelector = (state: RootState) => state.cargo;
+export const wipeSelector = (state: RootState) => state.showWipe;
 
 export const cargoTotalSelector = createSelector(
     [cargoSelector],

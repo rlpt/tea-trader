@@ -24,6 +24,7 @@ export const initialState = (seed: string): GameState => {
         },
         rngTables: rng.getRngTables(seed),
         modal: { modalType: "NoModal" },
+        showWipe: false,
     };
 };
 
