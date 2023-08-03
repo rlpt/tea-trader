@@ -36,11 +36,11 @@ function App() {
 
     return (
         <div id="main-wrapper">
-            <GameStatus />
             <div className="current-location">{town}</div>
+            <GameStatus />
             <div className={"message"}>{message}</div>
             <TeaTable />
-            <div className="actions">
+            <div className="buttons">
                 <button onClick={() => dispatch(showChangeLocationModal())}>
                     Change Location
                 </button>

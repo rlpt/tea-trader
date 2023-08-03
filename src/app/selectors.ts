@@ -37,10 +37,10 @@ export const prevTownSelector = (state: RootState) => {
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const cashSelector = (state: RootState) => state.cash;
-export const holdSelector = (state: RootState) => state.cargo;
+export const cargoSelector = (state: RootState) => state.cargo;
 
-export const holdTotalSelector = createSelector(
-    [holdSelector],
+export const cargoTotalSelector = createSelector(
+    [cargoSelector],
     (hold: Cargo) => {
         return {
             current: totalItems(hold.items),
@@ -71,7 +71,7 @@ export const teaPriceSelector = createSelector(
         townSelector,
         prevTownSelector,
         turnNumberSelector,
-        holdSelector,
+        cargoSelector,
         rngTablesSelector,
     ],
     (town, prevTown, turnNumber, hold, rngTables) => {

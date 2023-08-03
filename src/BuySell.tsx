@@ -2,8 +2,8 @@ import React, { ReactEventHandler, useState } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     cashSelector,
-    holdSelector,
-    holdTotalSelector,
+    cargoSelector,
+    cargoTotalSelector,
     teaPriceSelector,
 } from "./app/selectors";
 import Cash from "./Cash";
@@ -18,9 +18,9 @@ enum Status {
 function BuySellModal(props: { tea: string }) {
     const dispatch = useAppDispatch();
 
-    const hold = useAppSelector(holdSelector);
+    const hold = useAppSelector(cargoSelector);
     const cash = useAppSelector(cashSelector);
-    const holdTotal = useAppSelector(holdTotalSelector);
+    const holdTotal = useAppSelector(cargoTotalSelector);
     const teaPrices = useAppSelector(teaPriceSelector);
 
     const holdTeaQty = hold.items[props.tea];
@@ -43,7 +43,7 @@ function BuySellModal(props: { tea: string }) {
     }
 
     const [status, setStatus] = useState<Status>(initialStatus);
-    const [maxQty, setMaxQty] = useState<number>(initialMaxQty);
+    const [maxQty, setMaxQty] = useState<number>(initialMaxQty); // TODO
     const [inputQty, setInputQty] = useState<number | null>(initialMaxQty);
 
     const numberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +67,7 @@ function BuySellModal(props: { tea: string }) {
                     You own {holdTeaQty} of {teaPrice.teaName}, do you want to
                     buy or sell?
                 </p>
-                <p>
+                <div className="buttons">
                     <button onClick={() => setStatus(Status.Buy)}>Buy</button>
                     <button
                         onClick={() => {
@@ -77,7 +77,7 @@ function BuySellModal(props: { tea: string }) {
                     >
                         Sell
                     </button>
-                </p>
+                </div>
             </div>
         );
     } else if (status === Status.Buy) {
@@ -102,7 +102,7 @@ function BuySellModal(props: { tea: string }) {
                         }}
                     />
                 </p>
-                <p>
+                <div className="buttons">
                     <button
                         disabled={qtyInvalid}
                         onClick={() => {
@@ -119,11 +119,18 @@ function BuySellModal(props: { tea: string }) {
                     >
                         Buy
                     </button>
-                </p>
+                    <button
+                        onClick={() => {
+                            dispatch(closeModal());
+                        }}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </div>
         );
     } else if (status === Status.Sell) {
-        const qtyInvalid = false;
+        const qtyInvalid = qty === 0 || qty > holdTeaQty;
 
         content = (
             <div>
@@ -132,10 +139,18 @@ function BuySellModal(props: { tea: string }) {
                 </p>
                 <p>
                     Sell {qty} of {teaPrice.teaName} for&nbsp;{" "}
-                    <Cash amount={qty * teaPrice.price} />
-                    ?.
+                    <Cash amount={qty * teaPrice.price} />?
                 </p>
                 <p>
+                    <input
+                        type="number"
+                        value={inputQty === null ? "" : inputQty}
+                        onChange={(e) => {
+                            setInputQty(numberInput(e));
+                        }}
+                    />
+                </p>
+                <div className="buttons">
                     <button
                         disabled={qtyInvalid}
                         onClick={() => {
@@ -152,7 +167,14 @@ function BuySellModal(props: { tea: string }) {
                     >
                         Sell
                     </button>
-                </p>
+                    <button
+                        onClick={() => {
+                            dispatch(closeModal());
+                        }}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </div>
         );
     }

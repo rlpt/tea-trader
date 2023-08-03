@@ -13,6 +13,13 @@ html {
         0 0;
     background-size: 20px 20px;
     background-repeat: repeat;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 body {
@@ -38,18 +45,19 @@ body {
 }
 
 /* TODO nice button spacing, maybe centered? */
-.actions {
+.buttons {
     margin-top: 1rem;
-    text-align: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .current-location {
-  color: var(--primary);
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
 }
 
 .message {
-  text-align: center;
+    text-align: center;
 }

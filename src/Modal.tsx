@@ -1,12 +1,26 @@
 import React, { PropsWithChildren } from "react";
 import "./Modal.css";
-
-// TODO click overlay to close
+import { useAppDispatch } from "./app/hooks";
+import { closeModal } from "./app/gameReducer";
 
 function Modal(props: PropsWithChildren) {
+    const dispatch = useAppDispatch();
+
     return (
         <div className="modal">
-            <div className="modal-content">{props.children}</div>
+            <div
+                className="modal-overlay"
+                onClick={() => dispatch(closeModal())}
+            ></div>
+            <div className="modal-content">
+                {props.children}
+                <div
+                    className="modal-close-button"
+                    onClick={() => dispatch(closeModal())}
+                >
+                    ✕
+                </div>
+            </div>
         </div>
     );
 }

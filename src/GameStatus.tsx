@@ -1,6 +1,6 @@
 import { RootState } from "./app/store";
 import { useAppSelector } from "./app/hooks";
-import { holdTotalSelector } from "./app/selectors";
+import { cargoTotalSelector } from "./app/selectors";
 import { MAX_TURNS } from "./app/initialState";
 import Cash from "./Cash";
 import "./GameStatus.css";
@@ -8,7 +8,7 @@ import "./GameStatus.css";
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
     const bank = useAppSelector((state: RootState) => state.bank);
-    const hold = useAppSelector(holdTotalSelector);
+    const cargo = useAppSelector(cargoTotalSelector);
     const turnNumber = useAppSelector((state: RootState) => state.turnNumber);
 
     return (
@@ -23,7 +23,7 @@ function GameStatus() {
             </div>
             <div>
                 <div>
-                    Hold: {hold.current} / {hold.max}
+                    Cargo: {cargo.current} / {cargo.max}
                 </div>
                 <div>
                     Turn: {turnNumber} / {MAX_TURNS}
