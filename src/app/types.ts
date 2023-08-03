@@ -4,7 +4,6 @@ export type GameState = {
     turnNumber: number;
     townsVisited: Town[];
     cash: number;
-    bank: number;
     cargo: Cargo;
     rngTables: RngTable[];
     modal: NoModal | ChangeLocationModal | BuySellModal;

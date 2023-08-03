@@ -1,7 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { MAX_TURNS, initialState } from "./initialState";
 import { cargoTotalSelector } from "./selectors";
-import { ActiveModal, Town } from "./types";
+import { Town } from "./types";
 
 export const buyTea = createAction<{
     teaName: string;

@@ -4,8 +4,6 @@ import * as rng from "./rng";
 
 export const MAX_TURNS = 30;
 export const STARTING_CASH = 2000;
-export const STARTING_DEBT = -50000;
-export const DEBT_INTEREST_RATE = 0.1;
 export const STARTING_HOLD_SIZE = 100;
 
 export const SPECIAL_EVENT_CHANCE = 30;
@@ -20,7 +18,6 @@ export const initialState = (seed: string): GameState => {
         turnNumber: 1,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
-        bank: STARTING_DEBT,
         cargo: {
             maxSize: STARTING_HOLD_SIZE,
             items: _.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),

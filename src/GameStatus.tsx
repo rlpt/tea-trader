@@ -7,27 +7,19 @@ import "./GameStatus.css";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
-    const bank = useAppSelector((state: RootState) => state.bank);
     const cargo = useAppSelector(cargoTotalSelector);
     const turnNumber = useAppSelector((state: RootState) => state.turnNumber);
 
     return (
         <div className="game-status">
             <div>
-                <div>
-                    Cash: <Cash amount={cash} />
-                </div>
-                <div>
-                    Bank: <Cash amount={bank} />
-                </div>
+                Cash: <Cash amount={cash} />
             </div>
             <div>
-                <div>
-                    Cargo: {cargo.current} / {cargo.max}
-                </div>
-                <div>
-                    Turn: {turnNumber} / {MAX_TURNS}
-                </div>
+                Cargo: {cargo.current} / {cargo.max}
+            </div>
+            <div>
+                Turn: {turnNumber} / {MAX_TURNS}
             </div>
         </div>
     );
