@@ -15,10 +15,10 @@ function GameStatus() {
             <div>
                 Cash: <Cash amount={cash} />
             </div>
-            <div>
+            <div className="middle">
                 Cargo: {cargo.current} / {cargo.max}
             </div>
-            <div>
+            <div className="right">
                 Turn: {turnNumber} / {MAX_TURNS}
             </div>
         </div>

@@ -145,11 +145,11 @@ export const messageSelector = createSelector(
                 const tea = teas[teaName];
 
                 if (tea.specialEvent === SpecialEvent.HighPrice) {
-                    messages.push(`Shortage of ${teaName} in ${townName}`);
+                    messages.push(`Shortage of ${teaName} in ${townName}!`);
                 }
 
                 if (tea.specialEvent === SpecialEvent.LowPrice) {
-                    messages.push(`Glut of ${teaName} in ${townName}`);
+                    messages.push(`Glut of ${teaName} in ${townName}!`);
                 }
             }
         }
