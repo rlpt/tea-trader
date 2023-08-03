@@ -5,7 +5,7 @@ import GameStatus from "./GameStatus";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
 import Modal from "./Modal";
-import "almond.css";
+import "./almond.css";
 import {
     messageSelector,
     townSelector,
@@ -65,8 +65,8 @@ function App() {
 
     return (
         <div id="main-wrapper">
+            <div className="game-title">tea trader</div>
             <GameStatus />
-            <div className="message">{message}</div>
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}

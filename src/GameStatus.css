@@ -1,5 +1,6 @@
 .game-status {
     position: relative;
+    margin-bottom: 1rem;
 
     & .top-item {
         margin-bottom: 0.2rem;
