@@ -23,7 +23,7 @@ function App() {
     const town = useAppSelector(townSelector);
     const message = useAppSelector(messageSelector);
     const currentTurn = useAppSelector(turnNumberSelector);
-    const showWipe = useAppSelector(wipeSelector);
+    const wipe = useAppSelector(wipeSelector);
 
     const modal = useAppSelector((state: GameState) => state.modal);
 
@@ -65,7 +65,7 @@ function App() {
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}
-            <div className={classNames(["turn-wipe", { wipe: showWipe }])} />
+            <div className={classNames(["turn-wipe", { wipe }])} />
         </div>
     );
 }

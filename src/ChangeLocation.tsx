@@ -3,7 +3,7 @@ import { ALL_TOWN_NAMES } from "./app/initialState";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { townSelector } from "./app/selectors";
 import "./ChangeLocation.css";
-import { nextTurn } from "./app/gameReducer";
+import { animateNextTurn } from "./app/gameReducer";
 import { Town } from "./app/types";
 import classNames from "classnames";
 
@@ -41,7 +41,7 @@ function ChangeLocationModal() {
                 <button
                     disabled={nextTown === currentTown}
                     onClick={() => {
-                        dispatch(nextTurn({ nextTown: Town[nextTown] }));
+                        dispatch(animateNextTurn({ nextTown: Town[nextTown] }));
                     }}
                 >
                     Change Location

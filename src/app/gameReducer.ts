@@ -1,4 +1,8 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import {
+    createAction,
+    createAsyncThunk,
+    createReducer,
+} from "@reduxjs/toolkit";
 import { MAX_TURNS, initialState } from "./initialState";
 import { cargoTotalSelector } from "./selectors";
 import { Town } from "./types";
@@ -25,12 +29,26 @@ export const showEndGameModal = createAction("showEndGameModal");
 
 export const closeModal = createAction("closeModal");
 
-export const nextTurn = createAction<{ nextTown: Town }>("nextTurn");
+function timeout(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export const animateNextTurn = createAsyncThunk(
+    "animateNextTurn",
+    async (args: { nextTown: Town }) => {
+        await timeout(1000);
+
+        return { nextTown: args.nextTown };
+    },
+);
 
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
-            .addCase(nextTurn, (state, action) => {
+            .addCase(animateNextTurn.pending, (state) => {
+                state.showWipe = true;
+            })
+            .addCase(animateNextTurn.fulfilled, (state, action) => {
                 const nextTurnNumber = state.turnNumber + 1;
 
                 if (nextTurnNumber === MAX_TURNS) {
@@ -40,7 +58,7 @@ export const gameReducer = (seed: string) =>
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
-                state.showWipe = true;
+                state.showWipe = false;
 
                 return state;
             })
