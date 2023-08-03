@@ -7,7 +7,15 @@ export type GameState = {
     cargo: Cargo;
     rngTables: RngTable[];
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
-    showWipe: boolean;
+    wipe: {
+        showing: boolean;
+        content: WipeContent;
+    };
+};
+
+type WipeContent = {
+    contentType: "NextTurn";
+    displayTurn: number;
 };
 
 export enum Town {

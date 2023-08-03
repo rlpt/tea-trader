@@ -57,7 +57,11 @@ function App() {
         );
     }
 
-    const wipeMessage = `Next Turn`;
+    let wipeMessage = "";
+
+    if (wipe.content.contentType === "NextTurn") {
+        wipeMessage = `Turn ${wipe.content.displayTurn}`;
+    }
 
     return (
         <div id="main-wrapper">
@@ -67,7 +71,7 @@ function App() {
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}
-            <div className={classNames(["turn-wipe", { wipe }])}>
+            <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
                 {wipeMessage}
             </div>
         </div>

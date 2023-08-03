@@ -46,7 +46,8 @@ export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
             .addCase(animateNextTurn.pending, (state) => {
-                state.showWipe = true;
+                state.wipe.content.displayTurn = state.turnNumber + 1;
+                state.wipe.showing = true;
             })
             .addCase(animateNextTurn.fulfilled, (state, action) => {
                 const nextTurnNumber = state.turnNumber + 1;
@@ -58,7 +59,7 @@ export const gameReducer = (seed: string) =>
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
-                state.showWipe = false;
+                state.wipe.showing = false;
 
                 return state;
             })

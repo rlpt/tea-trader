@@ -24,7 +24,13 @@ export const initialState = (seed: string): GameState => {
         },
         rngTables: rng.getRngTables(seed),
         modal: { modalType: "NoModal" },
-        showWipe: false,
+        wipe: {
+            showing: false,
+            content: {
+                contentType: "NextTurn",
+                displayTurn: 1,
+            },
+        },
     };
 };
 
