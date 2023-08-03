@@ -38,7 +38,7 @@ function App() {
         <div id="main-wrapper">
             <div className="current-location">{town}</div>
             <GameStatus />
-            <div className={"message"}>{message}</div>
+            <div className="message">{message}</div>
             <TeaTable />
             <div className="buttons">
                 <button onClick={() => dispatch(showChangeLocationModal())}>

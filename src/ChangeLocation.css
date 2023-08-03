@@ -1,13 +1,24 @@
 .change-location {
+    padding-top: 1rem;
+
     & .town-list {
-        width: 200px;
         margin-left: auto;
         margin-right: auto;
+        display: flex;
+        justify-content: center;
 
         & label {
-            display: block;
+            display: inline-block;
             margin-bottom: 1rem;
+            cursor: pointer;
+            text-align: left;
+            width: 150px;
         }
+
+        & .disabled {
+            opacity: 0.5;
+            cursor: default;
+        } 
 
         & input {
             margin-right: 1rem;
