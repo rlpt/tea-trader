@@ -1,14 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { totalItems } from "./cargo";
 import { RootState } from "./store";
-import {
-    Cargo,
-    PriceChange,
-    RngTable,
-    SpecialEvent,
-    TeaPrice,
-    TeaRng,
-} from "./types";
+import { Cargo, PriceChange, SpecialEvent, TeaPrice, TeaRng } from "./types";
 import {
     ALL_TEA_NAMES,
     teaInfo,

@@ -1,4 +1,4 @@
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     cashSelector,
@@ -32,10 +32,10 @@ function BuySellModal(props: { tea: string }) {
     const canAfford = Math.floor(cash / teaPrice.price);
     const canFit = holdTotal.max - holdTotal.current;
 
-    let initialMaxQty = canAfford;
+    let buyMaxQty = canAfford;
 
     if (canFit < canAfford) {
-        initialMaxQty = canFit;
+        buyMaxQty = canFit;
     }
 
     if (holdTeaQty > 0) {
@@ -43,8 +43,7 @@ function BuySellModal(props: { tea: string }) {
     }
 
     const [status, setStatus] = useState<Status>(initialStatus);
-    const [maxQty, setMaxQty] = useState<number>(initialMaxQty); // TODO
-    const [inputQty, setInputQty] = useState<number | null>(initialMaxQty);
+    const [inputQty, setInputQty] = useState<number | null>(buyMaxQty);
 
     const numberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const result = event.target.value.replace(/\D/g, "");
@@ -81,7 +80,7 @@ function BuySellModal(props: { tea: string }) {
             </div>
         );
     } else if (status === Status.Buy) {
-        const qtyInvalid = qty > maxQty || qty === 0;
+        const qtyInvalid = qty > buyMaxQty || qty === 0;
 
         content = (
             <div>

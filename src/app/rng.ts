@@ -9,7 +9,7 @@ import {
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front
- * for every turn when we initialise the initial game state. This means we do
+ * for every turn when we initialize the initial game state. This means we do
  * not have to generate new random numbers while the game is running.
  *
  * @param seed
