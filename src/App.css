@@ -52,12 +52,6 @@ body {
     justify-content: center;
 }
 
-.current-location {
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.4rem;
-}
-
 .message {
     text-align: center;
     margin-top: 0.5rem;

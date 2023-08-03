@@ -65,7 +65,6 @@ function App() {
 
     return (
         <div id="main-wrapper">
-            <div className="current-location">{town}</div>
             <GameStatus />
             <div className="message">{message}</div>
             <TeaTable />
