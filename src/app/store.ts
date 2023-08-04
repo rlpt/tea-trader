@@ -2,7 +2,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { gameReducer } from "./gameReducer";
 
 export const store = configureStore({
-    reducer: gameReducer("testseed"),
+    reducer: gameReducer(new Date().getTime().toString()),
 });
 
 export type AppDispatch = typeof store.dispatch;

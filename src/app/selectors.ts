@@ -11,6 +11,7 @@ import {
 } from "./initialState";
 import { randomInRange } from "./rng";
 import _ from "lodash";
+import { start } from "repl";
 
 export const townSelector = (state: RootState) => {
     return state.townsVisited[state.turnNumber - 1];
@@ -113,45 +114,10 @@ export const teaPriceSelector = createSelector(
     },
 );
 
-export const messageSelector = createSelector(
-    [turnNumberSelector, rngTablesSelector, townSelector],
-    (turnNumber, rngTables, currentTown) => {
-        if (turnNumber === MAX_TURNS) {
-            return "";
-        }
+export const messageSelector = (state: RootState) => {
+    if (state.modal.modalType === "MessageModal") {
+        return state.modal.message;
+    }
 
-        // see if any towns next turn have a special event
-        const rngTable = rngTables[turnNumber + 1];
-
-        // don't include current town
-        const townsToCheck = ALL_TOWN_NAMES.filter(
-            (townName) => townName !== currentTown,
-        );
-
-        // we pad out message list with some blank messages to decrease the chance
-        // of getting a message every turn
-        // let messages = ["", ""];
-        let messages = [];
-
-        for (let townName of townsToCheck) {
-            const teas = rngTable.towns[townName].teaPrice;
-
-            for (let teaName of ALL_TEA_NAMES) {
-                const tea = teas[teaName];
-
-                if (tea.specialEvent === SpecialEvent.HighPrice) {
-                    messages.push(`Shortage of ${teaName} in ${townName}!`);
-                }
-
-                if (tea.specialEvent === SpecialEvent.LowPrice) {
-                    messages.push(`Glut of ${teaName} in ${townName}!`);
-                }
-            }
-        }
-
-        // pick random message from list
-        const messageIdx = randomInRange(0, messages.length, rngTable.message);
-
-        return messages[messageIdx];
-    },
-);
+    return "";
+};

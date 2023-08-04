@@ -103,6 +103,7 @@ type EndGameModal = {
 
 type MessageModal = {
     modalType: "MessageModal";
+    message: string;
 };
 
 type NoModal = {

@@ -3,9 +3,16 @@ import {
     createAsyncThunk,
     createReducer,
 } from "@reduxjs/toolkit";
-import { MAX_TURNS, initialState } from "./initialState";
+import {
+    ALL_TEA_NAMES,
+    ALL_TOWN_NAMES,
+    MAX_TURNS,
+    initialState,
+} from "./initialState";
 import { cargoTotalSelector, messageSelector } from "./selectors";
-import { Town } from "./types";
+import { GameState, RngTable, SpecialEvent, Town } from "./types";
+import { randomInRange } from "./rng";
+import { RootState } from "./store";
 
 export const buyTea = createAction<{
     teaName: string;
@@ -35,10 +42,10 @@ function timeout(ms: number) {
 
 export const animateNextTurn = createAsyncThunk(
     "animateNextTurn",
-    async (args: { nextTown: Town }) => {
+    async (args: { nextTown: Town }, state) => {
         await timeout(1000);
 
-        return { nextTown: args.nextTown };
+        return { nextTown: args.nextTown, message: "wot" };
     },
 );
 
@@ -47,24 +54,33 @@ export const gameReducer = (seed: string) =>
         builder
             .addCase(animateNextTurn.pending, (state) => {
                 state.wipe.content.displayTurn = state.turnNumber + 1;
+                state.modal = { modalType: "NoModal" };
                 state.wipe.showing = true;
             })
             .addCase(animateNextTurn.fulfilled, (state, action) => {
                 // next turn
                 const nextTurnNumber = state.turnNumber + 1;
 
-                const message = messageSelector(state);
-
                 if (nextTurnNumber === MAX_TURNS) {
+                    // TODO, show end game modal
                     return state;
                 }
+
+                const message = getMessage(
+                    state.turnNumber,
+                    action.payload.nextTown,
+                    state.rngTables,
+                );
 
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
 
                 if (message !== "") {
-                    state.modal = { modalType: "MessageModal" };
+                    state.modal = {
+                        modalType: "MessageModal",
+                        message,
+                    };
                 }
 
                 state.wipe.showing = false;
@@ -133,3 +149,46 @@ export const gameReducer = (seed: string) =>
                 return state;
             });
     });
+
+function getMessage(
+    turnNumber: number,
+    currentTown: Town,
+    rngTables: RngTable[],
+) {
+    if (turnNumber === MAX_TURNS) {
+        return "";
+    }
+
+    // see if any towns next turn have a special event
+    const rngTable = rngTables[turnNumber + 1];
+
+    // don't include current town
+    const townsToCheck = ALL_TOWN_NAMES.filter(
+        (townName) => townName !== currentTown,
+    );
+
+    // we pad out message list with a blank message to decrease the chance
+    // of getting a message every turn
+    let messages = [""];
+
+    for (let townName of townsToCheck) {
+        const teas = rngTable.towns[townName].teaPrice;
+
+        for (let teaName of ALL_TEA_NAMES) {
+            const tea = teas[teaName];
+
+            if (tea.specialEvent === SpecialEvent.HighPrice) {
+                messages.push(`Shortage of ${teaName} in ${townName}!`);
+            }
+
+            if (tea.specialEvent === SpecialEvent.LowPrice) {
+                messages.push(`Glut of ${teaName} in ${townName}!`);
+            }
+        }
+    }
+
+    // pick random message from list
+    const messageIdx = randomInRange(0, messages.length - 1, rngTable.message);
+
+    return messages[messageIdx];
+}
