@@ -6,7 +6,12 @@ export type GameState = {
     cash: number;
     cargo: Cargo;
     rngTables: RngTable[];
-    modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
+    modal:
+        | NoModal
+        | ChangeLocationModal
+        | BuySellModal
+        | EndGameModal
+        | MessageModal;
     wipe: {
         showing: boolean;
         content: WipeContent;
@@ -94,6 +99,10 @@ type BuySellModal = {
 
 type EndGameModal = {
     modalType: "EndGameModal";
+};
+
+type MessageModal = {
+    modalType: "MessageModal";
 };
 
 type NoModal = {

@@ -15,6 +15,7 @@ import {
 import { GameState } from "./app/types";
 import ChangeLocation from "./ChangeLocation";
 import BuySellModal from "./BuySell";
+import ModalMessage from "./ModalMessage";
 import { MAX_TURNS } from "./app/initialState";
 import classNames from "classnames";
 
@@ -39,6 +40,12 @@ function App() {
         modalEl = (
             <Modal>
                 <BuySellModal tea={modal.tea} />
+            </Modal>
+        );
+    } else if (modal.modalType === "MessageModal") {
+        modalEl = (
+            <Modal>
+                <ModalMessage message={message} />
             </Modal>
         );
     }

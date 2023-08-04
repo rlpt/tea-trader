@@ -130,7 +130,8 @@ export const messageSelector = createSelector(
 
         // we pad out message list with some blank messages to decrease the chance
         // of getting a message every turn
-        let messages = ["", ""];
+        // let messages = ["", ""];
+        let messages = [];
 
         for (let townName of townsToCheck) {
             const teas = rngTable.towns[townName].teaPrice;

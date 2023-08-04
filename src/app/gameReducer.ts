@@ -4,7 +4,7 @@ import {
     createReducer,
 } from "@reduxjs/toolkit";
 import { MAX_TURNS, initialState } from "./initialState";
-import { cargoTotalSelector } from "./selectors";
+import { cargoTotalSelector, messageSelector } from "./selectors";
 import { Town } from "./types";
 
 export const buyTea = createAction<{
@@ -50,7 +50,10 @@ export const gameReducer = (seed: string) =>
                 state.wipe.showing = true;
             })
             .addCase(animateNextTurn.fulfilled, (state, action) => {
+                // next turn
                 const nextTurnNumber = state.turnNumber + 1;
+
+                const message = messageSelector(state);
 
                 if (nextTurnNumber === MAX_TURNS) {
                     return state;
@@ -59,6 +62,11 @@ export const gameReducer = (seed: string) =>
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
+
+                if (message !== "") {
+                    state.modal = { modalType: "MessageModal" };
+                }
+
                 state.wipe.showing = false;
 
                 return state;
