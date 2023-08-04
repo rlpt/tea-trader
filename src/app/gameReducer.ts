@@ -270,6 +270,22 @@ export function getTeaForTurn(
     return status;
 }
 
+export function currentTown(townsVisited: Town[], turnNumber: number) {
+    return townsVisited[turnNumber - 1];
+}
+
+export function previousTown(townsVisited: Town[], turnNumber: number) {
+    if (turnNumber === 1) {
+        // return first town as previously visited town when we are on first turn
+        // this avoids a null and works fine for comparing previous prices as
+        // the prices will be the same
+        return townsVisited[0];
+    }
+
+    return townsVisited[turnNumber - 2];
+}
+
+// TODO
 function events() {
     // create list of events up front
     // on each turn -> filter out invalid -> grab random event, if any

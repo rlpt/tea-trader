@@ -16,26 +16,15 @@ function GameStatus() {
     return (
         <div className="game-status">
             <div>
-                <div className="top-item">
-                    <span className="label">Cash:</span>
+                <div className="cash">
                     <Cash amount={cash} />
-                </div>
-                <div>
-                    <span className="label">Turn:</span>
-                    {turnNumber} / {MAX_TURNS}
                 </div>
             </div>
             <div className="right">
-                <div className="top-item right-item">
+                <div className="right-item">
                     <div className="right-label">Cargo:</div>
                     <div className="right-content">
                         {cargo.current} / {cargo.max}
-                    </div>
-                </div>
-                <div>
-                    <div className="right-item">
-                        <div className="right-label">Town: </div>
-                        <div className="right-content">{town}</div>
                     </div>
                 </div>
             </div>

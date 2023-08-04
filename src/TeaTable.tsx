@@ -52,14 +52,6 @@ function TeaTable() {
 
     return (
         <table className="tea-table">
-            <thead>
-                <tr>
-                    <th>Tea</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
             <tbody>{rows}</tbody>
         </table>
     );

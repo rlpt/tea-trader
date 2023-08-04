@@ -2,21 +2,14 @@ import { createSelector } from "@reduxjs/toolkit";
 import { totalItems } from "./cargo";
 import { RootState } from "./store";
 import { Cargo } from "./types";
-import { getTeaForTurn } from "./gameReducer";
+import { currentTown, getTeaForTurn, previousTown } from "./gameReducer";
 
 export const townSelector = (state: RootState) => {
-    return state.townsVisited[state.turnNumber - 1];
+    return currentTown(state.townsVisited, state.turnNumber);
 };
 
 export const prevTownSelector = (state: RootState) => {
-    if (state.turnNumber === 1) {
-        // return first town as previously visited town when we are on first turn
-        // this avoids a null and works fine for comparing previous prices as
-        // the prices will be the same
-        return state.townsVisited[0];
-    }
-
-    return state.townsVisited[state.turnNumber - 2];
+    return previousTown(state.townsVisited, state.turnNumber);
 };
 
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
@@ -45,11 +38,3 @@ export const teaPriceSelector = createSelector(
     ],
     getTeaForTurn,
 );
-
-export const messageSelector = (state: RootState) => {
-    if (state.modal.modalType === "MessageModal") {
-        return state.modal.message;
-    }
-
-    return "";
-};
