@@ -67,7 +67,7 @@ export const gameReducer = (seed: string) =>
                 }
 
                 const message = getMessage(
-                    state.turnNumber,
+                    nextTurnNumber + 1,
                     action.payload.nextTown,
                     state.rngTables,
                 );
@@ -160,7 +160,7 @@ function getMessage(
     }
 
     // see if any towns next turn have a special event
-    const rngTable = rngTables[turnNumber + 1];
+    const rngTable = rngTables[turnNumber];
 
     // don't include current town
     const townsToCheck = ALL_TOWN_NAMES.filter(
