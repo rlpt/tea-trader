@@ -41,25 +41,25 @@ body {
 }
 
 .game-header {
-  padding-bottom: 1px;
-  height: 1.6rem;
-  color: white;
-  background-color: var(--primary);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 1rem;
-  padding-right: 1rem;
+    padding-bottom: 1px;
+    height: 1.6rem;
+    color: white;
+    background-color: var(--primary);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
-  & .turn-count {
-    font-size: 14px;
-  }
+    & .turn-count {
+        font-size: 14px;
+    }
 }
 
 .game-body {
-  padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0rem 1rem 0rem 1rem;
 }
 
 .current-location {
@@ -107,7 +107,7 @@ body {
 }
 
 .pound-sign {
-  color: #EEBC1D;
-  display: inline-block;
-  padding-right: 2px;
+    color: #eebc1d;
+    display: inline-block;
+    padding-right: 2px;
 }

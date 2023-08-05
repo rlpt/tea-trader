@@ -1,6 +1,7 @@
 .game-status {
     position: relative;
-    margin-bottom: 0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     .cash {
         display: flex;
