@@ -2,6 +2,11 @@
 
 Tea trading game. Try to buy low and sell high. Based off the rules of a classic game with naughtier products.
 
+# Todo
+
+TODO add ships log to keep track of buy/sell price
+TODO click health bar to show modal with strength/defense/weapons info
+
 # Game overview
 
 You are a tea trader. You begin the game with $2,000 and $5,500 in debt.

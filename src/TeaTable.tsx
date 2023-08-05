@@ -19,9 +19,15 @@ function TeaTable() {
 
             let priceChangeEl = "";
 
-            if (priceChange === PriceChange.PriceIncrease) {
+            if (
+                priceChange === PriceChange.PriceIncrease ||
+                specialEvent === SpecialEvent.HighPrice
+            ) {
                 priceChangeEl = "⬆️";
-            } else if (priceChange === PriceChange.PriceDecrease) {
+            } else if (
+                priceChange === PriceChange.PriceDecrease ||
+                specialEvent === SpecialEvent.LowPrice
+            ) {
                 priceChangeEl = "⬇️";
             }
 

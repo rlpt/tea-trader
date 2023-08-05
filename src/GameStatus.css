@@ -1,29 +1,17 @@
 .game-status {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 
-    & .label {
-        display: inline-block;
-        width: 60px;
+    .cash {
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        height: 32px;
     }
-    
+
     & .right {
         position: absolute;
         top: 0;
         right: 0;
-    }
-
-    & .right-item {
-        display: flex;
-
-        & .right-label {
-            width: 40px;
-            text-align: left;
-        }
-
-        & .right-content {
-            width: 80px;
-            text-align: right;
-        }
     }
 }

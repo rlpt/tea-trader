@@ -31,7 +31,7 @@ body {
 }
 
 #main-wrapper {
-    background-color: white;
+    background-color: whitesmoke;
     width: 375px;
     min-height: 600px;
     margin-left: auto;
@@ -104,4 +104,10 @@ body {
 
 .turn-wipe.wipe {
     clip-path: polygon(0 0, calc(100% + 200px) 0, 100% 100%, 0 100%);
+}
+
+.pound-sign {
+  color: #EEBC1D;
+  display: inline-block;
+  padding-right: 2px;
 }
