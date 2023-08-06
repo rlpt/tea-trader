@@ -1,9 +1,10 @@
-import { RootState } from "./app/store";
 import { useAppSelector } from "./app/hooks";
 import { cargoTotalSelector } from "./app/selectors";
-import Cash from "./Cash";
-import "./GameStatus.css";
+import { RootState } from "./app/store";
 import AmountBar from "./AmountBar";
+import Cash from "./Cash";
+
+import "./GameStatus.css";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);

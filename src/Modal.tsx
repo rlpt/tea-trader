@@ -1,7 +1,9 @@
 import React, { PropsWithChildren } from "react";
-import "./Modal.css";
-import { useAppDispatch } from "./app/hooks";
+
 import { closeModal } from "./app/gameReducer";
+import { useAppDispatch } from "./app/hooks";
+
+import "./Modal.css";
 
 function Modal(props: PropsWithChildren) {
     const dispatch = useAppDispatch();

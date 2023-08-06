@@ -1,11 +1,12 @@
 import seedrandom from "seedrandom";
-import { RngTable, SpecialEvent, TeaRng } from "./types";
+
 import {
     ALL_TEA_NAMES,
     ALL_TOWN_NAMES,
     MAX_TURNS,
     SPECIAL_EVENT_CHANCE,
 } from "./initialState";
+import { RngTable, SpecialEvent, TeaRng } from "./types";
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front

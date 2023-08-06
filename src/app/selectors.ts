@@ -1,8 +1,9 @@
 import { createSelector } from "@reduxjs/toolkit";
+
 import { totalItems } from "./cargo";
+import { currentTown, getTeaForTurn, previousTown } from "./gameReducer";
 import { RootState } from "./store";
 import { Cargo } from "./types";
-import { currentTown, getTeaForTurn, previousTown } from "./gameReducer";
 
 export const townSelector = (state: RootState) => {
     return currentTown(state.townsVisited, state.turnNumber);

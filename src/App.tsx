@@ -1,18 +1,20 @@
 import React from "react";
-import TeaTable from "./TeaTable";
-import "./App.css";
-import GameStatus from "./GameStatus";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import classNames from "classnames";
+
 import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
-import Modal from "./Modal";
-import "./almond.css";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { MAX_TURNS } from "./app/initialState";
 import { turnNumberSelector, wipeSelector } from "./app/selectors";
 import { GameState } from "./app/types";
-import ChangeLocation from "./ChangeLocation";
 import BuySellModal from "./BuySell";
+import ChangeLocation from "./ChangeLocation";
+import GameStatus from "./GameStatus";
+import Modal from "./Modal";
 import ModalMessage from "./ModalMessage";
-import { MAX_TURNS } from "./app/initialState";
-import classNames from "classnames";
+import TeaTable from "./TeaTable";
+
+import "./App.css";
+import "./almond.css";
 
 function App() {
     const dispatch = useAppDispatch();

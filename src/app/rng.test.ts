@@ -1,4 +1,4 @@
-import { getRngTables, randomInRange } from "./rng";
+import { randomInRange } from "./rng";
 
 describe("rng", () => {
     test("randomInRange", () => {

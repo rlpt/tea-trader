@@ -1,6 +1,7 @@
 import _ from "lodash";
-import { TeaInfo, Tea, GameState, Town } from "./types";
+
 import * as rng from "./rng";
+import { GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 30;
 export const STARTING_CASH = 2000;
