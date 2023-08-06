@@ -2,9 +2,12 @@ import _ from "lodash";
 import { TeaInfo, Tea, GameState, Town } from "./types";
 import * as rng from "./rng";
 
-export const MAX_TURNS = 10;
+export const MAX_TURNS = 30;
 export const STARTING_CASH = 2000;
 export const STARTING_HOLD_SIZE = 100;
+export const STARTING_HEALTH = 100;
+export const STARTING_STRENGTH = 1;
+export const STARTING_DEFENSE = 1;
 
 export const SPECIAL_EVENT_CHANCE = 30;
 export const SPECIAL_EVENT_MULTIPLIER = 3;
@@ -22,6 +25,10 @@ export const initialState = (seed: string): GameState => {
             maxSize: STARTING_HOLD_SIZE,
             items: _.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
+        health: STARTING_HEALTH,
+        strength: STARTING_STRENGTH,
+        defense: STARTING_DEFENSE,
+
         rngTables: rng.getRngTables(seed),
         modal: { modalType: "NoModal" },
         wipe: {

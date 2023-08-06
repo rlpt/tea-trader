@@ -5,6 +5,10 @@ export type GameState = {
     townsVisited: Town[];
     cash: number;
     cargo: Cargo;
+    health: number;
+    strength: number;
+    defense: number;
+
     rngTables: RngTable[];
     modal:
         | NoModal

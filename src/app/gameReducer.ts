@@ -284,11 +284,3 @@ export function previousTown(townsVisited: Town[], turnNumber: number) {
 
     return townsVisited[turnNumber - 2];
 }
-
-// TODO
-function events() {
-    // create list of events up front
-    // on each turn -> filter out invalid -> grab random event, if any
-
-    return;
-}
