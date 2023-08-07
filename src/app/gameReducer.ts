@@ -3,8 +3,9 @@ import {
     createAsyncThunk,
     createReducer,
 } from "@reduxjs/toolkit";
-import _ from "lodash";
+import fromPairs from "lodash/fromPairs";
 
+import { fight } from "./fight";
 import {
     ALL_TEA_NAMES,
     ALL_TOWN_NAMES,
@@ -46,6 +47,9 @@ export const showBuySellModal = createAction<{ tea: string }>(
 export const showEndGameModal = createAction("showEndGameModal");
 
 export const closeModal = createAction("closeModal");
+
+export const fightClicked = createAction("fight");
+export const runClicked = createAction("run");
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -158,6 +162,26 @@ export const gameReducer = (seed: string) =>
                 state.cargo.items[teaName] = teaInHold - quantity;
 
                 return state;
+            })
+            .addCase(fightClicked, (state) => {
+                const attacker = {
+                    health: state.health,
+                    strength: state.strength,
+                    defense: state.defense,
+                };
+
+                const opponent = {
+                    health: state.npc.health,
+                    strength: state.npc.strength,
+                    defense: state.npc.defense,
+                };
+
+                const result = fight(attacker, opponent, 0.1, 0.1);
+
+                return state;
+            })
+            .addCase(runClicked, (state) => {
+                return state;
             });
     });
 
@@ -236,7 +260,7 @@ export function getTeaForTurn(
     // to previous town
     const prevRngTable = rngTables[prevTurnNumber].towns[prevTown];
 
-    const status: { [key: string]: TeaPrice } = _.fromPairs(
+    const status: { [key: string]: TeaPrice } = fromPairs(
         ALL_TEA_NAMES.map((teaName) => {
             const { price, specialEvent } = getTeaPrice(
                 teaName,

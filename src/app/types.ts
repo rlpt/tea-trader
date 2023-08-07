@@ -10,6 +10,8 @@ export type GameState = {
     defense: number;
 
     rngTables: RngTable[];
+    fightRngIdx: number;
+
     modal:
         | NoModal
         | ChangeLocationModal
@@ -20,6 +22,19 @@ export type GameState = {
         showing: boolean;
         content: WipeContent;
     };
+
+    npc: Npc;
+};
+
+export type Npc = {
+    name: string;
+    maxHealth: number;
+    health: number;
+    strength: number;
+    defense: number;
+    minReward: number;
+    maxReward: number;
+    level: number;
 };
 
 type WipeContent = {
@@ -72,6 +87,7 @@ export type CargoItems = {
 
 export type RngTable = {
     message: number;
+    fight: number[];
     towns: {
         [town: string]: {
             teaPrice: TeaRng;

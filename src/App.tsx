@@ -11,6 +11,8 @@ import ChangeLocation from "./ChangeLocation";
 import GameStatus from "./GameStatus";
 import Modal from "./Modal";
 import ModalMessage from "./ModalMessage";
+import SeaBattle from "./SeaBattle";
+import Spacer from "./Spacer";
 import TeaTable from "./TeaTable";
 
 import "./App.css";
@@ -65,6 +67,25 @@ function App() {
         wipeMessage = `Turn ${wipe.content.displayTurn}`;
     }
 
+    let content = (
+        <>
+            <GameStatus />
+            <TeaTable />
+            <div className="buttons">{button}</div>
+            {modalEl}
+            <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
+                {wipeMessage}
+            </div>
+        </>
+    );
+
+    content = (
+        <>
+            <Spacer height="40px" />
+            <SeaBattle />
+        </>
+    );
+
     return (
         <div id="main-wrapper">
             <div className="game-header">
@@ -73,20 +94,7 @@ function App() {
                     Turn: {currentTurn} / {MAX_TURNS}
                 </div>
             </div>
-            <div className="game-body">
-                <GameStatus />
-                <TeaTable />
-                <div className="buttons">{button}</div>
-                {modalEl}
-                <div
-                    className={classNames([
-                        "turn-wipe",
-                        { wipe: wipe.showing },
-                    ])}
-                >
-                    {wipeMessage}
-                </div>
-            </div>
+            <div className="game-body">{content}</div>
         </div>
     );
 }

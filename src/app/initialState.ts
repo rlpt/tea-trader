@@ -9,13 +9,25 @@ export const STARTING_HOLD_SIZE = 100;
 export const STARTING_HEALTH = 100;
 export const STARTING_STRENGTH = 1;
 export const STARTING_DEFENSE = 1;
+export const RUN_CHANCE = 3;
+export const DAMAGE_VARIABLE = 20;
 
 export const SPECIAL_EVENT_CHANCE = 30;
 export const SPECIAL_EVENT_MULTIPLIER = 3;
 
 export const ALL_TEA_NAMES = Object.values(Tea);
-
 export const ALL_TOWN_NAMES = Object.values(Town);
+
+const smallPirate = {
+    name: "small pirate",
+    maxHealth: 20,
+    health: 20,
+    strength: 20,
+    defense: 5,
+    minReward: 2000,
+    maxReward: 5000,
+    level: 1,
+};
 
 export const initialState = (seed: string): GameState => {
     return {
@@ -31,6 +43,8 @@ export const initialState = (seed: string): GameState => {
         defense: STARTING_DEFENSE,
 
         rngTables: rng.getRngTables(seed),
+        fightRngIdx: 0,
+
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,
@@ -39,6 +53,7 @@ export const initialState = (seed: string): GameState => {
                 displayTurn: 1,
             },
         },
+        npc: smallPirate,
     };
 };
 

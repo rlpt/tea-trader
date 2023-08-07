@@ -1,3 +1,4 @@
+import times from "lodash/times";
 import seedrandom from "seedrandom";
 
 import {
@@ -22,7 +23,13 @@ export function getRngTables(seed: string): RngTable[] {
     let rngTableList = [];
 
     for (let i = 0; i < MAX_TURNS; i += 1) {
-        let rngTable: RngTable = { message: prng(), towns: {} };
+        let rngTable: RngTable = {
+            message: prng(),
+            towns: {},
+            // make list of 100 rng for fighting, if we use all 100 in one turn (unlikely)
+            // we will wrap around and start from the beginning of the list again
+            fight: times(100, prng),
+        };
 
         for (let town of ALL_TOWN_NAMES) {
             let teaPrice: TeaRng = {};

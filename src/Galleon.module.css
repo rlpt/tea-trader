@@ -1,0 +1,15 @@
+.galleon {
+    width: 120px;
+    position: relative;
+}
+
+.face {
+    position: absolute;
+    font-size: 2rem;
+    top: 54%;
+    left: 12%;
+}
+
+.facingLeft {
+    transform: scaleX(-1);
+}

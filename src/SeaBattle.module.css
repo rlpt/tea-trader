@@ -1,0 +1,9 @@
+.seaBattle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.rhs {
+    display: flex;
+    justify-content: right;
+}
