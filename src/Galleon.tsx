@@ -11,17 +11,30 @@ export enum Direction {
 }
 
 function Galleon(props: { face: string; direction: Direction }) {
-    const pirate = "☠️";
+    const shield = "🛡";
+    const attack = "💥";
+    const health = "💚";
 
     return (
-        <div
-            className={cn({
-                [styles.facingLeft]: props.direction === Direction.FacingLeft,
-                [styles.galleon]: true,
-            })}
-        >
-            <img src={galleonImg} alt="galleon" />
-            <div className={styles.face}>{props.face}</div>
+        <div>
+            <div
+                className={cn({
+                    [styles.facingLeft]:
+                        props.direction === Direction.FacingLeft,
+                    [styles.galleon]: true,
+                })}
+            >
+                <img src={galleonImg} alt="galleon" />
+                <div className={styles.face}>{props.face}</div>
+            </div>
+            <div className={styles.stats}>
+                <div>{attack}</div>
+                <div>20</div>
+                <div>{shield}</div>
+                <div>5</div>
+                <div>{health}</div>
+                <div>100</div>
+            </div>
         </div>
     );
 }

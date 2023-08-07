@@ -13,3 +13,9 @@
 .facingLeft {
     transform: scaleX(-1);
 }
+
+.stats {
+    display: grid;
+    grid-template-columns: 20px auto;
+    padding-left: 20%;
+}
