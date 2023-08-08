@@ -72,4 +72,19 @@ export function randomInRange(
     return min + toAdd;
 }
 
-export function getRngFromList() {}
+export function getRngFromList(
+    index: number,
+    amount: number,
+    list: number[],
+): { newIndex: number; items: number[] } {
+    let out = [];
+
+    let currentIndex = index;
+
+    for (let i = 0; i < amount; i++) {
+        out.push(list[currentIndex % list.length]);
+        currentIndex += 1;
+    }
+
+    return { newIndex: currentIndex, items: out };
+}

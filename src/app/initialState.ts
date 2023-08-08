@@ -1,14 +1,14 @@
 import _ from "lodash";
 
 import * as rng from "./rng";
-import { GameState, Tea, TeaInfo, Town } from "./types";
+import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 30;
 export const STARTING_CASH = 2000;
 export const STARTING_HOLD_SIZE = 100;
 export const STARTING_HEALTH = 100;
-export const STARTING_STRENGTH = 1;
-export const STARTING_DEFENSE = 1;
+export const STARTING_STRENGTH = 30;
+export const STARTING_DEFENSE = 3;
 export const RUN_CHANCE = 3;
 export const DAMAGE_VARIABLE = 20;
 
@@ -43,7 +43,10 @@ export const initialState = (seed: string): GameState => {
         defense: STARTING_DEFENSE,
 
         rngTables: rng.getRngTables(seed),
-        fightRngIdx: 0,
+        fight: {
+            outcome: FightOutcome.StillStanding,
+            rngIndex: 0,
+        },
 
         modal: { modalType: "NoModal" },
         wipe: {

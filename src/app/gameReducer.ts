@@ -14,7 +14,7 @@ import {
     SPECIAL_EVENT_MULTIPLIER,
     teaInfo,
 } from "./initialState";
-import { randomInRange } from "./rng";
+import { getRngFromList, randomInRange } from "./rng";
 import { cargoTotalSelector } from "./selectors";
 import {
     Cargo,
@@ -60,6 +60,7 @@ export const animateNextTurn = createAsyncThunk(
     async (args: { nextTown: Town }, state) => {
         await timeout(1000);
 
+        // TODO remove message
         return { nextTown: args.nextTown, message: "wot" };
     },
 );
@@ -176,7 +177,29 @@ export const gameReducer = (seed: string) =>
                     defense: state.npc.defense,
                 };
 
-                const result = fight(attacker, opponent, 0.1, 0.1);
+                const rngTable = state.rngTables[state.turnNumber];
+
+                const rngForFight = getRngFromList(
+                    state.fight.rngIndex,
+                    4,
+                    rngTable.fight,
+                );
+
+                const [rng1, rng2, rng3, rng4] = rngForFight.items;
+
+                const result = fight(
+                    attacker,
+                    opponent,
+                    rng1,
+                    rng2,
+                    rng3,
+                    rng4,
+                );
+
+                state.fight.rngIndex = rngForFight.newIndex;
+
+                state.health = result.player.health;
+                state.npc.health = result.opponent.health;
 
                 return state;
             })

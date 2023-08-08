@@ -10,7 +10,10 @@ export type GameState = {
     defense: number;
 
     rngTables: RngTable[];
-    fightRngIdx: number;
+    fight: {
+        rngIndex: number;
+        outcome: FightOutcome.StillStanding;
+    };
 
     modal:
         | NoModal
@@ -26,9 +29,20 @@ export type GameState = {
     npc: Npc;
 };
 
+export enum FightOutcome {
+    PlayerWins,
+    OpponentWins,
+    StillStanding,
+}
+
+export interface Fighter {
+    health: number;
+    strength: number;
+    defense: number;
+}
+
 export type Npc = {
     name: string;
-    maxHealth: number;
     health: number;
     strength: number;
     defense: number;

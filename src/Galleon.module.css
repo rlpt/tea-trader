@@ -16,6 +16,5 @@
 
 .stats {
     display: grid;
-    grid-template-columns: 20px auto;
-    padding-left: 20%;
+    grid-template-columns: repeat(6, auto);
 }
