@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import fromPairs from "lodash/fromPairs";
 
-import { fight } from "./fight";
+import { fight, run } from "./fight";
 import {
     ALL_TEA_NAMES,
     ALL_TOWN_NAMES,
@@ -49,8 +49,12 @@ export const showEndGameModal = createAction("showEndGameModal");
 
 export const closeModal = createAction("closeModal");
 
-export const fightClicked = createAction("fight");
-export const runClicked = createAction("run");
+export enum FightInput {
+    FightClicked,
+    RunClicked,
+}
+
+export const fightMoveClicked = createAction<FightInput>("fightMoveClicked");
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -165,7 +169,7 @@ export const gameReducer = (seed: string) =>
 
                 return state;
             })
-            .addCase(fightClicked, (state) => {
+            .addCase(fightMoveClicked, (state, action) => {
                 const rngTable = state.rngTables[state.turnNumber];
 
                 const rngForFight = getRngFromList(
@@ -176,7 +180,17 @@ export const gameReducer = (seed: string) =>
 
                 const [rng1, rng2, rng3, rng4] = rngForFight.items;
 
-                const result = fight(state, state.npc, rng1, rng2, rng3, rng4);
+                const fightAction =
+                    action.payload === FightInput.FightClicked ? fight : run;
+
+                const result = fightAction(
+                    state,
+                    state.npc,
+                    rng1,
+                    rng2,
+                    rng3,
+                    rng4,
+                );
 
                 state.fight.rngIndex = rngForFight.newIndex;
                 state.fight.outcome = result.outcome;
@@ -189,9 +203,6 @@ export const gameReducer = (seed: string) =>
                     state.cash += result.reward;
                 }
 
-                return state;
-            })
-            .addCase(runClicked, (state) => {
                 return state;
             });
     });

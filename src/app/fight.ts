@@ -1,4 +1,4 @@
-import { DAMAGE_VARIABLE } from "./initialState";
+import { DAMAGE_VARIABLE, RUN_CHANCE } from "./initialState";
 import { randomInRange } from "./rng";
 import { Fighter, FightOutcome, Npc } from "./types";
 
@@ -120,4 +120,54 @@ function damageDone(
     }
 
     return damage;
+}
+
+export function run(
+    player: Fighter,
+    opponent: Fighter,
+    rng1: number,
+    rng2: number,
+    rng3: number,
+): FightResult {
+    const gotAway = Math.ceil(rng1 * RUN_CHANCE) === 1;
+
+    let message = "";
+    let playerHealth = player.health;
+    let damageTaken = 0;
+    let outcome = FightOutcome.StillStanding;
+
+    if (gotAway) {
+        outcome = FightOutcome.RanAway;
+        message = "You successfully ran away!";
+    } else {
+        // change of damage if running away failed
+        damageTaken = damageDone(opponent.strength, player.defense, rng2, rng3);
+
+        playerHealth = updateHealth(player.health, damageTaken);
+
+        message = `You couldn't get away! You were hit for ${damageTaken} damage!`;
+
+        if (playerHealth === 0) {
+            outcome = FightOutcome.OpponentWins;
+
+            message = "You wre killed when trying to run!";
+        }
+    }
+
+    return {
+        outcome,
+        player: {
+            health: playerHealth,
+            damageTaken: damageTaken,
+        },
+        opponent: {
+            health: opponent.health,
+            damageTaken: 0,
+        },
+        reward: 0,
+        message: {
+            text: message,
+            key: message + rng1 + rng2 + rng3,
+        },
+    };
 }

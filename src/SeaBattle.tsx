@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 
-import { fightClicked } from "./app/gameReducer";
+import { FightInput, fightMoveClicked } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fightSelector } from "./app/selectors";
 import { FightOutcome } from "./app/types";
@@ -28,8 +28,20 @@ function SeaBattle() {
 
     let buttons = (
         <>
-            <button onClick={() => dispatch(fightClicked())}>fight!</button>
-            <button>run!</button>
+            <button
+                onClick={() =>
+                    dispatch(fightMoveClicked(FightInput.FightClicked))
+                }
+            >
+                fight!
+            </button>
+            <button
+                onClick={() =>
+                    dispatch(fightMoveClicked(FightInput.RunClicked))
+                }
+            >
+                run!
+            </button>
         </>
     );
 

@@ -9,6 +9,7 @@ export type GameState = {
     strength: number;
     defense: number;
     rngTables: RngTable[];
+    event: FightEvent | NoEvent;
     fight: {
         rngIndex: number;
         outcome: FightOutcome;
@@ -25,6 +26,18 @@ export type GameState = {
         content: WipeContent;
     };
     npc: Npc;
+};
+
+type FightEvent = {
+    eventType: "fightEvent";
+    opponent: Npc;
+    rngIndex: number;
+    outcome: FightOutcome;
+    messages: { text: string; key: string }[];
+};
+
+type NoEvent = {
+    eventType: "noEvent";
 };
 
 export enum FightOutcome {

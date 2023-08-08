@@ -47,6 +47,7 @@ export const initialState = (seed: string): GameState => {
             rngIndex: 0,
             messages: [],
         },
+        event: { eventType: "noEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,
