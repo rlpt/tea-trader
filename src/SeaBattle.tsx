@@ -20,8 +20,9 @@ function SeaBattle() {
                 [styles.message]: true,
                 [styles.topMessage]: index === 0,
             })}
+            key={message.key}
         >
-            {message}
+            {message.text}
         </div>
     ));
 
@@ -34,6 +35,10 @@ function SeaBattle() {
 
     if (fight.outcome !== FightOutcome.StillStanding) {
         buttons = <button>Back to trading</button>;
+    }
+
+    if (fight.outcome === FightOutcome.OpponentWins) {
+        buttons = <button>See final score</button>;
     }
 
     return (

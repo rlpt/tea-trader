@@ -13,7 +13,7 @@ type FightResult = {
         damageTaken: number;
     };
     reward: number;
-    message: string;
+    message: { text: string; key: string };
 };
 
 export function fight(
@@ -75,7 +75,12 @@ export function fight(
             damageTaken: damageDealtByPlayer,
         },
         reward,
-        message,
+        message: {
+            text: message,
+            // there is no natural unique key (e.g a database id) for a message, so
+            // this will have to do
+            key: message + rng1 + rng2 + rng3 + rng4,
+        },
     };
 }
 

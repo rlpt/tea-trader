@@ -12,7 +12,7 @@ export type GameState = {
     fight: {
         rngIndex: number;
         outcome: FightOutcome;
-        messages: string[];
+        messages: { text: string; key: string }[];
     };
     modal:
         | NoModal
