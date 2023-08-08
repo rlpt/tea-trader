@@ -1,5 +1,6 @@
 import { DAMAGE_VARIABLE } from "./initialState";
-import { Fighter, FightOutcome } from "./types";
+import { randomInRange } from "./rng";
+import { Fighter, FightOutcome, Npc } from "./types";
 
 type FightResult = {
     outcome: FightOutcome;
@@ -11,11 +12,13 @@ type FightResult = {
         health: number;
         damageTaken: number;
     };
+    reward: number;
+    message: string;
 };
 
 export function fight(
     player: Fighter,
-    opponent: Fighter,
+    opponent: Npc,
     rng1: number,
     rng2: number,
     rng3: number,
@@ -36,13 +39,22 @@ export function fight(
     );
 
     let outcome = FightOutcome.StillStanding;
+    let reward = 0;
     let playerHealth = player.health;
 
     // player hits first
     const opponentHealth = updateHealth(opponent.health, damageDealtByPlayer);
 
+    let message = `You hit for ${damageDealtByPlayer} and took ${damageDealtByNpc} damage`;
+
     if (opponentHealth === 0) {
         outcome = FightOutcome.PlayerWins;
+        // reward using player hit rng number, bigger the hit, the bigger the reward
+        reward = randomInRange(opponent.minReward, opponent.maxReward, rng1);
+
+        message = `You killed ${
+            opponent.name
+        } and won £${reward.toLocaleString()}!`;
     } else {
         // opponent still alive, so player takes hit
         playerHealth = updateHealth(player.health, damageDealtByNpc);
@@ -51,6 +63,8 @@ export function fight(
     if (playerHealth === 0) {
         // he's dead jim
         outcome = FightOutcome.OpponentWins;
+
+        message = `You've been killed by ${opponent.name}!`;
     }
 
     return {
@@ -60,6 +74,8 @@ export function fight(
             health: opponentHealth,
             damageTaken: damageDealtByPlayer,
         },
+        reward,
+        message,
     };
 }
 

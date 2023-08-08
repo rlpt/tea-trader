@@ -7,3 +7,19 @@
     display: flex;
     justify-content: right;
 }
+
+.messages {
+    text-align: center;
+    max-height: 200px;
+    overflow-y: hidden;
+}
+
+.message {
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+}
+
+.topMessage {
+    opacity: 1;
+    font-weight: bold;
+}

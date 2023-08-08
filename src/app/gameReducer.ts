@@ -18,6 +18,7 @@ import { getRngFromList, randomInRange } from "./rng";
 import { cargoTotalSelector } from "./selectors";
 import {
     Cargo,
+    FightOutcome,
     PriceChange,
     RngTable,
     SpecialEvent,
@@ -165,18 +166,6 @@ export const gameReducer = (seed: string) =>
                 return state;
             })
             .addCase(fightClicked, (state) => {
-                const attacker = {
-                    health: state.health,
-                    strength: state.strength,
-                    defense: state.defense,
-                };
-
-                const opponent = {
-                    health: state.npc.health,
-                    strength: state.npc.strength,
-                    defense: state.npc.defense,
-                };
-
                 const rngTable = state.rngTables[state.turnNumber];
 
                 const rngForFight = getRngFromList(
@@ -187,19 +176,18 @@ export const gameReducer = (seed: string) =>
 
                 const [rng1, rng2, rng3, rng4] = rngForFight.items;
 
-                const result = fight(
-                    attacker,
-                    opponent,
-                    rng1,
-                    rng2,
-                    rng3,
-                    rng4,
-                );
+                const result = fight(state, state.npc, rng1, rng2, rng3, rng4);
 
                 state.fight.rngIndex = rngForFight.newIndex;
+                state.fight.outcome = result.outcome;
+                state.fight.messages.push(result.message);
 
                 state.health = result.player.health;
                 state.npc.health = result.opponent.health;
+
+                if (result.outcome === FightOutcome.PlayerWins) {
+                    state.cash += result.reward;
+                }
 
                 return state;
             })

@@ -54,11 +54,17 @@ export const fightSelector = createSelector(
         fight,
         player,
         npc,
-    ): { outcome: FightOutcome; player: Fighter; opponent: Fighter } => {
+    ): {
+        outcome: FightOutcome;
+        player: Fighter;
+        opponent: Fighter;
+        messages: string[];
+    } => {
         return {
             outcome: fight.outcome,
             player,
             opponent: npc,
+            messages: fight.messages,
         };
     },
 );

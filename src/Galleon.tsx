@@ -19,6 +19,9 @@ function Galleon(props: {
     const defenseIcon = "🛡";
     const attackIcon = "💥";
     const healthIcon = "💚";
+    const deadIcon = "💀";
+
+    const face = props.stats.health === 0 ? deadIcon : props.face;
 
     return (
         <div className={styles.galleon}>
@@ -29,7 +32,7 @@ function Galleon(props: {
                 })}
             >
                 <img src={galleonImg} alt="galleon" />
-                <div className={styles.face}>{props.face}</div>
+                <div className={styles.face}>{face}</div>
             </div>
             <div className={styles.stats}>
                 <div>{attackIcon}</div>

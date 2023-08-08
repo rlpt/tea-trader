@@ -8,13 +8,12 @@ export type GameState = {
     health: number;
     strength: number;
     defense: number;
-
     rngTables: RngTable[];
     fight: {
         rngIndex: number;
-        outcome: FightOutcome.StillStanding;
+        outcome: FightOutcome;
+        messages: string[];
     };
-
     modal:
         | NoModal
         | ChangeLocationModal
@@ -25,7 +24,6 @@ export type GameState = {
         showing: boolean;
         content: WipeContent;
     };
-
     npc: Npc;
 };
 
@@ -33,6 +31,7 @@ export enum FightOutcome {
     PlayerWins,
     OpponentWins,
     StillStanding,
+    RanAway,
 }
 
 export interface Fighter {

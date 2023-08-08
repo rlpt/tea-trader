@@ -41,13 +41,12 @@ export const initialState = (seed: string): GameState => {
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
-
         rngTables: rng.getRngTables(seed),
         fight: {
             outcome: FightOutcome.StillStanding,
             rngIndex: 0,
+            messages: [],
         },
-
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

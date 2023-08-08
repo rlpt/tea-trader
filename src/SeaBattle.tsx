@@ -1,15 +1,40 @@
 import React from "react";
+import cn from "classnames";
 
 import { fightClicked } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { fightSelector } from "./app/selectors";
+import { FightOutcome } from "./app/types";
 import Galleon, { Direction } from "./Galleon";
+import Spacer from "./Spacer";
 
 import styles from "./SeaBattle.module.css";
 
 function SeaBattle() {
     const dispatch = useAppDispatch();
     const fight = useAppSelector(fightSelector);
+
+    const messages = [...fight.messages].reverse().map((message, index) => (
+        <div
+            className={cn({
+                [styles.message]: true,
+                [styles.topMessage]: index === 0,
+            })}
+        >
+            {message}
+        </div>
+    ));
+
+    let buttons = (
+        <>
+            <button onClick={() => dispatch(fightClicked())}>fight!</button>
+            <button>run!</button>
+        </>
+    );
+
+    if (fight.outcome !== FightOutcome.StillStanding) {
+        buttons = <button>Back to trading</button>;
+    }
 
     return (
         <>
@@ -27,10 +52,9 @@ function SeaBattle() {
                     />
                 </div>
             </div>
-            <div className="buttons">
-                <button onClick={() => dispatch(fightClicked())}>fight!</button>
-                <button>run!</button>
-            </div>
+            <div className="buttons">{buttons}</div>
+            <Spacer height="20px" />
+            <div className={styles.messages}>{messages}</div>
         </>
     );
 }
