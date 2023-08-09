@@ -42,11 +42,6 @@ export const initialState = (seed: string): GameState => {
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
         rngTables: rng.getRngTables(seed),
-        fight: {
-            outcome: FightOutcome.StillStanding,
-            rngIndex: 0,
-            messages: [],
-        },
         event: { eventType: "NoEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
@@ -56,7 +51,6 @@ export const initialState = (seed: string): GameState => {
                 displayTurn: 1,
             },
         },
-        npc: smallPirate,
     };
 };
 

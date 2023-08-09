@@ -1,5 +1,5 @@
 import { ALL_TEA_NAMES, ALL_TOWN_NAMES, MAX_TURNS } from "./initialState";
-import { RngTable, SpecialEvent, Town } from "./types";
+import { RngTable, PriceEvent, Town } from "./types";
 
 export function getPriceMessages(
     turnNumber: number,
@@ -26,11 +26,11 @@ export function getPriceMessages(
         for (let teaName of ALL_TEA_NAMES) {
             const tea = teas[teaName];
 
-            if (tea.specialEvent === SpecialEvent.HighPrice) {
+            if (tea.specialEvent === PriceEvent.HighPrice) {
                 messages.push(`Shortage of ${teaName} in ${townName}!`);
             }
 
-            if (tea.specialEvent === SpecialEvent.LowPrice) {
+            if (tea.specialEvent === PriceEvent.LowPrice) {
                 messages.push(`Glut of ${teaName} in ${townName}!`);
             }
         }

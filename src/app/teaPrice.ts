@@ -10,7 +10,7 @@ import {
     Cargo,
     PriceChange,
     RngTable,
-    SpecialEvent,
+    PriceEvent,
     TeaPrice,
     TeaRng,
     Town,
@@ -68,11 +68,11 @@ const getTeaPrice = (teaName: string, rngTable: TeaRng) => {
 
     let price = randomInRange(lowPrice, highPrice, randomNumber);
 
-    if (specialEvent === SpecialEvent.HighPrice) {
+    if (specialEvent === PriceEvent.HighPrice) {
         price = price * SPECIAL_TEA_PRICE_MULTIPLIER;
     }
 
-    if (specialEvent === SpecialEvent.LowPrice) {
+    if (specialEvent === PriceEvent.LowPrice) {
         price = Math.ceil(price / SPECIAL_TEA_PRICE_MULTIPLIER);
     }
 

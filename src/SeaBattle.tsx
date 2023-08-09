@@ -2,19 +2,17 @@ import React from "react";
 import cn from "classnames";
 
 import { FightInput, fightMoveClicked } from "./app/gameReducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { fightSelector } from "./app/selectors";
-import { FightOutcome } from "./app/types";
+import { useAppDispatch } from "./app/hooks";
+import { FightInProgress, FightOutcome } from "./app/types";
 import Galleon, { Direction } from "./Galleon";
 import Spacer from "./Spacer";
 
 import styles from "./SeaBattle.module.css";
 
-function SeaBattle() {
+function SeaBattle(props: FightInProgress) {
     const dispatch = useAppDispatch();
-    const fight = useAppSelector(fightSelector);
 
-    const messages = [...fight.messages].reverse().map((message, index) => (
+    const messages = [...props.messages].reverse().map((message, index) => (
         <div
             className={cn({
                 [styles.message]: true,
@@ -45,11 +43,11 @@ function SeaBattle() {
         </>
     );
 
-    if (fight.outcome !== FightOutcome.StillStanding) {
+    if (props.outcome !== FightOutcome.StillStanding) {
         buttons = <button>Back to trading</button>;
     }
 
-    if (fight.outcome === FightOutcome.OpponentWins) {
+    if (props.outcome === FightOutcome.OpponentWins) {
         buttons = <button>See final score</button>;
     }
 
@@ -59,13 +57,13 @@ function SeaBattle() {
                 <Galleon
                     face="🤨"
                     direction={Direction.FacingRight}
-                    stats={fight.player}
+                    stats={props.player}
                 />
                 <div className={styles.rhs}>
                     <Galleon
                         face="😠"
                         direction={Direction.FacingLeft}
-                        stats={fight.opponent}
+                        stats={props.opponent}
                     />
                 </div>
             </div>

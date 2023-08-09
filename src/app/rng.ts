@@ -7,7 +7,7 @@ import {
     MAX_TURNS,
     SPECIAL_TEA_PRICE_CHANCE,
 } from "./initialState";
-import { RngTable, SpecialEvent, TeaRng } from "./types";
+import { RngTable, PriceEvent, TeaRng } from "./types";
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front
@@ -39,12 +39,12 @@ export function getRngTables(seed: string): RngTable[] {
                     SPECIAL_TEA_PRICE_CHANCE * prng(),
                 );
 
-                let specialEvent = SpecialEvent.NoSpecialEvent;
+                let specialEvent = PriceEvent.NoPriceEvent;
 
                 if (specialEventRand === 0) {
-                    specialEvent = SpecialEvent.HighPrice;
+                    specialEvent = PriceEvent.HighPrice;
                 } else if (specialEventRand === 1) {
-                    specialEvent = SpecialEvent.LowPrice;
+                    specialEvent = PriceEvent.LowPrice;
                 }
 
                 teaPrice[tea] = {

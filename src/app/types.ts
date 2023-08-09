@@ -9,26 +9,22 @@ export type GameState = {
     strength: number;
     defense: number;
     rngTables: RngTable[];
-    event:
-        | NoEvent
-        | FightEvent
-        | ArmorEvent
-        | CargoEvent
-        | AutoHealEvent
-        | WeaponEvent
-        | TreasureEvent;
-    fight: {
-        rngIndex: number;
-        outcome: FightOutcome;
-        messages: { text: string; key: string }[];
-    };
+    event: SpecialEvent;
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
         content: WipeContent;
     };
-    npc: Npc;
 };
+
+export type SpecialEvent =
+    | NoEvent
+    | FightEvent
+    | ArmorEvent
+    | CargoEvent
+    | AutoHealEvent
+    | WeaponEvent
+    | TreasureEvent;
 
 type FightEvent = {
     eventType: "FightEvent";
@@ -75,6 +71,13 @@ export interface Fighter {
     defense: number;
 }
 
+export type FightInProgress = {
+    outcome: FightOutcome;
+    player: Fighter;
+    opponent: Fighter;
+    messages: { text: string; key: string }[];
+};
+
 export type Npc = {
     name: string;
     health: number;
@@ -111,8 +114,8 @@ export enum Tea {
     Longjing = "Longjing",
 }
 
-export enum SpecialEvent {
-    NoSpecialEvent,
+export enum PriceEvent {
+    NoPriceEvent,
     HighPrice,
     LowPrice,
 }
@@ -146,7 +149,7 @@ export type RngTable = {
 export type TeaRng = {
     [tea: string]: {
         randomNumber: number;
-        specialEvent: SpecialEvent;
+        specialEvent: PriceEvent;
     };
 };
 
@@ -190,5 +193,5 @@ export type TeaPrice = {
     price: number;
     quantity: number;
     priceChange: PriceChange;
-    specialEvent: SpecialEvent;
+    specialEvent: PriceEvent;
 };

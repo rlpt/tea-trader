@@ -5,7 +5,7 @@ import { currentTown } from "./gameReducer";
 import { getPriceMessages } from "./priceMessages";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
-import { Cargo, Fighter, FightOutcome } from "./types";
+import { Cargo, Fighter, FightInProgress, FightOutcome } from "./types";
 
 export const townSelector = (state: RootState) => {
     return currentTown(state.townsVisited, state.turnNumber);
@@ -16,7 +16,6 @@ export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const cashSelector = (state: RootState) => state.cash;
 export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
-export const npcSelector = (state: RootState) => state.npc;
 export const playerSelector = (state: RootState): Fighter => {
     return {
         health: state.health,
@@ -41,23 +40,18 @@ export const teaPriceSelector = createSelector(
 );
 
 export const fightSelector = createSelector(
-    [(state: RootState) => state.fight, playerSelector, npcSelector],
-    (
-        fight,
-        player,
-        npc,
-    ): {
-        outcome: FightOutcome;
-        player: Fighter;
-        opponent: Fighter;
-        messages: { text: string; key: string }[];
-    } => {
-        return {
-            outcome: fight.outcome,
-            player,
-            opponent: npc,
-            messages: fight.messages,
-        };
+    [(state: RootState) => state.event, playerSelector],
+    (event, player): FightInProgress | null => {
+        if (event.eventType === "FightEvent") {
+            return {
+                outcome: event.outcome,
+                player,
+                opponent: event.opponent,
+                messages: event.messages,
+            };
+        }
+
+        return null;
     },
 );
 

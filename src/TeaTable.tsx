@@ -1,7 +1,7 @@
 import { showBuySellModal } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { teaPriceSelector } from "./app/selectors";
-import { PriceChange, SpecialEvent } from "./app/types";
+import { PriceChange, PriceEvent } from "./app/types";
 import Cash from "./Cash";
 
 import "./TeaTable.css";
@@ -22,19 +22,19 @@ function TeaTable() {
 
             if (
                 priceChange === PriceChange.PriceIncrease ||
-                specialEvent === SpecialEvent.HighPrice
+                specialEvent === PriceEvent.HighPrice
             ) {
                 priceChangeEl = "⬆️";
             } else if (
                 priceChange === PriceChange.PriceDecrease ||
-                specialEvent === SpecialEvent.LowPrice
+                specialEvent === PriceEvent.LowPrice
             ) {
                 priceChangeEl = "⬇️";
             }
 
             let specialEventEl = <></>;
 
-            if (specialEvent !== SpecialEvent.NoSpecialEvent) {
+            if (specialEvent !== PriceEvent.NoPriceEvent) {
                 specialEventEl = <span title="Big price movement">❗</span>;
             }
 

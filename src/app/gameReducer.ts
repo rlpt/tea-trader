@@ -48,8 +48,7 @@ export const animateNextTurn = createAsyncThunk(
     async (args: { nextTown: Town }, state) => {
         await timeout(1000);
 
-        // TODO remove message
-        return { nextTown: args.nextTown, message: "wot" };
+        return { nextTown: args.nextTown };
     },
 );
 
@@ -140,40 +139,46 @@ export const gameReducer = (seed: string) =>
                 return state;
             })
             .addCase(fightMoveClicked, (state, action) => {
-                const rngTable = state.rngTables[state.turnNumber];
+                if (state.event.eventType === "FightEvent") {
+                    const fightEvent = state.event;
 
-                const rngForFight = getRngFromList(
-                    state.fight.rngIndex,
-                    4,
-                    rngTable.fight,
-                );
+                    const rngTable = state.rngTables[state.turnNumber];
 
-                const [rng1, rng2, rng3, rng4] = rngForFight.items;
+                    const rngForFight = getRngFromList(
+                        fightEvent.rngIndex,
+                        4,
+                        rngTable.fight,
+                    );
 
-                const fightAction =
-                    action.payload === FightInput.FightClicked ? fight : run;
+                    const [rng1, rng2, rng3, rng4] = rngForFight.items;
 
-                const result = fightAction(
-                    state,
-                    state.npc,
-                    rng1,
-                    rng2,
-                    rng3,
-                    rng4,
-                );
+                    const fightFn =
+                        action.payload === FightInput.FightClicked
+                            ? fight
+                            : run;
 
-                state.fight.rngIndex = rngForFight.newIndex;
-                state.fight.outcome = result.outcome;
-                state.fight.messages.push(result.message);
+                    const result = fightFn(
+                        state,
+                        fightEvent.opponent,
+                        rng1,
+                        rng2,
+                        rng3,
+                        rng4,
+                    );
 
-                state.health = result.player.health;
-                state.npc.health = result.opponent.health;
+                    state.event.rngIndex = rngForFight.newIndex;
+                    state.event.outcome = result.outcome;
+                    state.event.messages.push(result.message);
 
-                if (result.outcome === FightOutcome.PlayerWins) {
-                    state.cash += result.reward;
+                    state.health = result.player.health;
+                    state.event.opponent.health = result.opponent.health;
+
+                    if (result.outcome === FightOutcome.PlayerWins) {
+                        state.cash += result.reward;
+                    }
+
+                    return state;
                 }
-
-                return state;
             });
     });
 
