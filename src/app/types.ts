@@ -22,12 +22,7 @@ export type GameState = {
         outcome: FightOutcome;
         messages: { text: string; key: string }[];
     };
-    modal:
-        | NoModal
-        | ChangeLocationModal
-        | BuySellModal
-        | EndGameModal
-        | MessageModal;
+    modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
         content: WipeContent;

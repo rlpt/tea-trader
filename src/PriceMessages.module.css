@@ -1,0 +1,36 @@
+.wrapper {
+    height: 20px;
+    overflow: hidden;
+}
+
+.msgWrapper {
+    display: inline-flex;
+}
+
+.icon {
+    padding-right: var(--space-xs);
+}
+
+.message {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.animateWrapper {
+    height: 20px;
+    overflow: hidden;
+}
+
+.currentMsg {
+    transform: translateY(-100%);
+}
+
+.nextMsg {
+    transform: translateY(-100%);
+}
+
+.scrollDown {
+    transition: all 2s ease;
+    transform: translateY(0%);
+}

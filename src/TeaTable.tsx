@@ -1,9 +1,10 @@
-import { useAppSelector, useAppDispatch } from "./app/hooks";
-import { teaPriceSelector } from "./app/selectors";
-import "./TeaTable.css";
-import Cash from "./Cash";
 import { showBuySellModal } from "./app/gameReducer";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { teaPriceSelector } from "./app/selectors";
 import { PriceChange, SpecialEvent } from "./app/types";
+import Cash from "./Cash";
+
+import "./TeaTable.css";
 
 function TeaTable() {
     const dispatch = useAppDispatch();
@@ -31,10 +32,10 @@ function TeaTable() {
                 priceChangeEl = "⬇️";
             }
 
-            let specialEventEl = "";
+            let specialEventEl = <></>;
 
             if (specialEvent !== SpecialEvent.NoSpecialEvent) {
-                specialEventEl = "❗";
+                specialEventEl = <span title="Big price movement">❗</span>;
             }
 
             return (
@@ -56,13 +57,17 @@ function TeaTable() {
         },
     );
 
+    // TODO tooltip for price movements
+
     return (
         <table className="tea-table">
             <thead>
-                <th>Tea</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th></th>
+                <tr>
+                    <th>Tea</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>{rows}</tbody>
         </table>

@@ -87,22 +87,9 @@ export const gameReducer = (seed: string) =>
                     return state;
                 }
 
-                const message = getMessage(
-                    nextTurnNumber + 1,
-                    action.payload.nextTown,
-                    state.rngTables,
-                );
-
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
-
-                if (message !== "") {
-                    state.modal = {
-                        modalType: "MessageModal",
-                        message,
-                    };
-                }
 
                 state.wipe.showing = false;
 
@@ -206,49 +193,6 @@ export const gameReducer = (seed: string) =>
                 return state;
             });
     });
-
-function getMessage(
-    turnNumber: number,
-    currentTown: Town,
-    rngTables: RngTable[],
-) {
-    if (turnNumber === MAX_TURNS) {
-        return "";
-    }
-
-    // see if any towns next turn have a special event
-    const rngTable = rngTables[turnNumber];
-
-    // don't include current town
-    const townsToCheck = ALL_TOWN_NAMES.filter(
-        (townName) => townName !== currentTown,
-    );
-
-    // we pad out message list with a blank message to decrease the chance
-    // of getting a message every turn
-    let messages = [""];
-
-    for (let townName of townsToCheck) {
-        const teas = rngTable.towns[townName].teaPrice;
-
-        for (let teaName of ALL_TEA_NAMES) {
-            const tea = teas[teaName];
-
-            if (tea.specialEvent === SpecialEvent.HighPrice) {
-                messages.push(`Shortage of ${teaName} in ${townName}!`);
-            }
-
-            if (tea.specialEvent === SpecialEvent.LowPrice) {
-                messages.push(`Glut of ${teaName} in ${townName}!`);
-            }
-        }
-    }
-
-    // pick random message from list
-    const messageIdx = randomInRange(0, messages.length - 1, rngTable.message);
-
-    return messages[messageIdx];
-}
 
 const getTeaPrice = (teaName: string, rngTable: TeaRng) => {
     const { lowPrice, highPrice } = teaInfo[teaName];

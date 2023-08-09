@@ -2,6 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 
 import { totalItems } from "./cargo";
 import { currentTown, getTeaForTurn, previousTown } from "./gameReducer";
+import { getPriceMessages } from "./priceMessages";
 import { RootState } from "./store";
 import { Cargo, Fighter, FightOutcome } from "./types";
 
@@ -67,4 +68,9 @@ export const fightSelector = createSelector(
             messages: fight.messages,
         };
     },
+);
+
+export const priceMessagesSelector = createSelector(
+    [turnNumberSelector, townSelector, rngTablesSelector],
+    getPriceMessages,
 );
