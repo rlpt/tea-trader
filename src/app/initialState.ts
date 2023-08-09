@@ -13,7 +13,7 @@ export const RUN_CHANCE = 3;
 export const DAMAGE_VARIABLE = 20;
 
 export const SPECIAL_TEA_PRICE_CHANCE = 100;
-export const SPECIAL_TEA_PRICE_MULTIPLIER = 3;
+export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 
 export const ALL_TEA_NAMES = Object.values(Tea);
 export const ALL_TOWN_NAMES = Object.values(Town);

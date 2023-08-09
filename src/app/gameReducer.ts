@@ -3,29 +3,12 @@ import {
     createAsyncThunk,
     createReducer,
 } from "@reduxjs/toolkit";
-import fromPairs from "lodash/fromPairs";
 
 import { fight, run } from "./fight";
-import {
-    ALL_TEA_NAMES,
-    ALL_TOWN_NAMES,
-    initialState,
-    MAX_TURNS,
-    SPECIAL_TEA_PRICE_MULTIPLIER,
-    teaInfo,
-} from "./initialState";
-import { getRngFromList, randomInRange } from "./rng";
+import { initialState, MAX_TURNS } from "./initialState";
+import { getRngFromList } from "./rng";
 import { cargoTotalSelector } from "./selectors";
-import {
-    Cargo,
-    FightOutcome,
-    PriceChange,
-    RngTable,
-    SpecialEvent,
-    TeaPrice,
-    TeaRng,
-    Town,
-} from "./types";
+import { FightOutcome, Town } from "./types";
 
 export const buyTea = createAction<{
     teaName: string;
@@ -194,84 +177,6 @@ export const gameReducer = (seed: string) =>
             });
     });
 
-const getTeaPrice = (teaName: string, rngTable: TeaRng) => {
-    const { lowPrice, highPrice } = teaInfo[teaName];
-    const { randomNumber, specialEvent } = rngTable[teaName];
-
-    let price = randomInRange(lowPrice, highPrice, randomNumber);
-
-    if (specialEvent === SpecialEvent.HighPrice) {
-        price = price * SPECIAL_TEA_PRICE_MULTIPLIER;
-    }
-
-    if (specialEvent === SpecialEvent.LowPrice) {
-        price = Math.ceil(price / SPECIAL_TEA_PRICE_MULTIPLIER);
-    }
-
-    return { price, specialEvent };
-};
-
-export function getTeaForTurn(
-    town: Town,
-    prevTown: Town,
-    turnNumber: number,
-    hold: Cargo,
-    rngTables: RngTable[],
-) {
-    const currentRngTable = rngTables[turnNumber].towns[town];
-
-    const prevTurnNumber = turnNumber === 1 ? 1 : turnNumber - 1;
-
-    // we use previous rngTable to see if prices have increase or decreased compared
-    // to previous town
-    const prevRngTable = rngTables[prevTurnNumber].towns[prevTown];
-
-    const status: { [key: string]: TeaPrice } = fromPairs(
-        ALL_TEA_NAMES.map((teaName) => {
-            const { price, specialEvent } = getTeaPrice(
-                teaName,
-                currentRngTable.teaPrice,
-            );
-
-            const prevPrices = getTeaPrice(teaName, prevRngTable.teaPrice);
-
-            let priceChange = PriceChange.NoChange;
-
-            if (price > prevPrices.price) {
-                priceChange = PriceChange.PriceIncrease;
-            } else if (price < prevPrices.price) {
-                priceChange = PriceChange.PriceDecrease;
-            }
-
-            const quantity = hold.items[teaName];
-
-            return [
-                teaName,
-                {
-                    teaName,
-                    price,
-                    quantity,
-                    specialEvent,
-                    priceChange,
-                },
-            ];
-        }),
-    );
-
-    return status;
-}
-
 export function currentTown(townsVisited: Town[], turnNumber: number) {
     return townsVisited[turnNumber - 1];
-}
-
-export function previousTown(townsVisited: Town[], turnNumber: number) {
-    if (turnNumber === 1) {
-        // return first town as previously visited town when we are on first turn
-        // this avoids a null and works fine for comparing previous prices as
-        // the prices will be the same
-        return townsVisited[0];
-    }
-
-    return townsVisited[turnNumber - 2];
 }

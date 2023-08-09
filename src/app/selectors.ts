@@ -1,17 +1,14 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import { totalItems } from "./cargo";
-import { currentTown, getTeaForTurn, previousTown } from "./gameReducer";
+import { currentTown } from "./gameReducer";
 import { getPriceMessages } from "./priceMessages";
 import { RootState } from "./store";
+import { getTeaForTurn } from "./teaPrice";
 import { Cargo, Fighter, FightOutcome } from "./types";
 
 export const townSelector = (state: RootState) => {
     return currentTown(state.townsVisited, state.turnNumber);
-};
-
-export const prevTownSelector = (state: RootState) => {
-    return previousTown(state.townsVisited, state.turnNumber);
 };
 
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
@@ -39,13 +36,7 @@ export const cargoTotalSelector = createSelector(
 );
 
 export const teaPriceSelector = createSelector(
-    [
-        townSelector,
-        prevTownSelector,
-        turnNumberSelector,
-        cargoSelector,
-        rngTablesSelector,
-    ],
+    [townSelector, turnNumberSelector, cargoSelector, rngTablesSelector],
     getTeaForTurn,
 );
 
