@@ -63,6 +63,10 @@ export function getRngTables(seed: string): RngTable[] {
     return rngTableList;
 }
 
+/**
+ * Please note that number range is inclusive
+ *
+ */
 export function randomInRange(
     min: number,
     max: number,

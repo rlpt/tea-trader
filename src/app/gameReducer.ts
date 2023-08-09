@@ -4,6 +4,7 @@ import {
     createReducer,
 } from "@reduxjs/toolkit";
 
+import { getRandomEvent } from "./events";
 import { fight, run } from "./fight";
 import { initialState, MAX_TURNS } from "./initialState";
 import { getRngFromList } from "./rng";
@@ -31,6 +32,8 @@ export const showBuySellModal = createAction<{ tea: string }>(
 export const showEndGameModal = createAction("showEndGameModal");
 
 export const closeModal = createAction("closeModal");
+
+export const endSpecialEvent = createAction("endSpecialEvent");
 
 export enum FightInput {
     FightClicked,
@@ -72,6 +75,10 @@ export const gameReducer = (seed: string) =>
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
+
+                state.event = getRandomEvent(
+                    state.rngTables[nextTurnNumber].specialEvent,
+                );
 
                 state.wipe.showing = false;
 
@@ -179,6 +186,9 @@ export const gameReducer = (seed: string) =>
 
                     return state;
                 }
+            })
+            .addCase(endSpecialEvent, (state) => {
+                state.event = { eventType: "NoEvent" };
             });
     });
 

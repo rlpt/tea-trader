@@ -41,7 +41,6 @@ export const initialState = (seed: string): GameState => {
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
-        rngTables: rng.getRngTables(seed),
         event: { eventType: "NoEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
@@ -51,6 +50,7 @@ export const initialState = (seed: string): GameState => {
                 displayTurn: 1,
             },
         },
+        rngTables: rng.getRngTables(seed),
     };
 };
 

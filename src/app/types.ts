@@ -8,13 +8,13 @@ export type GameState = {
     health: number;
     strength: number;
     defense: number;
-    rngTables: RngTable[];
     event: SpecialEvent;
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
         content: WipeContent;
     };
+    rngTables: RngTable[];
 };
 
 export type SpecialEvent =

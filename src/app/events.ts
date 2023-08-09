@@ -4,12 +4,12 @@ import { FightOutcome, SpecialEvent } from "./types";
 
 export function getRandomEvent(rng1: number): SpecialEvent {
     const allEvents: SpecialEvent[] = [
-        { eventType: "NoEvent" },
-        { eventType: "ArmorEvent" },
-        { eventType: "CargoEvent" },
-        { eventType: "AutoHealEvent" },
-        { eventType: "WeaponEvent" },
-        { eventType: "TreasureEvent" },
+        // { eventType: "NoEvent" },
+        // { eventType: "ArmorEvent" },
+        // { eventType: "CargoEvent" },
+        // { eventType: "AutoHealEvent" },
+        // { eventType: "WeaponEvent" },
+        // { eventType: "TreasureEvent" },
         {
             eventType: "FightEvent",
             opponent: smallPirate,
@@ -19,7 +19,7 @@ export function getRandomEvent(rng1: number): SpecialEvent {
         },
     ];
 
-    const randomIdx = randomInRange(0, allEvents.length, rng1);
+    const randomIdx = randomInRange(0, allEvents.length - 1, rng1);
 
     return allEvents[randomIdx];
 }

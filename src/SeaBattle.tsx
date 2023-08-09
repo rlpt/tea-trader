@@ -1,7 +1,11 @@
 import React from "react";
 import cn from "classnames";
 
-import { FightInput, fightMoveClicked } from "./app/gameReducer";
+import {
+    endSpecialEvent,
+    FightInput,
+    fightMoveClicked,
+} from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
 import Galleon, { Direction } from "./Galleon";
@@ -44,7 +48,11 @@ function SeaBattle(props: FightInProgress) {
     );
 
     if (props.outcome !== FightOutcome.StillStanding) {
-        buttons = <button>Back to trading</button>;
+        buttons = (
+            <button onClick={() => dispatch(endSpecialEvent())}>
+                Back to trading
+            </button>
+        );
     }
 
     if (props.outcome === FightOutcome.OpponentWins) {

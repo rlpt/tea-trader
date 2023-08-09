@@ -4,13 +4,18 @@ import classNames from "classnames";
 import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { MAX_TURNS } from "./app/initialState";
-import { turnNumberSelector, wipeSelector } from "./app/selectors";
+import {
+    fightSelector,
+    turnNumberSelector,
+    wipeSelector,
+} from "./app/selectors";
 import { GameState } from "./app/types";
 import BuySellModal from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
 import GameStatus from "./GameStatus";
 import Modal from "./Modal";
 import PriceMessages from "./PriceMessages";
+import SeaBattle from "./SeaBattle";
 import Spacer from "./Spacer";
 import TeaTable from "./TeaTable";
 
@@ -21,6 +26,7 @@ function App() {
     const dispatch = useAppDispatch();
     const currentTurn = useAppSelector(turnNumberSelector);
     const wipe = useAppSelector(wipeSelector);
+    const fight = useAppSelector(fightSelector);
 
     const modal = useAppSelector((state: GameState) => state.modal);
 
@@ -61,7 +67,6 @@ function App() {
     }
 
     // TODO use named grid for layout, no need for spacers
-
     // TODO use vars for consistent spacing
 
     let content = (
@@ -71,19 +76,17 @@ function App() {
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}
-            <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
-                {wipeMessage}
-            </div>
         </>
     );
 
-    // TODO show fight
-    // content = (
-    //     <>
-    //         <Spacer height="40px" />
-    //         <SeaBattle />
-    //     </>
-    // );
+    if (fight) {
+        content = (
+            <>
+                <Spacer height="40px" />
+                <SeaBattle {...fight} />
+            </>
+        );
+    }
 
     return (
         <div id="main-wrapper">
@@ -94,6 +97,9 @@ function App() {
                 </div>
             </div>
             <div className="game-body">{content}</div>
+            <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
+                {wipeMessage}
+            </div>
         </div>
     );
 }
