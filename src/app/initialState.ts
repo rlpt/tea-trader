@@ -18,7 +18,7 @@ export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 export const ALL_TEA_NAMES = Object.values(Tea);
 export const ALL_TOWN_NAMES = Object.values(Town);
 
-const smallPirate = {
+export const smallPirate = {
     name: "small pirate",
     maxHealth: 20,
     health: 20,

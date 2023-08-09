@@ -7,7 +7,7 @@ import {
     MAX_TURNS,
     SPECIAL_TEA_PRICE_CHANCE,
 } from "./initialState";
-import { RngTable, PriceEvent, TeaRng } from "./types";
+import { PriceEvent, RngTable, TeaRng } from "./types";
 
 /**
  * We need a fixed number of random numbers each turn. We generate these up front
@@ -25,6 +25,7 @@ export function getRngTables(seed: string): RngTable[] {
     for (let i = 0; i < MAX_TURNS; i += 1) {
         let rngTable: RngTable = {
             message: prng(),
+            specialEvent: prng(),
             towns: {},
             // make list of 100 rng for fighting, if we use all 100 in one turn (unlikely)
             // we will wrap around and start from the beginning of the list again
