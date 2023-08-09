@@ -1,26 +1,29 @@
 .wrapper {
-    height: 20px;
+    height: 30px;
     overflow: hidden;
     text-align: center;
+    position: relative;
 }
 
 .msgWrapper {
     display: inline-flex;
+    height: 30px;
 }
 
 .icon {
     padding-right: var(--space-xs);
+    display: flex;
+    align-items: center;
 }
 
 .message {
     font-size: 0.8rem;
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 .animateWrapper {
-    height: 20px;
+    height: 30px;
     overflow: hidden;
 }
 
@@ -35,4 +38,22 @@
 .scrollDown {
     transition: all 1.5s ease;
     transform: translateY(0%);
+}
+
+.topGradient {
+    background-image: linear-gradient(to top, rgba(245,245,245,0), rgba(245,245,245,1));
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 6px;
+}
+
+.bottomGradient {
+    background-image: linear-gradient(to bottom, rgba(245,245,245,0), rgba(245,245,245,1));
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 6px;
 }

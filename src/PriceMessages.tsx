@@ -26,7 +26,7 @@ function PriceMessages() {
 
             moveTimeout = setTimeout(() => {
                 // next message is in the old position of current message, so now stop the
-                // animation and make old next message the current
+                // animation and make next message the current
                 setMsgIdx((idx) => idx + 1);
                 setMoving(false);
             }, 1500);
@@ -77,6 +77,8 @@ function PriceMessages() {
         <div className={styles.wrapper}>
             {nextMsg}
             {currentMsg}
+            <div className={styles.topGradient} />
+            <div className={styles.bottomGradient} />
         </div>
     );
 }
