@@ -1,4 +1,4 @@
-import _ from "lodash";
+import fromPairs from "lodash/fromPairs";
 
 import * as rng from "./rng";
 import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
@@ -36,7 +36,7 @@ export const initialState = (seed: string): GameState => {
         cash: STARTING_CASH,
         cargo: {
             maxSize: STARTING_HOLD_SIZE,
-            items: _.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
+            items: fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
@@ -47,7 +47,7 @@ export const initialState = (seed: string): GameState => {
             rngIndex: 0,
             messages: [],
         },
-        event: { eventType: "noEvent" },
+        event: { eventType: "NoEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,
