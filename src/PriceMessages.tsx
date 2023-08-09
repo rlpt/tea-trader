@@ -11,49 +11,65 @@ const messageIcon = "💬";
 function PriceMessages() {
     const priceMessages = useAppSelector(priceMessagesSelector);
 
-    const msgCount = priceMessages.length;
-
     const [msgIdx, setMsgIdx] = React.useState(0);
     const [moving, setMoving] = React.useState(false);
 
-    useEffect(() => {
-        const init = setTimeout(() => setMoving(true), 0);
+    const msgCount = priceMessages.length;
 
-        const timer = setTimeout(() => {
-            setMsgIdx((idx) => idx + 1);
-            setMoving(false);
-        }, 2000);
+    useEffect(() => {
+        let moveTimeout: any;
+
+        const animationLoop = setInterval(() => {
+            // move both messages down 100%, this brings next message into view and
+            // hides current message
+            setMoving(true);
+
+            moveTimeout = setTimeout(() => {
+                // next message is in the old position of current message, so now stop the
+                // animation and make old next message the current
+                setMsgIdx((idx) => idx + 1);
+                setMoving(false);
+            }, 1500);
+        }, 3000);
 
         return () => {
-            clearTimeout(init);
-            clearTimeout(timer);
+            clearTimeout(moveTimeout);
+            clearInterval(animationLoop);
         };
     }, []);
+
+    const renderMsg = (msg: string, extraClasses: string) => (
+        // extra wrapping div is to make sure each message is on own line
+        <div>
+            <div className={cn([styles.msgWrapper, extraClasses])} key={msg}>
+                <div className={styles.icon}>{messageIcon}</div>
+                <div className={styles.message}>{msg}</div>
+            </div>
+        </div>
+    );
 
     if (priceMessages.length === 0) {
         return <></>;
     }
-
-    const renderMsg = (msg: string, extraClasses: string) => (
-        <div className={cn([styles.msgWrapper, extraClasses])} key={msg}>
-            <div className={styles.icon}>{messageIcon}</div>
-            <div className={styles.message}>{msg}</div>
-        </div>
-    );
 
     if (priceMessages.length === 1) {
         // single message needs no animation
         return renderMsg(priceMessages[0], "");
     }
 
+    const currentIdx = msgIdx % msgCount;
+    const nextIdx = (msgIdx + 1) % msgCount;
+
     // animated messages
     const currentMsg = renderMsg(
-        priceMessages[msgIdx % msgCount],
+        priceMessages[currentIdx],
         cn([styles.currentMsg, { [styles.scrollDown]: moving }]),
     );
 
+    // next message is rendered above current message hidden using overflow: hidden
+    // on wrapper
     const nextMsg = renderMsg(
-        priceMessages[(msgIdx + 1) % msgCount],
+        priceMessages[nextIdx],
         cn([styles.nextMsg, { [styles.scrollDown]: moving }]),
     );
 
