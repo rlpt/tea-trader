@@ -4,19 +4,13 @@ import classNames from "classnames";
 import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { MAX_TURNS } from "./app/initialState";
-import {
-    priceMessagesSelector,
-    turnNumberSelector,
-    wipeSelector,
-} from "./app/selectors";
+import { turnNumberSelector, wipeSelector } from "./app/selectors";
 import { GameState } from "./app/types";
 import BuySellModal from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
 import GameStatus from "./GameStatus";
 import Modal from "./Modal";
-import ModalMessage from "./ModalMessage";
 import PriceMessages from "./PriceMessages";
-import SeaBattle from "./SeaBattle";
 import Spacer from "./Spacer";
 import TeaTable from "./TeaTable";
 
@@ -74,7 +68,6 @@ function App() {
         <>
             <GameStatus />
             <PriceMessages />
-            <Spacer height="10px" />
             <TeaTable />
             <div className="buttons">{button}</div>
             {modalEl}

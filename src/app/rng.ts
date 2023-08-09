@@ -5,7 +5,7 @@ import {
     ALL_TEA_NAMES,
     ALL_TOWN_NAMES,
     MAX_TURNS,
-    SPECIAL_EVENT_CHANCE,
+    SPECIAL_TEA_PRICE_CHANCE,
 } from "./initialState";
 import { RngTable, SpecialEvent, TeaRng } from "./types";
 
@@ -36,7 +36,7 @@ export function getRngTables(seed: string): RngTable[] {
 
             for (let tea of ALL_TEA_NAMES) {
                 let specialEventRand = Math.floor(
-                    SPECIAL_EVENT_CHANCE * prng(),
+                    SPECIAL_TEA_PRICE_CHANCE * prng(),
                 );
 
                 let specialEvent = SpecialEvent.NoSpecialEvent;

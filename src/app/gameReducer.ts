@@ -11,7 +11,7 @@ import {
     ALL_TOWN_NAMES,
     initialState,
     MAX_TURNS,
-    SPECIAL_EVENT_MULTIPLIER,
+    SPECIAL_TEA_PRICE_MULTIPLIER,
     teaInfo,
 } from "./initialState";
 import { getRngFromList, randomInRange } from "./rng";
@@ -201,11 +201,11 @@ const getTeaPrice = (teaName: string, rngTable: TeaRng) => {
     let price = randomInRange(lowPrice, highPrice, randomNumber);
 
     if (specialEvent === SpecialEvent.HighPrice) {
-        price = price * SPECIAL_EVENT_MULTIPLIER;
+        price = price * SPECIAL_TEA_PRICE_MULTIPLIER;
     }
 
     if (specialEvent === SpecialEvent.LowPrice) {
-        price = Math.ceil(price / SPECIAL_EVENT_MULTIPLIER);
+        price = Math.ceil(price / SPECIAL_TEA_PRICE_MULTIPLIER);
     }
 
     return { price, specialEvent };

@@ -72,5 +72,7 @@ export const fightSelector = createSelector(
 
 export const priceMessagesSelector = createSelector(
     [turnNumberSelector, townSelector, rngTablesSelector],
-    getPriceMessages,
+    (currentTurn, town, rngTables) =>
+        // add one to current turn as we want the prices messages for the next turn
+        getPriceMessages(currentTurn + 1, town, rngTables),
 );

@@ -49,12 +49,16 @@ function PriceMessages() {
     );
 
     if (priceMessages.length === 0) {
-        return <></>;
+        return <div className={styles.wrapper} />;
     }
 
     if (priceMessages.length === 1) {
         // single message needs no animation
-        return renderMsg(priceMessages[0], "");
+        return (
+            <div className={styles.wrapper}>
+                {renderMsg(priceMessages[0], "")}
+            </div>
+        );
     }
 
     const currentIdx = msgIdx % msgCount;
