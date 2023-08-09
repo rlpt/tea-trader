@@ -9,7 +9,14 @@ export type GameState = {
     strength: number;
     defense: number;
     rngTables: RngTable[];
-    event: FightEvent | NoEvent;
+    event:
+        | NoEvent
+        | FightEvent
+        | ArmorEvent
+        | CargoEvent
+        | AutoHealEvent
+        | WeaponEvent
+        | TreasureEvent;
     fight: {
         rngIndex: number;
         outcome: FightOutcome;
@@ -29,7 +36,7 @@ export type GameState = {
 };
 
 type FightEvent = {
-    eventType: "fightEvent";
+    eventType: "FightEvent";
     opponent: Npc;
     rngIndex: number;
     outcome: FightOutcome;
@@ -37,7 +44,27 @@ type FightEvent = {
 };
 
 type NoEvent = {
-    eventType: "noEvent";
+    eventType: "NoEvent";
+};
+
+type ArmorEvent = {
+    eventType: "ArmorEvent";
+};
+
+type CargoEvent = {
+    eventType: "CargoEvent";
+};
+
+type AutoHealEvent = {
+    eventType: "AutoHealEvent";
+};
+
+type WeaponEvent = {
+    eventType: "WeaponEvent";
+};
+
+type TreasureEvent = {
+    eventType: "TreasureEvent";
 };
 
 export enum FightOutcome {
