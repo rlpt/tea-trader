@@ -18,6 +18,13 @@ export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 export const ALL_TEA_NAMES = Object.values(Tea);
 export const ALL_TOWN_NAMES = Object.values(Town);
 
+export const DEFENSE_INCREASE_COST = 25000;
+export const DEFENSE_INCREASE_VALUE = 10;
+export const CARGO_INCREASE_COST = 5000;
+export const CARGO_INCREASE_VALUE = 50;
+export const STRENGTH_INCREASE_COST = 30000;
+export const STRENGTH_INCREASE_VALUE = 15;
+
 export const smallPirate = {
     name: "small pirate",
     maxHealth: 20,

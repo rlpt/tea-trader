@@ -8,6 +8,8 @@ import "./Modal.css";
 function Modal(props: PropsWithChildren) {
     const dispatch = useAppDispatch();
 
+    // TODO remove close modal from overlay?
+
     return (
         <div className="modal">
             <div

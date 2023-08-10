@@ -26,6 +26,7 @@ export function getRngTables(seed: string): RngTable[] {
         let rngTable: RngTable = {
             message: prng(),
             specialEvent: prng(),
+            specialEventValue: prng(),
             towns: {},
             // make list of 100 rng for fighting, if we use all 100 in one turn (unlikely)
             // we will wrap around and start from the beginning of the list again

@@ -1,5 +1,5 @@
 import { ALL_TEA_NAMES, ALL_TOWN_NAMES, MAX_TURNS } from "./initialState";
-import { RngTable, PriceEvent, Town } from "./types";
+import { PriceEvent, RngTable, Town } from "./types";
 
 export function getPriceMessages(
     turnNumber: number,
@@ -31,7 +31,7 @@ export function getPriceMessages(
             }
 
             if (tea.specialEvent === PriceEvent.LowPrice) {
-                messages.push(`Glut of ${teaName} in ${townName}!`);
+                messages.push(`${teaName} very cheap in ${townName}!`);
             }
         }
     }

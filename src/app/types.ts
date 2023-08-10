@@ -139,6 +139,7 @@ export type CargoItems = {
 export type RngTable = {
     message: number;
     specialEvent: number;
+    specialEventValue: number;
     fight: number[];
     towns: {
         [town: string]: {

@@ -16,7 +16,7 @@ enum Status {
     Buy,
 }
 
-function BuySellModal(props: { tea: string }) {
+function BuySell(props: { tea: string }) {
     const dispatch = useAppDispatch();
 
     const hold = useAppSelector(cargoSelector);
@@ -182,4 +182,4 @@ function BuySellModal(props: { tea: string }) {
     return <div>{content}</div>;
 }
 
-export default BuySellModal;
+export default BuySell;

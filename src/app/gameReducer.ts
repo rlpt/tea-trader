@@ -9,7 +9,7 @@ import { fight, run } from "./fight";
 import { initialState, MAX_TURNS } from "./initialState";
 import { getRngFromList } from "./rng";
 import { cargoTotalSelector } from "./selectors";
-import { FightOutcome, Town } from "./types";
+import { FightOutcome, SpecialEvent, Town } from "./types";
 
 export const buyTea = createAction<{
     teaName: string;
@@ -34,6 +34,12 @@ export const showEndGameModal = createAction("showEndGameModal");
 export const closeModal = createAction("closeModal");
 
 export const endSpecialEvent = createAction("endSpecialEvent");
+
+export const buyEquipment = createAction<{
+    event: SpecialEvent;
+    cost: number;
+    value: number;
+}>("byEquipment");
 
 export enum FightInput {
     FightClicked,
@@ -76,8 +82,11 @@ export const gameReducer = (seed: string) =>
                 state.townsVisited.push(action.payload.nextTown);
                 state.modal = { modalType: "NoModal" };
 
+                const rngTable = state.rngTables[nextTurnNumber];
+
                 state.event = getRandomEvent(
-                    state.rngTables[nextTurnNumber].specialEvent,
+                    rngTable.specialEvent,
+                    rngTable.specialEventValue,
                 );
 
                 state.wipe.showing = false;

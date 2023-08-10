@@ -2,10 +2,10 @@ import { smallPirate } from "./initialState";
 import { randomInRange } from "./rng";
 import { FightOutcome, SpecialEvent } from "./types";
 
-export function getRandomEvent(rng1: number): SpecialEvent {
+export function getRandomEvent(rng1: number, rng2: number): SpecialEvent {
     const allEvents: SpecialEvent[] = [
         // { eventType: "NoEvent" },
-        // { eventType: "ArmorEvent" },
+        { eventType: "ArmorEvent" },
         // { eventType: "CargoEvent" },
         // { eventType: "AutoHealEvent" },
         // { eventType: "WeaponEvent" },

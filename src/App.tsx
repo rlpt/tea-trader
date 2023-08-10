@@ -1,64 +1,22 @@
-import React from "react";
 import classNames from "classnames";
 
-import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useAppSelector } from "./app/hooks";
 import { MAX_TURNS } from "./app/initialState";
 import {
     fightSelector,
     turnNumberSelector,
     wipeSelector,
 } from "./app/selectors";
-import { GameState } from "./app/types";
-import BuySellModal from "./BuySell";
-import ChangeLocation from "./ChangeLocation";
-import GameStatus from "./GameStatus";
-import Modal from "./Modal";
-import PriceMessages from "./PriceMessages";
 import SeaBattle from "./SeaBattle";
-import Spacer from "./Spacer";
-import TeaTable from "./TeaTable";
+import Trade from "./Trade";
 
 import "./App.css";
 import "./almond.css";
 
 function App() {
-    const dispatch = useAppDispatch();
     const currentTurn = useAppSelector(turnNumberSelector);
     const wipe = useAppSelector(wipeSelector);
     const fight = useAppSelector(fightSelector);
-
-    const modal = useAppSelector((state: GameState) => state.modal);
-
-    let modalEl;
-
-    if (modal.modalType === "ChangeLocationModal") {
-        modalEl = (
-            <Modal>
-                <ChangeLocation />
-            </Modal>
-        );
-    } else if (modal.modalType === "BuySellModal") {
-        modalEl = (
-            <Modal>
-                <BuySellModal tea={modal.tea} />
-            </Modal>
-        );
-    }
-
-    let button = (
-        <button onClick={() => dispatch(showChangeLocationModal())}>
-            Change Location
-        </button>
-    );
-
-    if (currentTurn === MAX_TURNS) {
-        button = (
-            <button onClick={() => dispatch(showEndGameModal)}>
-                Finish Game
-            </button>
-        );
-    }
 
     let wipeMessage = "";
 
@@ -66,26 +24,10 @@ function App() {
         wipeMessage = `Turn ${wipe.content.displayTurn}`;
     }
 
-    // TODO use named grid for layout, no need for spacers
-    // TODO use vars for consistent spacing
-
-    let content = (
-        <>
-            <GameStatus />
-            <PriceMessages />
-            <TeaTable />
-            <div className="buttons">{button}</div>
-            {modalEl}
-        </>
-    );
+    let content = <Trade />;
 
     if (fight) {
-        content = (
-            <>
-                <Spacer height="40px" />
-                <SeaBattle {...fight} />
-            </>
-        );
+        content = <SeaBattle {...fight} />;
     }
 
     return (
