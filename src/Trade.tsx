@@ -1,8 +1,5 @@
-import React from "react";
-
-import { showChangeLocationModal, showEndGameModal } from "./app/gameReducer";
+import { closeModal, showChangeLocationModal } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { MAX_TURNS } from "./app/initialState";
 import { GameState } from "./app/types";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
@@ -20,13 +17,13 @@ function Trade() {
 
     if (modal.modalType === "ChangeLocationModal") {
         modalEl = (
-            <Modal>
+            <Modal onClose={() => closeModal()}>
                 <ChangeLocation />
             </Modal>
         );
     } else if (modal.modalType === "BuySellModal") {
         modalEl = (
-            <Modal>
+            <Modal onClose={() => closeModal()}>
                 <BuySell tea={modal.tea} />
             </Modal>
         );

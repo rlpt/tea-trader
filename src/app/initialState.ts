@@ -18,12 +18,13 @@ export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 export const ALL_TEA_NAMES = Object.values(Tea);
 export const ALL_TOWN_NAMES = Object.values(Town);
 
-export const DEFENSE_INCREASE_COST = 25000;
+export const DEFENSE_INCREASE_COST = 1000; //25000;
 export const DEFENSE_INCREASE_VALUE = 10;
 export const CARGO_INCREASE_COST = 5000;
 export const CARGO_INCREASE_VALUE = 50;
 export const STRENGTH_INCREASE_COST = 30000;
 export const STRENGTH_INCREASE_VALUE = 15;
+export const HEAL_EVENT_INCREASE = 5;
 
 export const smallPirate = {
     name: "small pirate",
@@ -48,7 +49,8 @@ export const initialState = (seed: string): GameState => {
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
-        event: { eventType: "NoEvent" },
+        // event: { eventType: "NoEvent" },
+        event: { eventType: "ArmorEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

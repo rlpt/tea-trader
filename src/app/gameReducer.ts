@@ -35,8 +35,7 @@ export const closeModal = createAction("closeModal");
 
 export const endSpecialEvent = createAction("endSpecialEvent");
 
-export const buyEquipment = createAction<{
-    event: SpecialEvent;
+export const buyArmor = createAction<{
     cost: number;
     value: number;
 }>("byEquipment");
@@ -198,6 +197,16 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(endSpecialEvent, (state) => {
                 state.event = { eventType: "NoEvent" };
+            })
+            .addCase(buyArmor, (state, action) => {
+                const { cost, value } = action.payload;
+
+                if (cost > state.cash) {
+                    return state;
+                }
+
+                state.cash -= cost;
+                state.defense += value;
             });
     });
 

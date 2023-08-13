@@ -6,6 +6,8 @@ Tea trading game. Try to buy low and sell high. Based off the rules of a classic
 
 TODO click health bar to show modal with strength/defense/weapons info
 
+TODO write about styles in readme
+
 # Game overview
 
 You are a tea trader. You begin the game with $2,000 and $5,500 in debt.

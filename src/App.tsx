@@ -8,6 +8,7 @@ import {
     wipeSelector,
 } from "./app/selectors";
 import SeaBattle from "./SeaBattle";
+import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
 
 import "./App.css";
@@ -29,7 +30,6 @@ function App() {
     if (fight) {
         content = <SeaBattle {...fight} />;
     }
-
     return (
         <div id="main-wrapper">
             <div className="game-header">
@@ -38,7 +38,10 @@ function App() {
                     Turn: {currentTurn} / {MAX_TURNS}
                 </div>
             </div>
-            <div className="game-body">{content}</div>
+            <div className="game-body">
+                {content}
+                <SpecialEventModal />
+            </div>
             <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
                 {wipeMessage}
             </div>
