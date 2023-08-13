@@ -38,7 +38,16 @@ export const endSpecialEvent = createAction("endSpecialEvent");
 export const buyArmor = createAction<{
     cost: number;
     value: number;
-}>("byEquipment");
+}>("buyArmor");
+
+export const buyCargoSpace = createAction<{
+    cost: number;
+    value: number;
+}>("buyCargoSpace");
+
+export const heal = createAction<{
+    value: number;
+}>("heal");
 
 export enum FightInput {
     FightClicked,
@@ -207,6 +216,19 @@ export const gameReducer = (seed: string) =>
 
                 state.cash -= cost;
                 state.defense += value;
+            })
+            .addCase(buyCargoSpace, (state, action) => {
+                const { cost, value } = action.payload;
+
+                if (cost > state.cash) {
+                    return state;
+                }
+
+                state.cash -= cost;
+                state.cargo.maxSize += value;
+            })
+            .addCase(heal, (state, action) => {
+                state.health += action.payload.value;
             });
     });
 

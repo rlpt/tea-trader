@@ -1,9 +1,10 @@
 import React from "react";
 
-import { buyArmor, endSpecialEvent } from "./app/gameReducer";
+import { buyArmor, buyCargoSpace, endSpecialEvent } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     CARGO_INCREASE_COST,
+    CARGO_INCREASE_VALUE,
     DEFENSE_INCREASE_COST,
     DEFENSE_INCREASE_VALUE,
     HEAL_EVENT_INCREASE,
@@ -46,11 +47,45 @@ function SpecialEventModal() {
     } else if (specialEvent.eventType === "CargoEvent") {
         icon = "🌟";
         message = `Would you like to increase cargo size for £${CARGO_INCREASE_COST.toLocaleString()}?`;
-        buttons = <button>Buy</button>;
+        buttons = (
+            <>
+                <button
+                    type="submit"
+                    onClick={() => {
+                        dispatch(
+                            buyCargoSpace({
+                                cost: CARGO_INCREASE_COST,
+                                value: CARGO_INCREASE_VALUE,
+                            }),
+                        );
+
+                        dispatch(endSpecialEvent());
+                    }}
+                >
+                    Buy
+                </button>
+                <button
+                    className="cancel"
+                    onClick={() => {
+                        dispatch(endSpecialEvent());
+                    }}
+                >
+                    Cancel
+                </button>
+            </>
+        );
     } else if (specialEvent.eventType === "AutoHealEvent") {
         icon = HEALTH_ICON;
         message = `You regenerated ${HEAL_EVENT_INCREASE} health!`;
-        buttons = <button>Thanks!</button>;
+        buttons = (
+            <button
+                onClick={() => {
+                    dispatch(endSpecialEvent());
+                }}
+            >
+                Buy
+            </button>
+        );
     } else if (specialEvent.eventType === "WeaponEvent") {
         icon = STRENGTH_ICON;
         message = `Would you like buy a bigger cannon for £${STRENGTH_INCREASE_COST.toLocaleString()}?`;

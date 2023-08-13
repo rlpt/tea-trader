@@ -77,6 +77,12 @@ body {
     text-align: center;
 }
 
+.cancel {
+    background-color: var(--white-color);
+    color: var(--primary);
+}
+
+
 .buttons {
     margin-top: 1rem;
     display: flex;
