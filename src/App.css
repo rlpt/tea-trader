@@ -87,7 +87,7 @@ body {
 }
 
 .buttons {
-    margin-top: 1rem;
+    margin-top: var(--space-sm);
     display: flex;
     gap: 1rem;
     justify-content: center;

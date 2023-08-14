@@ -13,6 +13,8 @@ import Modal from "./Modal";
 import PriceMessages from "./PriceMessages";
 import TeaTable from "./TeaTable";
 
+import styles from "./Trade.module.css";
+
 function Trade() {
     const dispatch = useAppDispatch();
     const modal = useAppSelector((state: GameState) => state.modal);
@@ -34,9 +36,6 @@ function Trade() {
         );
     }
 
-    // TODO use named grid for layout, no need for spacers
-    // TODO use vars for consistent spacing
-
     let buttons = (
         <button onClick={() => dispatch(showChangeLocationModal())}>
             Change Location
@@ -52,7 +51,7 @@ function Trade() {
     }
 
     return (
-        <div>
+        <div className={styles.trade}>
             <GameStatus />
             <PriceMessages />
             <TeaTable />
