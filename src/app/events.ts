@@ -46,7 +46,7 @@ export function getRandomEvent(
                 messages: [],
             },
             canHappen: () => true,
-            chance: 5,
+            chance: 3,
         },
     ];
 
