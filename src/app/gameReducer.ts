@@ -22,6 +22,12 @@ import {
     Town,
 } from "./types";
 
+export const newGame = createAsyncThunk("newGame", async (args: string) => {
+    await timeout(1000);
+
+    return args;
+});
+
 export const buyTea = createAction<{
     teaName: string;
     price: number;
@@ -85,6 +91,25 @@ export const animateNextTurn = createAsyncThunk(
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
+            .addCase(newGame.pending, (state, action) => {
+                state.wipe.content = {
+                    contentType: "WipeNextTurn",
+                    displayTurn: 1,
+                };
+
+                state.wipe.showing = true;
+
+                return state;
+            })
+            .addCase(newGame.fulfilled, (state, action) => {
+                return {
+                    ...initialState(action.payload),
+                    wipe: {
+                        ...state.wipe,
+                        showing: false,
+                    },
+                };
+            })
             .addCase(animateNextTurn.pending, (state) => {
                 const nextTurnNumber = state.turnNumber + 1;
 

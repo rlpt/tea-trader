@@ -1,5 +1,6 @@
 import React from "react";
 
+import { newGame } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 
 function HighScores() {
@@ -9,7 +10,13 @@ function HighScores() {
         <div>
             SCORE
             <div className="buttons">
-                <button></button>
+                <button
+                    onClick={() =>
+                        dispatch(newGame(new Date().getTime().toString()))
+                    }
+                >
+                    New Game
+                </button>
             </div>
         </div>
     );
