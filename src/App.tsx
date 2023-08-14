@@ -4,9 +4,11 @@ import { useAppSelector } from "./app/hooks";
 import { MAX_TURNS } from "./app/initialState";
 import {
     fightSelector,
+    gameOverSelector,
     turnNumberSelector,
     wipeSelector,
 } from "./app/selectors";
+import HighScores from "./HighScores";
 import SeaBattle from "./SeaBattle";
 import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
@@ -18,6 +20,7 @@ function App() {
     const currentTurn = useAppSelector(turnNumberSelector);
     const wipe = useAppSelector(wipeSelector);
     const fight = useAppSelector(fightSelector);
+    const gameOver = useAppSelector(gameOverSelector);
 
     let wipeMessage = "";
 
@@ -31,7 +34,10 @@ function App() {
 
     if (fight) {
         content = <SeaBattle {...fight} />;
+    } else if (gameOver) {
+        content = <HighScores />;
     }
+
     return (
         <div id="main-wrapper">
             <div className="game-header">

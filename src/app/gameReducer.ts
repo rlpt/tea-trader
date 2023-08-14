@@ -97,12 +97,13 @@ export const gameReducer = (seed: string) =>
                 state.modal = { modalType: "NoModal" };
                 state.wipe.showing = false;
 
+                state.turnNumber = nextTurnNumber;
+
                 if (nextTurnNumber === MAX_TURNS) {
                     // game is over
                     return state;
                 }
 
-                state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
 
                 const rngTable = getRngTableForTurn(

@@ -1,9 +1,9 @@
 import fromPairs from "lodash/fromPairs";
 
 import * as rng from "./rng";
-import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
+import { GameState, Tea, TeaInfo, Town } from "./types";
 
-export const MAX_TURNS = 30;
+export const MAX_TURNS = 2;
 export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
@@ -25,17 +25,6 @@ export const CARGO_INCREASE_VALUE = 50;
 export const STRENGTH_INCREASE_COST = 30000;
 export const STRENGTH_INCREASE_VALUE = 15;
 export const HEAL_EVENT_INCREASE = 5;
-
-export const SMALL_PIRATE = {
-    name: "Small Pirate",
-    maxHealth: 20,
-    health: 20,
-    strength: 20,
-    defense: 5,
-    minReward: 2000,
-    maxReward: 5000,
-    level: 1,
-};
 
 export const initialState = (seed: string): GameState => {
     return {
@@ -102,4 +91,15 @@ export const teaInfo: Readonly<TeaInfo> = {
         lowPrice: 15000,
         highPrice: 30000,
     },
+};
+
+export const SMALL_PIRATE = {
+    name: "Small Pirate",
+    maxHealth: 20,
+    health: 20,
+    strength: 20,
+    defense: 5,
+    minReward: 2000,
+    maxReward: 5000,
+    level: 1,
 };
