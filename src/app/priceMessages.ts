@@ -1,5 +1,4 @@
-import { getRngTableForTurn } from "./gameReducer";
-import { ALL_TEA_NAMES, ALL_TOWN_NAMES, MAX_TURNS } from "./initialState";
+import { ALL_TEA_NAMES, ALL_TOWN_NAMES } from "./initialState";
 import { PriceEvent, RngTable, Town } from "./types";
 
 export function getPriceMessages(
@@ -7,12 +6,8 @@ export function getPriceMessages(
     currentTown: Town,
     rngTables: RngTable[],
 ): string[] {
-    if (turnNumber === MAX_TURNS) {
-        return [];
-    }
-
     // see if any towns next turn have a special event
-    const rngTable = getRngTableForTurn(turnNumber, rngTables);
+    const rngTable = rngTables[turnNumber];
 
     // don't include current town
     const townsToCheck = ALL_TOWN_NAMES.filter(

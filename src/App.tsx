@@ -3,12 +3,11 @@ import classNames from "classnames";
 import {
     fightSelector,
     gameOverSelector,
-    turnNumberSelector,
+    visualTurnSelector,
     wipeSelector,
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
-import { MAX_TURNS } from "./app/initialState";
-import HighScores from "./HighScores";
+import ScoreBoard from "./ScoreBoard";
 import SeaBattle from "./SeaBattle";
 import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
@@ -17,7 +16,7 @@ import "./App.css";
 import "./almond.css";
 
 function App() {
-    const currentTurn = useAppSelector(turnNumberSelector);
+    const visualTurn = useAppSelector(visualTurnSelector);
     const wipe = useAppSelector(wipeSelector);
     const fight = useAppSelector(fightSelector);
     const gameOver = useAppSelector(gameOverSelector);
@@ -26,6 +25,8 @@ function App() {
 
     if (wipe.content.contentType === "WipeNextTurn") {
         wipeMessage = `Turn ${wipe.content.displayTurn}`;
+    } else if (wipe.content.contentType === "WipeFinalTurn") {
+        wipeMessage = "Last Turn";
     } else if (wipe.content.contentType === "WipeGameOver") {
         wipeMessage = "Final Score";
     }
@@ -35,7 +36,7 @@ function App() {
     if (fight) {
         content = <SeaBattle {...fight} />;
     } else if (gameOver) {
-        content = <HighScores />;
+        content = <ScoreBoard />;
     }
 
     return (
@@ -43,7 +44,7 @@ function App() {
             <div className="game-header">
                 <div className="town-name">London</div>
                 <div className="turn-count">
-                    Turn: {currentTurn} / {MAX_TURNS}
+                    Turn: {visualTurn.turn} / {visualTurn.maxTurns}
                 </div>
             </div>
             <div className="game-body">

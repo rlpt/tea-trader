@@ -3,7 +3,7 @@ import fromPairs from "lodash/fromPairs";
 import * as rng from "./rng";
 import { GameState, Tea, TeaInfo, Town } from "./types";
 
-export const MAX_TURNS = 2;
+export const MAX_TURNS = 1;
 export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
@@ -28,7 +28,8 @@ export const HEAL_EVENT_INCREASE = 5;
 
 export const initialState = (seed: string): GameState => {
     return {
-        turnNumber: 2,
+        gameOver: false,
+        turnNumber: 0,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
         cargo: {

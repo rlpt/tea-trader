@@ -11,16 +11,10 @@ import { fight, run } from "./fight";
 import { initialState, MAX_TURNS } from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { getRngFromList } from "./rng";
+import { addNewScore, loadScores } from "./scoreboard";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
-import {
-    Cargo,
-    Fighter,
-    FightInProgress,
-    FightOutcome,
-    RngTable,
-    Town,
-} from "./types";
+import { Cargo, Fighter, FightInProgress, FightOutcome, Town } from "./types";
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -55,7 +49,11 @@ export const sellTea = createAction<{
 
 export const showChangeLocationModal = createAction("showChangeLocationModal");
 
-export const showFinalScore = createAction("showFinalScore");
+export const showFinalScore = createAsyncThunk("showFinalScore", async () => {
+    await timeout(1000);
+
+    return loadScores();
+});
 
 export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
@@ -115,12 +113,12 @@ export const gameReducer = (seed: string) =>
 
                 if (nextTurnNumber === MAX_TURNS) {
                     state.wipe.content = {
-                        contentType: "WipeGameOver",
+                        contentType: "WipeFinalTurn",
                     };
                 } else {
                     state.wipe.content = {
                         contentType: "WipeNextTurn",
-                        displayTurn: state.turnNumber + 1,
+                        displayTurn: nextTurnNumber + 1,
                     };
                 }
 
@@ -133,18 +131,9 @@ export const gameReducer = (seed: string) =>
                 state.wipe.showing = false;
 
                 state.turnNumber = nextTurnNumber;
-
-                if (nextTurnNumber === MAX_TURNS) {
-                    // game is over
-                    return state;
-                }
-
                 state.townsVisited.push(action.payload.nextTown);
 
-                const rngTable = getRngTableForTurn(
-                    nextTurnNumber,
-                    state.rngTables,
-                );
+                const rngTable = state.rngTables[nextTurnNumber];
 
                 state.event = getRandomEvent(
                     state,
@@ -154,7 +143,20 @@ export const gameReducer = (seed: string) =>
 
                 return state;
             })
-            .addCase(showFinalScore, (state) => {
+            .addCase(showFinalScore.pending, (state) => {
+                state.wipe.content = {
+                    contentType: "WipeGameOver",
+                };
+
+                state.wipe.showing = true;
+
+                return state;
+            })
+            .addCase(showFinalScore.fulfilled, (state, action) => {
+                state.wipe.showing = false;
+                state.gameOver = true;
+                state.scoreboard = addNewScore(action.payload, state.cash);
+
                 return state;
             })
             .addCase(closeModal, (state) => {
@@ -222,10 +224,7 @@ export const gameReducer = (seed: string) =>
                 if (state.event.eventType === "FightEvent") {
                     const fightEvent = state.event;
 
-                    const rngTable = getRngTableForTurn(
-                        state.turnNumber,
-                        state.rngTables,
-                    );
+                    const rngTable = state.rngTables[state.turnNumber];
 
                     const rngForFight = getRngFromList(
                         fightEvent.rngIndex,
@@ -291,38 +290,27 @@ export const gameReducer = (seed: string) =>
             });
     });
 
-export function currentTown(townsVisited: Town[], turnNumber: number) {
-    return townsVisited[turnNumber - 1];
-}
-
-export function getRngTableForTurn(
-    turnNumber: number,
-    rngTables: RngTable[],
-): RngTable {
-    // turns are 1-based, but list of rngTables is 0-based, so subtract 1 from current
-    // turn number to get the correct rngTable
-    return rngTables[turnNumber - 1];
-}
-
 export const townSelector = (state: RootState) => {
-    return currentTown(state.townsVisited, state.turnNumber);
+    return state.townsVisited[state.turnNumber];
 };
 
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
 export const currentRngTableSelector = (state: RootState) =>
-    getRngTableForTurn(state.turnNumber, state.rngTables);
+    state.rngTables[state.turnNumber];
 export const cashSelector = (state: RootState) => state.cash;
 export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
+export const gameOverSelector = (state: RootState) => state.gameOver;
 
-export const isLastTurnSelector = (state: RootState) => state.turnNumber + 1;
+export const visualTurnSelector = (state: RootState) => ({
+    turn: state.turnNumber + 1,
+    maxTurns: MAX_TURNS + 1,
+});
 
-export const gameOverSelector = createSelector(
-    [turnNumberSelector],
-    (turnNumber) => turnNumber === MAX_TURNS,
-);
+export const isLastTurnSelector = (state: RootState) =>
+    state.turnNumber === MAX_TURNS;
 
 export const playerSelector = (state: RootState): Fighter => {
     return {
@@ -344,7 +332,9 @@ export const cargoTotalSelector = createSelector(
 
 export const teaPriceSelector = createSelector(
     [townSelector, cargoSelector, currentRngTableSelector],
-    getTeaForTurn,
+    (town, cargo, rngTable) => {
+        return getTeaForTurn(town, cargo, rngTable);
+    },
 );
 
 export const fightSelector = createSelector(
@@ -364,8 +354,14 @@ export const fightSelector = createSelector(
 );
 
 export const priceMessagesSelector = createSelector(
-    [turnNumberSelector, townSelector, rngTablesSelector],
-    (currentTurn, town, rngTables) =>
+    [turnNumberSelector, townSelector, rngTablesSelector, isLastTurnSelector],
+    (currentTurn, town, rngTables, isLastTurn) => {
+        if (isLastTurn) {
+            // don't return any messages if player is on last turn
+            return [];
+        }
+
         // add one to current turn as we want the prices messages for the next turn
-        getPriceMessages(currentTurn + 1, town, rngTables),
+        return getPriceMessages(currentTurn + 1, town, rngTables);
+    },
 );

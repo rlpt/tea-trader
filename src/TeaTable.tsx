@@ -18,24 +18,24 @@ function TeaTable() {
                 quantityEl = <td>{quantity}</td>;
             }
 
-            let priceChangeEl = "";
+            let priceChangeEl = <></>;
 
             if (
                 priceChange === Price.AboveAvg ||
                 specialEvent === PriceEvent.HighPrice
             ) {
-                priceChangeEl = "⬆️";
+                priceChangeEl = <span title="Above average price">⬆️</span>;
             } else if (
                 priceChange === Price.BelowAvg ||
                 specialEvent === PriceEvent.LowPrice
             ) {
-                priceChangeEl = "⬇️";
+                priceChangeEl = <span title="Below average price">⬇️</span>;
             }
 
             let specialEventEl = <></>;
 
             if (specialEvent !== PriceEvent.NoPriceEvent) {
-                specialEventEl = <span title="Big price movement">❗</span>;
+                specialEventEl = <span title="Big price movement!">❗</span>;
             }
 
             return (
@@ -56,8 +56,6 @@ function TeaTable() {
             );
         },
     );
-
-    // TODO tooltip for price movements
 
     return (
         <table className="tea-table">

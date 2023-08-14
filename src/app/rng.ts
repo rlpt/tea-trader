@@ -22,7 +22,7 @@ export function getRngTables(seed: string): RngTable[] {
 
     let rngTableList = [];
 
-    for (let i = 0; i < MAX_TURNS; i += 1) {
+    for (let i = 0; i <= MAX_TURNS; i += 1) {
         let rngTable: RngTable = {
             message: prng(),
             specialEvent: prng(),

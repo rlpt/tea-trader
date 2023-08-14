@@ -1,6 +1,7 @@
 // Keep most core types in this module to try and avoid circular imports
 
 export type GameState = {
+    gameOver: boolean;
     turnNumber: number;
     townsVisited: Town[];
     cash: number;
@@ -12,7 +13,7 @@ export type GameState = {
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
-        content: NoWipe | WipeNextTurn | WipeGameOver;
+        content: NoWipe | WipeNextTurn | WipeGameOver | WipeFinalTurn;
     };
     rngTables: RngTable[];
     scoreboard: ScoreBoardItem[];
@@ -97,6 +98,10 @@ type WipeNextTurn = {
 
 type WipeGameOver = {
     contentType: "WipeGameOver";
+};
+
+type WipeFinalTurn = {
+    contentType: "WipeFinalTurn";
 };
 
 export enum Town {

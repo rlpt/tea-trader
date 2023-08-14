@@ -15,7 +15,6 @@ import TeaTable from "./TeaTable";
 
 function Trade() {
     const dispatch = useAppDispatch();
-
     const modal = useAppSelector((state: GameState) => state.modal);
     const isLastTurn = useAppSelector(isLastTurnSelector);
 
@@ -45,7 +44,11 @@ function Trade() {
     );
 
     if (isLastTurn) {
-        <button onClick={() => dispatch(showFinalScore())}>Final Score</button>;
+        buttons = (
+            <button onClick={() => dispatch(showFinalScore())}>
+                Final Score
+            </button>
+        );
     }
 
     return (
