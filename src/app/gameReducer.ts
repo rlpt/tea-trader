@@ -11,7 +11,7 @@ import { fight, run } from "./fight";
 import { initialState, MAX_TURNS } from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { getRngFromList } from "./rng";
-import { addNewScore, loadScores } from "./scoreboard";
+import { loadScores, mergeScores, saveScores } from "./scoreboard";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
 import { Cargo, Fighter, FightInProgress, FightOutcome, Town } from "./types";
@@ -49,11 +49,20 @@ export const sellTea = createAction<{
 
 export const showChangeLocationModal = createAction("showChangeLocationModal");
 
-export const showFinalScore = createAsyncThunk("showFinalScore", async () => {
-    await timeout(1000);
+export const showFinalScore = createAsyncThunk(
+    "showFinalScore",
+    async (args, { getState }) => {
+        const state = getState() as RootState;
 
-    return loadScores();
-});
+        const scores = loadScores();
+        const updatedScores = mergeScores(scores, state.cash);
+        saveScores(updatedScores.map((scoreItem) => scoreItem.score));
+
+        await timeout(1000);
+
+        return updatedScores;
+    },
+);
 
 export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
@@ -155,7 +164,7 @@ export const gameReducer = (seed: string) =>
             .addCase(showFinalScore.fulfilled, (state, action) => {
                 state.wipe.showing = false;
                 state.gameOver = true;
-                state.scoreboard = addNewScore(action.payload, state.cash);
+                state.scoreboard = action.payload;
 
                 return state;
             })
@@ -303,11 +312,15 @@ export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
 export const gameOverSelector = (state: RootState) => state.gameOver;
+export const scoreboardSelector = (state: RootState) => state.scoreboard;
 
-export const visualTurnSelector = (state: RootState) => ({
-    turn: state.turnNumber + 1,
-    maxTurns: MAX_TURNS + 1,
-});
+export const visualTurnSelector = createSelector(
+    [turnNumberSelector],
+    (turnNumber) => ({
+        turn: turnNumber + 1,
+        maxTurns: MAX_TURNS + 1,
+    }),
+);
 
 export const isLastTurnSelector = (state: RootState) =>
     state.turnNumber === MAX_TURNS;

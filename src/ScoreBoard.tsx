@@ -1,10 +1,26 @@
 import React from "react";
+import cn from "classnames";
+import take from "lodash/take";
 
-import { newGame } from "./app/gameReducer";
-import { useAppDispatch } from "./app/hooks";
+import { newGame, scoreboardSelector } from "./app/gameReducer";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 
-function ScoreBoard() {
+import styles from "./Scoreboard.module.css";
+
+function Scoreboard() {
     const dispatch = useAppDispatch();
+    // show max 10 rows
+    const scores = take(useAppSelector(scoreboardSelector), 10);
+
+    const scoreRows = scores.map((scoreItem, index) => (
+        <tr
+            key={`${scoreItem.score}-${index}`}
+            className={cn({ [styles.latest]: scoreItem.latest })}
+        >
+            <td>{index + 1}</td>
+            <td>{scoreItem.score}</td>
+        </tr>
+    ));
 
     return (
         <div>
@@ -15,10 +31,9 @@ function ScoreBoard() {
                     <tr>
                         <th>Rank</th>
                         <th>Score</th>
-                        <th></th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>{scoreRows}</tbody>
             </table>
 
             <div className="buttons">
@@ -28,4 +43,4 @@ function ScoreBoard() {
     );
 }
 
-export default ScoreBoard;
+export default Scoreboard;

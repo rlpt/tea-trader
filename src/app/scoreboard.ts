@@ -2,14 +2,25 @@ import sortBy from "lodash/sortBy";
 
 import { ScoreBoardItem } from "./types";
 
+const SCORES_KEY = "scores";
+
 /**
  *  Load scores from localstorage
  */
 export function loadScores() {
-    return [2303, 1212, 10];
+    const scoresData = localStorage.getItem(SCORES_KEY);
+
+    return JSON.parse(scoresData || "[]");
 }
 
-export function addNewScore(
+/**
+ *  Save scores to localstorage
+ */
+export function saveScores(scores: number[]) {
+    localStorage.setItem(SCORES_KEY, JSON.stringify(scores));
+}
+
+export function mergeScores(
     oldScores: number[],
     newScore: number,
 ): ScoreBoardItem[] {
@@ -17,7 +28,10 @@ export function addNewScore(
         return { score, latest: false };
     });
 
-    return sortBy([...scores, { score: newScore, latest: true }], "score");
-}
+    const sorted = sortBy(
+        [...scores, { score: newScore, latest: true }],
+        "score",
+    );
 
-function saveScore() {}
+    return [...sorted].reverse();
+}

@@ -7,7 +7,7 @@ import {
     wipeSelector,
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
-import ScoreBoard from "./ScoreBoard";
+import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
