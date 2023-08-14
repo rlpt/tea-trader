@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import { buyTea, closeModal, sellTea } from "./app/gameReducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     cargoSelector,
     cargoTotalSelector,
     cashSelector,
     teaPriceSelector,
-} from "./app/selectors";
+} from "./app/gameReducer";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import Cash from "./Cash";
 
 enum Status {

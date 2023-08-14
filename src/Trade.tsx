@@ -3,9 +3,8 @@ import {
     showChangeLocationModal,
     showFinalScore,
 } from "./app/gameReducer";
+import { isLastTurnSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { MAX_TURNS } from "./app/initialState";
-import { isLastTurnSelector } from "./app/selectors";
 import { GameState } from "./app/types";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";

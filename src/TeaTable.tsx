@@ -1,6 +1,6 @@
 import { showBuySellModal } from "./app/gameReducer";
+import { teaPriceSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { teaPriceSelector } from "./app/selectors";
 import { PriceChange, PriceEvent } from "./app/types";
 import Cash from "./Cash";
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { buyArmor, buyCargoSpace, endSpecialEvent } from "./app/gameReducer";
+import { specialEventSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     CARGO_INCREASE_COST,
@@ -10,7 +11,6 @@ import {
     HEAL_EVENT_INCREASE,
     STRENGTH_INCREASE_COST,
 } from "./app/initialState";
-import { specialEventSelector } from "./app/selectors";
 import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
 import Modal from "./Modal";
 

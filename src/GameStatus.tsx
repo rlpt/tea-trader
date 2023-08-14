@@ -1,5 +1,5 @@
+import { cargoTotalSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
-import { cargoTotalSelector } from "./app/selectors";
 import { RootState } from "./app/store";
 import AmountBar from "./AmountBar";
 import Cash from "./Cash";

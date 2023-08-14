@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import { animateNextTurn } from "./app/gameReducer";
+import { townSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { ALL_TOWN_NAMES } from "./app/initialState";
-import { townSelector } from "./app/selectors";
 import { Town } from "./app/types";
 
 import "./ChangeLocation.css";

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import cn from "classnames";
 
+import { priceMessagesSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
-import { priceMessagesSelector } from "./app/selectors";
 
 import styles from "./PriceMessages.module.css";
 

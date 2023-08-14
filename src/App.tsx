@@ -1,13 +1,13 @@
 import classNames from "classnames";
 
-import { useAppSelector } from "./app/hooks";
-import { MAX_TURNS } from "./app/initialState";
 import {
     fightSelector,
     gameOverSelector,
     turnNumberSelector,
     wipeSelector,
-} from "./app/selectors";
+} from "./app/gameReducer";
+import { useAppSelector } from "./app/hooks";
+import { MAX_TURNS } from "./app/initialState";
 import HighScores from "./HighScores";
 import SeaBattle from "./SeaBattle";
 import SpecialEventModal from "./SpecialEventModal";
