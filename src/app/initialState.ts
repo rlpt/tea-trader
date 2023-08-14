@@ -4,8 +4,8 @@ import * as rng from "./rng";
 import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 30;
-export const STARTING_CASH = 200000; //2000;
-export const STARTING_HOLD_SIZE = 100;
+export const STARTING_CASH = 2000;
+export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
 export const STARTING_STRENGTH = 30;
 export const STARTING_DEFENSE = 3;
@@ -43,14 +43,13 @@ export const initialState = (seed: string): GameState => {
         townsVisited: [Town.London],
         cash: STARTING_CASH,
         cargo: {
-            maxSize: STARTING_HOLD_SIZE,
+            maxSize: STARTING_CARGO_SIZE,
             items: fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
-        // event: { eventType: "NoEvent" },
-        event: { eventType: "CargoEvent" },
+        event: { eventType: "NoEvent" },
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

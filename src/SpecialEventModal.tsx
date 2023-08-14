@@ -11,7 +11,6 @@ import {
     STRENGTH_INCREASE_COST,
 } from "./app/initialState";
 import { specialEventSelector } from "./app/selectors";
-import { SpecialEvent } from "./app/types";
 import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
 import Modal from "./Modal";
 
@@ -24,6 +23,17 @@ function SpecialEventModal() {
     let message = "";
     let icon = "";
     let buttons = <></>;
+
+    const cancelButton = (
+        <button
+            className="cancel"
+            onClick={() => {
+                dispatch(endSpecialEvent());
+            }}
+        >
+            Cancel
+        </button>
+    );
 
     if (specialEvent.eventType === "ArmorEvent") {
         icon = DEFENSE_ICON;
@@ -64,17 +74,10 @@ function SpecialEventModal() {
                 >
                     Buy
                 </button>
-                <button
-                    className="cancel"
-                    onClick={() => {
-                        dispatch(endSpecialEvent());
-                    }}
-                >
-                    Cancel
-                </button>
+                {cancelButton}
             </>
         );
-    } else if (specialEvent.eventType === "AutoHealEvent") {
+    } else if (specialEvent.eventType === "HealEvent") {
         icon = HEALTH_ICON;
         message = `You regenerated ${HEAL_EVENT_INCREASE} health!`;
         buttons = (
@@ -83,18 +86,35 @@ function SpecialEventModal() {
                     dispatch(endSpecialEvent());
                 }}
             >
-                Buy
+                Thanks!
             </button>
         );
     } else if (specialEvent.eventType === "WeaponEvent") {
         icon = STRENGTH_ICON;
         message = `Would you like buy a bigger cannon for £${STRENGTH_INCREASE_COST.toLocaleString()}?`;
-        buttons = <button>Buy</button>;
-    } else if (specialEvent.eventType === "TreasureEvent") {
-        // TODO
+        buttons = (
+            <>
+                <button
+                    type="submit"
+                    onClick={() => {
+                        dispatch(
+                            buyCargoSpace({
+                                cost: CARGO_INCREASE_COST,
+                                value: CARGO_INCREASE_VALUE,
+                            }),
+                        );
+
+                        dispatch(endSpecialEvent());
+                    }}
+                >
+                    Buy
+                </button>
+                {cancelButton}
+            </>
+        );
     }
 
-    if (specialEvent.eventType !== "NoEvent") {
+    if (message) {
         return (
             <Modal onClose={() => endSpecialEvent()}>
                 <div className={styles.icon}>{icon}</div>

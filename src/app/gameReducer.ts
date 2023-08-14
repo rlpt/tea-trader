@@ -93,6 +93,7 @@ export const gameReducer = (seed: string) =>
                 const rngTable = state.rngTables[nextTurnNumber];
 
                 state.event = getRandomEvent(
+                    state,
                     rngTable.specialEvent,
                     rngTable.specialEventValue,
                 );

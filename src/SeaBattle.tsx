@@ -55,6 +55,8 @@ function SeaBattle(props: FightInProgress) {
         );
     }
 
+    // TODO fade out for long messages pile
+
     if (props.outcome === FightOutcome.OpponentWins) {
         buttons = <button>See final score</button>;
     }

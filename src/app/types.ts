@@ -22,9 +22,8 @@ export type SpecialEvent =
     | FightEvent
     | ArmorEvent
     | CargoEvent
-    | AutoHealEvent
-    | WeaponEvent
-    | TreasureEvent;
+    | HealEvent
+    | WeaponEvent;
 
 type FightEvent = {
     eventType: "FightEvent";
@@ -46,16 +45,12 @@ type CargoEvent = {
     eventType: "CargoEvent";
 };
 
-type AutoHealEvent = {
-    eventType: "AutoHealEvent";
+type HealEvent = {
+    eventType: "HealEvent";
 };
 
 type WeaponEvent = {
     eventType: "WeaponEvent";
-};
-
-type TreasureEvent = {
-    eventType: "TreasureEvent";
 };
 
 export enum FightOutcome {
