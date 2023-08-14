@@ -12,7 +12,7 @@ export type GameState = {
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
-        content: WipeContent;
+        content: NoWipe | WipeNextTurn | WipeGameOver;
     };
     rngTables: RngTable[];
 };
@@ -83,9 +83,17 @@ export type Npc = {
     level: number;
 };
 
-type WipeContent = {
-    contentType: "NextTurn";
+type NoWipe = {
+    contentType: "NoWipe";
+};
+
+type WipeNextTurn = {
+    contentType: "WipeNextTurn";
     displayTurn: number;
+};
+
+type WipeGameOver = {
+    contentType: "WipeGameOver";
 };
 
 export enum Town {

@@ -9,7 +9,7 @@ import { fight, run } from "./fight";
 import { initialState, MAX_TURNS } from "./initialState";
 import { getRngFromList } from "./rng";
 import { cargoTotalSelector } from "./selectors";
-import { FightOutcome, SpecialEvent, Town } from "./types";
+import { FightOutcome, RngTable, Town } from "./types";
 
 export const buyTea = createAction<{
     teaName: string;
@@ -24,6 +24,8 @@ export const sellTea = createAction<{
 }>("sellTea");
 
 export const showChangeLocationModal = createAction("showChangeLocationModal");
+
+export const showFinalScore = createAction("showFinalScore");
 
 export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
@@ -62,7 +64,7 @@ function timeout(ms: number) {
 
 export const animateNextTurn = createAsyncThunk(
     "animateNextTurn",
-    async (args: { nextTown: Town }, state) => {
+    async (args: { nextTown: Town }) => {
         await timeout(1000);
 
         return { nextTown: args.nextTown };
@@ -73,24 +75,40 @@ export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
             .addCase(animateNextTurn.pending, (state) => {
-                state.wipe.content.displayTurn = state.turnNumber + 1;
+                const nextTurnNumber = state.turnNumber + 1;
+
+                if (nextTurnNumber === MAX_TURNS) {
+                    state.wipe.content = {
+                        contentType: "WipeGameOver",
+                    };
+                } else {
+                    state.wipe.content = {
+                        contentType: "WipeNextTurn",
+                        displayTurn: state.turnNumber + 1,
+                    };
+                }
+
                 state.modal = { modalType: "NoModal" };
                 state.wipe.showing = true;
             })
             .addCase(animateNextTurn.fulfilled, (state, action) => {
                 // next turn
                 const nextTurnNumber = state.turnNumber + 1;
+                state.modal = { modalType: "NoModal" };
+                state.wipe.showing = false;
 
                 if (nextTurnNumber === MAX_TURNS) {
-                    // TODO, show end game modal
+                    // game is over
                     return state;
                 }
 
                 state.turnNumber = nextTurnNumber;
                 state.townsVisited.push(action.payload.nextTown);
-                state.modal = { modalType: "NoModal" };
 
-                const rngTable = state.rngTables[nextTurnNumber];
+                const rngTable = getRngTableForTurn(
+                    nextTurnNumber,
+                    state.rngTables,
+                );
 
                 state.event = getRandomEvent(
                     state,
@@ -98,8 +116,9 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEventValue,
                 );
 
-                state.wipe.showing = false;
-
+                return state;
+            })
+            .addCase(showFinalScore, (state) => {
                 return state;
             })
             .addCase(closeModal, (state) => {
@@ -167,7 +186,10 @@ export const gameReducer = (seed: string) =>
                 if (state.event.eventType === "FightEvent") {
                     const fightEvent = state.event;
 
-                    const rngTable = state.rngTables[state.turnNumber];
+                    const rngTable = getRngTableForTurn(
+                        state.turnNumber,
+                        state.rngTables,
+                    );
 
                     const rngForFight = getRngFromList(
                         fightEvent.rngIndex,
@@ -235,4 +257,13 @@ export const gameReducer = (seed: string) =>
 
 export function currentTown(townsVisited: Town[], turnNumber: number) {
     return townsVisited[turnNumber - 1];
+}
+
+export function getRngTableForTurn(
+    turnNumber: number,
+    rngTables: RngTable[],
+): RngTable {
+    // turns are 1-based, but list of rngTables is 0-based, so subtract 1 from current
+    // turn number to get the correct rngTable
+    return rngTables[turnNumber - 1];
 }

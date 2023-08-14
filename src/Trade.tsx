@@ -1,5 +1,11 @@
-import { closeModal, showChangeLocationModal } from "./app/gameReducer";
+import {
+    closeModal,
+    showChangeLocationModal,
+    showFinalScore,
+} from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { MAX_TURNS } from "./app/initialState";
+import { isLastTurnSelector } from "./app/selectors";
 import { GameState } from "./app/types";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
@@ -12,6 +18,7 @@ function Trade() {
     const dispatch = useAppDispatch();
 
     const modal = useAppSelector((state: GameState) => state.modal);
+    const isLastTurn = useAppSelector(isLastTurnSelector);
 
     let modalEl;
 
@@ -32,16 +39,22 @@ function Trade() {
     // TODO use named grid for layout, no need for spacers
     // TODO use vars for consistent spacing
 
+    let buttons = (
+        <button onClick={() => dispatch(showChangeLocationModal())}>
+            Change Location
+        </button>
+    );
+
+    if (isLastTurn) {
+        <button onClick={() => dispatch(showFinalScore())}>Final Score</button>;
+    }
+
     return (
         <div>
             <GameStatus />
             <PriceMessages />
             <TeaTable />
-            <div className="buttons">
-                <button onClick={() => dispatch(showChangeLocationModal())}>
-                    Change Location
-                </button>
-            </div>
+            <div className="buttons">{buttons}</div>
             {modalEl}
         </div>
     );

@@ -1,7 +1,7 @@
 import {
     CARGO_INCREASE_COST,
     DEFENSE_INCREASE_COST,
-    smallPirate,
+    SMALL_PIRATE,
     STARTING_CARGO_SIZE,
     STARTING_DEFENSE,
     STARTING_HEALTH,
@@ -40,7 +40,7 @@ export function getRandomEvent(
         {
             event: {
                 eventType: "FightEvent",
-                opponent: smallPirate,
+                opponent: SMALL_PIRATE,
                 rngIndex: 0,
                 outcome: FightOutcome.StillStanding,
                 messages: [],
@@ -55,8 +55,6 @@ export function getRandomEvent(
         .filter((event) => event.canHappen(state))
         // remove events randomly depending on chance result
         .filter((event) => randomInRange(0, event.chance - 1, rng1) === 0);
-
-    console.log("V", validEvents);
 
     const randomEvent =
         validEvents[randomInRange(0, validEvents.length - 1, rng2)];

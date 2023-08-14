@@ -21,8 +21,10 @@ function App() {
 
     let wipeMessage = "";
 
-    if (wipe.content.contentType === "NextTurn") {
+    if (wipe.content.contentType === "WipeNextTurn") {
         wipeMessage = `Turn ${wipe.content.displayTurn}`;
+    } else if (wipe.content.contentType === "WipeGameOver") {
+        wipeMessage = "Final Score";
     }
 
     let content = <Trade />;

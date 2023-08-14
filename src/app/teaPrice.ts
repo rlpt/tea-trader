@@ -9,20 +9,15 @@ import { randomInRange } from "./rng";
 import {
     Cargo,
     PriceChange,
-    RngTable,
     PriceEvent,
+    RngTable,
     TeaPrice,
     TeaRng,
     Town,
 } from "./types";
 
-export function getTeaForTurn(
-    town: Town,
-    turnNumber: number,
-    hold: Cargo,
-    rngTables: RngTable[],
-) {
-    const currentRngTable = rngTables[turnNumber].towns[town];
+export function getTeaForTurn(town: Town, hold: Cargo, rngTable: RngTable) {
+    const currentRngTable = rngTable.towns[town];
 
     const status: { [key: string]: TeaPrice } = fromPairs(
         ALL_TEA_NAMES.map((teaName) => {

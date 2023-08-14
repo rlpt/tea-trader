@@ -1,7 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import { totalItems } from "./cargo";
-import { currentTown } from "./gameReducer";
+import { currentTown, getRngTableForTurn } from "./gameReducer";
+import { MAX_TURNS } from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
@@ -13,10 +14,19 @@ export const townSelector = (state: RootState) => {
 
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
+export const currentRngTableSelector = (state: RootState) =>
+    getRngTableForTurn(state.turnNumber, state.rngTables);
 export const cashSelector = (state: RootState) => state.cash;
 export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
+
+export const isLastTurnSelector = (state: RootState) => state.turnNumber + 1;
+
+export const gameOverSelector = createSelector(
+    [turnNumberSelector],
+    (turnNumber) => turnNumber === MAX_TURNS,
+);
 
 export const playerSelector = (state: RootState): Fighter => {
     return {
@@ -37,7 +47,7 @@ export const cargoTotalSelector = createSelector(
 );
 
 export const teaPriceSelector = createSelector(
-    [townSelector, turnNumberSelector, cargoSelector, rngTablesSelector],
+    [townSelector, cargoSelector, currentRngTableSelector],
     getTeaForTurn,
 );
 

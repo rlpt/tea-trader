@@ -26,8 +26,8 @@ export const STRENGTH_INCREASE_COST = 30000;
 export const STRENGTH_INCREASE_VALUE = 15;
 export const HEAL_EVENT_INCREASE = 5;
 
-export const smallPirate = {
-    name: "small pirate",
+export const SMALL_PIRATE = {
+    name: "Small Pirate",
     maxHealth: 20,
     health: 20,
     strength: 20,
@@ -54,8 +54,7 @@ export const initialState = (seed: string): GameState => {
         wipe: {
             showing: false,
             content: {
-                contentType: "NextTurn",
-                displayTurn: 1,
+                contentType: "NoWipe",
             },
         },
         rngTables: rng.getRngTables(seed),
