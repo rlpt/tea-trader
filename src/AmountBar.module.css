@@ -1,0 +1,21 @@
+.amountBar {
+    border: 1px solid var(--secondary-light);
+    height: 16px;
+    position: relative;
+}
+
+.progressBar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+}

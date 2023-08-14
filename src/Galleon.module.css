@@ -13,8 +13,3 @@
 .facingLeft {
     transform: scaleX(-1);
 }
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(6, auto);
-}

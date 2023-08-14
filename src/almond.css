@@ -368,7 +368,6 @@ input[type="submit"]:not(:disabled):not([disabled]):hover {
     border: 1px solid transparent;
 }
 
-
 button:not(:disabled):not([disabled]).cancel:hover {
     background-color: var(--primary-bright);
     border: 1px solid var(--primary);

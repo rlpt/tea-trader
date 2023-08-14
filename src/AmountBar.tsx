@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./AmountBar.css";
+import styles from "./AmountBar.module.css";
 
 function AmountBar(props: {
     value: number;
@@ -11,12 +11,12 @@ function AmountBar(props: {
     const barWidth = (props.value / props.max) * 100;
 
     return (
-        <div className="amount-bar">
+        <div className={styles.amountBar}>
             <div
-                className="progress-bar"
+                className={styles.progressBar}
                 style={{ backgroundColor: props.color, width: `${barWidth}%` }}
             ></div>
-            <div className="value">
+            <div className={styles.value}>
                 {props.label}: {props.value} / {props.max}
             </div>
         </div>

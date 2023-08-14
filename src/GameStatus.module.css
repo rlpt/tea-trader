@@ -1,0 +1,12 @@
+.gameStatus {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 130px;
+}
+
+.cash {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: 100%;
+}

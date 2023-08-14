@@ -7,7 +7,7 @@ const SCORES_KEY = "scores";
 /**
  *  Load scores from localstorage
  */
-export function loadScores() {
+export function loadScores(): number[] {
     const scoresData = localStorage.getItem(SCORES_KEY);
 
     return JSON.parse(scoresData || "[]");

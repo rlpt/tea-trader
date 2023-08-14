@@ -41,7 +41,11 @@
 }
 
 .topGradient {
-    background-image: linear-gradient(to top, rgba(245,245,245,0), rgba(245,245,245,1));
+    background-image: linear-gradient(
+        to top,
+        rgba(245, 245, 245, 0),
+        rgba(245, 245, 245, 1)
+    );
     position: absolute;
     top: 0;
     right: 0;
@@ -50,7 +54,11 @@
 }
 
 .bottomGradient {
-    background-image: linear-gradient(to bottom, rgba(245,245,245,0), rgba(245,245,245,1));
+    background-image: linear-gradient(
+        to bottom,
+        rgba(245, 245, 245, 0),
+        rgba(245, 245, 245, 1)
+    );
     position: absolute;
     bottom: 0;
     right: 0;

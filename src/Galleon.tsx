@@ -2,8 +2,9 @@ import React from "react";
 import cn from "classnames";
 
 import { Fighter } from "./app/types";
+import FighterStats from "./FighterStats";
 import galleonImg from "./galleon.svg";
-import { DEAD_ICON, DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
+import { DEAD_ICON } from "./icons";
 
 import styles from "./Galleon.module.css";
 
@@ -30,14 +31,11 @@ function Galleon(props: {
                 <img src={galleonImg} alt="galleon" />
                 <div className={styles.face}>{face}</div>
             </div>
-            <div className={styles.stats}>
-                <div>{STRENGTH_ICON}</div>
-                <div>{props.stats.strength}</div>
-                <div>{DEFENSE_ICON}</div>
-                <div>{props.stats.defense}</div>
-                <div>{HEALTH_ICON}</div>
-                <div>{props.stats.health}</div>
-            </div>
+            <FighterStats
+                health={props.stats.health}
+                strength={props.stats.strength}
+                defense={props.stats.defense}
+            />
         </div>
     );
 }

@@ -1,27 +1,28 @@
-import { cargoTotalSelector } from "./app/gameReducer";
+import { cargoTotalSelector, playerSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
 import { RootState } from "./app/store";
 import AmountBar from "./AmountBar";
 import Cash from "./Cash";
+import FighterStats from "./FighterStats";
 
-import "./GameStatus.css";
+import styles from "./GameStatus.module.css";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
     const cargo = useAppSelector(cargoTotalSelector);
+    const player = useAppSelector(playerSelector);
 
     return (
-        <div className="game-status">
-            <div className="cash">
+        <div className={styles.gameStatus}>
+            <div className={styles.cash}>
                 <Cash amount={cash} />
             </div>
-            <div className="right">
-                <div style={{ marginBottom: "2px" }}>
-                    <AmountBar
-                        value={100}
-                        max={100}
-                        label="HEALTH"
-                        color="#04e824"
+            <div>
+                <div className={styles.stats}>
+                    <FighterStats
+                        health={player.health}
+                        strength={player.strength}
+                        defense={player.defense}
                     />
                 </div>
                 <AmountBar
