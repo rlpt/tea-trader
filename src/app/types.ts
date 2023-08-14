@@ -15,7 +15,10 @@ export type GameState = {
         content: NoWipe | WipeNextTurn | WipeGameOver;
     };
     rngTables: RngTable[];
+    scoreboard: ScoreBoardItem[];
 };
+
+export type ScoreBoardItem = { score: number; latest: boolean };
 
 export type SpecialEvent =
     | NoEvent
@@ -186,17 +189,16 @@ type NoModal = {
     modalType: "NoModal";
 };
 
-// PriceChange is relative to price in previous town
-export enum PriceChange {
-    PriceIncrease,
-    PriceDecrease,
-    NoChange,
+export enum Price {
+    AboveAvg,
+    BelowAvg,
+    Avg,
 }
 
 export type TeaPrice = {
     teaName: string;
     price: number;
     quantity: number;
-    priceChange: PriceChange;
+    priceAvg: Price;
     specialEvent: PriceEvent;
 };

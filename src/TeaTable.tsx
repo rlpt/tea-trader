@@ -1,7 +1,7 @@
 import { showBuySellModal } from "./app/gameReducer";
 import { teaPriceSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { PriceChange, PriceEvent } from "./app/types";
+import { Price, PriceEvent } from "./app/types";
 import Cash from "./Cash";
 
 import "./TeaTable.css";
@@ -11,7 +11,7 @@ function TeaTable() {
     const teaMap = useAppSelector(teaPriceSelector);
 
     const rows = Object.values(teaMap).map(
-        ({ teaName, price, quantity, priceChange, specialEvent }) => {
+        ({ teaName, price, quantity, priceAvg: priceChange, specialEvent }) => {
             let quantityEl = <td></td>;
 
             if (quantity > 0) {
@@ -21,12 +21,12 @@ function TeaTable() {
             let priceChangeEl = "";
 
             if (
-                priceChange === PriceChange.PriceIncrease ||
+                priceChange === Price.AboveAvg ||
                 specialEvent === PriceEvent.HighPrice
             ) {
                 priceChangeEl = "⬆️";
             } else if (
-                priceChange === PriceChange.PriceDecrease ||
+                priceChange === Price.BelowAvg ||
                 specialEvent === PriceEvent.LowPrice
             ) {
                 priceChangeEl = "⬇️";

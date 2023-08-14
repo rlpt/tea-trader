@@ -28,7 +28,7 @@ export const HEAL_EVENT_INCREASE = 5;
 
 export const initialState = (seed: string): GameState => {
     return {
-        turnNumber: 1,
+        turnNumber: 2,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
         cargo: {
@@ -46,6 +46,7 @@ export const initialState = (seed: string): GameState => {
                 contentType: "NoWipe",
             },
         },
+        scoreboard: [],
         rngTables: rng.getRngTables(seed),
     };
 };

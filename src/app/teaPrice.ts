@@ -8,7 +8,7 @@ import {
 import { randomInRange } from "./rng";
 import {
     Cargo,
-    PriceChange,
+    Price,
     PriceEvent,
     RngTable,
     TeaPrice,
@@ -31,12 +31,12 @@ export function getTeaForTurn(town: Town, hold: Cargo, rngTable: RngTable) {
                 priceData.lowPrice +
                 (priceData.highPrice - priceData.lowPrice) / 2;
 
-            let priceChange = PriceChange.NoChange;
+            let priceAvg = Price.Avg;
 
             if (price > averagePrice) {
-                priceChange = PriceChange.PriceIncrease;
+                priceAvg = Price.AboveAvg;
             } else if (price < averagePrice) {
-                priceChange = PriceChange.PriceDecrease;
+                priceAvg = Price.BelowAvg;
             }
 
             const quantity = hold.items[teaName];
@@ -48,7 +48,7 @@ export function getTeaForTurn(town: Town, hold: Cargo, rngTable: RngTable) {
                     price,
                     quantity,
                     specialEvent,
-                    priceChange,
+                    priceAvg,
                 },
             ];
         }),

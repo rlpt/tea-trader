@@ -8,15 +8,9 @@ function HighScores() {
 
     return (
         <div>
-            SCORE
+            <h2 className="screenTitle">Scoreboard</h2>
             <div className="buttons">
-                <button
-                    onClick={() =>
-                        dispatch(newGame(new Date().getTime().toString()))
-                    }
-                >
-                    New Game
-                </button>
+                <button onClick={() => dispatch(newGame())}>New Game</button>
             </div>
         </div>
     );

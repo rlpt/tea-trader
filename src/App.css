@@ -73,6 +73,10 @@ body {
     padding: 0rem 1rem 0rem 1rem;
 }
 
+.screenTitle {
+    text-align: center;
+}
+
 .current-location {
     text-align: center;
 }

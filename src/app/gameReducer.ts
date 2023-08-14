@@ -22,10 +22,23 @@ import {
     Town,
 } from "./types";
 
-export const newGame = createAsyncThunk("newGame", async (args: string) => {
+function timeout(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export const nextTurn = createAsyncThunk(
+    "nextTurn",
+    async (args: { nextTown: Town }) => {
+        await timeout(1000);
+
+        return { nextTown: args.nextTown };
+    },
+);
+export const newGame = createAsyncThunk("newGame", async () => {
     await timeout(1000);
 
-    return args;
+    // create seed for new game
+    return new Date().getTime().toString();
 });
 
 export const buyTea = createAction<{
@@ -75,23 +88,10 @@ export enum FightInput {
 
 export const fightMoveClicked = createAction<FightInput>("fightMoveClicked");
 
-function timeout(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-export const animateNextTurn = createAsyncThunk(
-    "animateNextTurn",
-    async (args: { nextTown: Town }) => {
-        await timeout(1000);
-
-        return { nextTown: args.nextTown };
-    },
-);
-
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
-            .addCase(newGame.pending, (state, action) => {
+            .addCase(newGame.pending, (state) => {
                 state.wipe.content = {
                     contentType: "WipeNextTurn",
                     displayTurn: 1,
@@ -110,7 +110,7 @@ export const gameReducer = (seed: string) =>
                     },
                 };
             })
-            .addCase(animateNextTurn.pending, (state) => {
+            .addCase(nextTurn.pending, (state) => {
                 const nextTurnNumber = state.turnNumber + 1;
 
                 if (nextTurnNumber === MAX_TURNS) {
@@ -127,8 +127,7 @@ export const gameReducer = (seed: string) =>
                 state.modal = { modalType: "NoModal" };
                 state.wipe.showing = true;
             })
-            .addCase(animateNextTurn.fulfilled, (state, action) => {
-                // next turn
+            .addCase(nextTurn.fulfilled, (state, action) => {
                 const nextTurnNumber = state.turnNumber + 1;
                 state.modal = { modalType: "NoModal" };
                 state.wipe.showing = false;
