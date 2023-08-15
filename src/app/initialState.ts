@@ -1,7 +1,7 @@
 import fromPairs from "lodash/fromPairs";
 
 import * as rng from "./rng";
-import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
+import { GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 29;
 export const STARTING_CASH = 2000;
