@@ -10,7 +10,7 @@
 
 .messages {
     text-align: center;
-    max-height: 200px;
+    height: 200px;
     overflow-y: hidden;
     position: relative;
 }

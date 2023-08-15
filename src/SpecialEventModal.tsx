@@ -1,6 +1,11 @@
 import React from "react";
 
-import { buyArmor, buyCargoSpace, endSpecialEvent } from "./app/gameReducer";
+import {
+    buyArmor,
+    buyCargoSpace,
+    buyWeapon,
+    endSpecialEvent,
+} from "./app/gameReducer";
 import { specialEventSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
@@ -10,6 +15,7 @@ import {
     DEFENSE_INCREASE_VALUE,
     HEAL_EVENT_INCREASE,
     STRENGTH_INCREASE_COST,
+    STRENGTH_INCREASE_VALUE,
 } from "./app/initialState";
 import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
 import Modal from "./Modal";
@@ -98,9 +104,9 @@ function SpecialEventModal() {
                     type="submit"
                     onClick={() => {
                         dispatch(
-                            buyCargoSpace({
-                                cost: CARGO_INCREASE_COST,
-                                value: CARGO_INCREASE_VALUE,
+                            buyWeapon({
+                                cost: STRENGTH_INCREASE_COST,
+                                value: STRENGTH_INCREASE_VALUE,
                             }),
                         );
 

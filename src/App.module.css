@@ -1,0 +1,39 @@
+.mainWrapper {
+    background-color: whitesmoke;
+    width: 375px;
+    min-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.gameBody {
+    padding: 0rem 1rem 0rem 1rem;
+}
+
+.turnWipe {
+    background-color: var(--info);
+    display: flex;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    position: absolute;
+    transition: all 0.8s ease;
+    z-index: 20;
+    border-radius: 10px;
+
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    clip-path: polygon(0 0, 0% 0, -200px 100%, 0 100%);
+
+    color: white;
+    font-size: 2rem;
+}
+
+.wipe {
+    clip-path: polygon(0 0, calc(100% + 200px) 0, 100% 100%, 0 100%);
+}

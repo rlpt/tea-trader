@@ -2,8 +2,7 @@ import classNames from "classnames";
 
 import {
     fightSelector,
-    gameOverSelector,
-    visualTurnSelector,
+    gameOverSelector, // TODO game over selector test
     wipeSelector,
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
@@ -14,8 +13,8 @@ import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
 
 import "./global.css";
-import "./App.css";
 import "./almond.css";
+import styles from "./App.module.css";
 
 function App() {
     const wipe = useAppSelector(wipeSelector);
@@ -41,13 +40,18 @@ function App() {
     }
 
     return (
-        <div id="main-wrapper">
+        <div className={styles.mainWrapper}>
             <GameHeader />
-            <div className="game-body">
+            <div className={styles.gameBody}>
                 {content}
                 <SpecialEventModal />
             </div>
-            <div className={classNames(["turn-wipe", { wipe: wipe.showing }])}>
+            <div
+                className={classNames([
+                    [styles.turnWipe],
+                    { [styles.wipe]: wipe.showing },
+                ])}
+            >
                 {wipeMessage}
             </div>
         </div>

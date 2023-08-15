@@ -79,6 +79,11 @@ export const buyArmor = createAction<{
     value: number;
 }>("buyArmor");
 
+export const buyWeapon = createAction<{
+    cost: number;
+    value: number;
+}>("buyWeapon");
+
 export const buyCargoSpace = createAction<{
     cost: number;
     value: number;
@@ -283,6 +288,16 @@ export const gameReducer = (seed: string) =>
 
                 state.cash -= cost;
                 state.defense += value;
+            })
+            .addCase(buyWeapon, (state, action) => {
+                const { cost, value } = action.payload;
+
+                if (cost > state.cash) {
+                    return state;
+                }
+
+                state.cash -= cost;
+                state.strength += value;
             })
             .addCase(buyCargoSpace, (state, action) => {
                 const { cost, value } = action.payload;
