@@ -1,7 +1,7 @@
 import fromPairs from "lodash/fromPairs";
 
 import * as rng from "./rng";
-import { GameState, Tea, TeaInfo, Town } from "./types";
+import { FightOutcome, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 29;
 export const STARTING_CASH = 2000;
@@ -39,7 +39,27 @@ export const initialState = (seed: string): GameState => {
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,
-        event: { eventType: "NoEvent" },
+        // event: { eventType: "NoEvent" },
+        event: {
+            eventType: "FightEvent",
+            opponent: SMALL_PIRATE,
+            rngIndex: 0,
+            outcome: FightOutcome.StillStanding,
+            messages: [
+                { text: "You hit for 4 and took 1 damage", key: "1" },
+                { text: "You hit for 4 and took 1 damage", key: "2" },
+                { text: "You hit for 4 and took 1 damage", key: "3" },
+                { text: "You hit for 4 and took 1 damage", key: "4" },
+                { text: "You hit for 4 and took 1 damage", key: "5" },
+                { text: "You hit for 4 and took 1 damage", key: "6" },
+                { text: "You hit for 4 and took 1 damage", key: "7" },
+                { text: "You hit for 4 and took 1 damage", key: "8" },
+                { text: "You hit for 4 and took 1 damage", key: "9" },
+                { text: "You hit for 4 and took 1 damage", key: "10" },
+                { text: "You hit for 4 and took 1 damage", key: "11" },
+                { text: "You hit for 4 and took 1 damage", key: "12" },
+            ],
+        },
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

@@ -4,8 +4,6 @@ Tea trading game. Try to buy low and sell high. Based off the rules of a classic
 
 # Todo
 
-TODO click health bar to show modal with strength/defense/weapons info
-
 TODO write about styles in readme
 
 # Game overview

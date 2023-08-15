@@ -17,11 +17,20 @@ function Galleon(props: {
     face: string;
     direction: Direction;
     stats: Fighter;
+    name: string;
 }) {
     const face = props.stats.health === 0 ? DEAD_ICON : props.face;
 
     return (
         <div className={styles.galleon}>
+            <div
+                className={cn(styles.name, {
+                    [styles.nameFacingLeft]:
+                        props.direction === Direction.FacingLeft,
+                })}
+            >
+                {props.name}
+            </div>
             <div
                 className={cn({
                     [styles.facingLeft]:

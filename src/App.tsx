@@ -7,16 +7,17 @@ import {
     wipeSelector,
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
+import GameHeader from "./GameHeader";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import SpecialEventModal from "./SpecialEventModal";
 import Trade from "./Trade";
 
+import "./global.css";
 import "./App.css";
 import "./almond.css";
 
 function App() {
-    const visualTurn = useAppSelector(visualTurnSelector);
     const wipe = useAppSelector(wipeSelector);
     const fight = useAppSelector(fightSelector);
     const gameOver = useAppSelector(gameOverSelector);
@@ -41,12 +42,7 @@ function App() {
 
     return (
         <div id="main-wrapper">
-            <div className="game-header">
-                <div className="town-name">London</div>
-                <div className="turn-count">
-                    Turn: {visualTurn.turn} / {visualTurn.maxTurns}
-                </div>
-            </div>
+            <GameHeader />
             <div className="game-body">
                 {content}
                 <SpecialEventModal />

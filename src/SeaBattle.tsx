@@ -55,31 +55,36 @@ function SeaBattle(props: FightInProgress) {
         );
     }
 
-    // TODO fade out for long messages pile
-
     if (props.outcome === FightOutcome.OpponentWins) {
         buttons = <button>See final score</button>;
     }
 
     return (
         <>
+            <h3 className="screenTitle">Pirate Attack!</h3>
             <div className={styles.seaBattle}>
                 <Galleon
                     face="🤨"
                     direction={Direction.FacingRight}
                     stats={props.player}
+                    name="Player"
                 />
                 <div className={styles.rhs}>
                     <Galleon
                         face="😠"
                         direction={Direction.FacingLeft}
                         stats={props.opponent}
+                        name="Pirate"
                     />
                 </div>
             </div>
             <div className="buttons">{buttons}</div>
             <Spacer height="20px" />
-            <div className={styles.messages}>{messages}</div>
+            <div className={styles.messages}>
+                {messages}
+
+                <div className={styles.bottomGradient} />
+            </div>
         </>
     );
 }

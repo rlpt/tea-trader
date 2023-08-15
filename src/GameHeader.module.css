@@ -1,0 +1,36 @@
+.gameHeader {
+    display: grid;
+    grid-template-columns: 80px auto 80px;
+    padding-bottom: 1px;
+    height: 1.6rem;
+    color: white;
+    background-color: var(--primary);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.turn {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.town {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    cursor: pointer;
+    margin-right: var(--space-unit);
+}

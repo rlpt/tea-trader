@@ -3,6 +3,14 @@
     position: relative;
 }
 
+.name {
+    text-align: left;
+}
+
+.nameFacingLeft {
+    text-align: right;
+}
+
 .face {
     position: absolute;
     font-size: 2rem;
