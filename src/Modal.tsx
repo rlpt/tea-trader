@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from "react";
 
-import { closeModal, endSpecialEvent } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 
 import "./Modal.css";
