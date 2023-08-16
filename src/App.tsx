@@ -44,6 +44,7 @@ function App() {
 
     return (
         <div>
+            <div className={styles.header}></div>
             <div className={styles.body}>{content}</div>
         </div>
     );

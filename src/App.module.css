@@ -1,12 +1,16 @@
 .header {
-    position: relative;
-    background-color: azure;
+    position: fixed;
+    background-color: var(--belize-hole);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
 }
 
 .body {
     padding-left: var(--space-sm);
     padding-right: var(--space-sm);
-    padding-top: var(--space-sm);
+    padding-top: var(--space-lg);
     padding-bottom: var(--space-xl);
     min-height: 100vh;
     background-color: whitesmoke;
