@@ -17,7 +17,6 @@ import TeaTable from "./TeaTable";
 import Trade from "./Trade";
 
 import "./global.css";
-// import "./almond.css";
 import styles from "./App.module.css";
 
 function App() {
@@ -46,9 +45,6 @@ function App() {
     return (
         <div>
             <div className={styles.body}>{content}</div>
-            <div className={styles.actions}>
-                <button>Change Location</button>
-            </div>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import {
 import { isLastTurnSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameState } from "./app/types";
+import ActionButtons from "./ActionButtons";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
 import GameStatus from "./GameStatus";
@@ -55,7 +56,7 @@ function Trade() {
             <GameStatus />
             <PriceMessages />
             <TeaTable />
-            <div className="buttons">{buttons}</div>
+            <ActionButtons>{buttons}</ActionButtons>
             {modalEl}
         </div>
     );

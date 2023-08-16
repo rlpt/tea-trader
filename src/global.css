@@ -8,10 +8,39 @@
     --space-xl: calc(3.25 * var(--space-unit));
     --space-xxl: calc(5.25 * var(--space-unit));
 
+    --color-1: #170087;
+    --color-2: #005dcd;
+    --color-3: #49dbf2;
+    --color-4: #9bf2f9;
+    --color-5: #f2ffff;
+    
+    --turquoise: #1abc9c;
+    --peter-river: #3498db;
+    --amethyst: #9b59b6;
+    --wet: #34495e;
+    --green-sea: #16a085;
+    --nephritis: #27ae60;
+    --belize-hole: #2980b9;
+    --wisteria: #8e44ad;
+    --midnight: #2c3e50;
+    --sun-flower: #f1c40f;
+    --carrot: #e67e22;
+    --alizarin: #e74c3c;
+    --clouds: #ecf0f1;
+    --conc: #95a5a6;
+    --orange: #f39c12;
+    --pumpkin: #d35400;
+    --pomme: #c0392b;
+    --silver:  #bdc3c7;
+    --asbe: #7f8c8d;
+
     /* Colors */
-    --primaryH: 210;
+    --primaryH: 168;
+    --primaryS: 76%;
+    --primaryL: 36%;
+    /* --primaryH: 210;
     --primaryS: 50%;
-    --primaryL: 40%;
+    --primaryL: 40%; */
     --primary-bg: #fff;
     --secondaryH: 0;
     --secondaryS: 0%;
@@ -68,6 +97,8 @@
     );
     --secondary-light: hsl(var(--secondaryH), var(--secondaryS), 75%);
     --secondary-lighter: hsl(var(--secondaryH), var(--secondaryS), 96%);
+    
+    --secondary-light2: hsl(var(--secondaryH), var(--secondaryS), 88%);
 }
 
 html {
@@ -159,6 +190,54 @@ th {
     font-size: 0.8rem;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    appearance: button;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    color: var(--primary-bg);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+    max-width: auto;
+    min-height: 2.5rem;
+    min-width: auto;
+    overflow: visible;
+    padding: 0 1rem;
+    text-transform: uppercase;
+}
+button[disabled],
+button:disabled,
+input[type="button"][disabled],
+input[type="button"]:disabled,
+input[type="reset"][disabled],
+input[type="reset"]:disabled,
+input[type="submit"][disabled],
+input[type="submit"]:disabled {
+    background: var(--secondary-lighter);
+    border: 1px solid var(--secondary-lighter);
+    color: var(--secondary-light);
+}
+button:not(:disabled):not([disabled]):hover,
+input[type="button"]:not(:disabled):not([disabled]):hover,
+input[type="reset"]:not(:disabled):not([disabled]):hover,
+input[type="submit"]:not(:disabled):not([disabled]):hover {
+    background-color: var(--primary-dark);
+    border: 1px solid transparent;
+}
+
+button:not(:disabled):not([disabled]).cancel:hover {
+    background-color: var(--primary-bright);
+    border: 1px solid var(--primary);
 }
 
 /********************************************/

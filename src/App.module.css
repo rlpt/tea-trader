@@ -1,25 +1,3 @@
-/**
-    Primary color: #369
-*/
-
-:root {
-    --color-1: #170087;
-    --color-2: #005dcd;
-    --color-3: #49dbf2;
-    --color-4: #9bf2f9;
-    --color-5: #f2ffff;
-
-    --color-primary-a0: #ffffff;
-    --color-primary-a10: #cdd6e5;
-    --color-primary-a20: #9cafcb;
-    --color-primary-a30: #6a8ab2;
-    --color-primary-a50: #336699;
-    --color-primary-a60: #2a4c71;
-    --color-primary-a70: #20344a;
-    --color-primary-a80: #151d27;
-    --color-primary-a90: #000000;
-}
-
 .header {
     position: relative;
     background-color: azure;
@@ -31,30 +9,12 @@
     padding-top: var(--space-sm);
     padding-bottom: var(--space-xl);
     min-height: 100vh;
+    background-color: whitesmoke;
 }
 
 .info {
     margin-bottom: var(--space-unit);
 }
-
-.fakeTable {
-    padding: var(--space-sm);
-}
-
-.actions {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 48px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    clip-path: inset(-15px 0px 0px 0px);
-    background-color: var(--color-primary-a10);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 /* TODO 
 

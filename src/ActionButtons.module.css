@@ -1,0 +1,13 @@
+.actionButtons {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 58px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    clip-path: inset(-20px 0px 0px 0px);
+    background-color: var(--secondary-light2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
