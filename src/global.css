@@ -7,13 +7,19 @@
     --space-lg: calc(2 * var(--space-unit));
     --space-xl: calc(3.25 * var(--space-unit));
     --space-xxl: calc(5.25 * var(--space-unit));
+
+    --error: #d00;
+    --warning: #ec0;
+    --info: #369;
+    --correct: #080;
 }
 
 html {
     font-size: 18px;
     color: var(--white-color);
-    background-color: #1a2631;
+    /* background-color: #1a2631;
     /** Waves background pattern  */
+    /*
     background-image: linear-gradient(135deg, #19242e 25%, transparent 25%),
         linear-gradient(225deg, #19242e 25%, transparent 25%),
         linear-gradient(45deg, #19242e 25%, transparent 25%),
@@ -24,22 +30,31 @@ html {
         0 0,
         0 0;
     background-size: 20px 20px;
-    background-repeat: repeat;
+    background-repeat: repeat; */
     box-sizing: border-box;
     user-select: none;
 }
 
 *,
-*:before,
-*:after {
-    box-sizing: inherit;
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100dvh;
+* {
+    margin: 0;
+}
+
+p {
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
 }
 
 .screenTitle {
