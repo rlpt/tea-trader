@@ -59,6 +59,7 @@ function TeaTable() {
 
     return (
         <table className="tea-table">
+            <caption>London</caption>
             <thead>
                 <tr>
                     <th>Tea</th>

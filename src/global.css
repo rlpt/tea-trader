@@ -8,14 +8,78 @@
     --space-xl: calc(3.25 * var(--space-unit));
     --space-xxl: calc(5.25 * var(--space-unit));
 
-    --error: #d00;
-    --warning: #ec0;
-    --info: #369;
-    --correct: #080;
+    /* Colors */
+    --primaryH: 210;
+    --primaryS: 50%;
+    --primaryL: 40%;
+    --primary-bg: #fff;
+    --secondaryH: 0;
+    --secondaryS: 0%;
+    --secondaryL: 13%;
+    --secondary-bg: #fff;
+    /* Font */
+    --font-family: Helvetica, Arial, sans-serif;
+    --font-size-root: 16px;
+    --font-weight-bolder: 700;
+    --font-weight-bold: 400;
+    --font-weight-normal: 200;
+    --font-weight-thin: 100;
+    --line-height: 1.75rem;
+    --heading-margin: 1.5rem 0 1rem;
+    /* Inputs */
+    --border-radius: 2px;
+    /* Calculated colors */
+    --primary: hsl(var(--primaryH), var(--primaryS), var(--primaryL));
+    --primary-bright: hsl(var(--primaryH), calc(var(--primaryS) * 1.25), 90%);
+    --primary-transparent: hsla(
+        var(--primaryH),
+        var(--primaryS),
+        var(--primaryL),
+        0.05
+    );
+    --primary-dark: hsl(
+        var(--primaryH),
+        var(--primaryS),
+        calc(var(--primaryL) * 0.5)
+    );
+    --primary-darker: hsl(
+        var(--primaryH),
+        var(--primaryS),
+        calc(var(--primaryL) * 0.2)
+    );
+    --primary-light: hsl(var(--primaryH), var(--primaryS), 75%);
+    --primary-lighter: hsl(var(--primaryH), var(--primaryS), 96%);
+    --secondary: hsl(var(--secondaryH), var(--secondaryS), var(--secondaryL));
+    --secondary-transparent: hsl(
+        var(--secondaryH),
+        var(--secondaryS),
+        var(--secondaryL),
+        0.05
+    );
+    --secondary-dark: hsl(
+        var(--secondaryH),
+        var(--secondaryS),
+        calc(var(--secondaryL) * 0.5)
+    );
+    --secondary-darker: hsl(
+        var(--secondaryH),
+        var(--secondaryS),
+        calc(var(--secondaryL) * 0.2)
+    );
+    --secondary-light: hsl(var(--secondaryH), var(--secondaryS), 75%);
+    --secondary-lighter: hsl(var(--secondaryH), var(--secondaryS), 96%);
 }
 
 html {
-    font-size: 18px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--secondary-bg);
+    color: var(--secondary);
+    font-family: var(--font-family);
+    font-size: var(--font-size-root);
+    font-weight: var(--font-weight-normal);
+    margin: 0;
+    padding: 0;
     color: var(--white-color);
     /* background-color: #1a2631;
     /** Waves background pattern  */
@@ -33,11 +97,11 @@ html {
     background-repeat: repeat; */
     box-sizing: border-box;
     user-select: none;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -56,6 +120,48 @@ textarea,
 select {
     font: inherit;
 }
+
+table {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--secondary-light);
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+thead {
+    border-bottom: 1px solid var(--secondary-light);
+    opacity: 0.7;
+}
+
+tfoot {
+    border-top: 1px solid var(--secondary-light);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--secondary-lighter);
+}
+
+tbody tr:hover {
+    background-color: var(--primary-lighter);
+}
+
+td,
+th {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+th {
+    font-weight: var(--font-weight-normal);
+    color: var(--secondary);
+    text-align: left;
+    font-size: 0.8rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+/********************************************/
 
 .screenTitle {
     text-align: center;
@@ -134,3 +240,4 @@ select {
         transform: translate3d(4px, 0, 0);
     }
 }
+  
