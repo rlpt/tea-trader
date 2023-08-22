@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { omit } from "lodash";
 
 import {
     fightSelector,
@@ -7,13 +6,8 @@ import {
     wipeSelector,
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
-import GameHeader from "./GameHeader";
-import GameStatus from "./GameStatus";
-import PriceMessages from "./PriceMessages";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
-import SpecialEventModal from "./SpecialEventModal";
-import TeaTable from "./TeaTable";
 import Trade from "./Trade";
 
 import "./global.css";
@@ -43,9 +37,19 @@ function App() {
     }
 
     return (
-        <div>
-            <div className={styles.header}></div>
-            <div className={styles.body}>{content}</div>
+        <div className={styles.mainWrap}>
+            <div className={styles.gameScreen}>
+                <div className={styles.header}></div>
+                <div className={styles.body}>{content}</div>
+                <div
+                    className={classNames([
+                        styles.turnWipe,
+                        { [styles.wipe]: wipe.showing },
+                    ])}
+                >
+                    {wipeMessage}
+                </div>
+            </div>
         </div>
     );
 }

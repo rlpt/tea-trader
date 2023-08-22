@@ -21,7 +21,7 @@
     --green-sea: #16a085;
     --nephritis: #27ae60;
     --belize-hole: #2980b9;
-    --wisteria: #8e44ad;
+    --wisteria:	hsl(282, 44%, 47%);
     --midnight: #2c3e50;
     --sun-flower: #f1c40f;
     --carrot: #e67e22;
@@ -35,12 +35,9 @@
     --asbe: #7f8c8d;
 
     /* Colors */
-    --primaryH: 168;
-    --primaryS: 76%;
-    --primaryL: 36%;
-    /* --primaryH: 210;
+    --primaryH: 210;
     --primaryS: 50%;
-    --primaryL: 40%; */
+    --primaryL: 40%;
     --primary-bg: #fff;
     --secondaryH: 0;
     --secondaryS: 0%;
@@ -97,8 +94,9 @@
     );
     --secondary-light: hsl(var(--secondaryH), var(--secondaryS), 75%);
     --secondary-lighter: hsl(var(--secondaryH), var(--secondaryS), 96%);
+    --secondary-lighter92: hsl(var(--secondaryH), var(--secondaryS), 92%);
     
-    --secondary-light2: hsl(var(--secondaryH), var(--secondaryS), 88%);
+    --secondary-light2: hsl(var(--secondaryH), var(--secondaryS), 80%);
 }
 
 html {
@@ -112,9 +110,8 @@ html {
     margin: 0;
     padding: 0;
     color: var(--white-color);
-    /* background-color: #1a2631;
+    background-color: #1a2631;
     /** Waves background pattern  */
-    /*
     background-image: linear-gradient(135deg, #19242e 25%, transparent 25%),
         linear-gradient(225deg, #19242e 25%, transparent 25%),
         linear-gradient(45deg, #19242e 25%, transparent 25%),
@@ -125,7 +122,7 @@ html {
         0 0,
         0 0;
     background-size: 20px 20px;
-    background-repeat: repeat; */
+    background-repeat: repeat;
     box-sizing: border-box;
     user-select: none;
     line-height: 1.5;
