@@ -49,7 +49,7 @@ function PriceMessages() {
     );
 
     if (priceMessages.length === 0) {
-        return <div className={styles.wrapper} />;
+        return <></>;
     }
 
     if (priceMessages.length === 1) {

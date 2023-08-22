@@ -6,6 +6,7 @@ import { townSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { ALL_TOWN_NAMES } from "./app/initialState";
 import { Town } from "./app/types";
+import Button from "./Button";
 
 import "./ChangeLocation.css";
 
@@ -40,14 +41,14 @@ function ChangeLocationModal() {
             {townList}
 
             <div className="buttons">
-                <button
+                <Button
                     disabled={nextTown === currentTown}
                     onClick={() => {
                         dispatch(nextTurn({ nextTown: Town[nextTown] }));
                     }}
                 >
-                    Change Location
-                </button>
+                    Set Sail
+                </Button>
             </div>
         </div>
     );

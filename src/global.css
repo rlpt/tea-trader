@@ -13,7 +13,7 @@
     --color-3: #49dbf2;
     --color-4: #9bf2f9;
     --color-5: #f2ffff;
-    
+
     --turquoise: #1abc9c;
     --peter-river: #3498db;
     --amethyst: #9b59b6;
@@ -21,7 +21,7 @@
     --green-sea: #16a085;
     --nephritis: #27ae60;
     --belize-hole: #2980b9;
-    --wisteria:	hsl(282, 44%, 47%);
+    --wisteria: hsl(282, 44%, 47%);
     --midnight: #2c3e50;
     --sun-flower: #f1c40f;
     --carrot: #e67e22;
@@ -31,7 +31,7 @@
     --orange: #f39c12;
     --pumpkin: #d35400;
     --pomme: #c0392b;
-    --silver:  #bdc3c7;
+    --silver: #bdc3c7;
     --asbe: #7f8c8d;
 
     /* Colors */
@@ -95,7 +95,7 @@
     --secondary-light: hsl(var(--secondaryH), var(--secondaryS), 75%);
     --secondary-lighter: hsl(var(--secondaryH), var(--secondaryS), 96%);
     --secondary-lighter92: hsl(var(--secondaryH), var(--secondaryS), 92%);
-    
+
     --secondary-light2: hsl(var(--secondaryH), var(--secondaryS), 80%);
 }
 
@@ -129,7 +129,9 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -189,63 +191,96 @@ th {
     padding-bottom: 0.3rem;
 }
 
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-    -webkit-appearance: button;
-    appearance: button;
-    background-color: var(--primary);
-    border: 1px solid var(--primary);
-    border-radius: var(--border-radius);
-    box-sizing: border-box;
-    color: var(--primary-bg);
-    cursor: pointer;
+.button {
+    /* Structure */
     display: inline-block;
-    font-size: 0.8rem;
-    font-weight: var(--font-weight-bold);
-    margin: 0;
-    max-width: auto;
-    min-height: 2.5rem;
-    min-width: auto;
-    overflow: visible;
-    padding: 0 1rem;
-    text-transform: uppercase;
-}
-button[disabled],
-button:disabled,
-input[type="button"][disabled],
-input[type="button"]:disabled,
-input[type="reset"][disabled],
-input[type="reset"]:disabled,
-input[type="submit"][disabled],
-input[type="submit"]:disabled {
-    background: var(--secondary-lighter);
-    border: 1px solid var(--secondary-lighter);
-    color: var(--secondary-light);
-}
-button:not(:disabled):not([disabled]):hover,
-input[type="button"]:not(:disabled):not([disabled]):hover,
-input[type="reset"]:not(:disabled):not([disabled]):hover,
-input[type="submit"]:not(:disabled):not([disabled]):hover {
-    background-color: var(--primary-dark);
-    border: 1px solid transparent;
-}
-
-button:not(:disabled):not([disabled]).cancel:hover {
-    background-color: var(--primary-bright);
-    border: 1px solid var(--primary);
-}
-
-/********************************************/
-
-.screenTitle {
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
     text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    user-select: none;
+    box-sizing: border-box;
 }
 
-.cancel {
-    background-color: var(--white-color);
-    color: var(--primary);
+.button {
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: rgba(0, 0, 0, 0.8);
+    border: none rgba(0, 0, 0, 0);
+    background-color: #e6e6e6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.button-hover,
+.button:hover,
+.button:focus {
+    background-image: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.05) 40%,
+        rgba(0, 0, 0, 0.1)
+    );
+}
+.button:focus {
+    outline: 0;
+}
+.button-active,
+.button:active {
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.15) inset,
+        0 0 6px rgba(0, 0, 0, 0.2) inset;
+    border-color: #000;
+}
+
+.button[disabled],
+.button-disabled,
+.button-disabled:hover,
+.button-disabled:focus,
+.button-disabled:active {
+    border: none;
+    background-image: none;
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.button-hidden {
+    display: none;
+}
+
+.button-primary,
+.button-selected,
+a.button-primary,
+a.button-selected {
+    background-color: rgb(0, 120, 231);
+    color: #fff;
+}
+
+/* Button Groups */
+.button-group .button {
+    margin: 0;
+    border-radius: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.button-group .button:first-child {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.button-group .button:last-child {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-right: none;
+}
+
+/* Firefox: Get rid of the inner focus border */
+.button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
 }
 
 .buttons {
@@ -316,4 +351,3 @@ button:not(:disabled):not([disabled]).cancel:hover {
         transform: translate3d(4px, 0, 0);
     }
 }
-  

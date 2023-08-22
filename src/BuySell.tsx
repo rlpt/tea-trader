@@ -8,6 +8,7 @@ import {
     teaPriceSelector,
 } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
+import Button from "./Button";
 import Cash from "./Cash";
 
 enum Status {
@@ -67,16 +68,16 @@ function BuySell(props: { tea: string }) {
                     You own {holdTeaQty} of {teaPrice.teaName}, do you want to
                     buy or sell?
                 </p>
-                <div className="buttons">
-                    <button onClick={() => setStatus(Status.Buy)}>Buy</button>
-                    <button
+                <div className="Buttons">
+                    <Button onClick={() => setStatus(Status.Buy)}>Buy</Button>
+                    <Button
                         onClick={() => {
                             setStatus(Status.Sell);
                             setInputQty(holdTeaQty);
                         }}
                     >
                         Sell
-                    </button>
+                    </Button>
                 </div>
             </div>
         );
@@ -102,8 +103,8 @@ function BuySell(props: { tea: string }) {
                         }}
                     />
                 </p>
-                <div className="buttons">
-                    <button
+                <div className="Buttons">
+                    <Button
                         disabled={qtyInvalid}
                         onClick={() => {
                             dispatch(
@@ -118,14 +119,14 @@ function BuySell(props: { tea: string }) {
                         }}
                     >
                         Buy
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={() => {
                             dispatch(closeModal());
                         }}
                     >
                         Cancel
-                    </button>
+                    </Button>
                 </div>
             </div>
         );
@@ -150,8 +151,8 @@ function BuySell(props: { tea: string }) {
                         }}
                     />
                 </p>
-                <div className="buttons">
-                    <button
+                <div className="Buttons">
+                    <Button
                         disabled={qtyInvalid}
                         onClick={() => {
                             dispatch(
@@ -166,14 +167,14 @@ function BuySell(props: { tea: string }) {
                         }}
                     >
                         Sell
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={() => {
                             dispatch(closeModal());
                         }}
                     >
                         Cancel
-                    </button>
+                    </Button>
                 </div>
             </div>
         );

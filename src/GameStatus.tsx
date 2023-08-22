@@ -7,6 +7,8 @@ import FighterStats from "./FighterStats";
 
 import styles from "./GameStatus.module.css";
 
+// TODO max cash length
+
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
     const cargo = useAppSelector(cargoTotalSelector);

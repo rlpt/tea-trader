@@ -6,6 +6,7 @@ import {
 import { isLastTurnSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameState } from "./app/types";
+import Button from "./Button";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
 import GameStatus from "./GameStatus";
@@ -37,24 +38,29 @@ function Trade() {
     }
 
     let buttons = (
-        <button onClick={() => dispatch(showChangeLocationModal())}>
+        <Button onClick={() => dispatch(showChangeLocationModal())}>
             Change Location
-        </button>
+        </Button>
     );
 
     if (isLastTurn) {
         buttons = (
-            <button onClick={() => dispatch(showFinalScore())}>
+            <Button onClick={() => dispatch(showFinalScore())}>
                 Final Score
-            </button>
+            </Button>
         );
     }
 
     return (
         <div className={styles.trade}>
-            <GameStatus />
+            <div className={styles.gameStatusWrap}>
+                <GameStatus />
+            </div>
             <PriceMessages />
-            <TeaTable />
+            <div className={styles.teaTableWrap}>
+                <TeaTable />
+            </div>
+            <div className="buttons">{buttons}</div>
             {modalEl}
         </div>
     );
