@@ -1,10 +1,6 @@
 import classNames from "classnames";
 
-import {
-    fightSelector,
-    gameOverSelector, // TODO game over selector test
-    wipeSelector,
-} from "./app/gameReducer";
+import { fightSelector, wipeSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
@@ -16,7 +12,8 @@ import styles from "./App.module.css";
 function App() {
     const wipe = useAppSelector(wipeSelector);
     const fight = useAppSelector(fightSelector);
-    const gameOver = useAppSelector(gameOverSelector);
+
+    const gameOver = false; // TODO
 
     let wipeMessage = "";
 

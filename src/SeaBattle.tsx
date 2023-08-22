@@ -8,6 +8,7 @@ import {
 } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
+import Button from "./Button";
 import Galleon, { Direction } from "./Galleon";
 import Spacer from "./Spacer";
 
@@ -30,20 +31,20 @@ function SeaBattle(props: FightInProgress) {
 
     let buttons = (
         <>
-            <button
+            <Button
                 onClick={() =>
                     dispatch(fightMoveClicked(FightInput.FightClicked))
                 }
             >
                 fight!
-            </button>
-            <button
+            </Button>
+            <Button
                 onClick={() =>
                     dispatch(fightMoveClicked(FightInput.RunClicked))
                 }
             >
                 run!
-            </button>
+            </Button>
         </>
     );
 

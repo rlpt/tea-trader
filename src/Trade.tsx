@@ -39,14 +39,14 @@ function Trade() {
 
     let buttons = (
         <Button onClick={() => dispatch(showChangeLocationModal())}>
-            Change Location
+            Change location
         </Button>
     );
 
     if (isLastTurn) {
         buttons = (
             <Button onClick={() => dispatch(showFinalScore())}>
-                Final Score
+                Final score
             </Button>
         );
     }
@@ -57,10 +57,10 @@ function Trade() {
                 <GameStatus />
             </div>
             <PriceMessages />
+            <div className="buttons">{buttons}</div>
             <div className={styles.teaTableWrap}>
                 <TeaTable />
             </div>
-            <div className="buttons">{buttons}</div>
             {modalEl}
         </div>
     );

@@ -1,9 +1,12 @@
-.mainWrap {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+@media all and (min-height: 660px) {
+    .mainWrap {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 .gameScreen {

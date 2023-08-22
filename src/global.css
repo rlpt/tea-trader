@@ -191,8 +191,8 @@ th {
     padding-bottom: 0.3rem;
 }
 
+
 .button {
-    /* Structure */
     display: inline-block;
     line-height: normal;
     white-space: nowrap;
@@ -202,9 +202,6 @@ th {
     -webkit-user-drag: none;
     user-select: none;
     box-sizing: border-box;
-}
-
-.button {
     font-family: inherit;
     font-size: 100%;
     padding: 0.5em 1em;
@@ -316,11 +313,6 @@ a.button-selected {
     clip-path: polygon(0 0, calc(100% + 200px) 0, 100% 100%, 0 100%);
 }
 
-.pound-sign {
-    color: #eebc1d;
-    display: inline-block;
-    padding-right: 2px;
-}
 
 .shake {
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;

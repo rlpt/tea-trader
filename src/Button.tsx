@@ -1,18 +1,12 @@
 import React, { ButtonHTMLAttributes } from "react";
 import cn from "classnames";
 
-export enum BtnType {
-    Primary,
-    Secondary,
-}
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    btnType?: BtnType;
+    secondary?: boolean;
 }
 
 function Button(props: ButtonProps) {
-    // default to primary
-    const isPrimary = props.btnType === BtnType.Primary || !props.btnType;
+    const isPrimary = !props.secondary;
 
     return (
         <button
@@ -21,7 +15,7 @@ function Button(props: ButtonProps) {
                 "button",
                 {
                     "button-primary": isPrimary,
-                    "button-secondary": props.btnType === BtnType.Secondary,
+                    "button-secondary": props.secondary,
                 },
             ])}
         />

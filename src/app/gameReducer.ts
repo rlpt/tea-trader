@@ -14,7 +14,14 @@ import { getRngFromList } from "./rng";
 import { loadScores, mergeScores, saveScores } from "./scoreboard";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
-import { Cargo, Fighter, FightInProgress, FightOutcome, Town } from "./types";
+import {
+    Cargo,
+    Fighter,
+    FightInProgress,
+    FightOutcome,
+    GameScreen,
+    Town,
+} from "./types";
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -168,7 +175,7 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(showFinalScore.fulfilled, (state, action) => {
                 state.wipe.showing = false;
-                state.gameOver = true;
+                state.screen = GameScreen.GameOver;
                 state.scoreboard = action.payload;
 
                 return state;
@@ -326,7 +333,6 @@ export const cashSelector = (state: RootState) => state.cash;
 export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
-export const gameOverSelector = (state: RootState) => state.gameOver;
 export const scoreboardSelector = (state: RootState) => state.scoreboard;
 
 export const visualTurnSelector = createSelector(

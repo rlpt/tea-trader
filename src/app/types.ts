@@ -1,7 +1,7 @@
 // Keep most core types in this module to try and avoid circular imports
 
 export type GameState = {
-    gameOver: boolean;
+    screen: GameScreen;
     turnNumber: number;
     townsVisited: Town[];
     cash: number;
@@ -20,6 +20,13 @@ export type GameState = {
 };
 
 export type ScoreBoardItem = { score: number; latest: boolean };
+
+export enum GameScreen {
+    Start,
+    Trade,
+    Fight,
+    GameOver,
+}
 
 export type SpecialEvent =
     | NoEvent
