@@ -127,7 +127,7 @@ export const SMALL_PIRATE = {
     level: 1,
 };
 
-const shipNames = [
+export const SHIP_NAMES = [
     "Green Dragon",
     "Oolong Voyager",
     "Jasmine Wind",
