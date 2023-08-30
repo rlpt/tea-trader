@@ -1,6 +1,7 @@
 import {
     CARGO_INCREASE_COST,
     DEFENSE_INCREASE_COST,
+    PIRATE_SHIP_NAMES,
     SMALL_PIRATE,
     STARTING_CARGO_SIZE,
     STARTING_DEFENSE,
@@ -16,6 +17,9 @@ export function getRandomEvent(
     rng1: number,
     rng2: number,
 ): SpecialEvent {
+    const pirateNameInx = randomInRange(0, PIRATE_SHIP_NAMES.length - 1, rng1);
+    const pirateName = PIRATE_SHIP_NAMES[pirateNameInx];
+
     const allEvents = [
         {
             event: { eventType: "ArmorEvent" },
@@ -40,7 +44,7 @@ export function getRandomEvent(
         {
             event: {
                 eventType: "FightEvent",
-                opponent: SMALL_PIRATE,
+                opponent: { ...SMALL_PIRATE, name: pirateName },
                 rngIndex: 0,
                 outcome: FightOutcome.StillStanding,
                 messages: [],

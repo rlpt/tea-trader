@@ -1,17 +1,9 @@
 import fromPairs from "lodash/fromPairs";
 
 import * as rng from "./rng";
-import {
-    FightOutcome,
-    GameScreen,
-    GameState,
-    Tea,
-    TeaInfo,
-    Town,
-} from "./types";
+import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
-// export const MAX_TURNS = 29;
-export const MAX_TURNS = 1;
+export const MAX_TURNS = 29;
 export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
@@ -239,7 +231,7 @@ export const SHIP_NAMES = [
     "Celestial Clipper",
 ];
 
-const pirateShipNames = [
+export const PIRATE_SHIP_NAMES = [
     "Black Pearl",
     "Sea Serpent's Wrath",
     "Crimson Marauder",
