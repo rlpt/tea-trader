@@ -49,7 +49,7 @@ export default function Start() {
                     {RESET_ICON}
                 </div>
             </div>
-            <Button onClick={() => dispatch(newGame)}>Start</Button>
+            <Button onClick={() => dispatch(newGame())}>Start</Button>
         </div>
     );
 }

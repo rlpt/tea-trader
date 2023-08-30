@@ -123,6 +123,7 @@ export const gameReducer = (seed: string) =>
             .addCase(newGame.fulfilled, (state, action) => {
                 return {
                     ...initialState(action.payload),
+                    screen: GameScreen.Trade,
                     wipe: {
                         ...state.wipe,
                         showing: false,
