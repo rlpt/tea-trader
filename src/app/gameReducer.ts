@@ -35,6 +35,7 @@ export const nextTurn = createAsyncThunk(
         return { nextTown: args.nextTown };
     },
 );
+
 export const newGame = createAsyncThunk("newGame", async () => {
     await timeout(1000);
 
