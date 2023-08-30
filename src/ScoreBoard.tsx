@@ -2,8 +2,9 @@ import React from "react";
 import cn from "classnames";
 import take from "lodash/take";
 
-import { newGame, scoreboardSelector } from "./app/gameReducer";
+import { restart, scoreboardSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
+import Button from "./Button";
 
 import styles from "./Scoreboard.module.css";
 
@@ -37,7 +38,7 @@ function Scoreboard() {
             </table>
 
             <div className="buttons">
-                <button onClick={() => dispatch(newGame())}>New Game</button>
+                <Button onClick={() => dispatch(restart())}>New Game</Button>
             </div>
         </div>
     );

@@ -15,7 +15,12 @@ export type GameState = {
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
-        content: NoWipe | WipeNextTurn | WipeGameOver | WipeFinalTurn;
+        content:
+            | NoWipe
+            | BlankWipe
+            | WipeNextTurn
+            | WipeGameOver
+            | WipeFinalTurn;
     };
     rngTables: RngTable[];
     scoreboard: ScoreBoardItem[];
@@ -98,6 +103,10 @@ export type Npc = {
 
 type NoWipe = {
     contentType: "NoWipe";
+};
+
+type BlankWipe = {
+    contentType: "BlankWipe";
 };
 
 type WipeNextTurn = {

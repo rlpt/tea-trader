@@ -23,6 +23,8 @@ function App() {
         wipeMessage = "Last Turn";
     } else if (wipe.content.contentType === "WipeGameOver") {
         wipeMessage = "Final Score";
+    } else if (wipe.content.contentType === "BlankWipe") {
+        wipeMessage = "";
     }
 
     let content = <Start />;

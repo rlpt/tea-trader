@@ -43,6 +43,12 @@ export const newGame = createAsyncThunk("newGame", async () => {
     return new Date().getTime().toString();
 });
 
+export const restart = createAsyncThunk("restart", async () => {
+    await timeout(1000);
+
+    return "";
+});
+
 export const buyTea = createAction<{
     teaName: string;
     price: number;
@@ -125,6 +131,24 @@ export const gameReducer = (seed: string) =>
                 return {
                     ...initialState(action.payload),
                     screen: GameScreen.Trade,
+                    wipe: {
+                        ...state.wipe,
+                        showing: false,
+                    },
+                };
+            })
+            .addCase(restart.pending, (state) => {
+                state.wipe.content = {
+                    contentType: "BlankWipe",
+                };
+
+                state.wipe.showing = true;
+
+                return state;
+            })
+            .addCase(restart.fulfilled, (state, action) => {
+                return {
+                    ...initialState(action.payload),
                     wipe: {
                         ...state.wipe,
                         showing: false,
