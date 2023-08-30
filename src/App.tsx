@@ -1,9 +1,11 @@
 import classNames from "classnames";
 
-import { fightSelector, wipeSelector } from "./app/gameReducer";
+import { fightSelector, screenSelector, wipeSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
+import { GameScreen } from "./app/types";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
+import Start from "./Start";
 import Trade from "./Trade";
 
 import "./global.css";
@@ -11,9 +13,7 @@ import styles from "./App.module.css";
 
 function App() {
     const wipe = useAppSelector(wipeSelector);
-    const fight = useAppSelector(fightSelector);
-
-    const gameOver = false; // TODO
+    const screen = useAppSelector(screenSelector);
 
     let wipeMessage = "";
 
@@ -25,11 +25,13 @@ function App() {
         wipeMessage = "Final Score";
     }
 
-    let content = <Trade />;
+    let content = <Start />;
 
-    if (fight) {
-        content = <SeaBattle {...fight} />;
-    } else if (gameOver) {
+    // TODO wire in other screens
+
+    if (screen === GameScreen.Trade) {
+        content = <Trade />;
+    } else if (screen === GameScreen.GameOver) {
         content = <ScoreBoard />;
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Cash.module.css";
 
-function Cash(props: { amount: number }) {
+export default function Cash(props: { amount: number }) {
     return (
         <span>
             <span className={styles.pound}>£</span>
@@ -10,5 +10,3 @@ function Cash(props: { amount: number }) {
         </span>
     );
 }
-
-export default Cash;

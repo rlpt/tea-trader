@@ -334,6 +334,7 @@ export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
 export const scoreboardSelector = (state: RootState) => state.scoreboard;
+export const screenSelector = (state: RootState) => state.screen;
 
 export const visualTurnSelector = createSelector(
     [turnNumberSelector],

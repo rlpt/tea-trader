@@ -28,7 +28,7 @@ export const HEAL_EVENT_INCREASE = 5;
 
 export const initialState = (seed: string): GameState => {
     return {
-        screen: GameScreen.Trade,
+        screen: GameScreen.Start,
         turnNumber: 0,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
@@ -36,6 +36,7 @@ export const initialState = (seed: string): GameState => {
             maxSize: STARTING_CARGO_SIZE,
             items: fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
+        name: "nameless",
         health: STARTING_HEALTH,
         strength: STARTING_STRENGTH,
         defense: STARTING_DEFENSE,

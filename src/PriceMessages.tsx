@@ -17,7 +17,7 @@ function PriceMessages() {
     const msgCount = priceMessages.length;
 
     useEffect(() => {
-        let moveTimeout: any;
+        let moveTimeout: ReturnType<typeof setTimeout>;
 
         const animationLoop = setInterval(() => {
             // move both messages down 100%, this brings next message into view and
