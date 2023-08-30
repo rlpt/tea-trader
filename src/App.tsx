@@ -14,6 +14,7 @@ import styles from "./App.module.css";
 function App() {
     const wipe = useAppSelector(wipeSelector);
     const screen = useAppSelector(screenSelector);
+    const fight = useAppSelector(fightSelector);
 
     let wipeMessage = "";
 
@@ -35,6 +36,8 @@ function App() {
         content = <Trade />;
     } else if (screen === GameScreen.GameOver) {
         content = <ScoreBoard />;
+    } else if (screen === GameScreen.Fight && fight) {
+        content = <SeaBattle {...fight} />;
     }
 
     return (

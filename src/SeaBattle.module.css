@@ -36,3 +36,8 @@
     left: 0;
     height: 60px;
 }
+
+.screenTitle {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}

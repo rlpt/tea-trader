@@ -375,6 +375,7 @@ export const isLastTurnSelector = (state: RootState) =>
 
 export const playerSelector = (state: RootState): Fighter => {
     return {
+        name: state.name,
         health: state.health,
         strength: state.strength,
         defense: state.defense,

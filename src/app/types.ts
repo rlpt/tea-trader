@@ -79,6 +79,7 @@ export enum FightOutcome {
 }
 
 export interface Fighter {
+    name: string;
     health: number;
     strength: number;
     defense: number;

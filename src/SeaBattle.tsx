@@ -62,20 +62,20 @@ function SeaBattle(props: FightInProgress) {
 
     return (
         <>
-            <h3 className="screenTitle">Pirate Attack!</h3>
+            <h3 className={styles.screenTitle}>Pirate Attack!</h3>
             <div className={styles.seaBattle}>
                 <Galleon
                     face="🤨"
                     direction={Direction.FacingRight}
                     stats={props.player}
-                    name="Player"
+                    name={props.player.name}
                 />
                 <div className={styles.rhs}>
                     <Galleon
                         face="😠"
                         direction={Direction.FacingLeft}
                         stats={props.opponent}
-                        name="Pirate"
+                        name={"🏴‍☠️ " + props.opponent.name}
                     />
                 </div>
             </div>
