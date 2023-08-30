@@ -3,7 +3,8 @@ import fromPairs from "lodash/fromPairs";
 import * as rng from "./rng";
 import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
-export const MAX_TURNS = 29;
+// export const MAX_TURNS = 29;
+export const MAX_TURNS = 3;
 export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;

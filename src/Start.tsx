@@ -5,6 +5,7 @@ import { newGame } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import { SHIP_NAMES } from "./app/initialState";
 import Button from "./Button";
+import galleonImg from "./galleon.svg";
 import { RESET_ICON } from "./icons";
 
 import styles from "./Start.module.css";
@@ -43,6 +44,9 @@ export default function Start() {
         <div className={styles.start}>
             <div className={styles.logo}>TEA TRADER</div>
             <div className={styles.intro}>Buy Low. Sell High</div>
+            <div className={styles.galleon}>
+                <img src={galleonImg} />
+            </div>
             <div className={styles.pickName}>
                 <input type="text" value={name} onChange={onChange} />
                 <div className={styles.reset} onClick={onReset}>

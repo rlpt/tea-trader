@@ -3,10 +3,21 @@
     margin-top: var(--space-lg);
 }
 
+.galleon {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .pickName {
     display: flex;
     justify-content: center;
     margin-bottom: var(--space-lg);
+
+}
+
+.pickName input {
+    text-align: center;
 }
 
 .reset {
