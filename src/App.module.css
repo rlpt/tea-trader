@@ -42,7 +42,6 @@
     position: absolute;
     transition: all 0.8s ease;
     z-index: 20;
-    border-radius: 10px;
 
     align-items: center;
     flex-direction: column;
