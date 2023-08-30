@@ -1,6 +1,7 @@
 // Keep most core types in this module to try and avoid circular imports
 
 export type GameState = {
+    seed: string;
     screen: GameScreen;
     turnNumber: number;
     townsVisited: Town[];

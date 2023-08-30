@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as R from "remeda";
 
+import { newGame } from "./app/gameReducer";
+import { useAppDispatch } from "./app/hooks";
 import { SHIP_NAMES } from "./app/initialState";
+import Button from "./Button";
 import { RESET_ICON } from "./icons";
 
 import styles from "./Start.module.css";
@@ -10,6 +13,8 @@ export default function Start() {
     const [randomNames, setRandomNames] = useState<string[]>([]);
     const [nameIdx, setNameIdx] = useState<number>(0);
     const [name, setName] = useState<string>("");
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         // shuffle the list of names and set as state
@@ -35,13 +40,16 @@ export default function Start() {
     };
 
     return (
-        <div>
+        <div className={styles.start}>
+            <div className={styles.logo}>TEA TRADER</div>
+            <div className={styles.intro}>Buy Low. Sell High</div>
             <div className={styles.pickName}>
                 <input type="text" value={name} onChange={onChange} />
                 <div className={styles.reset} onClick={onReset}>
                     {RESET_ICON}
                 </div>
             </div>
+            <Button onClick={() => dispatch(newGame)}>Start</Button>
         </div>
     );
 }
