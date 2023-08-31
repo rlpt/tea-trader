@@ -11,6 +11,8 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import Button from "./Button";
 import Cash from "./Cash";
 
+import styles from "./BuySell.module.css";
+
 enum Status {
     Choose,
     Sell,
@@ -68,7 +70,7 @@ function BuySell(props: { tea: string }) {
                     You own {holdTeaQty} of {teaPrice.teaName}, do you want to
                     buy or sell?
                 </p>
-                <div className="Buttons">
+                <div className="buttons">
                     <Button onClick={() => setStatus(Status.Buy)}>Buy</Button>
                     <Button
                         onClick={() => {
@@ -96,6 +98,7 @@ function BuySell(props: { tea: string }) {
                 </p>
                 <p>
                     <input
+                        className={styles.input}
                         type="number"
                         value={inputQty === null ? "" : inputQty}
                         onChange={(e) => {
@@ -103,7 +106,7 @@ function BuySell(props: { tea: string }) {
                         }}
                     />
                 </p>
-                <div className="Buttons">
+                <div className="buttons">
                     <Button
                         disabled={qtyInvalid}
                         onClick={() => {
@@ -144,6 +147,7 @@ function BuySell(props: { tea: string }) {
                 </p>
                 <p>
                     <input
+                        className={styles.input}
                         type="number"
                         value={inputQty === null ? "" : inputQty}
                         onChange={(e) => {
@@ -151,7 +155,7 @@ function BuySell(props: { tea: string }) {
                         }}
                     />
                 </p>
-                <div className="Buttons">
+                <div className="buttons">
                     <Button
                         disabled={qtyInvalid}
                         onClick={() => {

@@ -151,6 +151,10 @@ select {
     font: inherit;
 }
 
+p {
+    margin-bottom: var(--space-sm);
+}
+
 table {
     background-color: var(--secondary-bg);
     border: 1px solid var(--secondary-light);
@@ -190,7 +194,6 @@ th {
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
 }
-
 
 .button {
     display: inline-block;
@@ -311,7 +314,6 @@ a.button-selected {
 .turn-wipe.wipe {
     clip-path: polygon(0 0, calc(100% + 200px) 0, 100% 100%, 0 100%);
 }
-
 
 .shake {
     animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;

@@ -1,0 +1,22 @@
+.header {
+    height: 30px;
+    border-bottom: 1px solid var(--secondary-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+}
+
+.turns {
+    width: 72px;
+    font-size: 0.8rem;
+}
+
+.menu {
+    width: 72px;
+}
+
+.town {
+    font-size: 0.8rem;
+}

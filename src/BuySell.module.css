@@ -1,0 +1,5 @@
+.input {
+    margin: var(--space-sm);
+    width: 100px;
+    text-align: center;
+}

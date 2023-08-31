@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { fightSelector, screenSelector, wipeSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
+import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import Start from "./Start";
@@ -30,8 +31,6 @@ function App() {
 
     let content = <Start />;
 
-    // TODO wire in other screens
-
     if (screen === GameScreen.Trade) {
         content = <Trade />;
     } else if (screen === GameScreen.GameOver) {
@@ -43,7 +42,7 @@ function App() {
     return (
         <div className={styles.mainWrap}>
             <div className={styles.gameScreen}>
-                <div className={styles.header}></div>
+                <Header />
                 <div className={styles.body}>{content}</div>
                 <div
                     className={classNames([

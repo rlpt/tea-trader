@@ -40,6 +40,7 @@ export const newGame = createAsyncThunk("newGame", async () => {
     await timeout(1000);
 
     // create seed for new game
+    // TODO pass in seed as param
     return new Date().getTime().toString();
 });
 
