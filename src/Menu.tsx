@@ -20,21 +20,34 @@ export default function Menu() {
         }
     });
 
+    // TODO overlay
+
     return (
         <>
-            <div
-                className={cn(styles.menu, {
-                    [styles.slideIn]: menu === MenuStatus.Open,
-                    [styles.slideOut]: menu === MenuStatus.Close,
+            {/* <div
+                className={cn(styles.overlay, {
+                    [styles.fadeIn]: menu === MenuStatus.Open,
+                    [styles.fadeOut]: menu === MenuStatus.Close,
                 })}
-            />
+            /> */}
             <div
                 ref={ref}
                 className={cn(styles.menu, {
                     [styles.slideIn]: menu === MenuStatus.Open,
                     [styles.slideOut]: menu === MenuStatus.Close,
                 })}
-            ></div>
+            >
+                <div className={styles.content}>
+                    <div className={styles.menuItem}>Scoreboard</div>
+                    <div className={styles.menuItem}>New Game</div>
+                </div>
+                <div
+                    className={styles.closeBtn}
+                    onClick={() => dispatch(menuTriggered(MenuStatus.Close))}
+                >
+                    ✕
+                </div>
+            </div>
         </>
     );
 }

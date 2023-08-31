@@ -13,6 +13,8 @@ function Modal(props: PropsWithChildren<{ onClose: any }>) {
         dispatch(props.onClose());
     });
 
+    // TODO css modules
+
     return (
         <div className="modal">
             <div className="modal-overlay"></div>
