@@ -1,19 +1,22 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 
 import { useAppDispatch } from "./app/hooks";
+import useClickOutside from "./useOutsideClick";
 
 import "./Modal.css";
 
 function Modal(props: PropsWithChildren<{ onClose: any }>) {
     const dispatch = useAppDispatch();
+    const ref = useRef(null);
+
+    useClickOutside(ref, () => {
+        dispatch(props.onClose());
+    });
 
     return (
         <div className="modal">
-            <div
-                className="modal-overlay"
-                onClick={() => dispatch(props.onClose())}
-            ></div>
-            <div className="modal-content">
+            <div className="modal-overlay"></div>
+            <div ref={ref} className="modal-content">
                 {props.children}
                 <div
                     className="modal-close-button"
