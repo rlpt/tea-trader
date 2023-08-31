@@ -374,14 +374,22 @@ export const visualTurnSelector = createSelector(
 export const isLastTurnSelector = (state: RootState) =>
     state.turnNumber === MAX_TURNS;
 
-export const playerSelector = (state: RootState): Fighter => {
-    return {
-        name: state.name,
-        health: state.health,
-        strength: state.strength,
-        defense: state.defense,
-    };
-};
+export const playerSelector = createSelector(
+    [
+        (state) => state.name,
+        (state) => state.health,
+        (state) => state.strength,
+        (state) => state.defense,
+    ],
+    (name, health, strength, defense): Fighter => {
+        return {
+            name,
+            health,
+            strength,
+            defense,
+        };
+    },
+);
 
 export const cargoTotalSelector = createSelector(
     [cargoSelector],
