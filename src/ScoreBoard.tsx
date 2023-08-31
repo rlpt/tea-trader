@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import take from "lodash/take";
+import * as R from "remeda";
 
 import { restart, scoreboardSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
@@ -11,7 +11,7 @@ import styles from "./Scoreboard.module.css";
 function Scoreboard() {
     const dispatch = useAppDispatch();
     // show max 10 rows
-    const scores = take(useAppSelector(scoreboardSelector), 10);
+    const scores = R.take(useAppSelector(scoreboardSelector), 10);
 
     const scoreRows = scores.map((scoreItem, index) => (
         <tr

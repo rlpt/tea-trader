@@ -12,6 +12,7 @@ export type GameState = {
     strength: number;
     defense: number;
     event: SpecialEvent;
+    menuOpen: boolean;
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;

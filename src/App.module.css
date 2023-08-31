@@ -15,6 +15,7 @@
     margin-right: auto;
     background-color: whitesmoke;
     position: relative;
+    overflow-x: hidden;
 }
 
 .body {

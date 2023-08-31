@@ -12,7 +12,7 @@
     font-size: 0.8rem;
 }
 
-.menu {
+.menuTrigger {
     width: 72px;
     cursor: pointer;
     height: 100%;
@@ -24,3 +24,4 @@
 .town {
     font-size: 0.8rem;
 }
+

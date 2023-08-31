@@ -1,4 +1,4 @@
-import sortBy from "lodash/sortBy";
+import * as R from "remeda";
 
 import { ScoreBoardItem } from "./types";
 
@@ -28,10 +28,10 @@ export function mergeScores(
         return { score, latest: false };
     });
 
-    const sorted = sortBy(
-        [...scores, { score: newScore, latest: true }],
-        "score",
-    );
+    const sorted = R.sortBy((item: ScoreBoardItem) => item.score)([
+        ...scores,
+        { score: newScore, latest: true },
+    ]);
 
     return [...sorted].reverse();
 }

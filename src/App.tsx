@@ -4,6 +4,7 @@ import { fightSelector, screenSelector, wipeSelector } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
 import Header from "./Header";
+import Menu from "./Menu";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import Start from "./Start";
@@ -39,6 +40,8 @@ function App() {
         content = <SeaBattle {...fight} />;
     }
 
+    // TODO debug menu
+
     return (
         <div className={styles.mainWrap}>
             <div className={styles.gameScreen}>
@@ -52,6 +55,7 @@ function App() {
                 >
                     {wipeMessage}
                 </div>
+                <Menu />
             </div>
         </div>
     );

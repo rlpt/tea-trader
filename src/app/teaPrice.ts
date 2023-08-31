@@ -1,4 +1,4 @@
-import { fromPairs } from "lodash";
+import * as R from "remeda";
 
 import {
     ALL_TEA_NAMES,
@@ -19,7 +19,7 @@ import {
 export function getTeaForTurn(town: Town, hold: Cargo, rngTable: RngTable) {
     const currentRngTable = rngTable.towns[town];
 
-    const status: { [key: string]: TeaPrice } = fromPairs(
+    const status: { [key: string]: TeaPrice } = R.fromPairs(
         ALL_TEA_NAMES.map((teaName) => {
             const { price, specialEvent } = getTeaPrice(
                 teaName,

@@ -1,4 +1,4 @@
-import fromPairs from "lodash/fromPairs";
+import * as R from "remeda";
 
 import * as rng from "./rng";
 import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
@@ -35,7 +35,7 @@ export const initialState = (seed: string): GameState => {
         cash: STARTING_CASH,
         cargo: {
             maxSize: STARTING_CARGO_SIZE,
-            items: fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
+            items: R.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
         },
         name: "nameless",
         health: STARTING_HEALTH,
@@ -62,6 +62,7 @@ export const initialState = (seed: string): GameState => {
         //         { text: "You hit for 4 and took 1 damage", key: "12" },
         //     ],
         // },
+        menuOpen: false,
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

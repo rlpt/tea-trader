@@ -1,4 +1,4 @@
-import times from "lodash/times";
+import * as R from "remeda";
 import seedrandom from "seedrandom";
 
 import {
@@ -30,7 +30,7 @@ export function getRngTables(seed: string): RngTable[] {
             towns: {},
             // make list of 100 rng for fighting, if we use all 100 in one turn (unlikely)
             // we will wrap around and start from the beginning of the list again
-            fight: times(100, () => prng()),
+            fight: R.times(100, () => prng()),
         };
 
         for (let town of ALL_TOWN_NAMES) {

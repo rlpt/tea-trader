@@ -26,7 +26,7 @@ export default function Header() {
 
     return (
         <div className={styles.header}>
-            <div className={styles.menu}>
+            <div className={styles.menuTrigger}>
                 <BurgerMenuIcon />
             </div>
             <div className={styles.town}>{townTxt}</div>
