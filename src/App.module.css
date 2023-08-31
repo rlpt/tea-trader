@@ -27,7 +27,6 @@
 }
 
 .turnWipe {
-    background-color: var(--peter-river);
     display: flex;
     left: 0;
     top: 0;
@@ -37,14 +36,13 @@
     position: absolute;
     transition: all 0.8s ease;
     z-index: 20;
-
     align-items: center;
     flex-direction: column;
     justify-content: center;
     clip-path: polygon(0 0, 0% 0, -200px 100%, 0 100%);
-
     color: white;
     font-size: 2rem;
+    background-color: var(--primary);
 }
 
 .wipe {
