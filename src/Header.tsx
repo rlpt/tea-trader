@@ -7,6 +7,7 @@ import {
 } from "./app/gameReducer";
 import { useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
+import BurgerMenuIcon from "./BugerMenuIcon";
 
 import styles from "./Header.module.css";
 
@@ -25,7 +26,9 @@ export default function Header() {
 
     return (
         <div className={styles.header}>
-            <div className={styles.menu}></div>
+            <div className={styles.menu}>
+                <BurgerMenuIcon />
+            </div>
             <div className={styles.town}>{townTxt}</div>
             <div className={styles.turns}>{turnTxt}</div>
         </div>

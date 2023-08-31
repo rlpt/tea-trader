@@ -1,2 +1,12 @@
 .burgerMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 14px;
+}
+
+.burgerMenu > div {
+    height: 2px;
+    background-color: var(--secondary);
 }
