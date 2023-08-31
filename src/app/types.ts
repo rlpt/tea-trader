@@ -12,7 +12,7 @@ export type GameState = {
     strength: number;
     defense: number;
     event: SpecialEvent;
-    menuOpen: boolean;
+    menu: MenuStatus;
     modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
     wipe: {
         showing: boolean;
@@ -26,6 +26,12 @@ export type GameState = {
     rngTables: RngTable[];
     scoreboard: ScoreBoardItem[];
 };
+
+export enum MenuStatus {
+    Initial,
+    Open,
+    Close,
+}
 
 export type ScoreBoardItem = { score: number; latest: boolean };
 

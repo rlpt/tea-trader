@@ -20,6 +20,7 @@ import {
     FightInProgress,
     FightOutcome,
     GameScreen,
+    MenuStatus,
     Town,
 } from "./types";
 
@@ -107,6 +108,8 @@ export const buyCargoSpace = createAction<{
 export const heal = createAction<{
     value: number;
 }>("heal");
+
+export const menuTriggered = createAction<MenuStatus>("menuTriggered");
 
 export enum FightInput {
     FightClicked,
@@ -345,6 +348,9 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(heal, (state, action) => {
                 state.health += action.payload.value;
+            })
+            .addCase(menuTriggered, (state, action) => {
+                state.menu = action.payload;
             });
     });
 
@@ -362,6 +368,7 @@ export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
 export const scoreboardSelector = (state: RootState) => state.scoreboard;
 export const screenSelector = (state: RootState) => state.screen;
+export const menuSelector = (state: RootState) => state.menu;
 
 export const visualTurnSelector = createSelector(
     [turnNumberSelector],
