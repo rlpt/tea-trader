@@ -64,6 +64,7 @@ function App() {
             <div className={styles.gameScreen}>
                 <Header />
                 <div className={styles.body}>{content}</div>
+                {modalEl}
                 <div
                     className={classNames([
                         styles.turnWipe,
@@ -72,7 +73,6 @@ function App() {
                 >
                     {wipeMessage}
                 </div>
-                {modalEl}
             </div>
         </div>
     );
