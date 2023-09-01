@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
 import Button from "./Button";
 import Header from "./Header";
+import MenuModal from "./MenuModal";
 import Modal from "./Modal";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
@@ -55,16 +56,7 @@ function App() {
     let modalEl = <></>;
 
     if (modal.modalType === "MenuModal") {
-        modalEl = (
-            <Modal onClose={() => dispatch(showMenu(false))}>
-                <div className={styles.menuItem}>
-                    <Button>Scoreboard</Button>
-                </div>
-                <div className={styles.menuItem}>
-                    <Button>New Game</Button>
-                </div>
-            </Modal>
-        );
+        modalEl = <MenuModal />;
     }
 
     return (
@@ -81,7 +73,6 @@ function App() {
                     {wipeMessage}
                 </div>
                 {modalEl}
-                {/* <Menu /> */}
             </div>
         </div>
     );
