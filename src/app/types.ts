@@ -12,8 +12,12 @@ export type GameState = {
     strength: number;
     defense: number;
     event: SpecialEvent;
-    menu: MenuStatus;
-    modal: NoModal | ChangeLocationModal | BuySellModal | EndGameModal;
+    modal:
+        | NoModal
+        | ChangeLocationModal
+        | BuySellModal
+        | EndGameModal
+        | MenuModal;
     wipe: {
         showing: boolean;
         content:
@@ -26,12 +30,6 @@ export type GameState = {
     rngTables: RngTable[];
     scoreboard: ScoreBoardItem[];
 };
-
-export enum MenuStatus {
-    Initial,
-    Open,
-    Close,
-}
 
 export type ScoreBoardItem = { score: number; latest: boolean };
 
@@ -144,9 +142,9 @@ export enum Tea {
     Darjeeling = "Darjeeling",
     LapsangSouchong = "Lapsang Souchong",
     GreenTea = "Green Tea",
-    WhiteTea = "White Tea",
     Matcha = "Matcha",
     EnglishBreakfast = "English Breakfast",
+    WhiteTea = "White Tea",
     LadyGrey = "Lady Grey",
     Longjing = "Longjing",
 }
@@ -209,6 +207,10 @@ type BuySellModal = {
 
 type EndGameModal = {
     modalType: "EndGameModal";
+};
+
+type MenuModal = {
+    modalType: "MenuModal";
 };
 
 type NoModal = {

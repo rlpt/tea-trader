@@ -48,3 +48,7 @@
 .wipe {
     clip-path: polygon(0 0, calc(100% + 200px) 0, 100% 100%, 0 100%);
 }
+
+.menuItem {
+    margin-bottom: var(--space-md);
+}

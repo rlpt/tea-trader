@@ -1,7 +1,7 @@
 import * as R from "remeda";
 
 import * as rng from "./rng";
-import { GameScreen, GameState, MenuStatus, Tea, TeaInfo, Town } from "./types";
+import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 29;
 export const STARTING_CASH = 2000;
@@ -62,7 +62,6 @@ export const initialState = (seed: string): GameState => {
         //         { text: "You hit for 4 and took 1 damage", key: "12" },
         //     ],
         // },
-        menu: MenuStatus.Initial,
         modal: { modalType: "NoModal" },
         wipe: {
             showing: false,

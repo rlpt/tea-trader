@@ -45,7 +45,7 @@ export default function Start() {
             <div className={styles.logo}>TEA TRADER</div>
             <div className={styles.intro}>Buy Low. Sell High</div>
             <div className={styles.galleon}>
-                <img src={galleonImg} />
+                <img src={galleonImg} alt="Galleon" />
             </div>
             <div className={styles.pickName}>
                 <input type="text" value={name} onChange={onChange} />

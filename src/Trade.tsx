@@ -1,5 +1,6 @@
 import {
     closeModal,
+    modalSelector,
     showChangeLocationModal,
     showFinalScore,
 } from "./app/gameReducer";
@@ -18,7 +19,7 @@ import styles from "./Trade.module.css";
 
 function Trade() {
     const dispatch = useAppDispatch();
-    const modal = useAppSelector((state: GameState) => state.modal);
+    const modal = useAppSelector(modalSelector);
     const isLastTurn = useAppSelector(isLastTurnSelector);
 
     let modalEl;

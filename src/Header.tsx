@@ -1,14 +1,13 @@
 import React from "react";
 
 import {
-    menuSelector,
-    menuTriggered,
     screenSelector,
+    showMenu,
     townSelector,
     visualTurnSelector,
 } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { GameScreen, MenuStatus } from "./app/types";
+import { GameScreen } from "./app/types";
 import BurgerMenuIcon from "./BugerMenuIcon";
 
 import styles from "./Header.module.css";
@@ -17,7 +16,6 @@ export default function Header() {
     const town = useAppSelector(townSelector);
     const screen = useAppSelector(screenSelector);
     const turn = useAppSelector(visualTurnSelector);
-    const menu = useAppSelector(menuSelector);
 
     const dispatch = useAppDispatch();
 
@@ -29,14 +27,11 @@ export default function Header() {
         turnTxt = `Turn: ${turn.turn} / ${turn.maxTurns}`;
     }
 
-    const nextMenuState =
-        menu === MenuStatus.Open ? MenuStatus.Close : MenuStatus.Open;
-
     return (
         <div className={styles.header}>
             <div
                 className={styles.menuTrigger}
-                onClick={() => dispatch(menuTriggered(nextMenuState))}
+                onClick={() => dispatch(showMenu(true))}
             >
                 <BurgerMenuIcon />
             </div>

@@ -1,10 +1,17 @@
 import classNames from "classnames";
 
-import { fightSelector, screenSelector, wipeSelector } from "./app/gameReducer";
-import { useAppSelector } from "./app/hooks";
+import {
+    fightSelector,
+    modalSelector,
+    screenSelector,
+    showMenu,
+    wipeSelector,
+} from "./app/gameReducer";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
+import Button from "./Button";
 import Header from "./Header";
-import Menu from "./Menu";
+import Modal from "./Modal";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import Start from "./Start";
@@ -17,6 +24,9 @@ function App() {
     const wipe = useAppSelector(wipeSelector);
     const screen = useAppSelector(screenSelector);
     const fight = useAppSelector(fightSelector);
+    const modal = useAppSelector(modalSelector);
+
+    const dispatch = useAppDispatch();
 
     let wipeMessage = "";
 
@@ -42,6 +52,21 @@ function App() {
 
     // TODO debug menu
 
+    let modalEl = <></>;
+
+    if (modal.modalType === "MenuModal") {
+        modalEl = (
+            <Modal onClose={() => dispatch(showMenu(false))}>
+                <div className={styles.menuItem}>
+                    <Button>Scoreboard</Button>
+                </div>
+                <div className={styles.menuItem}>
+                    <Button>New Game</Button>
+                </div>
+            </Modal>
+        );
+    }
+
     return (
         <div className={styles.mainWrap}>
             <div className={styles.gameScreen}>
@@ -55,7 +80,8 @@ function App() {
                 >
                     {wipeMessage}
                 </div>
-                <Menu />
+                {modalEl}
+                {/* <Menu /> */}
             </div>
         </div>
     );
