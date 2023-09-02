@@ -4,15 +4,12 @@ import {
     fightSelector,
     modalSelector,
     screenSelector,
-    showMenu,
     wipeSelector,
 } from "./app/gameReducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+import { useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
-import Button from "./Button";
 import Header from "./Header";
 import MenuModal from "./MenuModal";
-import Modal from "./Modal";
 import ScoreBoard from "./Scoreboard";
 import SeaBattle from "./SeaBattle";
 import Start from "./Start";
@@ -41,7 +38,9 @@ function App() {
         content = <Trade />;
     } else if (screen === GameScreen.GameOver) {
         content = <ScoreBoard />;
-    } else if (fight) {
+    }
+
+    if (fight) {
         content = <SeaBattle {...fight} />;
     }
 

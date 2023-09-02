@@ -229,3 +229,7 @@ export type TeaPrice = {
     priceAvg: Price;
     specialEvent: PriceEvent;
 };
+
+export enum DebugAction {
+    FightSmallPirate,
+}

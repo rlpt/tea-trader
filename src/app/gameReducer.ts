@@ -8,7 +8,7 @@ import {
 import { totalItems } from "./cargo";
 import { getRandomEvent } from "./events";
 import { fight, run } from "./fight";
-import { initialState, MAX_TURNS } from "./initialState";
+import { initialState, MAX_TURNS, SMALL_PIRATE } from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { getRngFromList } from "./rng";
 import { loadScores, mergeScores, saveScores } from "./scoreboard";
@@ -16,6 +16,7 @@ import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
 import {
     Cargo,
+    DebugAction,
     Fighter,
     FightInProgress,
     FightOutcome,
@@ -36,10 +37,10 @@ export const nextTurn = createAsyncThunk(
     },
 );
 
-export const startGame = createAsyncThunk("startGame", async () => {
+export const startGame = createAsyncThunk("startGame", async (args: string) => {
     await timeout(1000);
 
-    return;
+    return args;
 });
 
 export const restart = createAsyncThunk("restart", async () => {
@@ -108,6 +109,8 @@ export const heal = createAction<{
     value: number;
 }>("heal");
 
+export const debug = createAction<DebugAction>("debug");
+
 export const showMenu = createAction<boolean>("showMenu");
 
 export enum FightInput {
@@ -130,7 +133,8 @@ export const gameReducer = (seed: string) =>
 
                 return state;
             })
-            .addCase(startGame.fulfilled, (state) => {
+            .addCase(startGame.fulfilled, (state, action) => {
+                state.name = action.payload;
                 state.screen = GameScreen.Trade;
                 state.wipe = {
                     ...state.wipe,
@@ -352,6 +356,17 @@ export const gameReducer = (seed: string) =>
                     state.modal = { modalType: "MenuModal" };
                 } else {
                     state.modal = { modalType: "NoModal" };
+                }
+            })
+            .addCase(debug, (state, action) => {
+                if (action.payload === DebugAction.FightSmallPirate) {
+                    state.event = {
+                        eventType: "FightEvent",
+                        opponent: SMALL_PIRATE,
+                        rngIndex: 0,
+                        outcome: FightOutcome.StillStanding,
+                        messages: [],
+                    };
                 }
             });
     });

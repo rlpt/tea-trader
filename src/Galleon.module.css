@@ -5,6 +5,7 @@
 
 .name {
     text-align: left;
+    white-space: nowrap;
 }
 
 .nameFacingLeft {
