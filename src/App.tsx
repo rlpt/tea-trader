@@ -31,14 +31,10 @@ function App() {
 
     let wipeMessage = "";
 
-    if (wipe.content.contentType === "WipeNextTurn") {
-        wipeMessage = `Turn ${wipe.content.displayTurn}`;
-    } else if (wipe.content.contentType === "WipeFinalTurn") {
-        wipeMessage = "Last Turn";
-    } else if (wipe.content.contentType === "WipeGameOver") {
-        wipeMessage = "Final Score";
-    } else if (wipe.content.contentType === "BlankWipe") {
+    if (wipe.content.contentType === "BlankWipe") {
         wipeMessage = "";
+    } else if (wipe.content.contentType === "TextWipe") {
+        wipeMessage = wipe.content.text;
     }
 
     let content = <Start />;

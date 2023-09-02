@@ -20,12 +20,7 @@ export type GameState = {
         | MenuModal;
     wipe: {
         showing: boolean;
-        content:
-            | NoWipe
-            | BlankWipe
-            | WipeNextTurn
-            | WipeGameOver
-            | WipeFinalTurn;
+        content: NoWipe | BlankWipe | TextWipe;
     };
     rngTables: RngTable[];
     scoreboard: ScoreBoardItem[];
@@ -126,6 +121,11 @@ type WipeGameOver = {
 
 type WipeFinalTurn = {
     contentType: "WipeFinalTurn";
+};
+
+type TextWipe = {
+    contentType: "TextWipe";
+    text: string;
 };
 
 export enum Town {

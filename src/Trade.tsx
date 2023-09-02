@@ -38,9 +38,11 @@ function Trade() {
         );
     }
 
+    // TODO replace location with town
+
     let buttons = (
         <Button onClick={() => dispatch(showChangeLocationModal())}>
-            Change location
+            Change town
         </Button>
     );
 

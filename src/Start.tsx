@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as R from "remeda";
 
-import { newGame } from "./app/gameReducer";
+import { startGame } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import { SHIP_NAMES } from "./app/initialState";
 import Button from "./Button";
@@ -53,7 +53,7 @@ export default function Start() {
                     {RESET_ICON}
                 </div>
             </div>
-            <Button onClick={() => dispatch(newGame())}>Start</Button>
+            <Button onClick={() => dispatch(startGame())}>Start</Button>
         </div>
     );
 }

@@ -23,6 +23,8 @@ function Scoreboard() {
         </tr>
     ));
 
+    // TODO show names
+
     return (
         <div>
             <h2 className="screenTitle">Scoreboard</h2>

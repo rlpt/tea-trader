@@ -36,18 +36,18 @@ export const nextTurn = createAsyncThunk(
     },
 );
 
-export const newGame = createAsyncThunk("newGame", async () => {
+export const startGame = createAsyncThunk("startGame", async () => {
     await timeout(1000);
 
-    // create seed for new game
-    // TODO pass in seed as param
-    return new Date().getTime().toString();
+    return;
 });
 
 export const restart = createAsyncThunk("restart", async () => {
     await timeout(1000);
 
-    return "";
+    // create seed for new game
+    // TODO pass in seed as param
+    return new Date().getTime().toString();
 });
 
 export const buyTea = createAction<{
@@ -120,24 +120,21 @@ export const fightMoveClicked = createAction<FightInput>("fightMoveClicked");
 export const gameReducer = (seed: string) =>
     createReducer(initialState(seed), (builder) => {
         builder
-            .addCase(newGame.pending, (state) => {
+            .addCase(startGame.pending, (state) => {
                 state.wipe.content = {
-                    contentType: "WipeNextTurn",
-                    displayTurn: 1,
+                    contentType: "TextWipe",
+                    text: "Turn 1",
                 };
 
                 state.wipe.showing = true;
 
                 return state;
             })
-            .addCase(newGame.fulfilled, (state, action) => {
-                return {
-                    ...initialState(action.payload),
-                    screen: GameScreen.Trade,
-                    wipe: {
-                        ...state.wipe,
-                        showing: false,
-                    },
+            .addCase(startGame.fulfilled, (state) => {
+                state.screen = GameScreen.Trade;
+                state.wipe = {
+                    ...state.wipe,
+                    showing: false,
                 };
             })
             .addCase(restart.pending, (state) => {
@@ -163,12 +160,13 @@ export const gameReducer = (seed: string) =>
 
                 if (nextTurnNumber === MAX_TURNS) {
                     state.wipe.content = {
-                        contentType: "WipeFinalTurn",
+                        contentType: "TextWipe",
+                        text: "Final Turn",
                     };
                 } else {
                     state.wipe.content = {
-                        contentType: "WipeNextTurn",
-                        displayTurn: nextTurnNumber + 1,
+                        contentType: "TextWipe",
+                        text: `Turn ${nextTurnNumber + 1}`,
                     };
                 }
 
@@ -195,7 +193,8 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(showFinalScore.pending, (state) => {
                 state.wipe.content = {
-                    contentType: "WipeGameOver",
+                    contentType: "TextWipe",
+                    text: "Game Over",
                 };
 
                 state.wipe.showing = true;
