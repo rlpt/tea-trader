@@ -27,8 +27,6 @@ function App() {
     const fight = useAppSelector(fightSelector);
     const modal = useAppSelector(modalSelector);
 
-    const dispatch = useAppDispatch();
-
     let wipeMessage = "";
 
     if (wipe.content.contentType === "BlankWipe") {
@@ -43,7 +41,7 @@ function App() {
         content = <Trade />;
     } else if (screen === GameScreen.GameOver) {
         content = <ScoreBoard />;
-    } else if (screen === GameScreen.Fight && fight) {
+    } else if (fight) {
         content = <SeaBattle {...fight} />;
     }
 

@@ -31,7 +31,6 @@ export type ScoreBoardItem = { score: number; latest: boolean };
 export enum GameScreen {
     Start,
     Trade,
-    Fight,
     GameOver,
 }
 
