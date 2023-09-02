@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
     closeModal,
     modalSelector,
@@ -6,10 +8,10 @@ import {
 } from "./app/gameReducer";
 import { isLastTurnSelector } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { GameState } from "./app/types";
 import Button from "./Button";
 import BuySell from "./BuySell";
 import ChangeLocation from "./ChangeLocation";
+import Debug from "./Debug";
 import GameStatus from "./GameStatus";
 import Modal from "./Modal";
 import PriceMessages from "./PriceMessages";
@@ -21,6 +23,8 @@ function Trade() {
     const dispatch = useAppDispatch();
     const modal = useAppSelector(modalSelector);
     const isLastTurn = useAppSelector(isLastTurnSelector);
+
+    const [showDebug, setShowDebug] = useState(false);
 
     let modalEl;
 
@@ -38,8 +42,6 @@ function Trade() {
         );
     }
 
-    // TODO replace location with town
-
     let buttons = (
         <Button onClick={() => dispatch(showChangeLocationModal())}>
             Change town
@@ -54,6 +56,10 @@ function Trade() {
         );
     }
 
+    if (showDebug) {
+        return <Debug onClose={() => setShowDebug(false)} />;
+    }
+
     return (
         <div className={styles.trade}>
             <div className={styles.gameStatusWrap}>
@@ -63,6 +69,14 @@ function Trade() {
             <div className="buttons">{buttons}</div>
             <div className={styles.teaTableWrap}>
                 <TeaTable />
+                <div className={styles.footer}>
+                    <div
+                        className={styles.debugBtn}
+                        onClick={() => setShowDebug(true)}
+                    >
+                        debug
+                    </div>
+                </div>
             </div>
             {modalEl}
         </div>

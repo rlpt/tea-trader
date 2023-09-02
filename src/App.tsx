@@ -45,8 +45,6 @@ function App() {
         content = <SeaBattle {...fight} />;
     }
 
-    // TODO debug menu
-
     let modalEl = <></>;
 
     if (modal.modalType === "MenuModal") {
