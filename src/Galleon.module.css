@@ -5,11 +5,9 @@
 
 .name {
     text-align: left;
-    white-space: nowrap;
-}
-
-.nameFacingLeft {
-    text-align: right;
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    text-align: center;
 }
 
 .face {

@@ -8,7 +8,7 @@ import {
     teaPriceSelector,
 } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./Button";
+import Button, { BtnStyle } from "./Button";
 import Cash from "./Cash";
 
 import styles from "./BuySell.module.css";
@@ -127,6 +127,7 @@ function BuySell(props: { tea: string }) {
                         onClick={() => {
                             dispatch(closeModal());
                         }}
+                        btnstyle={BtnStyle.Secondary}
                     >
                         Cancel
                     </Button>
@@ -176,6 +177,7 @@ function BuySell(props: { tea: string }) {
                         onClick={() => {
                             dispatch(closeModal());
                         }}
+                        btnstyle={BtnStyle.Secondary}
                     >
                         Cancel
                     </Button>

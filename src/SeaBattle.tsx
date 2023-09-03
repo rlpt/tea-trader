@@ -5,6 +5,7 @@ import {
     endSpecialEvent,
     FightInput,
     fightMoveClicked,
+    showFinalScore,
 } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
@@ -36,14 +37,14 @@ function SeaBattle(props: FightInProgress) {
                     dispatch(fightMoveClicked(FightInput.FightClicked))
                 }
             >
-                fight!
+                Fight!
             </Button>
             <Button
                 onClick={() =>
                     dispatch(fightMoveClicked(FightInput.RunClicked))
                 }
             >
-                run!
+                Run!
             </Button>
         </>
     );
@@ -57,7 +58,11 @@ function SeaBattle(props: FightInProgress) {
     }
 
     if (props.outcome === FightOutcome.OpponentWins) {
-        buttons = <button>See final score</button>;
+        buttons = (
+            <Button onClick={() => dispatch(showFinalScore())}>
+                Final score
+            </Button>
+        );
     }
 
     return (

@@ -15,9 +15,12 @@ import Debug from "./Debug";
 import GameStatus from "./GameStatus";
 import Modal from "./Modal";
 import PriceMessages from "./PriceMessages";
+import SpecialEventModal from "./SpecialEventModal";
 import TeaTable from "./TeaTable";
 
 import styles from "./Trade.module.css";
+
+// TODO organise components by screen
 
 function Trade() {
     const dispatch = useAppDispatch();
@@ -79,6 +82,7 @@ function Trade() {
                 </div>
             </div>
             {modalEl}
+            <SpecialEventModal />
         </div>
     );
 }

@@ -40,6 +40,8 @@ export default function Start() {
         setName(e.target.value);
     };
 
+    // TODO name max length
+
     return (
         <div className={styles.start}>
             <div className={styles.logo}>TEA TRADER</div>

@@ -24,6 +24,55 @@ export default function Debug(props: { onClose: () => void }) {
                     Fight small pirate
                 </Button>
             </div>
+            <div className={styles.item}>
+                <Button
+                    onClick={() =>
+                        dispatch(debug(DebugAction.FightMediumPirate))
+                    }
+                >
+                    Fight medium pirate
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button
+                    onClick={() =>
+                        dispatch(debug(DebugAction.FightLargePirate))
+                    }
+                >
+                    Fight large pirate
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button
+                    onClick={() =>
+                        dispatch(debug(DebugAction.FightExtraLargePirate))
+                    }
+                >
+                    Fight extra large pirate
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button onClick={() => dispatch(debug(DebugAction.ArmorEvent))}>
+                    Armour event
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button
+                    onClick={() => dispatch(debug(DebugAction.WeaponEvent))}
+                >
+                    Weapon event
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button onClick={() => dispatch(debug(DebugAction.CargoEvent))}>
+                    Cargo event
+                </Button>
+            </div>
+            <div className={styles.item}>
+                <Button onClick={() => dispatch(debug(DebugAction.HealEvent))}>
+                    Heal event
+                </Button>
+            </div>
         </div>
     );
 }

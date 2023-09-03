@@ -99,13 +99,42 @@ export const teaInfo: Readonly<TeaInfo> = {
 
 export const SMALL_PIRATE = {
     name: "Small Pirate",
-    maxHealth: 20,
     health: 20,
     strength: 20,
     defense: 5,
     minReward: 2000,
     maxReward: 5000,
     level: 1,
+};
+
+export const MEDIUM_PIRATE = {
+    name: "Medium Pirate",
+    health: 50,
+    strength: 25,
+    defense: 0,
+    minReward: 10000,
+    maxReward: 20000,
+    level: 1,
+};
+
+export const LARGE_PIRATE = {
+    name: "Large Pirate",
+    health: 80,
+    strength: 25,
+    defense: 2,
+    minReward: 50000,
+    maxReward: 75000,
+    level: 2,
+};
+
+export const EXTRA_LARGE_PIRATE = {
+    name: "Extra Large Pirate",
+    health: 300,
+    strength: 40,
+    defense: 0,
+    minReward: 160000,
+    maxReward: 250000,
+    level: 3,
 };
 
 export const SHIP_NAMES = [

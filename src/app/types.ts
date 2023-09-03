@@ -109,19 +109,6 @@ type BlankWipe = {
     contentType: "BlankWipe";
 };
 
-type WipeNextTurn = {
-    contentType: "WipeNextTurn";
-    displayTurn: number;
-};
-
-type WipeGameOver = {
-    contentType: "WipeGameOver";
-};
-
-type WipeFinalTurn = {
-    contentType: "WipeFinalTurn";
-};
-
 type TextWipe = {
     contentType: "TextWipe";
     text: string;
@@ -232,4 +219,11 @@ export type TeaPrice = {
 
 export enum DebugAction {
     FightSmallPirate,
+    FightMediumPirate,
+    FightLargePirate,
+    FightExtraLargePirate,
+    ArmorEvent,
+    WeaponEvent,
+    CargoEvent,
+    HealEvent,
 }

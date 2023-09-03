@@ -1,5 +1,6 @@
 .debug {
     position: relative;
+    padding-top: var(--space-lg);
 }
 
 .closeBtn {
@@ -11,4 +12,8 @@
     height: 40px;
     text-align: right;
     padding: 10px;
+}
+
+.item {
+    margin-bottom: var(--space-md);
 }

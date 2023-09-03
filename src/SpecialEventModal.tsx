@@ -17,6 +17,7 @@ import {
     STRENGTH_INCREASE_COST,
     STRENGTH_INCREASE_VALUE,
 } from "./app/initialState";
+import Button, { BtnStyle } from "./Button";
 import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
 import Modal from "./Modal";
 
@@ -31,21 +32,22 @@ function SpecialEventModal() {
     let buttons = <></>;
 
     const cancelButton = (
-        <button
+        <Button
             className="cancel"
             onClick={() => {
                 dispatch(endSpecialEvent());
             }}
+            btnstyle={BtnStyle.Secondary}
         >
             Cancel
-        </button>
+        </Button>
     );
 
     if (specialEvent.eventType === "ArmorEvent") {
         icon = DEFENSE_ICON;
         message = `Would you like to buy some armour for £${DEFENSE_INCREASE_COST.toLocaleString()}?`;
         buttons = (
-            <button
+            <Button
                 onClick={() => {
                     dispatch(
                         buyArmor({
@@ -58,14 +60,14 @@ function SpecialEventModal() {
                 }}
             >
                 Buy
-            </button>
+            </Button>
         );
     } else if (specialEvent.eventType === "CargoEvent") {
         icon = "🌟";
         message = `Would you like to increase cargo size for £${CARGO_INCREASE_COST.toLocaleString()}?`;
         buttons = (
             <>
-                <button
+                <Button
                     type="submit"
                     onClick={() => {
                         dispatch(
@@ -79,7 +81,7 @@ function SpecialEventModal() {
                     }}
                 >
                     Buy
-                </button>
+                </Button>
                 {cancelButton}
             </>
         );
@@ -87,20 +89,20 @@ function SpecialEventModal() {
         icon = HEALTH_ICON;
         message = `You regenerated ${HEAL_EVENT_INCREASE} health!`;
         buttons = (
-            <button
+            <Button
                 onClick={() => {
                     dispatch(endSpecialEvent());
                 }}
             >
                 Thanks!
-            </button>
+            </Button>
         );
     } else if (specialEvent.eventType === "WeaponEvent") {
         icon = STRENGTH_ICON;
         message = `Would you like buy a bigger cannon for £${STRENGTH_INCREASE_COST.toLocaleString()}?`;
         buttons = (
             <>
-                <button
+                <Button
                     type="submit"
                     onClick={() => {
                         dispatch(
@@ -114,7 +116,7 @@ function SpecialEventModal() {
                     }}
                 >
                     Buy
-                </button>
+                </Button>
                 {cancelButton}
             </>
         );

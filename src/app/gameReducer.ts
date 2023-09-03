@@ -8,7 +8,14 @@ import {
 import { totalItems } from "./cargo";
 import { getRandomEvent } from "./events";
 import { fight, run } from "./fight";
-import { initialState, MAX_TURNS, SMALL_PIRATE } from "./initialState";
+import {
+    EXTRA_LARGE_PIRATE,
+    initialState,
+    LARGE_PIRATE,
+    MAX_TURNS,
+    MEDIUM_PIRATE,
+    SMALL_PIRATE,
+} from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { getRngFromList } from "./rng";
 import { loadScores, mergeScores, saveScores } from "./scoreboard";
@@ -367,11 +374,51 @@ export const gameReducer = (seed: string) =>
                         outcome: FightOutcome.StillStanding,
                         messages: [],
                     };
+                } else if (action.payload === DebugAction.FightMediumPirate) {
+                    state.event = {
+                        eventType: "FightEvent",
+                        opponent: MEDIUM_PIRATE,
+                        rngIndex: 0,
+                        outcome: FightOutcome.StillStanding,
+                        messages: [],
+                    };
+                } else if (action.payload === DebugAction.FightLargePirate) {
+                    state.event = {
+                        eventType: "FightEvent",
+                        opponent: LARGE_PIRATE,
+                        rngIndex: 0,
+                        outcome: FightOutcome.StillStanding,
+                        messages: [],
+                    };
+                } else if (
+                    action.payload === DebugAction.FightExtraLargePirate
+                ) {
+                    state.event = {
+                        eventType: "FightEvent",
+                        opponent: EXTRA_LARGE_PIRATE,
+                        rngIndex: 0,
+                        outcome: FightOutcome.StillStanding,
+                        messages: [],
+                    };
+                } else if (action.payload === DebugAction.ArmorEvent) {
+                    state.event = {
+                        eventType: "ArmorEvent",
+                    };
+                } else if (action.payload === DebugAction.WeaponEvent) {
+                    state.event = {
+                        eventType: "WeaponEvent",
+                    };
+                } else if (action.payload === DebugAction.CargoEvent) {
+                    state.event = {
+                        eventType: "CargoEvent",
+                    };
+                } else if (action.payload === DebugAction.HealEvent) {
+                    state.event = {
+                        eventType: "HealEvent",
+                    };
                 }
             });
     });
-
-// TODO check fight event
 
 export const townSelector = (state: RootState) => {
     return state.townsVisited[state.turnNumber];

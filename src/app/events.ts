@@ -1,6 +1,9 @@
 import {
     CARGO_INCREASE_COST,
     DEFENSE_INCREASE_COST,
+    EXTRA_LARGE_PIRATE,
+    LARGE_PIRATE,
+    MEDIUM_PIRATE,
     PIRATE_SHIP_NAMES,
     SMALL_PIRATE,
     STARTING_CARGO_SIZE,
@@ -19,6 +22,8 @@ export function getRandomEvent(
 ): SpecialEvent {
     const pirateNameInx = randomInRange(0, PIRATE_SHIP_NAMES.length - 1, rng1);
     const pirateName = PIRATE_SHIP_NAMES[pirateNameInx];
+
+    const playerLevel = getLevel(state.strength, state.defense);
 
     const allEvents = [
         {
@@ -51,6 +56,39 @@ export function getRandomEvent(
             },
             canHappen: () => true,
             chance: 3,
+        },
+        {
+            event: {
+                eventType: "FightEvent",
+                opponent: { ...MEDIUM_PIRATE, name: pirateName },
+                rngIndex: 0,
+                outcome: FightOutcome.StillStanding,
+                messages: [],
+            },
+            canHappen: () => playerLevel >= MEDIUM_PIRATE.level,
+            chance: 8,
+        },
+        {
+            event: {
+                eventType: "FightEvent",
+                opponent: { ...LARGE_PIRATE, name: pirateName },
+                rngIndex: 0,
+                outcome: FightOutcome.StillStanding,
+                messages: [],
+            },
+            canHappen: () => playerLevel >= LARGE_PIRATE.level,
+            chance: 8,
+        },
+        {
+            event: {
+                eventType: "FightEvent",
+                opponent: { ...EXTRA_LARGE_PIRATE, name: pirateName },
+                rngIndex: 0,
+                outcome: FightOutcome.StillStanding,
+                messages: [],
+            },
+            canHappen: () => playerLevel >= EXTRA_LARGE_PIRATE.level,
+            chance: 20,
         },
     ];
 
@@ -93,4 +131,18 @@ function armorEventCanHappen(state: GameState): boolean {
 
 function healEventCanHappen(state: GameState): boolean {
     return state.health < STARTING_HEALTH;
+}
+
+export function getLevel(strength: number, defense: number) {
+    let level = 1;
+
+    if (strength > STARTING_STRENGTH) {
+        level += 1;
+    }
+
+    if (defense > STARTING_DEFENSE) {
+        level += 1;
+    }
+
+    return level;
 }
