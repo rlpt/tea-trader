@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { restart, showMenu } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
-import Button, { BtnStyle } from "./Button";
+import Button from "./Button";
 import Modal from "./Modal";
 
 import styles from "./MenuModal.module.css";
@@ -29,10 +29,7 @@ export default function MenuModal() {
                 <p>You sure you want to start a new game?</p>
                 <div className="buttons">
                     <Button onClick={() => dispatch(restart())}>Yes</Button>
-                    <Button
-                        onClick={() => dispatch(showMenu(false))}
-                        btnstyle={BtnStyle.Secondary}
-                    >
+                    <Button onClick={() => dispatch(showMenu(false))} secondary>
                         Cancel
                     </Button>
                 </div>

@@ -1,26 +1,22 @@
 import React, { ButtonHTMLAttributes } from "react";
 import cn from "classnames";
-
-export enum BtnStyle {
-    Primary,
-    Secondary,
-}
+import * as R from "remeda";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    btnstyle?: BtnStyle;
+    secondary?: boolean;
 }
 
 function Button(props: ButtonProps) {
-    const isPrimary = props.btnstyle === BtnStyle.Primary || !props.btnstyle;
+    const isPrimary = !props.secondary;
 
     return (
         <button
-            {...props}
+            {...R.omit(props, ["secondary"])}
             className={cn([
                 "button",
                 {
                     "button-primary": isPrimary,
-                    "button-secondary": props.btnstyle === BtnStyle.Secondary,
+                    "button-secondary": props.secondary,
                 },
             ])}
         />

@@ -17,7 +17,7 @@ import {
     STRENGTH_INCREASE_COST,
     STRENGTH_INCREASE_VALUE,
 } from "./app/initialState";
-import Button, { BtnStyle } from "./Button";
+import Button from "./Button";
 import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
 import Modal from "./Modal";
 
@@ -37,7 +37,7 @@ function SpecialEventModal() {
             onClick={() => {
                 dispatch(endSpecialEvent());
             }}
-            btnstyle={BtnStyle.Secondary}
+            secondary
         >
             Cancel
         </Button>
