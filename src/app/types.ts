@@ -2,7 +2,7 @@
 
 export type GameState = {
     seed: string;
-    screen: GameScreen;
+    screen: GameScreen[]; // So we can show scoreboard without messing with existing game screen use a stack, stored as a list
     turnNumber: number;
     townsVisited: Town[];
     cash: number;
@@ -32,6 +32,7 @@ export enum GameScreen {
     Start,
     Trade,
     GameOver,
+    Scoreboard,
 }
 
 export type SpecialEvent =

@@ -4,6 +4,7 @@ import {
     createReducer,
     createSelector,
 } from "@reduxjs/toolkit";
+import * as R from "remeda";
 
 import { totalItems } from "./cargo";
 import { getRandomEvent } from "./events";
@@ -142,7 +143,7 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(startGame.fulfilled, (state, action) => {
                 state.name = action.payload;
-                state.screen = GameScreen.Trade;
+                state.screen = [GameScreen.Trade];
                 state.wipe = {
                     ...state.wipe,
                     showing: false,
@@ -214,7 +215,7 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(showFinalScore.fulfilled, (state, action) => {
                 state.wipe.showing = false;
-                state.screen = GameScreen.GameOver;
+                state.screen = [GameScreen.GameOver];
                 state.scoreboard = action.payload;
 
                 return state;
@@ -433,7 +434,7 @@ export const cargoSelector = (state: RootState) => state.cargo;
 export const wipeSelector = (state: RootState) => state.wipe;
 export const specialEventSelector = (state: RootState) => state.event;
 export const scoreboardSelector = (state: RootState) => state.scoreboard;
-export const screenSelector = (state: RootState) => state.screen;
+export const screenSelector = (state: RootState) => R.last(state.screen);
 export const modalSelector = (state: RootState) => state.modal;
 
 export const visualTurnSelector = createSelector(

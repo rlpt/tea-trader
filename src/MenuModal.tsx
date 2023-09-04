@@ -23,6 +23,8 @@ export default function MenuModal() {
         </>
     );
 
+    // TODO scoreboard button
+
     if (confirm) {
         content = (
             <>

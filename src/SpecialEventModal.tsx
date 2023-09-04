@@ -33,7 +33,6 @@ function SpecialEventModal() {
 
     const cancelButton = (
         <Button
-            className="cancel"
             onClick={() => {
                 dispatch(endSpecialEvent());
             }}

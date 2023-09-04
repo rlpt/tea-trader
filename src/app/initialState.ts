@@ -29,7 +29,7 @@ export const HEAL_EVENT_INCREASE = 5;
 export const initialState = (seed: string): GameState => {
     return {
         seed,
-        screen: GameScreen.Start,
+        screen: [GameScreen.Start],
         turnNumber: 0,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
