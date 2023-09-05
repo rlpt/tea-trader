@@ -1,14 +1,79 @@
+import { showFinalScore } from "./gameReducer";
+import { initialState } from "./initialState";
+import { SCORES_KEY } from "./scoreboard";
+import { FinalScore } from "./types";
+
 describe("gameReducer", () => {
-    it("save scores to localstorage", () => {
-        const KEY = "foo";
-        const VALUE = "bar";
+    it("save scores to localstorage", async () => {
+        const testScores: FinalScore[] = [
+            { name: "name1", score: 1000 },
+            { name: "name2", score: 0 },
+            { name: "name3", score: 500 },
+        ];
 
-        localStorage.setItem(KEY, VALUE);
+        localStorage.setItem(SCORES_KEY, JSON.stringify(testScores));
 
-        expect(localStorage.setItem).toHaveBeenLastCalledWith(KEY, VALUE);
-        expect(localStorage.__STORE__[KEY]).toBe(VALUE);
-        expect(Object.keys(localStorage.__STORE__).length).toBe(1);
+        const thunk = showFinalScore();
+        const dispatch = jest.fn();
+        const getState = () => {
+            return { ...initialState, cash: 1337, name: "test name" };
+        };
 
-        expect(1).toEqual(1);
+        const thunkResult = await thunk(dispatch, getState, {});
+
+        const expectedDisplayScores = [
+            {
+                score: {
+                    name: "test name",
+                    score: 1337,
+                },
+                latest: true,
+            },
+            {
+                score: {
+                    name: "name1",
+                    score: 1000,
+                },
+                latest: false,
+            },
+            {
+                score: {
+                    name: "name3",
+                    score: 500,
+                },
+                latest: false,
+            },
+            {
+                score: {
+                    name: "name2",
+                    score: 0,
+                },
+                latest: false,
+            },
+        ];
+
+        const expectedSavedScores = [
+            {
+                name: "name1",
+                score: 1000,
+            },
+            {
+                name: "name2",
+                score: 0,
+            },
+            {
+                name: "name3",
+                score: 500,
+            },
+            {
+                name: "test name",
+                score: 1337,
+            },
+        ];
+
+        expect(thunkResult.payload).toEqual(expectedDisplayScores);
+        expect(localStorage.__STORE__[SCORES_KEY]).toBe(
+            JSON.stringify(expectedSavedScores),
+        );
     });
 });

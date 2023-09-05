@@ -2,7 +2,7 @@ import * as R from "remeda";
 
 import { FinalScore, ScoreboardItem } from "./types";
 
-const SCORES_KEY = "scores";
+export const SCORES_KEY = "scores";
 
 /**
  *  Load scores from localstorage
