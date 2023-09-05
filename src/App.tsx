@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import match from "ts-pattern";
 
 import {
     backToGame,

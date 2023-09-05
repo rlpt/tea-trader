@@ -1,13 +1,13 @@
 import * as R from "remeda";
 
-import { ScoreBoardItem } from "./types";
+import { FinalScore, ScoreboardItem } from "./types";
 
 const SCORES_KEY = "scores";
 
 /**
  *  Load scores from localstorage
  */
-export function loadScores(): number[] {
+export function loadScores(): FinalScore[] {
     const scoresData = localStorage.getItem(SCORES_KEY);
 
     return JSON.parse(scoresData || "[]");
@@ -16,22 +16,25 @@ export function loadScores(): number[] {
 /**
  *  Save scores to localstorage
  */
-export function saveScores(scores: number[]) {
+export function saveScores(scores: FinalScore[]) {
     localStorage.setItem(SCORES_KEY, JSON.stringify(scores));
 }
 
 export function mergeScores(
-    oldScores: number[],
-    newScore: number,
-): ScoreBoardItem[] {
-    const scores = oldScores.map((score) => {
+    oldScores: FinalScore[],
+    newScore: FinalScore,
+): { toSave: FinalScore[]; toShow: ScoreboardItem[] } {
+    const oldScoresToShow = oldScores.map((score) => {
         return { score, latest: false };
     });
 
-    const sorted = R.sortBy((item: ScoreBoardItem) => item.score)([
-        ...scores,
-        { score: newScore, latest: true },
+    const toShow = R.sortBy((item: ScoreboardItem) => item.score.score)([
+        ...oldScoresToShow,
+        { score: { name: newScore.name, score: newScore.score }, latest: true },
     ]);
 
-    return [...sorted].reverse();
+    return {
+        toSave: [...oldScores, newScore],
+        toShow: R.reverse(toShow),
+    };
 }

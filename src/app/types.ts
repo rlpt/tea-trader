@@ -23,10 +23,12 @@ export type GameState = {
         content: NoWipe | BlankWipe | TextWipe;
     };
     rngTables: RngTable[];
-    scoreboard: ScoreBoardItem[];
+    scoreboard: ScoreboardItem[];
 };
 
-export type ScoreBoardItem = { score: number; latest: boolean };
+export type FinalScore = { name: string; score: number };
+
+export type ScoreboardItem = { score: FinalScore; latest: boolean };
 
 export enum GameScreen {
     Start,

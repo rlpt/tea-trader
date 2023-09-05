@@ -8,7 +8,7 @@ import ScreenTitle from "./ScreenTitle";
 
 import styles from "./Scoreboard.module.css";
 
-function Scoreboard(props: { buttons: any }) {
+function Scoreboard(props: { buttons: React.ReactNode }) {
     // show max 10 rows
     const scores = R.take(useAppSelector(scoreboardSelector), 10);
 
@@ -18,7 +18,8 @@ function Scoreboard(props: { buttons: any }) {
             className={cn({ [styles.latest]: scoreItem.latest })}
         >
             <td>{index + 1}</td>
-            <td>{scoreItem.score}</td>
+            {/* <td>{scoreItem.score}</td> */}
+            <td>1337</td>
         </tr>
     ));
 

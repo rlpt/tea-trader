@@ -1,17 +1,18 @@
 import React, { ButtonHTMLAttributes } from "react";
 import cn from "classnames";
-import * as R from "remeda";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     secondary?: boolean;
 }
 
 function Button(props: ButtonProps) {
+    const { secondary, ...rest } = props;
+
     const isPrimary = !props.secondary;
 
     return (
         <button
-            {...R.omit(props, ["secondary"])}
+            {...rest}
             className={cn([
                 "button",
                 {

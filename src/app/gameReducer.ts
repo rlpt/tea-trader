@@ -79,12 +79,16 @@ export const showFinalScore = createAsyncThunk(
         const state = getState() as RootState;
 
         const scores = loadScores();
-        const updatedScores = mergeScores(scores, state.cash);
-        saveScores(updatedScores.map((scoreItem) => scoreItem.score));
+        const { toShow, toSave } = mergeScores(scores, {
+            name: state.name,
+            score: state.cash,
+        });
+
+        saveScores(toSave);
 
         await timeout(1000);
 
-        return updatedScores;
+        return toShow;
     },
 );
 
@@ -220,7 +224,9 @@ export const gameReducer = (seed: string) =>
             .addCase(showFinalScore.fulfilled, (state, action) => {
                 state.wipe.showing = false;
                 state.screen = [GameScreen.GameOver];
-                state.scoreboard = action.payload;
+                // state.scoreboard = action.payload;
+
+                // TODO
 
                 return state;
             })
