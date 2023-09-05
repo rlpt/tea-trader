@@ -2,14 +2,13 @@ import React from "react";
 import cn from "classnames";
 import * as R from "remeda";
 
-import { restart, scoreboardSelector } from "./app/gameReducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./Button";
+import { scoreboardSelector } from "./app/gameReducer";
+import { useAppSelector } from "./app/hooks";
+import ScreenTitle from "./ScreenTitle";
 
 import styles from "./Scoreboard.module.css";
 
-function Scoreboard() {
-    const dispatch = useAppDispatch();
+function Scoreboard(props: { buttons: any }) {
     // show max 10 rows
     const scores = R.take(useAppSelector(scoreboardSelector), 10);
 
@@ -27,8 +26,8 @@ function Scoreboard() {
 
     return (
         <div>
-            <h2 className="screenTitle">Scoreboard</h2>
-
+            <ScreenTitle>Scoreboard</ScreenTitle>
+            <div className={styles.button}>{props.buttons}</div>
             <table>
                 <thead>
                     <tr>
@@ -38,10 +37,6 @@ function Scoreboard() {
                 </thead>
                 <tbody>{scoreRows}</tbody>
             </table>
-
-            <div className="buttons">
-                <Button onClick={() => dispatch(restart())}>New Game</Button>
-            </div>
         </div>
     );
 }

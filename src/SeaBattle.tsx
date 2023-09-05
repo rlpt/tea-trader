@@ -11,6 +11,7 @@ import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
 import Button from "./Button";
 import Galleon, { Direction } from "./Galleon";
+import ScreenTitle from "./ScreenTitle";
 import Spacer from "./Spacer";
 
 import styles from "./SeaBattle.module.css";
@@ -67,7 +68,7 @@ function SeaBattle(props: FightInProgress) {
 
     return (
         <>
-            <h3 className={styles.screenTitle}>Pirate Attack!</h3>
+            <ScreenTitle>Pirate Attack!</ScreenTitle>
             <div className={styles.seaBattle}>
                 <Galleon
                     face="🤨"

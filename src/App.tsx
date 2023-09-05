@@ -1,13 +1,17 @@
 import classNames from "classnames";
+import match from "ts-pattern";
 
 import {
+    backToGame,
     fightSelector,
     modalSelector,
+    restart,
     screenSelector,
     wipeSelector,
 } from "./app/gameReducer";
-import { useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
+import Button from "./Button";
 import Header from "./Header";
 import MenuModal from "./MenuModal";
 import ScoreBoard from "./Scoreboard";
@@ -24,6 +28,8 @@ function App() {
     const fight = useAppSelector(fightSelector);
     const modal = useAppSelector(modalSelector);
 
+    const dispatch = useAppDispatch();
+
     let wipeMessage = "";
 
     if (wipe.content.contentType === "BlankWipe") {
@@ -37,7 +43,23 @@ function App() {
     if (screen === GameScreen.Trade) {
         content = <Trade />;
     } else if (screen === GameScreen.GameOver) {
-        content = <ScoreBoard />;
+        content = (
+            <ScoreBoard
+                buttons={
+                    <Button onClick={() => dispatch(restart())}>
+                        New Game
+                    </Button>
+                }
+            />
+        );
+    } else if (screen === GameScreen.Scoreboard) {
+        content = (
+            <ScoreBoard
+                buttons={
+                    <Button onClick={() => dispatch(backToGame())}>Back</Button>
+                }
+            />
+        );
     }
 
     if (fight) {

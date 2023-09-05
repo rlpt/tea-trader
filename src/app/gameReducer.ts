@@ -121,6 +121,10 @@ export const debug = createAction<DebugAction>("debug");
 
 export const showMenu = createAction<boolean>("showMenu");
 
+export const backToGame = createAction("backToGame");
+
+export const showScoreboard = createAction("showScoreboard");
+
 export enum FightInput {
     FightClicked,
     RunClicked,
@@ -365,6 +369,16 @@ export const gameReducer = (seed: string) =>
                 } else {
                     state.modal = { modalType: "NoModal" };
                 }
+            })
+            .addCase(backToGame, (state) => {
+                if (state.screen.length > 1) {
+                    // pop off top screen of stack
+                    state.screen = R.dropLast(state.screen, 1);
+                }
+            })
+            .addCase(showScoreboard, (state) => {
+                // pop scoreboard on top of screen stack
+                state.screen = [...state.screen, GameScreen.Scoreboard];
             })
             .addCase(debug, (state, action) => {
                 if (action.payload === DebugAction.FightSmallPirate) {

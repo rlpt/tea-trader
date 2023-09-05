@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { restart, showMenu } from "./app/gameReducer";
+import { restart, showMenu, showScoreboard } from "./app/gameReducer";
 import { useAppDispatch } from "./app/hooks";
 import Button from "./Button";
 import Modal from "./Modal";
@@ -15,7 +15,14 @@ export default function MenuModal() {
     let content = (
         <>
             <div className={styles.menuItem}>
-                <Button>Scoreboard</Button>
+                <Button
+                    onClick={() => {
+                        dispatch(showMenu(false));
+                        dispatch(showScoreboard());
+                    }}
+                >
+                    Scoreboard
+                </Button>
             </div>
             <div className={styles.menuItem}>
                 <Button onClick={() => setConfirm(true)}>New Game</Button>
