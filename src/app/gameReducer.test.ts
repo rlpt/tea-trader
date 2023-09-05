@@ -3,6 +3,12 @@ import { initialState } from "./initialState";
 import { SCORES_KEY } from "./scoreboard";
 import { FinalScore } from "./types";
 
+beforeEach(() => {
+    localStorage.clear();
+    // and reset all mocks
+    jest.clearAllMocks();
+});
+
 describe("gameReducer", () => {
     it("save scores to localstorage", async () => {
         const testScores: FinalScore[] = [
