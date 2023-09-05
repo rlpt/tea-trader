@@ -65,8 +65,8 @@ export function getRandomEvent(
                 outcome: FightOutcome.StillStanding,
                 messages: [],
             },
-            canHappen: () => playerLevel >= MEDIUM_PIRATE.level,
-            chance: 8,
+            canHappen: () => true,
+            chance: 5,
         },
         {
             event: {
