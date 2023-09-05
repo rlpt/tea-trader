@@ -9,7 +9,7 @@ beforeEach(() => {
     jest.clearAllMocks();
 });
 
-describe("gameReducer", () => {
+describe("scoreboard", () => {
     it("save scores to localstorage", async () => {
         const testScores: FinalScore[] = [
             { name: "name1", score: 1000 },
