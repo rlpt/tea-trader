@@ -8,12 +8,13 @@
 }
 
 .turns {
-    width: 72px;
+    width: 80px;
     font-size: 0.8rem;
+    text-align: right;
 }
 
 .menuTrigger {
-    width: 72px;
+    width: 80px;
     cursor: pointer;
     height: 100%;
     display: flex;
@@ -24,4 +25,3 @@
 .town {
     font-size: 0.8rem;
 }
-

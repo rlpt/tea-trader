@@ -37,10 +37,12 @@ export default function Start() {
     };
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
-    };
+        const name = e.target.value;
 
-    // TODO name max length
+        if (name.length <= 20) {
+            setName(e.target.value);
+        }
+    };
 
     return (
         <div className={styles.start}>

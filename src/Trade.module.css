@@ -10,14 +10,3 @@
     margin-top: var(--space-sm);
     margin-bottom: var(--space-sm);
 }
-
-
-.footer {
-    margin-top: var(--space-sm);
-    text-align: center;
-}
-
-.debugBtn {
-    font-size: 0.6rem;
-    cursor: pointer;
-}

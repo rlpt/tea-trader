@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useRef } from "react";
 import { useAppDispatch } from "./app/hooks";
 import useClickOutside from "./useOutsideClick";
 
-import "./Modal.css";
+import styles from "./Modal.module.css";
 
 function Modal(props: PropsWithChildren<{ onClose: any }>) {
     const dispatch = useAppDispatch();
@@ -13,15 +13,13 @@ function Modal(props: PropsWithChildren<{ onClose: any }>) {
         dispatch(props.onClose());
     });
 
-    // TODO css modules
-
     return (
-        <div className="modal">
-            <div className="modal-overlay"></div>
-            <div ref={ref} className="modal-content">
+        <div className={styles.modal}>
+            <div className={styles.modalOverlay}></div>
+            <div ref={ref} className={styles.modalContent}>
                 {props.children}
                 <div
-                    className="modal-close-button"
+                    className={styles.closeButton}
                     onClick={() => dispatch(props.onClose())}
                 >
                     ✕

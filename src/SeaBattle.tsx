@@ -52,7 +52,7 @@ function SeaBattle(props: FightInProgress) {
 
     if (props.outcome !== FightOutcome.StillStanding) {
         buttons = (
-            <Button onClick={() => dispatch(endSpecialEvent())}>
+            <Button onClick={() => dispatch(endSpecialEvent())} secondary>
                 Back to trading
             </Button>
         );

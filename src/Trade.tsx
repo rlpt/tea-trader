@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
     closeModal,
@@ -28,6 +28,12 @@ function Trade() {
     const isLastTurn = useAppSelector(isLastTurnSelector);
 
     const [showDebug, setShowDebug] = useState(false);
+
+    useEffect(() => {
+        (window as any).showDebug = (show: boolean) => {
+            setShowDebug(show);
+        };
+    }, []);
 
     let modalEl;
 
@@ -62,14 +68,6 @@ function Trade() {
     if (showDebug) {
         return <Debug onClose={() => setShowDebug(false)} />;
     }
-
-    let debugFooter = (
-        <div className={styles.footer}>
-            <div className={styles.debugBtn} onClick={() => setShowDebug(true)}>
-                debug
-            </div>
-        </div>
-    );
 
     return (
         <div className={styles.trade}>
