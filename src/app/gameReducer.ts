@@ -159,7 +159,8 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(restart.pending, (state) => {
                 state.wipe.content = {
-                    contentType: "BlankWipe",
+                    contentType: "TextWipe",
+                    text: "New Game",
                 };
 
                 state.wipe.showing = true;

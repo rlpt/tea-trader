@@ -20,7 +20,7 @@ export type GameState = {
         | MenuModal;
     wipe: {
         showing: boolean;
-        content: NoWipe | BlankWipe | TextWipe;
+        content: NoWipe | TextWipe;
     };
     rngTables: RngTable[];
     scoreboard: ScoreboardItem[];
@@ -106,10 +106,6 @@ export type Npc = {
 
 type NoWipe = {
     contentType: "NoWipe";
-};
-
-type BlankWipe = {
-    contentType: "BlankWipe";
 };
 
 type TextWipe = {

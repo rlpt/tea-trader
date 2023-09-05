@@ -31,9 +31,7 @@ function App() {
 
     let wipeMessage = "";
 
-    if (wipe.content.contentType === "BlankWipe") {
-        wipeMessage = "";
-    } else if (wipe.content.contentType === "TextWipe") {
+    if (wipe.content.contentType === "TextWipe") {
         wipeMessage = wipe.content.text;
     }
 
