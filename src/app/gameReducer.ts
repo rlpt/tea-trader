@@ -158,8 +158,6 @@ export const gameReducer = (seed: string) =>
                 };
 
                 state.wipe.showing = true;
-
-                return state;
             })
             .addCase(startGame.fulfilled, (state, action) => {
                 state.name = action.payload;
@@ -176,8 +174,6 @@ export const gameReducer = (seed: string) =>
                 };
 
                 state.wipe.showing = true;
-
-                return state;
             })
             .addCase(restart.fulfilled, (state, action) => {
                 return {
@@ -221,8 +217,6 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEvent,
                     rngTable.specialEventValue,
                 );
-
-                return state;
             })
             .addCase(showFinalScore.pending, (state) => {
                 state.wipe.content = {
@@ -237,34 +231,22 @@ export const gameReducer = (seed: string) =>
             .addCase(showFinalScore.fulfilled, (state, action) => {
                 state.wipe.showing = false;
                 state.screen = [GameScreen.GameOver];
-                // state.scoreboard = action.payload;
-
-                // TODO
-
-                return state;
+                state.scoreboard = action.payload;
             })
             .addCase(closeModal, (state) => {
                 state.modal = { modalType: "NoModal" };
-
-                return state;
             })
             .addCase(showChangeLocationModal, (state) => {
                 state.modal = { modalType: "ChangeLocationModal" };
-
-                return state;
             })
             .addCase(showBuySellModal, (state, action) => {
                 state.modal = {
                     modalType: "BuySellModal",
                     tea: action.payload.tea,
                 };
-
-                return state;
             })
             .addCase(showEndGameModal, (state) => {
                 state.modal = { modalType: "EndGameModal" };
-
-                return state;
             })
             .addCase(buyTea, (state, action) => {
                 const { teaName, price, quantity } = action.payload;
@@ -286,8 +268,6 @@ export const gameReducer = (seed: string) =>
                 state.cargo.items[teaName] = newTeaQuantity;
 
                 state.cash = state.cash - totalPrice;
-
-                return state;
             })
             .addCase(sellTea, (state, action) => {
                 const { teaName, price, quantity } = action.payload;
@@ -301,8 +281,6 @@ export const gameReducer = (seed: string) =>
                 state.cash = state.cash + quantity * price;
 
                 state.cargo.items[teaName] = teaInHold - quantity;
-
-                return state;
             })
             .addCase(fightMoveClicked, (state, action) => {
                 if (state.event.eventType === "FightEvent") {
@@ -342,8 +320,6 @@ export const gameReducer = (seed: string) =>
                     if (result.outcome === FightOutcome.PlayerWins) {
                         state.cash += result.reward;
                     }
-
-                    return state;
                 }
             })
             .addCase(endSpecialEvent, (state) => {
