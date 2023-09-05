@@ -27,6 +27,8 @@ export default function Header() {
         turnTxt = `Turn: ${turn.turn} / ${turn.maxTurns}`;
     }
 
+    // TODO check double digit score rendering in safari
+
     return (
         <div className={styles.header}>
             <div

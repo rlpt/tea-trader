@@ -63,6 +63,14 @@ function Trade() {
         return <Debug onClose={() => setShowDebug(false)} />;
     }
 
+    let debugFooter = (
+        <div className={styles.footer}>
+            <div className={styles.debugBtn} onClick={() => setShowDebug(true)}>
+                debug
+            </div>
+        </div>
+    );
+
     return (
         <div className={styles.trade}>
             <div className={styles.gameStatusWrap}>
@@ -72,14 +80,6 @@ function Trade() {
             <div className="buttons">{buttons}</div>
             <div className={styles.teaTableWrap}>
                 <TeaTable />
-                <div className={styles.footer}>
-                    <div
-                        className={styles.debugBtn}
-                        onClick={() => setShowDebug(true)}
-                    >
-                        debug
-                    </div>
-                </div>
             </div>
             {modalEl}
             <SpecialEventModal />

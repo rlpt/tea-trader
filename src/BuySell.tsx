@@ -22,19 +22,19 @@ enum Status {
 function BuySell(props: { tea: string }) {
     const dispatch = useAppDispatch();
 
-    const hold = useAppSelector(cargoSelector);
+    const cargo = useAppSelector(cargoSelector);
     const cash = useAppSelector(cashSelector);
-    const holdTotal = useAppSelector(cargoTotalSelector);
+    const cargoTotal = useAppSelector(cargoTotalSelector);
     const teaPrices = useAppSelector(teaPriceSelector);
 
-    const holdTeaQty = hold.items[props.tea];
+    const cargoTeaQty = cargo.items[props.tea];
 
     let initialStatus = Status.Buy;
 
     const teaPrice = teaPrices[props.tea];
 
     const canAfford = Math.floor(cash / teaPrice.price);
-    const canFit = holdTotal.max - holdTotal.current;
+    const canFit = cargoTotal.max - cargoTotal.current;
 
     let buyMaxQty = canAfford;
 
@@ -42,7 +42,7 @@ function BuySell(props: { tea: string }) {
         buyMaxQty = canFit;
     }
 
-    if (holdTeaQty > 0) {
+    if (cargoTeaQty > 0) {
         initialStatus = Status.Choose;
     }
 
@@ -67,7 +67,7 @@ function BuySell(props: { tea: string }) {
         content = (
             <div>
                 <p>
-                    You own {holdTeaQty} of {teaPrice.teaName}, do you want to
+                    You own {cargoTeaQty} of {teaPrice.teaName}, do you want to
                     buy or sell?
                 </p>
                 <div className="buttons">
@@ -75,7 +75,7 @@ function BuySell(props: { tea: string }) {
                     <Button
                         onClick={() => {
                             setStatus(Status.Sell);
-                            setInputQty(holdTeaQty);
+                            setInputQty(cargoTeaQty);
                         }}
                     >
                         Sell
@@ -89,8 +89,8 @@ function BuySell(props: { tea: string }) {
         content = (
             <div>
                 <p>
-                    You can afford {canAfford} of {teaPrice.teaName}, and can
-                    fit {canFit} in the hold.
+                    You can afford {canAfford} of {teaPrice.teaName}, and have
+                    cargo space for {canFit}
                 </p>
                 <p>
                     Total cost for {qty} is&nbsp;
@@ -135,12 +135,12 @@ function BuySell(props: { tea: string }) {
             </div>
         );
     } else if (status === Status.Sell) {
-        const qtyInvalid = qty === 0 || qty > holdTeaQty;
+        const qtyInvalid = qty === 0 || qty > cargoTeaQty;
 
         content = (
             <div>
                 <p>
-                    You have {holdTeaQty} of {teaPrice.teaName}.
+                    You have {cargoTeaQty} of {teaPrice.teaName}.
                 </p>
                 <p>
                     Sell {qty} of {teaPrice.teaName} for&nbsp;{" "}
