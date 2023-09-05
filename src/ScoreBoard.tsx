@@ -18,12 +18,10 @@ function Scoreboard(props: { buttons: React.ReactNode }) {
             className={cn({ [styles.latest]: scoreItem.latest })}
         >
             <td>{index + 1}</td>
-            {/* <td>{scoreItem.score}</td> */}
-            <td>1337</td>
+            <td>{scoreItem.score.name}</td>
+            <td>{scoreItem.score.score}</td>
         </tr>
     ));
-
-    // TODO show names
 
     return (
         <div>
@@ -33,6 +31,7 @@ function Scoreboard(props: { buttons: React.ReactNode }) {
                 <thead>
                     <tr>
                         <th>Rank</th>
+                        <th>Name</th>
                         <th>Score</th>
                     </tr>
                 </thead>

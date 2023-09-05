@@ -24,17 +24,29 @@ export function mergeScores(
     oldScores: FinalScore[],
     newScore: FinalScore,
 ): { toSave: FinalScore[]; toShow: ScoreboardItem[] } {
-    const oldScoresToShow = oldScores.map((score) => {
-        return { score, latest: false };
-    });
+    const oldScoresToShow = prepareOldScores(oldScores);
 
-    const toShow = R.sortBy((item: ScoreboardItem) => item.score.score)([
+    const toShow = sortScores([
         ...oldScoresToShow,
         { score: { name: newScore.name, score: newScore.score }, latest: true },
     ]);
 
     return {
         toSave: [...oldScores, newScore],
-        toShow: R.reverse(toShow),
+        toShow,
     };
+}
+
+export function prepareOldScores(oldScores: FinalScore[]) {
+    return oldScores.map((score) => {
+        return { score, latest: false };
+    });
+}
+
+export function sortScores(scores: ScoreboardItem[]): ScoreboardItem[] {
+    return R.pipe(
+        scores,
+        R.sortBy((item: ScoreboardItem) => item.score.score),
+        R.reverse(),
+    );
 }

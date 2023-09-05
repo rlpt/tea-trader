@@ -30,6 +30,8 @@ export type FinalScore = { name: string; score: number };
 
 export type ScoreboardItem = { score: FinalScore; latest: boolean };
 
+// TODO use union of string types instead of enums
+
 export enum GameScreen {
     Start,
     Trade,

@@ -20,6 +20,7 @@ describe("scoreboard", () => {
         localStorage.setItem(SCORES_KEY, JSON.stringify(testScores));
 
         const thunk = showFinalScore();
+
         const dispatch = jest.fn();
         const getState = () => {
             return { ...initialState, cash: 1337, name: "test name" };

@@ -19,7 +19,13 @@ import {
 } from "./initialState";
 import { getPriceMessages } from "./priceMessages";
 import { getRngFromList } from "./rng";
-import { loadScores, mergeScores, saveScores } from "./scoreboard";
+import {
+    loadScores,
+    mergeScores,
+    prepareOldScores,
+    saveScores,
+    sortScores,
+} from "./scoreboard";
 import { RootState } from "./store";
 import { getTeaForTurn } from "./teaPrice";
 import {
@@ -92,6 +98,14 @@ export const showFinalScore = createAsyncThunk(
     },
 );
 
+export const showScoreboard = createAction("showScoreboard", () => {
+    const scores = loadScores();
+
+    return {
+        payload: R.pipe(scores, prepareOldScores, sortScores),
+    };
+});
+
 export const showBuySellModal = createAction<{ tea: string }>(
     "showBuySellModal",
 );
@@ -126,8 +140,6 @@ export const debug = createAction<DebugAction>("debug");
 export const showMenu = createAction<boolean>("showMenu");
 
 export const backToGame = createAction("backToGame");
-
-export const showScoreboard = createAction("showScoreboard");
 
 export enum FightInput {
     FightClicked,
@@ -383,7 +395,8 @@ export const gameReducer = (seed: string) =>
                     state.screen = R.dropLast(state.screen, 1);
                 }
             })
-            .addCase(showScoreboard, (state) => {
+            .addCase(showScoreboard, (state, action) => {
+                state.scoreboard = action.payload;
                 // pop scoreboard on top of screen stack
                 state.screen = [...state.screen, GameScreen.Scoreboard];
             })
