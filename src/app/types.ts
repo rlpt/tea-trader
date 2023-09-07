@@ -124,15 +124,14 @@ export enum Town {
 }
 
 export enum Tea {
+    EnglishBreakfast = "English Breakfast",
+    GreenTea = "Green Tea",
     Assam = "Assam",
     EarlGrey = "Earl Grey",
+    Matcha = "Matcha",
     Darjeeling = "Darjeeling",
     LapsangSouchong = "Lapsang Souchong",
-    GreenTea = "Green Tea",
-    Matcha = "Matcha",
-    EnglishBreakfast = "English Breakfast",
     WhiteTea = "White Tea",
-    LadyGrey = "Lady Grey",
     Longjing = "Longjing",
 }
 
