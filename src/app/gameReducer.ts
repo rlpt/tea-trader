@@ -141,6 +141,7 @@ export const showMenu = createAction<boolean>("showMenu");
 
 export const backToGame = createAction("backToGame");
 
+// TODO move to types
 export enum FightInput {
     FightClicked,
     RunClicked,

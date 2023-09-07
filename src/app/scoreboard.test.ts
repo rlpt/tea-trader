@@ -9,6 +9,8 @@ beforeEach(() => {
     jest.clearAllMocks();
 });
 
+// TODO game over screen test
+
 describe("scoreboard", () => {
     it("save scores to localstorage", async () => {
         const testScores: FinalScore[] = [

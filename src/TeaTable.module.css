@@ -1,5 +1,9 @@
-.tea-table {
+.table {
     & tr {
         cursor: pointer;
     }
+}
+
+.avg {
+    text-align: center;
 }

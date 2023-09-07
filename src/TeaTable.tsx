@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { Price, PriceEvent } from "./app/types";
 import Cash from "./Cash";
 
-import "./TeaTable.css";
+import styles from "./TeaTable.module.css";
 
 function TeaTable() {
     const dispatch = useAppDispatch();
@@ -32,10 +32,10 @@ function TeaTable() {
                 priceChangeEl = <span title="Below average price">⬇️</span>;
             }
 
-            let specialEventEl = <></>;
+            let bigPriceChange = <></>;
 
             if (specialEvent !== PriceEvent.NoPriceEvent) {
-                specialEventEl = <span title="Big price movement!">❗</span>;
+                bigPriceChange = <span title="Big price movement!">❗</span>;
             }
 
             return (
@@ -48,9 +48,9 @@ function TeaTable() {
                     <td>
                         <Cash amount={price} />
                     </td>
-                    <td>
+                    <td className={styles.avg}>
                         {priceChangeEl}
-                        {specialEventEl}
+                        {bigPriceChange}
                     </td>
                 </tr>
             );
@@ -58,13 +58,13 @@ function TeaTable() {
     );
 
     return (
-        <table className="tea-table">
+        <table className={styles.table}>
             <thead>
                 <tr>
                     <th>Tea</th>
                     <th>Qty</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Avg</th>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

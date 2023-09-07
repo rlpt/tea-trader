@@ -8,8 +8,6 @@ import ScreenTitle from "./ScreenTitle";
 
 import styles from "./Scoreboard.module.css";
 
-// TODO check game over scoreboard
-
 function Scoreboard(props: { buttons: React.ReactNode }) {
     // show max 10 rows
     const scores = R.take(useAppSelector(scoreboardSelector), 10);
@@ -21,7 +19,7 @@ function Scoreboard(props: { buttons: React.ReactNode }) {
         >
             <td>{index + 1}</td>
             <td>{scoreItem.score.name}</td>
-            <td>{scoreItem.score.score}</td>
+            <td>{scoreItem.score.score.toLocaleString()}</td>
         </tr>
     ));
 

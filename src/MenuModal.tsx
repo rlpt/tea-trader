@@ -15,7 +15,11 @@ export default function MenuModal() {
     let content = (
         <>
             <div className={styles.menuItem}>
+                <Button onClick={() => setConfirm(true)}>New Game</Button>
+            </div>
+            <div className={styles.menuItem}>
                 <Button
+                    secondary
                     onClick={() => {
                         dispatch(showMenu(false));
                         dispatch(showScoreboard());
@@ -23,9 +27,6 @@ export default function MenuModal() {
                 >
                     Scoreboard
                 </Button>
-            </div>
-            <div className={styles.menuItem}>
-                <Button onClick={() => setConfirm(true)}>New Game</Button>
             </div>
         </>
     );
