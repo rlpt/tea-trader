@@ -48,7 +48,7 @@ function TeaTable() {
                     <td>
                         <Cash amount={price} />
                     </td>
-                    <td className={styles.avg}>
+                    <td>
                         {priceChangeEl}
                         {bigPriceChange}
                     </td>
@@ -64,7 +64,7 @@ function TeaTable() {
                     <th>Tea</th>
                     <th>Qty</th>
                     <th>Price</th>
-                    <th>Avg</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

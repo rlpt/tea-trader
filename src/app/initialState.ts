@@ -75,7 +75,7 @@ export const teaInfo: Readonly<TeaInfo> = {
         lowPrice: 70,
         highPrice: 250,
     },
-    [Tea.WhiteTea]: {
+    [Tea.Ceylon]: {
         lowPrice: 300,
         highPrice: 900,
     },
@@ -87,7 +87,7 @@ export const teaInfo: Readonly<TeaInfo> = {
         lowPrice: 10,
         highPrice: 60,
     },
-    [Tea.LadyGrey]: {
+    [Tea.Rooibos]: {
         lowPrice: 500,
         highPrice: 1300,
     },

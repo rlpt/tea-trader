@@ -127,11 +127,12 @@ export enum Tea {
     EnglishBreakfast = "English Breakfast",
     GreenTea = "Green Tea",
     Assam = "Assam",
+    Ceylon = "Ceylon",
     EarlGrey = "Earl Grey",
+    Rooibos = "Rooibos",
     Matcha = "Matcha",
-    Darjeeling = "Darjeeling",
     LapsangSouchong = "Lapsang Souchong",
-    WhiteTea = "White Tea",
+    Darjeeling = "Darjeeling",
     Longjing = "Longjing",
 }
 
