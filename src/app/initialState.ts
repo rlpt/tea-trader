@@ -15,19 +15,7 @@ export const DAMAGE_VARIABLE = 20;
 export const SPECIAL_TEA_PRICE_CHANCE = 100;
 export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 
-export const ALL_TEA_NAMES = [
-    "Assam",
-    "Earl Grey",
-    "Darjeeling",
-    "Lapsang Souchong",
-    "Green Tea",
-    "Matcha",
-    "English Breakfast",
-    "White Tea",
-    "Lady Grey",
-    "Longjing",
-];
-
+export const ALL_TEA_NAMES = Object.values(Tea);
 export const ALL_TOWN_NAMES = Object.values(Town);
 
 export const DEFENSE_INCREASE_COST = 25000;
@@ -67,43 +55,43 @@ export const initialState = (seed: string): GameState => {
 };
 
 export const teaInfo: Readonly<TeaInfo> = {
-    "Earl Grey": {
+    [Tea.EarlGrey]: {
         lowPrice: 600,
         highPrice: 1400,
     },
-    Assam: {
+    [Tea.Assam]: {
         lowPrice: 100,
         highPrice: 700,
     },
-    Darjeeling: {
+    [Tea.Darjeeling]: {
         lowPrice: 5000,
         highPrice: 14000,
     },
-    "Lapsang Souchong": {
+    [Tea.LapsangSouchong]: {
         lowPrice: 1500,
         highPrice: 4500,
     },
-    "Green Tea": {
+    [Tea.GreenTea]: {
         lowPrice: 70,
         highPrice: 250,
     },
-    "White Tea": {
+    [Tea.WhiteTea]: {
         lowPrice: 300,
         highPrice: 900,
     },
-    Matcha: {
+    [Tea.Matcha]: {
         lowPrice: 1000,
         highPrice: 4500,
     },
-    "English Breakfast": {
+    [Tea.EnglishBreakfast]: {
         lowPrice: 10,
         highPrice: 60,
     },
-    "Lady Grey": {
+    [Tea.LadyGrey]: {
         lowPrice: 500,
         highPrice: 1300,
     },
-    Longjing: {
+    [Tea.Longjing]: {
         lowPrice: 15000,
         highPrice: 30000,
     },
