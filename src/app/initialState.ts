@@ -3,7 +3,7 @@ import * as R from "remeda";
 import * as rng from "./rng";
 import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
-export const MAX_TURNS = 19;
+export const MAX_TURNS = 1;
 export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
@@ -15,7 +15,19 @@ export const DAMAGE_VARIABLE = 20;
 export const SPECIAL_TEA_PRICE_CHANCE = 100;
 export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;
 
-export const ALL_TEA_NAMES = Object.values(Tea);
+export const ALL_TEA_NAMES = [
+    "Assam",
+    "Earl Grey",
+    "Darjeeling",
+    "Lapsang Souchong",
+    "Green Tea",
+    "Matcha",
+    "English Breakfast",
+    "White Tea",
+    "Lady Grey",
+    "Longjing",
+];
+
 export const ALL_TOWN_NAMES = Object.values(Town);
 
 export const DEFENSE_INCREASE_COST = 25000;
@@ -55,43 +67,43 @@ export const initialState = (seed: string): GameState => {
 };
 
 export const teaInfo: Readonly<TeaInfo> = {
-    [Tea.EarlGrey]: {
+    "Earl Grey": {
         lowPrice: 600,
         highPrice: 1400,
     },
-    [Tea.Assam]: {
+    Assam: {
         lowPrice: 100,
         highPrice: 700,
     },
-    [Tea.Darjeeling]: {
+    Darjeeling: {
         lowPrice: 5000,
         highPrice: 14000,
     },
-    [Tea.LapsangSouchong]: {
+    "Lapsang Souchong": {
         lowPrice: 1500,
         highPrice: 4500,
     },
-    [Tea.GreenTea]: {
+    "Green Tea": {
         lowPrice: 70,
         highPrice: 250,
     },
-    [Tea.WhiteTea]: {
+    "White Tea": {
         lowPrice: 300,
         highPrice: 900,
     },
-    [Tea.Matcha]: {
+    Matcha: {
         lowPrice: 1000,
         highPrice: 4500,
     },
-    [Tea.EnglishBreakfast]: {
+    "English Breakfast": {
         lowPrice: 10,
         highPrice: 60,
     },
-    [Tea.LadyGrey]: {
+    "Lady Grey": {
         lowPrice: 500,
         highPrice: 1300,
     },
-    [Tea.Longjing]: {
+    Longjing: {
         lowPrice: 15000,
         highPrice: 30000,
     },

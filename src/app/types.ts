@@ -123,18 +123,30 @@ export enum Town {
     Belfast = "Belfast",
 }
 
-export enum Tea {
-    Assam = "Assam",
-    EarlGrey = "Earl Grey",
-    Darjeeling = "Darjeeling",
-    LapsangSouchong = "Lapsang Souchong",
-    GreenTea = "Green Tea",
-    Matcha = "Matcha",
-    EnglishBreakfast = "English Breakfast",
-    WhiteTea = "White Tea",
-    LadyGrey = "Lady Grey",
-    Longjing = "Longjing",
-}
+// export enum Tea {
+//     Assam = "Assam",
+//     EarlGrey = "Earl Grey",
+//     Darjeeling = "Darjeeling",
+//     LapsangSouchong = "Lapsang Souchong",
+//     GreenTea = "Green Tea",
+//     Matcha = "Matcha",
+//     EnglishBreakfast = "English Breakfast",
+//     WhiteTea = "White Tea",
+//     LadyGrey = "Lady Grey",
+//     Longjing = "Longjing",
+// }
+
+export type Tea =
+    | "Assam"
+    | "Earl Grey"
+    | "Darjeeling"
+    | "Lapsang Souchong"
+    | "Green Tea"
+    | "Matcha"
+    | "English Breakfast"
+    | "White Tea"
+    | "Lady Grey"
+    | "Longjing";
 
 export enum PriceEvent {
     NoPriceEvent,
@@ -143,7 +155,7 @@ export enum PriceEvent {
 }
 
 export type TeaInfo = {
-    [key: string]: {
+    [key in Tea]: {
         lowPrice: number;
         highPrice: number;
     };
@@ -155,7 +167,7 @@ export type Cargo = {
 };
 
 export type CargoItems = {
-    [tea: string]: number;
+    [key in Tea]: number;
 };
 
 export type RngTable = {

@@ -1,9 +1,10 @@
+import { ALL_TEA_NAMES } from "./initialState";
 import { CargoItems } from "./types";
 
 export function totalItems(holdItems: CargoItems): number {
     let total = 0;
 
-    for (let tea of Object.keys(holdItems)) {
+    for (let tea of ALL_TEA_NAMES) {
         total += holdItems[tea];
     }
 
