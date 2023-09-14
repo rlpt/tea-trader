@@ -1,7 +1,6 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import thunk from "redux-thunk";
 
 import { gameReducer } from "./gameReducer";
 
@@ -19,7 +18,11 @@ const persistedReducer = persistReducer(
 
 export const store = configureStore({
     reducer: persistedReducer,
-    // middleware: [thunk],
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            // suppresses a redux-persist related error
+            serializableCheck: false,
+        }),
 });
 
 export const persister = persistStore(store);

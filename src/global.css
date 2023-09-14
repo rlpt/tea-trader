@@ -269,7 +269,7 @@ a.button-selected {
     right: 0;
     bottom: 0;
     padding: 1rem;
-    position: absolute;
+    position: fixed;
     transition: all 0.8s ease;
     z-index: 20;
 
@@ -280,6 +280,12 @@ a.button-selected {
 
     color: white;
     font-size: 2rem;
+}
+
+@media all and (min-height: 660px) {
+    .turn-wipe {
+        position: absolute;
+    }
 }
 
 .turn-wipe.wipe {
