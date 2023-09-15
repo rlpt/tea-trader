@@ -8,7 +8,7 @@ export const STARTING_CASH = 2000;
 export const STARTING_CARGO_SIZE = 100;
 export const STARTING_HEALTH = 100;
 export const STARTING_STRENGTH = 30;
-export const STARTING_DEFENSE = 10; //3;
+export const STARTING_DEFENSE = 10;
 export const RUN_CHANCE = 3;
 export const DAMAGE_VARIABLE = 20;
 
