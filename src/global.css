@@ -266,8 +266,7 @@ a.button-selected {
     display: flex;
     left: 0;
     top: 0;
-    right: 0;
-    bottom: 0;
+    height: 100dvh;
     padding: 1rem;
     position: fixed;
     transition: all 0.8s ease;
@@ -285,6 +284,8 @@ a.button-selected {
 @media all and (min-height: 660px) {
     .turn-wipe {
         position: absolute;
+        right: 0;
+        bottom: 0;
     }
 }
 
