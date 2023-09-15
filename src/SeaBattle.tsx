@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 
 import {
@@ -18,6 +18,8 @@ import styles from "./SeaBattle.module.css";
 
 function SeaBattle(props: FightInProgress) {
     const dispatch = useAppDispatch();
+
+    const [hit, setHit] = useState(false);
 
     const messages = [...props.messages].reverse().map((message, index) => (
         <div
@@ -70,12 +72,22 @@ function SeaBattle(props: FightInProgress) {
         <>
             <ScreenTitle>Pirate Attack!</ScreenTitle>
             <div className={styles.seaBattle}>
-                <Galleon
-                    face="🤨"
-                    direction={Direction.FacingRight}
-                    stats={props.player}
-                    name={props.player.name}
-                />
+                <div
+                    onClick={() => {
+                        setHit(true);
+                        setTimeout(() => {
+                            setHit(false);
+                        }, 2000);
+                    }}
+                    className={cn({ run: hit })}
+                >
+                    <Galleon
+                        face="🤨"
+                        direction={Direction.FacingRight}
+                        stats={props.player}
+                        name={props.player.name}
+                    />
+                </div>
                 <div className={styles.rhs}>
                     <Galleon
                         face="😠"
@@ -86,6 +98,7 @@ function SeaBattle(props: FightInProgress) {
                 </div>
             </div>
             <div className="buttons">{buttons}</div>
+            {/* TODO remove */}
             <Spacer height="20px" />
             <div className={styles.messages}>
                 {messages}
