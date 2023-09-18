@@ -26,6 +26,8 @@ function SeaBattle(props: FightInProgress) {
         opponentHit: false,
     });
 
+    // TODO share animation timings between css/ts
+
     useEffect(() => {
         const lastMessage = R.last(props.messages);
 
@@ -137,8 +139,6 @@ function SeaBattle(props: FightInProgress) {
             </Button>
         );
     }
-
-    // TODO sink animation
 
     return (
         <>
