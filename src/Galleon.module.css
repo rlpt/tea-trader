@@ -1,6 +1,12 @@
 .galleon {
     width: 120px;
+}
+
+.imgWrap {
+    width: 120px;
+    height: 134px;;
     position: relative;
+    overflow: hidden;
 }
 
 .name {
@@ -16,8 +22,9 @@
 .face {
     position: absolute;
     font-size: 2rem;
-    top: 54%;
-    left: 12%;
+    line-height: 2rem;
+    top: 80px;
+    left: 10px;
 }
 
 .facingLeft {

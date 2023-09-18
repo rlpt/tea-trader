@@ -21,6 +21,7 @@ function SeaBattle(props: FightInProgress) {
     const dispatch = useAppDispatch();
 
     const [animate, setAnimate] = useState({
+        playerRan: false,
         playerHit: false,
         opponentHit: false,
     });
@@ -32,8 +33,21 @@ function SeaBattle(props: FightInProgress) {
         let playerDelayTimeout: ReturnType<typeof setTimeout>;
         let opponentHitTimeout: ReturnType<typeof setTimeout>;
 
+        const clearAllTimeouts = () => {
+            clearTimeout(playerHitTimeout);
+            clearTimeout(playerDelayTimeout);
+            clearTimeout(opponentHitTimeout);
+        };
+
         if (lastMessage) {
-            console.log(lastMessage.log);
+            if (lastMessage.log.includes("PlayerRan")) {
+                setAnimate((state) => ({
+                    ...state,
+                    playerRan: true,
+                }));
+
+                return clearAllTimeouts;
+            }
 
             // delay the hit animation on the player so the opponent gets hit animation first
             const playerDelay = 200;
@@ -68,11 +82,7 @@ function SeaBattle(props: FightInProgress) {
                 }, 500 + playerDelay);
             }
 
-            return () => {
-                clearTimeout(playerHitTimeout);
-                clearTimeout(playerDelayTimeout);
-                clearTimeout(opponentHitTimeout);
-            };
+            return clearAllTimeouts;
         }
     }, [props.messages, props.outcome]);
 
@@ -88,9 +98,13 @@ function SeaBattle(props: FightInProgress) {
         </div>
     ));
 
+    const disableActionButtons =
+        animate.opponentHit === true || animate.playerHit === true;
+
     let buttons = (
         <>
             <Button
+                disabled={disableActionButtons}
                 onClick={() =>
                     dispatch(fightMoveClicked(FightInput.FightClicked))
                 }
@@ -98,6 +112,7 @@ function SeaBattle(props: FightInProgress) {
                 Fight!
             </Button>
             <Button
+                disabled={disableActionButtons}
                 onClick={() =>
                     dispatch(fightMoveClicked(FightInput.RunClicked))
                 }
@@ -129,20 +144,25 @@ function SeaBattle(props: FightInProgress) {
         <>
             <ScreenTitle>Pirate Attack!</ScreenTitle>
             <div className={styles.seaBattle}>
-                <div className={cn({ shake: animate.playerHit })}>
-                    <Galleon
-                        face="🤨"
-                        direction={Direction.FacingRight}
-                        stats={props.player}
-                        name={props.player.name}
-                    />
-                </div>
-                <div className={cn(styles.rhs, { shake: animate.opponentHit })}>
+                <Galleon
+                    face="🤨"
+                    direction={Direction.FacingRight}
+                    stats={props.player}
+                    name={props.player.name}
+                    animationClasses={cn({
+                        shake: animate.playerHit,
+                        run: animate.playerRan,
+                    })}
+                />
+                <div className={styles.rhs}>
                     <Galleon
                         face="😠"
                         direction={Direction.FacingLeft}
                         stats={props.opponent}
                         name={"🏴‍☠️ " + props.opponent.name}
+                        animationClasses={cn(styles.rhs, {
+                            shake: animate.opponentHit,
+                        })}
                     />
                 </div>
             </div>

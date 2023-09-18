@@ -100,7 +100,7 @@ export type FightMessage = {
     key: string;
 };
 
-export type FightLog = "PlayerHit" | "OpponentHit";
+export type FightLog = "PlayerHit" | "OpponentHit" | "PlayerRan";
 
 export type Npc = {
     name: string;

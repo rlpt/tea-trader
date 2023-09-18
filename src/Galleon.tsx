@@ -18,6 +18,7 @@ function Galleon(props: {
     direction: Direction;
     stats: Fighter;
     name: string;
+    animationClasses: string;
 }) {
     const face = props.stats.health === 0 ? DEAD_ICON : props.face;
 
@@ -25,13 +26,15 @@ function Galleon(props: {
         <div className={styles.galleon}>
             <div className={styles.name}>{props.name}</div>
             <div
-                className={cn({
+                className={cn(styles.imgWrap, {
                     [styles.facingLeft]:
                         props.direction === Direction.FacingLeft,
                 })}
             >
-                <img src={galleonImg} alt="galleon" />
-                <div className={styles.face}>{face}</div>
+                <div className={props.animationClasses}>
+                    <img src={galleonImg} alt="galleon" />
+                    <div className={styles.face}>{face}</div>
+                </div>
             </div>
             <FighterStats
                 health={props.stats.health}

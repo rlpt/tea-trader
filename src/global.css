@@ -324,19 +324,20 @@ a.button-selected {
 }
 
 .run {
-    animation: moveRightThenLeft 1.5s forwards
+    animation: moveRightThenLeft 1s forwards
 }
 
 @keyframes moveRightThenLeft {
     0% {
       transform: translateX(0);
     }
-    10% {
-      transform: translateX(10px); 
+    
+    40% {
+      transform: translateX(4px); 
     }
     
-    22% {
-      transform: translateX(10px); 
+    42% {
+      transform: translateX(4px); 
     }
 
     100% {

@@ -41,13 +41,13 @@ export function fight(
     let outcome = FightOutcome.StillStanding;
     let reward = 0;
     let playerHealth = player.health;
-    let round: FightLog[] = [];
+    let log: FightLog[] = [];
 
     // player hits first
     const opponentHealth = updateHealth(opponent.health, damageDealtByPlayer);
 
-    if (damageDealtByPlayer > 0) round.push("OpponentHit");
-    if (damageDealtByNpc > 0) round.push("PlayerHit");
+    if (damageDealtByPlayer > 0) log.push("OpponentHit");
+    if (damageDealtByNpc > 0) log.push("PlayerHit");
 
     let message = `You hit for ${damageDealtByPlayer} and took ${damageDealtByNpc} damage`;
 
@@ -80,7 +80,7 @@ export function fight(
         },
         reward,
         message: {
-            log: round,
+            log,
             text: message,
             // there is no natural unique key (e.g a database id) for a message, so
             // this will have to do
@@ -140,19 +140,26 @@ export function run(
     let playerHealth = player.health;
     let damageTaken = 0;
     let outcome = FightOutcome.StillStanding;
+    let log: FightLog[] = [];
 
     if (gotAway) {
+        log.push("PlayerRan");
         outcome = FightOutcome.RanAway;
         message = "You successfully ran away!";
     } else {
         // change of damage if running away failed
         damageTaken = damageDone(opponent.strength, player.defense, rng2, rng3);
 
+        if (damageTaken > 0) {
+            log.push("PlayerHit");
+        }
+
         playerHealth = updateHealth(player.health, damageTaken);
 
         message = `You couldn't get away! You were hit for ${damageTaken} damage!`;
 
         if (playerHealth === 0) {
+            // TODO sink
             outcome = FightOutcome.OpponentWins;
 
             message = "You wre killed when trying to run!";
@@ -171,7 +178,7 @@ export function run(
         },
         reward: 0,
         message: {
-            log: [], // TODO
+            log,
             text: message,
             key: message + rng1 + rng2 + rng3,
         },
