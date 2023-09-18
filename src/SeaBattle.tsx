@@ -28,11 +28,52 @@ function SeaBattle(props: FightInProgress) {
     useEffect(() => {
         const lastMessage = R.last(props.messages);
 
+        let playerHitTimeout: ReturnType<typeof setTimeout>;
+        let playerDelayTimeout: ReturnType<typeof setTimeout>;
+        let opponentHitTimeout: ReturnType<typeof setTimeout>;
+
         if (lastMessage) {
             console.log(lastMessage.log);
-        }
 
-        console.log("HAHH");
+            // delay the hit animation on the player so the opponent gets hit animation first
+            const playerDelay = 200;
+
+            if (lastMessage.log.includes("OpponentHit")) {
+                setAnimate((state) => ({
+                    ...state,
+                    opponentHit: true,
+                }));
+
+                playerHitTimeout = setTimeout(() => {
+                    setAnimate((state) => ({
+                        ...state,
+                        opponentHit: false,
+                    }));
+                }, 500);
+            }
+
+            if (lastMessage.log.includes("PlayerHit")) {
+                setTimeout(() => {
+                    setAnimate((state) => ({
+                        ...state,
+                        playerHit: true,
+                    }));
+                }, playerDelay);
+
+                playerHitTimeout = setTimeout(() => {
+                    setAnimate((state) => ({
+                        ...state,
+                        playerHit: false,
+                    }));
+                }, 500 + playerDelay);
+            }
+
+            return () => {
+                clearTimeout(playerHitTimeout);
+                clearTimeout(playerDelayTimeout);
+                clearTimeout(opponentHitTimeout);
+            };
+        }
     }, [props.messages, props.outcome]);
 
     const messages = [...props.messages].reverse().map((message, index) => (
@@ -88,7 +129,7 @@ function SeaBattle(props: FightInProgress) {
         <>
             <ScreenTitle>Pirate Attack!</ScreenTitle>
             <div className={styles.seaBattle}>
-                <div>
+                <div className={cn({ shake: animate.playerHit })}>
                     <Galleon
                         face="🤨"
                         direction={Direction.FacingRight}
@@ -96,7 +137,7 @@ function SeaBattle(props: FightInProgress) {
                         name={props.player.name}
                     />
                 </div>
-                <div className={styles.rhs}>
+                <div className={cn(styles.rhs, { shake: animate.opponentHit })}>
                     <Galleon
                         face="😠"
                         direction={Direction.FacingLeft}
