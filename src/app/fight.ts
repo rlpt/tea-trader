@@ -1,6 +1,6 @@
 import { DAMAGE_VARIABLE, RUN_CHANCE } from "./initialState";
 import { randomInRange } from "./rng";
-import { Fighter, FightOutcome, Npc } from "./types";
+import { Fighter, FightLog, FightMessage, FightOutcome, Npc } from "./types";
 
 type FightResult = {
     outcome: FightOutcome;
@@ -13,7 +13,7 @@ type FightResult = {
         damageTaken: number;
     };
     reward: number;
-    message: { text: string; key: string };
+    message: FightMessage;
 };
 
 export function fight(
@@ -41,9 +41,13 @@ export function fight(
     let outcome = FightOutcome.StillStanding;
     let reward = 0;
     let playerHealth = player.health;
+    let round: FightLog[] = [];
 
     // player hits first
     const opponentHealth = updateHealth(opponent.health, damageDealtByPlayer);
+
+    if (damageDealtByPlayer > 0) round.push("OpponentHit");
+    if (damageDealtByNpc > 0) round.push("PlayerHit");
 
     let message = `You hit for ${damageDealtByPlayer} and took ${damageDealtByNpc} damage`;
 
@@ -76,6 +80,7 @@ export function fight(
         },
         reward,
         message: {
+            log: round,
             text: message,
             // there is no natural unique key (e.g a database id) for a message, so
             // this will have to do
@@ -166,6 +171,7 @@ export function run(
         },
         reward: 0,
         message: {
+            log: [], // TODO
             text: message,
             key: message + rng1 + rng2 + rng3,
         },

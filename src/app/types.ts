@@ -50,7 +50,7 @@ type FightEvent = {
     opponent: Npc;
     rngIndex: number;
     outcome: FightOutcome;
-    messages: { text: string; key: string }[];
+    messages: FightMessage[];
 };
 
 type NoEvent = {
@@ -91,8 +91,16 @@ export type FightInProgress = {
     outcome: FightOutcome;
     player: Fighter;
     opponent: Fighter;
-    messages: { text: string; key: string }[];
+    messages: FightMessage[];
 };
+
+export type FightMessage = {
+    log: FightLog[];
+    text: string;
+    key: string;
+};
+
+export type FightLog = "PlayerHit" | "OpponentHit";
 
 export type Npc = {
     name: string;

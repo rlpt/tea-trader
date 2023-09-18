@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
+import * as R from "remeda";
 
 import {
     endSpecialEvent,
@@ -19,7 +20,20 @@ import styles from "./SeaBattle.module.css";
 function SeaBattle(props: FightInProgress) {
     const dispatch = useAppDispatch();
 
-    const [hit, setHit] = useState(false);
+    const [animate, setAnimate] = useState({
+        playerHit: false,
+        opponentHit: false,
+    });
+
+    useEffect(() => {
+        const lastMessage = R.last(props.messages);
+
+        if (lastMessage) {
+            console.log(lastMessage.log);
+        }
+
+        console.log("HAHH");
+    }, [props.messages, props.outcome]);
 
     const messages = [...props.messages].reverse().map((message, index) => (
         <div
@@ -68,19 +82,13 @@ function SeaBattle(props: FightInProgress) {
         );
     }
 
+    // TODO sink animation
+
     return (
         <>
             <ScreenTitle>Pirate Attack!</ScreenTitle>
             <div className={styles.seaBattle}>
-                <div
-                    onClick={() => {
-                        setHit(true);
-                        setTimeout(() => {
-                            setHit(false);
-                        }, 2000);
-                    }}
-                    className={cn({ run: hit })}
-                >
+                <div>
                     <Galleon
                         face="🤨"
                         direction={Direction.FacingRight}
