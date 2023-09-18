@@ -5,7 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { gameReducer } from "./gameReducer";
 
 const persistConfig = {
-    key: "root",
+    key: "root1",
     storage,
 };
 

@@ -20,18 +20,16 @@ function Galleon(props: {
         <div className={styles.galleon}>
             <div className={styles.name}>{props.name}</div>
             <div
-                className={cn(styles.imgWrap, {
+                className={cn(styles.imgWrap, props.animationClasses, {
                     [styles.imgWrapLeft]: props.facingLeft,
                 })}
             >
-                <div className={props.animationClasses}>
-                    <div
-                        className={cn(styles.face, {
-                            [styles.faceLeft]: props.facingLeft,
-                        })}
-                    >
-                        {face}
-                    </div>
+                <div
+                    className={cn(styles.face, {
+                        [styles.faceLeft]: props.facingLeft,
+                    })}
+                >
+                    {face}
                 </div>
             </div>
             <FighterStats

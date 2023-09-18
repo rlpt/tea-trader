@@ -29,6 +29,8 @@ export default function Start() {
         setName(shuffledNames[0]);
     }, []);
 
+    // TODO svg bg
+
     const onReset = () => {
         const nextIdx = nameIdx + 1;
 
