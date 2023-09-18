@@ -7,6 +7,11 @@
     height: 134px;;
     position: relative;
     overflow: hidden;
+    background-image: url("./galleon.svg");
+}
+
+.imgWrapLeft {
+    background-image: url("./galleon-left.svg");
 }
 
 .name {
@@ -27,6 +32,8 @@
     left: 10px;
 }
 
-.facingLeft {
-    transform: scaleX(-1);
+.faceLeft {
+    left: auto;
+    right: 10px;
 }
+

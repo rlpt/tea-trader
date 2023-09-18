@@ -3,19 +3,13 @@ import cn from "classnames";
 
 import { Fighter } from "./app/types";
 import FighterStats from "./FighterStats";
-import galleonImg from "./galleon.svg";
 import { DEAD_ICON } from "./icons";
 
 import styles from "./Galleon.module.css";
 
-export enum Direction {
-    FacingLeft,
-    FacingRight,
-}
-
 function Galleon(props: {
     face: string;
-    direction: Direction;
+    facingLeft?: boolean;
     stats: Fighter;
     name: string;
     animationClasses: string;
@@ -27,13 +21,17 @@ function Galleon(props: {
             <div className={styles.name}>{props.name}</div>
             <div
                 className={cn(styles.imgWrap, {
-                    [styles.facingLeft]:
-                        props.direction === Direction.FacingLeft,
+                    [styles.imgWrapLeft]: props.facingLeft,
                 })}
             >
                 <div className={props.animationClasses}>
-                    <img src={galleonImg} alt="galleon" />
-                    <div className={styles.face}>{face}</div>
+                    <div
+                        className={cn(styles.face, {
+                            [styles.faceLeft]: props.facingLeft,
+                        })}
+                    >
+                        {face}
+                    </div>
                 </div>
             </div>
             <FighterStats

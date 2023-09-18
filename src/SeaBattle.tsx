@@ -11,7 +11,7 @@ import {
 import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
 import Button from "./Button";
-import Galleon, { Direction } from "./Galleon";
+import Galleon from "./Galleon";
 import ScreenTitle from "./ScreenTitle";
 import Spacer from "./Spacer";
 
@@ -146,7 +146,6 @@ function SeaBattle(props: FightInProgress) {
             <div className={styles.seaBattle}>
                 <Galleon
                     face="🤨"
-                    direction={Direction.FacingRight}
                     stats={props.player}
                     name={props.player.name}
                     animationClasses={cn({
@@ -157,7 +156,7 @@ function SeaBattle(props: FightInProgress) {
                 <div className={styles.rhs}>
                     <Galleon
                         face="😠"
-                        direction={Direction.FacingLeft}
+                        facingLeft
                         stats={props.opponent}
                         name={"🏴‍☠️ " + props.opponent.name}
                         animationClasses={cn(styles.rhs, {
