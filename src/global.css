@@ -324,26 +324,26 @@ a.button-selected {
 }
 
 .run {
-    animation: moveRightThenLeft 1s forwards
+    animation: moveRightThenLeft 1s forwards;
 }
 
 @keyframes moveRightThenLeft {
     0% {
-      transform: translateX(0);
+        transform: translateX(0);
     }
-    
+
     40% {
-      transform: translateX(4px); 
+        transform: translateX(4px);
     }
-    
+
     42% {
-      transform: translateX(4px); 
+        transform: translateX(4px);
     }
 
     100% {
-      transform: translateX(-100%);
+        transform: translateX(-100%);
     }
-  }
+}
 
 button.reset-styles {
     background: none;
