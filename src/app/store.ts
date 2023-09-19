@@ -3,9 +3,14 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import { gameReducer } from "./gameReducer";
+import { PACKAGE_VERSION } from "./version";
+
+console.log("root-" + PACKAGE_VERSION);
 
 const persistConfig = {
-    key: "root1",
+    // Change in version will make new key to save localstorage, this prevents new code
+    // conflicting with old stale saved state
+    key: "root-" + PACKAGE_VERSION,
     storage,
 };
 
