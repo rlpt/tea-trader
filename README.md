@@ -22,3 +22,5 @@ keep important things above the fold
 Version number from `package.json` is written out to a js file and used as part of the localstorage key to save redux state.
 By tying the Redux state to a specific version, we ensure that outdated or potentially incompatible states don't interfere
 with new application versions.
+
+TODO except scores
