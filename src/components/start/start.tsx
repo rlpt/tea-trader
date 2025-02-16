@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import * as R from "remeda";
 
-import { startGame } from "./app/game-reducer";
-import { useAppDispatch } from "./app/hooks";
-import { SHIP_NAMES } from "./app/initial-state";
-import Button from "./button";
-import galleonImg from "./galleon.svg";
-import { RESET_ICON } from "./icons";
+import { startGame } from "../../app/game-reducer";
+import { useAppDispatch } from "../../app/hooks";
+import { SHIP_NAMES } from "../../app/initial-state";
+import { RESET_ICON } from "../../icons";
+import Button from "../button/button";
+import galleonImg from "../galleon/galleon.svg";
 
 import styles from "./start.module.css";
 

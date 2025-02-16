@@ -5,10 +5,10 @@ import {
     showMenu,
     townSelector,
     visualTurnSelector,
-} from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { GameScreen } from "./app/types";
-import BurgerMenuIcon from "./burger-menu-icon";
+} from "../../app/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { GameScreen } from "../../app/types";
+import BurgerMenuIcon from "../burger-menu-icon/burger-menu-icon";
 
 import styles from "./header.module.css";
 

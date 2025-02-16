@@ -5,9 +5,9 @@ import {
     buyCargoSpace,
     buyWeapon,
     endSpecialEvent,
-} from "./app/game-reducer";
-import { specialEventSelector } from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
+} from "../../app/game-reducer";
+import { specialEventSelector } from "../../app/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
     CARGO_INCREASE_COST,
     CARGO_INCREASE_VALUE,
@@ -16,10 +16,10 @@ import {
     HEAL_EVENT_INCREASE,
     STRENGTH_INCREASE_COST,
     STRENGTH_INCREASE_VALUE,
-} from "./app/initial-state";
-import Button from "./button";
-import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
-import Modal from "./modal";
+} from "../../app/initial-state";
+import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "../../icons";
+import Button from "../button/button";
+import Modal from "../modal-message/modal";
 
 import styles from "./special-event-modal.module.css";
 

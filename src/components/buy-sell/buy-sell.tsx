@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import { buyTea, closeModal, sellTea } from "./app/game-reducer";
+import { buyTea, closeModal, sellTea } from "../../app/game-reducer";
 import {
     cargoSelector,
     cargoTotalSelector,
     cashSelector,
     teaPriceSelector,
-} from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./button";
-import Cash from "./cash";
+} from "../../app/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import Button from "../button/button";
+import Cash from "../cash/cash";
 
 import styles from "./buy-sell.module.css";
 

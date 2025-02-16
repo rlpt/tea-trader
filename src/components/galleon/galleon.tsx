@@ -1,9 +1,9 @@
 import React from "react";
 import cn from "classnames";
 
-import { Fighter } from "./app/types";
-import FighterStats from "./fighter-stats";
-import { DEAD_ICON } from "./icons";
+import { Fighter } from "../../app/types";
+import { DEAD_ICON } from "../../icons";
+import FighterStats from "../fighter-stats/fighter-stats";
 
 import styles from "./galleon.module.css";
 

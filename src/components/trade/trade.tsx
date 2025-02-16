@@ -5,18 +5,18 @@ import {
     modalSelector,
     showChangeLocationModal,
     showFinalScore,
-} from "./app/game-reducer";
-import { isLastTurnSelector } from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./button";
-import BuySell from "./buy-sell";
-import ChangeLocation from "./change-location";
-import Debug from "./debug";
-import GameStatus from "./game-status";
-import Modal from "./modal";
-import PriceMessages from "./price-messages";
-import SpecialEventModal from "./special-event-modal";
-import TeaTable from "./tea-table";
+} from "../../app/game-reducer";
+import { isLastTurnSelector } from "../../app/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import Button from "../button/button";
+import BuySell from "../buy-sell/buy-sell";
+import ChangeLocation from "../change-location/change-location";
+import Debug from "../debug/debug";
+import GameStatus from "../game-status/game-status";
+import Modal from "../modal-message/modal";
+import PriceMessages from "../price-messages/price-messages";
+import SpecialEventModal from "../special-event-modal/special-event-modal";
+import TeaTable from "../tea-table/tea-table";
 
 import styles from "./trade.module.css";
 

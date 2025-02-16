@@ -1,6 +1,6 @@
 import React from "react";
 
-import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "./icons";
+import { DEFENSE_ICON, HEALTH_ICON, STRENGTH_ICON } from "../../icons";
 
 import styles from "./fighter-stats.module.css";
 

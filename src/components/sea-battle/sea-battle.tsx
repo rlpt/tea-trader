@@ -7,13 +7,13 @@ import {
     FightInput,
     fightMoveClicked,
     showFinalScore,
-} from "./app/game-reducer";
-import { useAppDispatch } from "./app/hooks";
-import { FightInProgress, FightOutcome } from "./app/types";
-import Button from "./button";
-import Galleon from "./galleon";
-import ScreenTitle from "./screen-title";
-import Spacer from "./spacer";
+} from "../../app/game-reducer";
+import { useAppDispatch } from "../../app/hooks";
+import { FightInProgress, FightOutcome } from "../../app/types";
+import Button from "../button/button";
+import Galleon from "../galleon/galleon";
+import ScreenTitle from "../screen-title/screen-title";
+import Spacer from "../spacer/spacer";
 
 import styles from "./sea-battle.module.css";
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { nextTurn } from "./app/game-reducer";
-import { townSelector } from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { ALL_TOWN_NAMES } from "./app/initial-state";
-import { Town } from "./app/types";
-import Button from "./button";
+import { nextTurn } from "../../app/game-reducer";
+import { townSelector } from "../../app/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ALL_TOWN_NAMES } from "../../app/initial-state";
+import { Town } from "../../app/types";
+import Button from "../button/button";
 
 import "./change-location.css";
 

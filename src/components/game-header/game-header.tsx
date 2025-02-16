@@ -1,7 +1,7 @@
 import React from "react";
 
-import { visualTurnSelector } from "./app/game-reducer";
-import { useAppSelector } from "./app/hooks";
+import { visualTurnSelector } from "../../app/game-reducer";
+import { useAppSelector } from "../../app/hooks";
 
 import styles from "./game-header.module.css";
 

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useRef } from "react";
 
-import { useAppDispatch } from "./app/hooks";
-import useClickOutside from "./use-outside-click";
+import { useAppDispatch } from "../../app/hooks";
+import useClickOutside from "../../use-outside-click";
 
 import styles from "./modal.module.css";
 
