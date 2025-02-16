@@ -29,7 +29,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "format": "npx prettier --write .",
-        "version": "node make_version.js > src/app/version.js",
+        "version": "node make-version.js > src/app/version.js",
         "prebuild": "npm run version",
         "prestart": "npm run version"
     },
