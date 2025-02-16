@@ -7,7 +7,7 @@ import {
     restart,
     screenSelector,
     wipeSelector,
-} from "./app/gameReducer";
+} from "./app/game-reducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
 import Button from "./button";
@@ -19,7 +19,7 @@ import Start from "./start";
 import Trade from "./trade";
 
 import "./global.css";
-import styles from "./App.module.css";
+import styles from "./app.module.css";
 
 function App() {
     const wipe = useAppSelector(wipeSelector);

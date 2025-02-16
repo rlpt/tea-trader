@@ -5,7 +5,7 @@ import { Fighter } from "./app/types";
 import FighterStats from "./fighter-stats";
 import { DEAD_ICON } from "./icons";
 
-import styles from "./Galleon.module.css";
+import styles from "./galleon.module.css";
 
 function Galleon(props: {
     face: string;

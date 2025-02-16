@@ -5,12 +5,12 @@ import {
     showMenu,
     townSelector,
     visualTurnSelector,
-} from "./app/gameReducer";
+} from "./app/game-reducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
-import BurgerMenuIcon from "./BugerMenuIcon";
+import BurgerMenuIcon from "./burger-menu-icon";
 
-import styles from "./Header.module.css";
+import styles from "./header.module.css";
 
 export default function Header() {
     const town = useAppSelector(townSelector);

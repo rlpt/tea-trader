@@ -6,7 +6,7 @@ import { scoreboardSelector } from "./app/game-reducer";
 import { useAppSelector } from "./app/hooks";
 import ScreenTitle from "./screen-title";
 
-import styles from "./Scoreboard.module.css";
+import styles from "./scoreboard.module.css";
 
 function Scoreboard(props: { buttons: React.ReactNode }) {
     // show max 10 rows

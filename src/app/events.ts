@@ -11,7 +11,7 @@ import {
     STARTING_HEALTH,
     STARTING_STRENGTH,
     STRENGTH_INCREASE_COST,
-} from "./initialState";
+} from "./initial-state";
 import { randomInRange } from "./rng";
 import { FightOutcome, GameState, SpecialEvent } from "./types";
 

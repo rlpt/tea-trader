@@ -1,4 +1,4 @@
-import { ALL_TEA_NAMES } from "./initialState";
+import { ALL_TEA_NAMES } from "./initial-state";
 import { CargoItems } from "./types";
 
 export function totalItems(holdItems: CargoItems): number {

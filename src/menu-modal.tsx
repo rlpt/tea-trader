@@ -5,7 +5,7 @@ import { useAppDispatch } from "./app/hooks";
 import Button from "./button";
 import Modal from "./modal";
 
-import styles from "./MenuModal.module.css";
+import styles from "./menu-modal.module.css";
 
 export default function MenuModal() {
     const [confirm, setConfirm] = useState(false);

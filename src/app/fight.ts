@@ -1,4 +1,4 @@
-import { DAMAGE_VARIABLE, RUN_CHANCE } from "./initialState";
+import { DAMAGE_VARIABLE, RUN_CHANCE } from "./initial-state";
 import { randomInRange } from "./rng";
 import { Fighter, FightLog, FightMessage, FightOutcome, Npc } from "./types";
 

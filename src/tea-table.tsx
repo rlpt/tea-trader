@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { Price, PriceEvent } from "./app/types";
 import Cash from "./cash";
 
-import styles from "./TeaTable.module.css";
+import styles from "./tea-table.module.css";
 
 function TeaTable() {
     const dispatch = useAppDispatch();

@@ -16,7 +16,7 @@ import {
     MAX_TURNS,
     MEDIUM_PIRATE,
     SMALL_PIRATE,
-} from "./initialState";
+} from "./initial-state";
 import { getPriceMessages } from "./price-messages";
 import { getRngFromList } from "./rng";
 import {
@@ -27,7 +27,7 @@ import {
     sortScores,
 } from "./scoreboard";
 import { RootState } from "./store";
-import { getTeaForTurn } from "./teaPrice";
+import { getTeaForTurn } from "./tea-price";
 import {
     Cargo,
     DebugAction,

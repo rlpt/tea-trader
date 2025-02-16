@@ -4,7 +4,7 @@ import {
     ALL_TEA_NAMES,
     SPECIAL_TEA_PRICE_MULTIPLIER,
     teaInfo,
-} from "./initialState";
+} from "./initial-state";
 import { randomInRange } from "./rng";
 import {
     Cargo,

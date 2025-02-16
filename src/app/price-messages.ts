@@ -1,4 +1,4 @@
-import { ALL_TEA_NAMES, ALL_TOWN_NAMES } from "./initialState";
+import { ALL_TEA_NAMES, ALL_TOWN_NAMES } from "./initial-state";
 import { PriceEvent, RngTable, Town } from "./types";
 
 export function getPriceMessages(

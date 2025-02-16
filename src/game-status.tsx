@@ -5,7 +5,7 @@ import AmountBar from "./amount-bar";
 import Cash from "./cash";
 import FighterStats from "./fighter-stats";
 
-import styles from "./GameStatus.module.css";
+import styles from "./game-status.module.css";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);

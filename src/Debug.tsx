@@ -5,7 +5,7 @@ import { useAppDispatch } from "./app/hooks";
 import { DebugAction } from "./app/types";
 import Button from "./button";
 
-import styles from "./Debug.module.css";
+import styles from "./debug.module.css";
 
 export default function Debug(props: { onClose: () => void }) {
     const dispatch = useAppDispatch();
