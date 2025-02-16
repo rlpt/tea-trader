@@ -10,13 +10,13 @@ import {
 } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { GameScreen } from "./app/types";
-import Button from "./Button";
-import Header from "./Header";
-import MenuModal from "./MenuModal";
-import ScoreBoard from "./Scoreboard";
-import SeaBattle from "./SeaBattle";
-import Start from "./Start";
-import Trade from "./Trade";
+import Button from "./button";
+import Header from "./header";
+import MenuModal from "./menu-modal";
+import ScoreBoard from "./scoreboard";
+import SeaBattle from "./sea-battle";
+import Start from "./start";
+import Trade from "./trade";
 
 import "./global.css";
 import styles from "./App.module.css";

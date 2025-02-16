@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import cn from "classnames";
 
-import { priceMessagesSelector } from "./app/gameReducer";
+import { priceMessagesSelector } from "./app/game-reducer";
 import { useAppSelector } from "./app/hooks";
 
-import styles from "./PriceMessages.module.css";
+import styles from "./price-messages.module.css";
 
 const messageIcon = "💬";
 

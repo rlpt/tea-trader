@@ -1,9 +1,9 @@
 import React from "react";
 
-import { debug } from "./app/gameReducer";
+import { debug } from "./app/game-reducer";
 import { useAppDispatch } from "./app/hooks";
 import { DebugAction } from "./app/types";
-import Button from "./Button";
+import Button from "./button";
 
 import styles from "./Debug.module.css";
 

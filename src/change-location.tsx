@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { nextTurn } from "./app/gameReducer";
-import { townSelector } from "./app/gameReducer";
+import { nextTurn } from "./app/game-reducer";
+import { townSelector } from "./app/game-reducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { ALL_TOWN_NAMES } from "./app/initialState";
+import { ALL_TOWN_NAMES } from "./app/initial-state";
 import { Town } from "./app/types";
-import Button from "./Button";
+import Button from "./button";
 
-import "./ChangeLocation.css";
+import "./change-location.css";
 
 function ChangeLocationModal() {
     const dispatch = useAppDispatch();

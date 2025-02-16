@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 
 import { Fighter } from "./app/types";
-import FighterStats from "./FighterStats";
+import FighterStats from "./fighter-stats";
 import { DEAD_ICON } from "./icons";
 
 import styles from "./Galleon.module.css";

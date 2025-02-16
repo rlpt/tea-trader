@@ -1,8 +1,8 @@
-import { showBuySellModal } from "./app/gameReducer";
-import { teaPriceSelector } from "./app/gameReducer";
+import { showBuySellModal } from "./app/game-reducer";
+import { teaPriceSelector } from "./app/game-reducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { Price, PriceEvent } from "./app/types";
-import Cash from "./Cash";
+import Cash from "./cash";
 
 import styles from "./TeaTable.module.css";
 

@@ -1,9 +1,9 @@
 import React from "react";
 
-import { visualTurnSelector } from "./app/gameReducer";
+import { visualTurnSelector } from "./app/game-reducer";
 import { useAppSelector } from "./app/hooks";
 
-import styles from "./GameHeader.module.css";
+import styles from "./game-header.module.css";
 
 function GameHeader() {
     const visualTurn = useAppSelector(visualTurnSelector);

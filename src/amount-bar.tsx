@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./AmountBar.module.css";
+import styles from "./amount-bar.module.css";
 
 function AmountBar(props: {
     value: number;

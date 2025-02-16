@@ -7,15 +7,15 @@ import {
     FightInput,
     fightMoveClicked,
     showFinalScore,
-} from "./app/gameReducer";
+} from "./app/game-reducer";
 import { useAppDispatch } from "./app/hooks";
 import { FightInProgress, FightOutcome } from "./app/types";
-import Button from "./Button";
-import Galleon from "./Galleon";
-import ScreenTitle from "./ScreenTitle";
-import Spacer from "./Spacer";
+import Button from "./button";
+import Galleon from "./galleon";
+import ScreenTitle from "./screen-title";
+import Spacer from "./spacer";
 
-import styles from "./SeaBattle.module.css";
+import styles from "./sea-battle.module.css";
 
 function SeaBattle(props: FightInProgress) {
     const dispatch = useAppDispatch();

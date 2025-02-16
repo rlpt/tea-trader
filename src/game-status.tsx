@@ -1,9 +1,9 @@
-import { cargoTotalSelector, playerSelector } from "./app/gameReducer";
+import { cargoTotalSelector, playerSelector } from "./app/game-reducer";
 import { useAppSelector } from "./app/hooks";
 import { RootState } from "./app/store";
-import AmountBar from "./AmountBar";
-import Cash from "./Cash";
-import FighterStats from "./FighterStats";
+import AmountBar from "./amount-bar";
+import Cash from "./cash";
+import FighterStats from "./fighter-stats";
 
 import styles from "./GameStatus.module.css";
 

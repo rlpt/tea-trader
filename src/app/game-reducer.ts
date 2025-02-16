@@ -17,7 +17,7 @@ import {
     MEDIUM_PIRATE,
     SMALL_PIRATE,
 } from "./initialState";
-import { getPriceMessages } from "./priceMessages";
+import { getPriceMessages } from "./price-messages";
 import { getRngFromList } from "./rng";
 import {
     loadScores,

@@ -8,8 +8,8 @@ import {
     teaPriceSelector,
 } from "./app/gameReducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./Button";
-import Cash from "./Cash";
+import Button from "./button";
+import Cash from "./cash";
 
 import styles from "./BuySell.module.css";
 

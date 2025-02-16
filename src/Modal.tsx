@@ -1,9 +1,9 @@
 import React, { PropsWithChildren, useRef } from "react";
 
 import { useAppDispatch } from "./app/hooks";
-import useClickOutside from "./useOutsideClick";
+import useClickOutside from "./use-outside-click";
 
-import styles from "./Modal.module.css";
+import styles from "./modal.module.css";
 
 function Modal(props: PropsWithChildren<{ onClose: any }>) {
     const dispatch = useAppDispatch();

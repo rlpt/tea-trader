@@ -6,7 +6,7 @@ import {
     ALL_TOWN_NAMES,
     MAX_TURNS,
     SPECIAL_TEA_PRICE_CHANCE,
-} from "./initialState";
+} from "./initial-state";
 import { PriceEvent, RngTable, TeaRng } from "./types";
 
 /**

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./BurgerMenuIcon.module.css";
+import styles from "./burger-menu-icon.module.css";
 
 function BurgerMenuIcon() {
     return (

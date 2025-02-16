@@ -1,6 +1,6 @@
 import React from "react";
 
-import { closeModal } from "./app/gameReducer";
+import { closeModal } from "./app/game-reducer";
 import { useAppDispatch } from "./app/hooks";
 
 function ModalMessage(props: { message: string }) {

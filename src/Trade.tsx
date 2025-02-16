@@ -5,20 +5,20 @@ import {
     modalSelector,
     showChangeLocationModal,
     showFinalScore,
-} from "./app/gameReducer";
-import { isLastTurnSelector } from "./app/gameReducer";
+} from "./app/game-reducer";
+import { isLastTurnSelector } from "./app/game-reducer";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import Button from "./Button";
-import BuySell from "./BuySell";
-import ChangeLocation from "./ChangeLocation";
-import Debug from "./Debug";
-import GameStatus from "./GameStatus";
-import Modal from "./Modal";
-import PriceMessages from "./PriceMessages";
-import SpecialEventModal from "./SpecialEventModal";
-import TeaTable from "./TeaTable";
+import Button from "./button";
+import BuySell from "./buy-sell";
+import ChangeLocation from "./change-location";
+import Debug from "./debug";
+import GameStatus from "./game-status";
+import Modal from "./modal";
+import PriceMessages from "./price-messages";
+import SpecialEventModal from "./special-event-modal";
+import TeaTable from "./tea-table";
 
-import styles from "./Trade.module.css";
+import styles from "./trade.module.css";
 
 // TODO organise components by screen
 

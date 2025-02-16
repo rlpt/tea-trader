@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Cash.module.css";
+import styles from "./cash.module.css";
 
 export default function Cash(props: { amount: number }) {
     return (

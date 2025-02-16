@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as R from "remeda";
 
-import { startGame } from "./app/gameReducer";
+import { startGame } from "./app/game-reducer";
 import { useAppDispatch } from "./app/hooks";
-import { SHIP_NAMES } from "./app/initialState";
-import Button from "./Button";
+import { SHIP_NAMES } from "./app/initial-state";
+import Button from "./button";
 import galleonImg from "./galleon.svg";
 import { RESET_ICON } from "./icons";
 
-import styles from "./Start.module.css";
+import styles from "./start.module.css";
 
 export default function Start() {
     const [randomNames, setRandomNames] = useState<string[]>([]);

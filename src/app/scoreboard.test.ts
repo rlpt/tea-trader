@@ -1,5 +1,5 @@
-import { showFinalScore } from "./gameReducer";
-import { initialState } from "./initialState";
+import { showFinalScore } from "./game-reducer";
+import { initialState } from "./initial-state";
 import { SCORES_KEY } from "./scoreboard";
 import { FinalScore } from "./types";
 

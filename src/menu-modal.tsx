@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { restart, showMenu, showScoreboard } from "./app/gameReducer";
+import { restart, showMenu, showScoreboard } from "./app/game-reducer";
 import { useAppDispatch } from "./app/hooks";
-import Button from "./Button";
-import Modal from "./Modal";
+import Button from "./button";
+import Modal from "./modal";
 
 import styles from "./MenuModal.module.css";
 

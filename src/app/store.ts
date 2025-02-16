@@ -2,7 +2,7 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { gameReducer } from "./gameReducer";
+import { gameReducer } from "./game-reducer";
 import { PACKAGE_VERSION } from "./version";
 
 console.log("root-" + PACKAGE_VERSION);
