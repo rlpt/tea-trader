@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 
-import { Fighter } from "../../app/types";
+import { Fighter } from "../../game-logic/types";
 import { DEAD_ICON } from "../../icons";
 import FighterStats from "../fighter-stats/fighter-stats";
 

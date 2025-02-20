@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { nextTurn } from "../../app/game-reducer";
-import { townSelector } from "../../app/game-reducer";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { ALL_TOWN_NAMES } from "../../app/initial-state";
-import { Town } from "../../app/types";
+import { nextTurn } from "../../game-logic/game-reducer";
+import { townSelector } from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { ALL_TOWN_NAMES } from "../../game-logic/initial-state";
+import { Town } from "../../game-logic/types";
 import Button from "../button/button";
 
 import "./change-location.css";

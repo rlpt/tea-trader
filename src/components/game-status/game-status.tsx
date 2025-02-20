@@ -1,6 +1,9 @@
-import { cargoTotalSelector, playerSelector } from "../../app/game-reducer";
-import { useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
+import {
+    cargoTotalSelector,
+    playerSelector,
+} from "../../game-logic/game-reducer";
+import { useAppSelector } from "../../game-logic/hooks";
+import { RootState } from "../../game-logic/store";
 import AmountBar from "../amount-bar/amount-bar";
 import Cash from "../cash/cash";
 import FighterStats from "../fighter-stats/fighter-stats";

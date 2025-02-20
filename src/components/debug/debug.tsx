@@ -1,8 +1,8 @@
 import React from "react";
 
-import { debug } from "../../app/game-reducer";
-import { useAppDispatch } from "../../app/hooks";
-import { DebugAction } from "../../app/types";
+import { debug } from "../../game-logic/game-reducer";
+import { useAppDispatch } from "../../game-logic/hooks";
+import { DebugAction } from "../../game-logic/types";
 import Button from "../button/button";
 
 import styles from "./debug.module.css";

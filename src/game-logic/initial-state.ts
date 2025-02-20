@@ -4,8 +4,8 @@ import * as rng from "./rng";
 import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 19;
-export const STARTING_CASH = 2000;
-export const STARTING_CARGO_SIZE = 100;
+export const STARTING_CASH = 100;
+export const STARTING_CARGO_SIZE = 20;
 export const STARTING_HEALTH = 100;
 export const STARTING_STRENGTH = 30;
 export const STARTING_DEFENSE = 10;
@@ -55,45 +55,29 @@ export const initialState = (seed: string): GameState => {
 };
 
 export const teaInfo: Readonly<TeaInfo> = {
-    [Tea.EarlGrey]: {
-        lowPrice: 600,
-        highPrice: 1400,
+    [Tea.Rooibos]: {
+        lowPrice: 10,
+        highPrice: 12,
     },
     [Tea.Assam]: {
-        lowPrice: 100,
-        highPrice: 700,
+        lowPrice: 15,
+        highPrice: 18,
     },
-    [Tea.Darjeeling]: {
-        lowPrice: 5000,
-        highPrice: 14000,
-    },
-    [Tea.LapsangSouchong]: {
-        lowPrice: 1500,
-        highPrice: 4500,
-    },
-    [Tea.GreenTea]: {
-        lowPrice: 70,
-        highPrice: 250,
+    [Tea.EarlGrey]: {
+        lowPrice: 30,
+        highPrice: 40,
     },
     [Tea.Ceylon]: {
-        lowPrice: 300,
-        highPrice: 900,
+        lowPrice: 50,
+        highPrice: 65,
     },
     [Tea.Matcha]: {
-        lowPrice: 1000,
-        highPrice: 4500,
+        lowPrice: 70,
+        highPrice: 90,
     },
-    [Tea.EnglishBreakfast]: {
-        lowPrice: 10,
-        highPrice: 60,
-    },
-    [Tea.Rooibos]: {
-        lowPrice: 500,
-        highPrice: 1300,
-    },
-    [Tea.Longjing]: {
-        lowPrice: 15000,
-        highPrice: 30000,
+    [Tea.Darjeeling]: {
+        lowPrice: 100,
+        highPrice: 150,
     },
 };
 

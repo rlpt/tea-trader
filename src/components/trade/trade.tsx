@@ -5,9 +5,9 @@ import {
     modalSelector,
     showChangeLocationModal,
     showFinalScore,
-} from "../../app/game-reducer";
-import { isLastTurnSelector } from "../../app/game-reducer";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+} from "../../game-logic/game-reducer";
+import { isLastTurnSelector } from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
 import Button from "../button/button";
 import BuySell from "../buy-sell/buy-sell";
 import ChangeLocation from "../change-location/change-location";
@@ -74,12 +74,11 @@ function Trade() {
             <div className={styles.gameStatusWrap}>
                 <GameStatus />
             </div>
-            <PriceMessages />
-            <div className="buttons">{buttons}</div>
             <div className={styles.teaTableWrap}>
                 <TeaTable />
             </div>
             {modalEl}
+            <div className="buttons">{buttons}</div>
             <SpecialEventModal />
         </div>
     );

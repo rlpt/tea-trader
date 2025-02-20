@@ -5,9 +5,9 @@ import {
     showMenu,
     townSelector,
     visualTurnSelector,
-} from "../../app/game-reducer";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { GameScreen } from "../../app/types";
+} from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { GameScreen } from "../../game-logic/types";
 import BurgerMenuIcon from "../burger-menu-icon/burger-menu-icon";
 
 import styles from "./header.module.css";

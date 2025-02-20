@@ -1,7 +1,7 @@
-import { showBuySellModal } from "../../app/game-reducer";
-import { teaPriceSelector } from "../../app/game-reducer";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { Price, PriceEvent } from "../../app/types";
+import { showBuySellModal } from "../../game-logic/game-reducer";
+import { teaPriceSelector } from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { Price, PriceEvent } from "../../game-logic/types";
 import Cash from "../cash/cash";
 
 import styles from "./tea-table.module.css";

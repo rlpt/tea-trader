@@ -319,6 +319,7 @@ export const gameReducer = (seed: string) =>
                     state.event.opponent.health = result.opponent.health;
 
                     if (result.outcome === FightOutcome.PlayerWins) {
+                        // TODO have reward be random % of bank balance
                         state.cash += result.reward;
                     }
                 }

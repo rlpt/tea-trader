@@ -1,15 +1,5 @@
 import classNames from "classnames";
 
-import {
-    backToGame,
-    fightSelector,
-    modalSelector,
-    restart,
-    screenSelector,
-    wipeSelector,
-} from "./app/game-reducer";
-import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { GameScreen } from "./app/types";
 import Button from "./components/button/button";
 import Header from "./components/header/header";
 import MenuModal from "./components/menu-modal/menu-modal";
@@ -17,6 +7,16 @@ import ScoreBoard from "./components/scoreboard/scoreboard";
 import SeaBattle from "./components/sea-battle/sea-battle";
 import Start from "./components/start/start";
 import Trade from "./components/trade/trade";
+import {
+    backToGame,
+    fightSelector,
+    modalSelector,
+    restart,
+    screenSelector,
+    wipeSelector,
+} from "./game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "./game-logic/hooks";
+import { GameScreen } from "./game-logic/types";
 
 import "./global.css";
 import styles from "./app.module.css";

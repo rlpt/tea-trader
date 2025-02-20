@@ -7,9 +7,9 @@ import {
     FightInput,
     fightMoveClicked,
     showFinalScore,
-} from "../../app/game-reducer";
-import { useAppDispatch } from "../../app/hooks";
-import { FightInProgress, FightOutcome } from "../../app/types";
+} from "../../game-logic/game-reducer";
+import { useAppDispatch } from "../../game-logic/hooks";
+import { FightInProgress, FightOutcome } from "../../game-logic/types";
 import Button from "../button/button";
 import Galleon from "../galleon/galleon";
 import ScreenTitle from "../screen-title/screen-title";

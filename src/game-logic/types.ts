@@ -130,16 +130,12 @@ export enum Town {
 }
 
 export enum Tea {
-    EnglishBreakfast = "English Breakfast",
-    GreenTea = "Green Tea",
     Assam = "Assam",
     Ceylon = "Ceylon",
     EarlGrey = "Earl Grey",
     Rooibos = "Rooibos",
     Matcha = "Matcha",
-    LapsangSouchong = "Lapsang Souchong",
     Darjeeling = "Darjeeling",
-    Longjing = "Longjing",
 }
 
 export enum PriceEvent {

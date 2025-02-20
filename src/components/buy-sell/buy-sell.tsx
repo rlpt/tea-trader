@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { buyTea, closeModal, sellTea } from "../../app/game-reducer";
+import { buyTea, closeModal, sellTea } from "../../game-logic/game-reducer";
 import {
     cargoSelector,
     cargoTotalSelector,
     cashSelector,
     teaPriceSelector,
-} from "../../app/game-reducer";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+} from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
 import Button from "../button/button";
 import Cash from "../cash/cash";
 

@@ -2,8 +2,8 @@ import React from "react";
 import cn from "classnames";
 import * as R from "remeda";
 
-import { scoreboardSelector } from "../../app/game-reducer";
-import { useAppSelector } from "../../app/hooks";
+import { scoreboardSelector } from "../../game-logic/game-reducer";
+import { useAppSelector } from "../../game-logic/hooks";
 import ScreenTitle from "../screen-title/screen-title";
 
 import styles from "./scoreboard.module.css";
