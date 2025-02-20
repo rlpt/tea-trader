@@ -6,6 +6,7 @@ export type GameState = {
     turnNumber: number;
     townsVisited: Town[];
     cash: number;
+    debt: number;
     cargo: Cargo;
     name: string;
     health: number;

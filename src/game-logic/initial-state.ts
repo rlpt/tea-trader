@@ -5,6 +5,7 @@ import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
 
 export const MAX_TURNS = 19;
 export const STARTING_CASH = 100;
+export const STARTING_DEBT = 1000;
 export const STARTING_CARGO_SIZE = 20;
 export const STARTING_HEALTH = 100;
 export const STARTING_STRENGTH = 30;
@@ -33,6 +34,7 @@ export const initialState = (seed: string): GameState => {
         turnNumber: 0,
         townsVisited: [Town.London],
         cash: STARTING_CASH,
+        debt: STARTING_DEBT,
         cargo: {
             maxSize: STARTING_CARGO_SIZE,
             items: R.fromPairs(ALL_TEA_NAMES.map((teaName) => [teaName, 0])),
