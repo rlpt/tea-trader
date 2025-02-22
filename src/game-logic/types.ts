@@ -127,7 +127,7 @@ export enum Town {
     Portsmouth = "Portsmouth",
     Liverpool = "Liverpool",
     Glasgow = "Glasgow",
-    Belfast = "Belfast",
+    Newcastle = "Newcastle",
 }
 
 export enum Tea {
