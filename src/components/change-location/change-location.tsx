@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { nextTurn } from "../../game-logic/game-reducer";
+import { nextTurn, somethingHappeningSelector } from "../../game-logic/game-reducer";
 import { townSelector } from "../../game-logic/game-reducer";
 import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
 import { ALL_TOWN_NAMES } from "../../game-logic/initial-state";
@@ -14,11 +14,16 @@ function ChangeLocationModal() {
     const dispatch = useAppDispatch();
 
     let currentTown = useAppSelector(townSelector);
+    const somethingHappeningNextTurn = useAppSelector(somethingHappeningSelector);
 
     const [nextTown, setNextTown] = useState(currentTown);
 
     const townList = ALL_TOWN_NAMES.map((town) => {
         const disabled = town === currentTown;
+
+        const townNextTurn = somethingHappeningNextTurn.find(
+            (item) => item.town === town
+        );
 
         return (
             <div key={town} className="town-list">
@@ -31,6 +36,9 @@ function ChangeLocationModal() {
                         disabled={disabled}
                     />
                     {town}
+                    {townNextTurn?.somethingHappening && (
+                        <span className="something-happening">🚨</span>
+                    )}
                 </label>
             </div>
         );

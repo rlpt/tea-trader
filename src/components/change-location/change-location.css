@@ -29,3 +29,8 @@
         text-align: center;
     }
 }
+
+.something-happening {
+    display: inline-block;
+    margin-left: 0.4rem;
+}

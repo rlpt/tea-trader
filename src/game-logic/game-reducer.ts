@@ -11,6 +11,7 @@ import { calculateDebtPeriod } from "./debt";
 import { getRandomEvent } from "./events";
 import { fight, run } from "./fight";
 import {
+    ALL_TOWN_NAMES,
     EXTRA_LARGE_PIRATE,
     initialState,
     INTEREST_RATE,
@@ -37,9 +38,9 @@ import {
     FightInProgress,
     FightOutcome,
     GameScreen,
+    PriceEvent,
     Town,
 } from "./types";
-
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -443,6 +444,31 @@ export const gameReducer = (seed: string) =>
 export const townSelector = (state: RootState) => {
     return state.townsVisited[state.turnNumber];
 };
+
+export const somethingHappeningSelector = createSelector(
+    [
+        (state: RootState) => state.turnNumber,
+        (state: RootState) => state.rngTables,
+    ],
+    (turnNumber, rngTables) => {
+        // Look ahead to next turn to see if anything is happening
+        const rngTable = rngTables[turnNumber + 1];
+
+        return ALL_TOWN_NAMES.map((town) => {
+            const prices = rngTable.towns[town];
+
+            for (const teas of Object.values(prices)) {
+                for (const tea of Object.values(teas)) {
+                    if (tea.specialEvent !== PriceEvent.NoPriceEvent) {
+                        return { town, somethingHappening: true };
+                    }
+                }
+            }
+
+            return { town, somethingHappening: false };
+        });
+    },
+);
 
 export const turnNumberSelector = (state: RootState) => state.turnNumber;
 export const rngTablesSelector = (state: RootState) => state.rngTables;
