@@ -12,6 +12,7 @@ export const STARTING_STRENGTH = 30;
 export const STARTING_DEFENSE = 10;
 export const RUN_CHANCE = 3;
 export const DAMAGE_VARIABLE = 20;
+export const INTEREST_RATE = 0.05;
 
 export const SPECIAL_TEA_PRICE_CHANCE = 100;
 export const SPECIAL_TEA_PRICE_MULTIPLIER = 2;

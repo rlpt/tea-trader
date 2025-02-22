@@ -10,3 +10,17 @@
     font-size: 1.8rem;
     line-height: 1.8rem;
 }
+
+.debt {
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.debtAmount {
+    color: darkred;
+    font-weight: bold;
+    margin-left: 0.3rem;
+}

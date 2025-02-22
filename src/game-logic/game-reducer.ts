@@ -7,11 +7,13 @@ import {
 import * as R from "remeda";
 
 import { totalItems } from "./cargo";
+import { calculateDebtPeriod } from "./debt";
 import { getRandomEvent } from "./events";
 import { fight, run } from "./fight";
 import {
     EXTRA_LARGE_PIRATE,
     initialState,
+    INTEREST_RATE,
     LARGE_PIRATE,
     MAX_TURNS,
     MEDIUM_PIRATE,
@@ -37,6 +39,7 @@ import {
     GameScreen,
     Town,
 } from "./types";
+
 
 function timeout(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -218,6 +221,10 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEvent,
                     rngTable.specialEventValue,
                 );
+
+                if (state.debt > 0) {
+                    state.debt = calculateDebtPeriod(state.debt, INTEREST_RATE);
+                }
             })
             .addCase(showFinalScore.pending, (state) => {
                 state.wipe.content = {

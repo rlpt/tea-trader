@@ -1,3 +1,3 @@
-function calculateDebtPeriod(principal: number, interestRate: number): number {
-    return principal * (1 + interestRate);
+export function calculateDebtPeriod(principal: number, interestRate: number): number {
+    return Math.floor(principal * (1 + interestRate));
 }

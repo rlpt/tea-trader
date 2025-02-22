@@ -12,13 +12,19 @@ import styles from "./game-status.module.css";
 
 function GameStatus() {
     const cash = useAppSelector((state: RootState) => state.cash);
+    const debt = useAppSelector((state: RootState) => state.debt);
     const cargo = useAppSelector(cargoTotalSelector);
     const player = useAppSelector(playerSelector);
 
     return (
         <div className={styles.gameStatus}>
-            <div className={styles.cash}>
-                <Cash amount={cash} />
+            <div>
+                <div className={styles.cash}>
+                    <Cash amount={cash} />
+                </div>
+                <div className={styles.debt}>
+                    Debt: <Cash amount={debt} className={styles.debtAmount} />
+                </div>
             </div>
             <div>
                 <div className={styles.stats}>
