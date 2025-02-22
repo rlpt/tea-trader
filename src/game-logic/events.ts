@@ -23,7 +23,6 @@ export function getRandomEvent(
     const pirateNameInx = randomInRange(0, PIRATE_SHIP_NAMES.length - 1, rng1);
     const pirateName = PIRATE_SHIP_NAMES[pirateNameInx];
 
-    const playerLevel = getLevel(state.strength, state.defense);
 
     const allEvents = [
         {
@@ -76,7 +75,7 @@ export function getRandomEvent(
                 outcome: FightOutcome.StillStanding,
                 messages: [],
             },
-            canHappen: () => playerLevel >= LARGE_PIRATE.level,
+            canHappen: () => true,
             chance: 8,
         },
         {
@@ -87,7 +86,7 @@ export function getRandomEvent(
                 outcome: FightOutcome.StillStanding,
                 messages: [],
             },
-            canHappen: () => playerLevel >= EXTRA_LARGE_PIRATE.level,
+            canHappen: () => true,
             chance: 20,
         },
     ];
