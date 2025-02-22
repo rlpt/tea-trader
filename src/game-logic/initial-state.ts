@@ -89,8 +89,8 @@ export const SMALL_PIRATE = {
     health: 20,
     strength: 20,
     defense: 5,
-    minReward: 2000,
-    maxReward: 5000,
+    minReward: 10,
+    maxReward: 50,
     level: 1,
 };
 
@@ -99,8 +99,8 @@ export const MEDIUM_PIRATE = {
     health: 50,
     strength: 25,
     defense: 0,
-    minReward: 10000,
-    maxReward: 20000,
+    minReward: 100,
+    maxReward: 200,
     level: 1,
 };
 
@@ -109,8 +109,8 @@ export const LARGE_PIRATE = {
     health: 80,
     strength: 25,
     defense: 2,
-    minReward: 50000,
-    maxReward: 75000,
+    minReward: 200,
+    maxReward: 500,
     level: 2,
 };
 
@@ -119,8 +119,8 @@ export const EXTRA_LARGE_PIRATE = {
     health: 300,
     strength: 40,
     defense: 0,
-    minReward: 160000,
-    maxReward: 250000,
+    minReward: 500,
+    maxReward: 2000,
     level: 3,
 };
 
