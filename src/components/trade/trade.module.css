@@ -7,6 +7,6 @@
 }
 
 .teaTableWrap {
-    margin-top: var(--space-sm);
-    margin-bottom: var(--space-sm);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
 }
