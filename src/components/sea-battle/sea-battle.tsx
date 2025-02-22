@@ -36,8 +36,11 @@ function SeaBattle(props: FightInProgress) {
         let opponentHitTimeout: ReturnType<typeof setTimeout>;
 
         const clearAllTimeouts = () => {
+            // @ts-ignore
             clearTimeout(playerHitTimeout);
+            // @ts-ignore
             clearTimeout(playerDelayTimeout);
+            // @ts-ignore
             clearTimeout(opponentHitTimeout);
         };
 
