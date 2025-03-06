@@ -13,11 +13,13 @@ import Cash from "../cash/cash";
 
 import styles from "./buy-sell.module.css";
 
-enum Status {
-    Choose,
-    Sell,
-    Buy,
-}
+const StatusOptions = {
+    Choose: "CHOOSE",
+    Sell: "SELL",
+    Buy: "BUY",
+} as const;
+
+type Status = (typeof StatusOptions)[keyof typeof StatusOptions];
 
 function BuySell(props: { tea: string }) {
     const dispatch = useAppDispatch();
@@ -29,7 +31,7 @@ function BuySell(props: { tea: string }) {
 
     const cargoTeaQty = cargo.items[props.tea];
 
-    let initialStatus = Status.Buy;
+    let initialStatus: Status = StatusOptions.Buy;
 
     const teaPrice = teaPrices[props.tea];
 
@@ -43,7 +45,7 @@ function BuySell(props: { tea: string }) {
     }
 
     if (cargoTeaQty > 0) {
-        initialStatus = Status.Choose;
+        initialStatus = StatusOptions.Choose;
     }
 
     const [status, setStatus] = useState<Status>(initialStatus);
@@ -63,7 +65,7 @@ function BuySell(props: { tea: string }) {
 
     let content;
 
-    if (status === Status.Choose) {
+    if (status === StatusOptions.Choose) {
         content = (
             <div>
                 <p>
@@ -71,10 +73,12 @@ function BuySell(props: { tea: string }) {
                     buy or sell?
                 </p>
                 <div className="buttons">
-                    <Button onClick={() => setStatus(Status.Buy)}>Buy</Button>
+                    <Button onClick={() => setStatus(StatusOptions.Buy)}>
+                        Buy
+                    </Button>
                     <Button
                         onClick={() => {
-                            setStatus(Status.Sell);
+                            setStatus(StatusOptions.Sell);
                             setInputQty(cargoTeaQty);
                         }}
                     >
@@ -83,7 +87,7 @@ function BuySell(props: { tea: string }) {
                 </div>
             </div>
         );
-    } else if (status === Status.Buy) {
+    } else if (status === StatusOptions.Buy) {
         const qtyInvalid = qty > buyMaxQty || qty === 0;
 
         content = (
@@ -134,7 +138,7 @@ function BuySell(props: { tea: string }) {
                 </div>
             </div>
         );
-    } else if (status === Status.Sell) {
+    } else if (status === StatusOptions.Sell) {
         const qtyInvalid = qty === 0 || qty > cargoTeaQty;
 
         content = (
