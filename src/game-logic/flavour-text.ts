@@ -5,7 +5,7 @@ type MarketFlavourText = {
     impact: PriceImpact;
 };
 
-export const marketEvents: MarketFlavourText[] = [
+export const marketEvents: readonly MarketFlavourText[] = [
     {
         text: "A notorious pirate crew has seized a shipment of [TEA]—its price has skyrocketed in fear and scarcity!",
         impact: "HIGH",
