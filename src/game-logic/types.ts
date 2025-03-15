@@ -18,7 +18,8 @@ export type GameState = {
         | ChangeLocationModal
         | BuySellModal
         | EndGameModal
-        | MenuModal;
+        | MenuModal
+        | TeaEventModal;
     wipe: {
         showing: boolean;
         content: NoWipe | TextWipe;
@@ -201,6 +202,11 @@ type EndGameModal = {
 
 type MenuModal = {
     modalType: "MenuModal";
+};
+
+type TeaEventModal = {
+    modalType: "TeaEventModal";
+    event: { teaName: string; event: PriceEvent };
 };
 
 type NoModal = {

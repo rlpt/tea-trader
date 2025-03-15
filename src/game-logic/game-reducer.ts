@@ -30,7 +30,7 @@ import {
     sortScores,
 } from "./scoreboard";
 import { RootState } from "./store";
-import { getTeaForTurn } from "./tea-price";
+import { getTeaEvents, getTeaForTurn } from "./tea-price";
 import {
     Cargo,
     DebugAction,
@@ -222,6 +222,20 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEvent,
                     rngTable.specialEventValue,
                 );
+
+                // TODO next show price movement message modal
+
+                const teaEvents = getTeaEvents(
+                    rngTable.towns[action.payload.nextTown].teaPrice,
+                );
+
+                // if there are any tea events, show the first one in a modal
+                if (teaEvents.length > 0) {
+                    state.modal = {
+                        modalType: "TeaEventModal",
+                        event: teaEvents[0],
+                    };
+                }
 
                 if (state.debt > 0) {
                     state.debt = calculateDebtPeriod(state.debt, INTEREST_RATE);

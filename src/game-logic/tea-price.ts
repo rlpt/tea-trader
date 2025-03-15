@@ -74,7 +74,7 @@ const getTeaPrice = (teaName: string, rngTable: TeaRng) => {
     return { price, specialEvent };
 };
 
-export const getTeaEvents = (rngTable: TeaRng) => {
+export const getTeaEvents = (rngTable: TeaRng): { teaName: string; event: PriceEvent }[] => {
     return ALL_TEA_NAMES
     .map((teaName) => ({
         teaName,

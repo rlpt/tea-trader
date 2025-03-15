@@ -36,6 +36,8 @@ function Trade() {
 
     let modalEl;
 
+    console.log(modal);
+
     if (modal.modalType === "ChangeLocationModal") {
         modalEl = (
             <Modal onClose={() => closeModal()}>
@@ -46,6 +48,13 @@ function Trade() {
         modalEl = (
             <Modal onClose={() => closeModal()}>
                 <BuySell tea={modal.tea} />
+            </Modal>
+        );
+    } else if (modal.modalType === "TeaEventModal") {
+        modalEl = (
+            <Modal onClose={() => closeModal()}>
+                TEA EVENT
+                {/* <TeaEventModal tea={modal.event.teaName} event={modal.event.event} /> */}
             </Modal>
         );
     }
