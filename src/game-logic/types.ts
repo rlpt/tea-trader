@@ -204,7 +204,7 @@ type MenuModal = {
     modalType: "MenuModal";
 };
 
-type TeaEventModal = {
+export type TeaEventModal = {
     modalType: "TeaEventModal";
     event: { teaName: string; event: PriceEvent };
 };

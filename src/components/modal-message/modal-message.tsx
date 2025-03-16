@@ -3,6 +3,8 @@ import React from "react";
 import { closeModal } from "../../game-logic/game-reducer";
 import { useAppDispatch } from "../../game-logic/hooks";
 
+// TODO swap for non default export 
+
 function ModalMessage(props: { message: string }) {
     const dispatch = useAppDispatch();
 

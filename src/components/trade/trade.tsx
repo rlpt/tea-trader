@@ -14,6 +14,7 @@ import ChangeLocation from "../change-location/change-location";
 import Debug from "../debug/debug";
 import GameStatus from "../game-status/game-status";
 import Modal from "../modal-message/modal";
+import { ModalTeaEvent } from "../modal-tea-event/modal-tea-event";
 import SpecialEventModal from "../special-event-modal/special-event-modal";
 import TeaTable from "../tea-table/tea-table";
 
@@ -36,8 +37,6 @@ function Trade() {
 
     let modalEl;
 
-    console.log(modal);
-
     if (modal.modalType === "ChangeLocationModal") {
         modalEl = (
             <Modal onClose={() => closeModal()}>
@@ -53,8 +52,10 @@ function Trade() {
     } else if (modal.modalType === "TeaEventModal") {
         modalEl = (
             <Modal onClose={() => closeModal()}>
-                TEA EVENT
-                {/* <TeaEventModal tea={modal.event.teaName} event={modal.event.event} /> */}
+                <ModalTeaEvent
+                    tea={modal.event.teaName}
+                    event={modal.event.event}
+                />
             </Modal>
         );
     }
