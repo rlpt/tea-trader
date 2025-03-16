@@ -51,11 +51,9 @@ export function getRandomEvent(
     const validEvents = allEvents
         // remove events that can't happen due to player state
         .filter((event) => event.canHappen(state))
-        // remove events randomly depending on chance result
-        .filter((event) => randomInRange(0, event.chance - 1, rng1) === 0);
 
     const randomEvent =
-        validEvents[randomInRange(0, validEvents.length - 1, rng2)];
+        validEvents[randomInRange(0, validEvents.length - 1, rng1)];
 
     if (randomEvent) {
         return randomEvent.event as SpecialEvent;

@@ -235,8 +235,6 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEventValue,
                 );
 
-                
-
                 if (state.debt > 0) {
                     state.debt = calculateDebtPeriod(state.debt, INTEREST_RATE);
                 }
