@@ -217,14 +217,6 @@ export const gameReducer = (seed: string) =>
 
                 const rngTable = state.rngTables[nextTurnNumber];
 
-                state.event = getRandomEvent(
-                    state,
-                    rngTable.specialEvent,
-                    rngTable.specialEventValue,
-                );
-
-                // TODO next show price movement message modal
-
                 const teaEvents = getTeaEvents(
                     rngTable.towns[action.payload.nextTown].teaPrice,
                 );
@@ -236,6 +228,14 @@ export const gameReducer = (seed: string) =>
                         event: teaEvents[0],
                     };
                 }
+
+                state.event = getRandomEvent(
+                    state,
+                    rngTable.specialEvent,
+                    rngTable.specialEventValue,
+                );
+
+                
 
                 if (state.debt > 0) {
                     state.debt = calculateDebtPeriod(state.debt, INTEREST_RATE);

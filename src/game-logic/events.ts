@@ -20,10 +20,6 @@ export function getRandomEvent(
     rng1: number,
     rng2: number,
 ): SpecialEvent {
-    const pirateNameInx = randomInRange(0, PIRATE_SHIP_NAMES.length - 1, rng1);
-    const pirateName = PIRATE_SHIP_NAMES[pirateNameInx];
-
-
     const allEvents = [
         {
             event: { eventType: "ArmorEvent" },
@@ -46,46 +42,7 @@ export function getRandomEvent(
             chance: 5,
         },
         {
-            event: {
-                eventType: "FightEvent",
-                opponent: { ...SMALL_PIRATE, name: pirateName },
-                rngIndex: 0,
-                outcome: FightOutcome.StillStanding,
-                messages: [],
-            },
-            canHappen: () => true,
-            chance: 3,
-        },
-        {
-            event: {
-                eventType: "FightEvent",
-                opponent: { ...MEDIUM_PIRATE, name: pirateName },
-                rngIndex: 0,
-                outcome: FightOutcome.StillStanding,
-                messages: [],
-            },
-            canHappen: () => true,
-            chance: 5,
-        },
-        {
-            event: {
-                eventType: "FightEvent",
-                opponent: { ...LARGE_PIRATE, name: pirateName },
-                rngIndex: 0,
-                outcome: FightOutcome.StillStanding,
-                messages: [],
-            },
-            canHappen: () => true,
-            chance: 8,
-        },
-        {
-            event: {
-                eventType: "FightEvent",
-                opponent: { ...EXTRA_LARGE_PIRATE, name: pirateName },
-                rngIndex: 0,
-                outcome: FightOutcome.StillStanding,
-                messages: [],
-            },
+            event: getRandomPirateEvent(rng2),
             canHappen: () => true,
             chance: 20,
         },
@@ -105,6 +62,44 @@ export function getRandomEvent(
     }
 
     return { eventType: "NoEvent" };
+}
+
+export function getRandomPirateEvent(rng: number): SpecialEvent {
+    const pirateNameInx = randomInRange(0, PIRATE_SHIP_NAMES.length - 1, rng);
+    const pirateName = PIRATE_SHIP_NAMES[pirateNameInx];
+
+    const pirateEvents = [
+        {
+            eventType: "FightEvent" as const,
+            opponent: { ...SMALL_PIRATE, name: pirateName },
+            rngIndex: 0,
+            outcome: FightOutcome.StillStanding,
+            messages: [],
+        },
+        {
+            eventType: "FightEvent" as const,
+            opponent: { ...MEDIUM_PIRATE, name: pirateName },
+            rngIndex: 0,
+            outcome: FightOutcome.StillStanding,
+            messages: [],
+        },
+        {
+            eventType: "FightEvent" as const,
+            opponent: { ...LARGE_PIRATE, name: pirateName },
+            rngIndex: 0,
+            outcome: FightOutcome.StillStanding,
+            messages: [],
+        },
+        {
+            eventType: "FightEvent" as const,
+            opponent: { ...EXTRA_LARGE_PIRATE, name: pirateName },
+            rngIndex: 0,
+            outcome: FightOutcome.StillStanding,
+            messages: [],
+        },
+    ];
+
+    return pirateEvents[randomInRange(0, pirateEvents.length - 1, rng)];
 }
 
 function weaponEventCanHappen(state: GameState): boolean {
