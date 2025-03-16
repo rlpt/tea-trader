@@ -1,5 +1,7 @@
 import { PriceEvent } from "./types";
 
+// TODO other flavour text such as health, cargo, etc
+
 type MarketFlavourText = {
     text: string;
     impact: PriceEvent;
