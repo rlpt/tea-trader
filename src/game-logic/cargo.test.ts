@@ -6,13 +6,9 @@ test("totalItemsInHold", () => {
         "Earl Grey": 10,
         Assam: 15,
         Darjeeling: 0,
-        "Lapsang Souchong": 0,
-        "Green Tea": 0,
         Matcha: 0,
-        "English Breakfast": 0,
-        "White Tea": 0,
-        "Lady Grey": 0,
-        Longjing: 0,
+        Ceylon: 0,
+        Rooibos: 0,
     };
 
     expect(hold.totalItems(holdItems)).toBe(25);
