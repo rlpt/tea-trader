@@ -8,7 +8,7 @@ import * as R from "remeda";
 
 import { totalItems } from "./cargo";
 import { calculateDebtPeriod } from "./debt";
-import { getRandomEvent } from "./events";
+import { getRandomEvent, getRandomPirateEvent } from "./events";
 import { fight, run } from "./fight";
 import {
     ALL_TOWN_NAMES,
@@ -91,7 +91,7 @@ export const showFinalScore = createAsyncThunk(
         const scores = loadScores();
         const { toShow, toSave } = mergeScores(scores, {
             name: state.name,
-            score: state.cash,
+            score: state.cash - state.debt,
         });
 
         saveScores(toSave);
@@ -234,6 +234,14 @@ export const gameReducer = (seed: string) =>
                     rngTable.specialEvent,
                     rngTable.specialEventValue,
                 );
+
+                // if no special event and there is a tea price move event always fight a pirate
+                if (
+                    state.event.eventType === "NoEvent" &&
+                    teaEvents.length > 0
+                ) {
+                    state.event = getRandomPirateEvent(rngTable.specialEvent);
+                }
 
                 if (state.debt > 0) {
                     state.debt = calculateDebtPeriod(state.debt, INTEREST_RATE);
