@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { nextTurn, somethingHappeningSelector } from "../../game-logic/game-reducer";
+import {
+    nextTurn,
+    somethingHappeningSelector,
+} from "../../game-logic/game-reducer";
 import { townSelector } from "../../game-logic/game-reducer";
 import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
 import { ALL_TOWN_NAMES } from "../../game-logic/initial-state";
@@ -14,15 +17,19 @@ function ChangeLocationModal() {
     const dispatch = useAppDispatch();
 
     let currentTown = useAppSelector(townSelector);
-    const somethingHappeningNextTurn = useAppSelector(somethingHappeningSelector);
+    const somethingHappeningNextTurn = useAppSelector(
+        somethingHappeningSelector,
+    );
 
     const [nextTown, setNextTown] = useState(currentTown);
 
     const townList = ALL_TOWN_NAMES.map((town) => {
         const disabled = town === currentTown;
 
+        // TODO if current town has event next turn dont show icon
+
         const townNextTurn = somethingHappeningNextTurn.find(
-            (item) => item.town === town
+            (item) => item.town === town,
         );
 
         return (

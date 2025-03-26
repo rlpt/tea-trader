@@ -63,6 +63,8 @@ function BuySell(props: { tea: string }) {
 
     const qty = inputQty === null ? 0 : inputQty;
 
+    // TODO plus/minus buttons and max qty button
+
     let content;
 
     if (status === StatusOptions.Choose) {
