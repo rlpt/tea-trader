@@ -24,7 +24,7 @@ export function mergeScores(
     oldScores: FinalScore[],
     newScore: FinalScore,
 ): { toSave: FinalScore[]; toShow: ScoreboardItem[] } {
-    const oldScoresToShow = prepareOldScores(oldScores);
+    const oldScoresToShow = mapScoresToBoardItems(oldScores);
 
     const toShow = sortScores([
         ...oldScoresToShow,
@@ -37,7 +37,7 @@ export function mergeScores(
     };
 }
 
-export function prepareOldScores(oldScores: FinalScore[]) {
+export function mapScoresToBoardItems(oldScores: FinalScore[]) {
     return oldScores.map((score) => {
         return { score, latest: false };
     });

@@ -24,8 +24,8 @@ import { getPriceMessages } from "./price-messages";
 import { getRngFromList } from "./rng";
 import {
     loadScores,
+    mapScoresToBoardItems,
     mergeScores,
-    prepareOldScores,
     saveScores,
     sortScores,
 } from "./scoreboard";
@@ -106,7 +106,7 @@ export const showScoreboard = createAction("showScoreboard", () => {
     const scores = loadScores();
 
     return {
-        payload: R.pipe(scores, prepareOldScores, sortScores),
+        payload: R.pipe(scores, mapScoresToBoardItems, sortScores),
     };
 });
 
