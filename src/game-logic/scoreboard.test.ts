@@ -25,7 +25,7 @@ describe("scoreboard", () => {
 
         const dispatch = jest.fn();
         const getState = () => {
-            return { ...initialState, cash: 1337, name: "test name" };
+            return { ...initialState, cash: 1337, debt: 100, name: "test name" };
         };
 
         const thunkResult = await thunk(dispatch, getState, {});
@@ -34,7 +34,7 @@ describe("scoreboard", () => {
             {
                 score: {
                     name: "test name",
-                    score: 1337,
+                    score: 1237,
                 },
                 latest: true,
             },
@@ -76,13 +76,13 @@ describe("scoreboard", () => {
             },
             {
                 name: "test name",
-                score: 1337,
+                score: 1237,
             },
         ];
 
         expect(thunkResult.payload).toEqual(expectedDisplayScores);
-        expect(localStorage.__STORE__[SCORES_KEY]).toBe(
-            JSON.stringify(expectedSavedScores),
+        expect(JSON.parse(localStorage.getItem(SCORES_KEY) || "[]")).toEqual(
+            expectedSavedScores,
         );
     });
 });
