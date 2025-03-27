@@ -19,7 +19,8 @@ export type GameState = {
         | BuySellModal
         | EndGameModal
         | MenuModal
-        | TeaEventModal;
+        | TeaEventModal
+        | BankModal;
     wipe: {
         showing: boolean;
         content: NoWipe | TextWipe;
@@ -204,6 +205,10 @@ type MenuModal = {
     modalType: "MenuModal";
 };
 
+type BankModal = {
+    modalType: "BankModal";
+};
+
 export type TeaEventModal = {
     modalType: "TeaEventModal";
     event: { teaName: string; event: PriceEvent };
@@ -236,4 +241,5 @@ export enum DebugAction {
     WeaponEvent,
     CargoEvent,
     HealEvent,
+    ShowBank,
 }

@@ -8,6 +8,7 @@ import {
 } from "../../game-logic/game-reducer";
 import { isLastTurnSelector } from "../../game-logic/game-reducer";
 import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { DebtRepayment } from "../bank/bank";
 import Button from "../button/button";
 import BuySell from "../buy-sell/buy-sell";
 import ChangeLocation from "../change-location/change-location";
@@ -55,6 +56,16 @@ function Trade() {
                 <ModalTeaEvent
                     tea={modal.event.teaName}
                     event={modal.event.event}
+                />
+            </Modal>
+        );
+    } else if (modal.modalType === "BankModal") {
+        modalEl = (
+            <Modal onClose={() => closeModal()}>
+                <DebtRepayment
+                    totalDebt={1000}
+                    availableCash={500}
+                    onRepay={console.log}
                 />
             </Modal>
         );

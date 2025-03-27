@@ -73,6 +73,11 @@ export default function Debug(props: { onClose: () => void }) {
                     Heal event
                 </Button>
             </div>
+            <div className={styles.item}>
+                <Button onClick={() => dispatch(debug(DebugAction.ShowBank))}>
+                    Show bank
+                </Button>
+            </div>
         </div>
     );
 }

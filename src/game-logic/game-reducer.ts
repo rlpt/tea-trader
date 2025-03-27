@@ -457,6 +457,8 @@ export const gameReducer = (seed: string) =>
                     state.event = {
                         eventType: "HealEvent",
                     };
+                } else if (action.payload === DebugAction.ShowBank) {
+                    state.modal = { modalType: "BankModal" };
                 }
             });
     });
