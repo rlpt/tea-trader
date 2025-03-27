@@ -128,7 +128,9 @@ function BuySell(props: { tea: string }) {
             </Button>
             <input
                 className={styles.input}
-                type="number"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={inputQty === null ? "" : inputQty}
                 onChange={(e) => {
                     setInputQty(numberInput(e));
