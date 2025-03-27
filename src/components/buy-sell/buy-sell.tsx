@@ -51,6 +51,11 @@ function BuySell(props: { tea: string }) {
     const [status, setStatus] = useState<Status>(initialStatus);
     const [inputQty, setInputQty] = useState<number | null>(buyMaxQty);
 
+    // Add state for button press intervals
+    const [buttonInterval, setButtonInterval] = useState<NodeJS.Timeout | null>(
+        null,
+    );
+
     const numberInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const result = event.target.value.replace(/\D/g, "");
 
@@ -63,7 +68,84 @@ function BuySell(props: { tea: string }) {
 
     const qty = inputQty === null ? 0 : inputQty;
 
-    // TODO plus/minus buttons and max qty button
+    // Handle button press start
+    const handleButtonPress = (increment: boolean) => {
+        // Clear any existing interval
+        if (buttonInterval) {
+            clearInterval(buttonInterval);
+        }
+
+        // Initial change
+        updateQuantity(increment);
+
+        // Set up repeat interval
+        const interval = setInterval(() => {
+            updateQuantity(increment);
+        }, 150); // Adjust repeat rate as needed
+
+        setButtonInterval(interval);
+    };
+
+    // Handle button release
+    const handleButtonRelease = () => {
+        if (buttonInterval) {
+            clearInterval(buttonInterval);
+            setButtonInterval(null);
+        }
+    };
+
+    const updateQuantity = (increment: boolean) => {
+        setInputQty((prevQty) => {
+            const currentQty = prevQty ?? 0;
+            const newQty = increment ? currentQty + 1 : currentQty - 1;
+
+            if (status === StatusOptions.Buy) {
+                if (newQty >= 0 && newQty <= buyMaxQty) {
+                    return newQty;
+                }
+            } else if (status === StatusOptions.Sell) {
+                if (newQty >= 0 && newQty <= cargoTeaQty) {
+                    return newQty;
+                }
+            }
+
+            return prevQty;
+        });
+    };
+
+    // Update the input sections in both Buy and Sell content blocks
+    const quantityInput = (
+        <div className={styles.quantityContainer}>
+            <Button
+                secondary
+                onMouseDown={() => handleButtonPress(false)}
+                onMouseUp={handleButtonRelease}
+                onMouseLeave={handleButtonRelease}
+                onTouchStart={() => handleButtonPress(false)}
+                onTouchEnd={handleButtonRelease}
+            >
+                -
+            </Button>
+            <input
+                className={styles.input}
+                type="number"
+                value={inputQty === null ? "" : inputQty}
+                onChange={(e) => {
+                    setInputQty(numberInput(e));
+                }}
+            />
+            <Button
+                secondary
+                onMouseDown={() => handleButtonPress(true)}
+                onMouseUp={handleButtonRelease}
+                onMouseLeave={handleButtonRelease}
+                onTouchStart={() => handleButtonPress(true)}
+                onTouchEnd={handleButtonRelease}
+            >
+                +
+            </Button>
+        </div>
+    );
 
     let content;
 
@@ -102,16 +184,7 @@ function BuySell(props: { tea: string }) {
                     Total cost for {qty} is&nbsp;
                     <Cash amount={qty * teaPrice.price} />
                 </p>
-                <p>
-                    <input
-                        className={styles.input}
-                        type="number"
-                        value={inputQty === null ? "" : inputQty}
-                        onChange={(e) => {
-                            setInputQty(numberInput(e));
-                        }}
-                    />
-                </p>
+                {quantityInput}
                 <div className="buttons">
                     <Button
                         disabled={qtyInvalid}
@@ -152,16 +225,7 @@ function BuySell(props: { tea: string }) {
                     Sell {qty} of {teaPrice.teaName} for&nbsp;{" "}
                     <Cash amount={qty * teaPrice.price} />?
                 </p>
-                <p>
-                    <input
-                        className={styles.input}
-                        type="number"
-                        value={inputQty === null ? "" : inputQty}
-                        onChange={(e) => {
-                            setInputQty(numberInput(e));
-                        }}
-                    />
-                </p>
+                {quantityInput}
                 <div className="buttons">
                     <Button
                         disabled={qtyInvalid}
