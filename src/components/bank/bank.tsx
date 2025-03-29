@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-interface DebtRepaymentProps {
+import Cash from "../cash/cash";
+
+import styles from "./bank.module.css";
+
+interface BankProps {
     totalDebt: number;
     availableCash: number;
     onRepay: (amount: number) => void;
 }
 
-export function DebtRepayment({
-    totalDebt,
-    availableCash,
-    onRepay,
-}: DebtRepaymentProps) {
+export function Bank({ totalDebt, availableCash, onRepay }: BankProps) {
     const maxRepayment = Math.min(totalDebt, availableCash);
     const [repaymentAmount, setRepaymentAmount] = useState(0);
 
@@ -26,16 +26,20 @@ export function DebtRepayment({
     return (
         <div>
             <div>
-                <label>
-                    Repayment Amount:
-                    <input
-                        type="number"
-                        min={0}
-                        max={maxRepayment}
-                        value={repaymentAmount}
-                        onChange={handleInputChange}
-                    />
-                </label>
+                <p>
+                    Repay debt to bank. You owe <Cash amount={totalDebt} /> and
+                    have <Cash amount={availableCash} /> available.
+                </p>
+                <input
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    min={0}
+                    max={maxRepayment}
+                    value={repaymentAmount}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                />
             </div>
             <div>
                 <input
@@ -45,10 +49,6 @@ export function DebtRepayment({
                     value={repaymentAmount}
                     onChange={handleSliderChange}
                 />
-                <div>
-                    <span>0</span>
-                    <span>{maxRepayment}</span>
-                </div>
             </div>
             <button
                 onClick={() => onRepay(repaymentAmount)}
@@ -59,10 +59,3 @@ export function DebtRepayment({
         </div>
     );
 }
-
-// Add this where you want the repayment controls to appear
-{/* <DebtRepayment
-    totalDebt={totalDebt} // Replace with your debt state variable
-    availableCash={availableCash} // Replace with your cash state variable
-    onRepay={handleRepayDebt}
-/>; */}
