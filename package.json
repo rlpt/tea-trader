@@ -13,6 +13,7 @@
         "@types/react": "^18.2.16",
         "@types/react-dom": "^18.2.7",
         "classnames": "^2.3.2",
+        "netlify-cli": "^19.1.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-redux": "^8.1.1",
@@ -29,6 +30,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "format": "npx prettier --write .",
+        "bump": "npm version minor",
         "version": "node make-version.js > src/game-logic/version.js",
         "prebuild": "npm run version",
         "prestart": "npm run version"
