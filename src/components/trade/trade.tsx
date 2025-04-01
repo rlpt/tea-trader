@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import {
     closeModal,
     modalSelector,
+    showBankModal,
     showChangeLocationModal,
     showFinalScore,
+    townSelector,
 } from "../../game-logic/game-reducer";
 import { isLastTurnSelector } from "../../game-logic/game-reducer";
 import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { townFeatures } from "../../game-logic/initial-state";
+import { TownFeature } from "../../game-logic/types";
 import { Bank } from "../bank/bank";
 import Button from "../button/button";
 import BuySell from "../buy-sell/buy-sell";
@@ -27,6 +31,7 @@ function Trade() {
     const dispatch = useAppDispatch();
     const modal = useAppSelector(modalSelector);
     const isLastTurn = useAppSelector(isLastTurnSelector);
+    let currentTown = useAppSelector(townSelector);
 
     const [showDebug, setShowDebug] = useState(false);
 
@@ -62,19 +67,26 @@ function Trade() {
     } else if (modal.modalType === "BankModal") {
         modalEl = (
             <Modal onClose={() => closeModal()}>
-                <Bank
-                    totalDebt={1000}
-                    availableCash={500}
-                    onRepay={console.log}
-                />
+                <Bank/>
             </Modal>
         );
     }
 
+    const townFeature = townFeatures[currentTown];
+
+    let townFeatureEl = <></>;
+
+    if (townFeature === TownFeature.Bank) {
+        townFeatureEl = <Button secondary onClick={() => dispatch(showBankModal())}>Visit bank 🏦</Button>;
+    }
+
     let buttons = (
-        <Button onClick={() => dispatch(showChangeLocationModal())}>
-            Change town
-        </Button>
+        <div className={styles.buttonStack}>
+            {townFeatureEl}
+            <Button onClick={() => dispatch(showChangeLocationModal())}>
+                Change town
+            </Button>
+        </div>
     );
 
     if (isLastTurn) {

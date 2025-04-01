@@ -10,3 +10,10 @@
     margin-top: var(--space-lg);
     margin-bottom: var(--space-lg);
 }
+
+.buttonStack {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    flex-direction: column;
+}

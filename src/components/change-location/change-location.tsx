@@ -7,8 +7,8 @@ import {
 } from "../../game-logic/game-reducer";
 import { townSelector } from "../../game-logic/game-reducer";
 import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
-import { ALL_TOWN_NAMES } from "../../game-logic/initial-state";
-import { Town } from "../../game-logic/types";
+import { ALL_TOWN_NAMES, townFeatures } from "../../game-logic/initial-state";
+import { Town, TownFeature } from "../../game-logic/types";
 import Button from "../button/button";
 
 import "./change-location.css";
@@ -32,6 +32,14 @@ function ChangeLocationModal() {
             (item) => item.town === town,
         );
 
+        const townFeature = townFeatures[town];
+
+        let townFeatureEl = <></>;
+
+        if (townFeature === TownFeature.Bank) {
+            townFeatureEl = <span className="town-feature">🏦</span>;
+        }
+
         return (
             <div key={town} className="town-list">
                 <label className={classNames({ disabled })}>
@@ -43,6 +51,7 @@ function ChangeLocationModal() {
                         disabled={disabled}
                     />
                     {town}
+                    {townFeatureEl}
                     {townNextTurn?.somethingHappening && (
                         <span className="something-happening">🚨</span>
                     )}

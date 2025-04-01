@@ -21,6 +21,8 @@ import { GameScreen } from "./game-logic/types";
 import "./global.css";
 import styles from "./app.module.css";
 
+// TODO use style imports for all components
+
 function App() {
     const wipe = useAppSelector(wipeSelector);
     const screen = useAppSelector(screenSelector);

@@ -1,9 +1,9 @@
 import {
     cargoTotalSelector,
+    financeSelector,
     playerSelector,
 } from "../../game-logic/game-reducer";
 import { useAppSelector } from "../../game-logic/hooks";
-import { RootState } from "../../game-logic/store";
 import AmountBar from "../amount-bar/amount-bar";
 import Cash from "../cash/cash";
 import FighterStats from "../fighter-stats/fighter-stats";
@@ -11,8 +11,7 @@ import FighterStats from "../fighter-stats/fighter-stats";
 import styles from "./game-status.module.css";
 
 function GameStatus() {
-    const cash = useAppSelector((state: RootState) => state.cash);
-    const debt = useAppSelector((state: RootState) => state.debt);
+    const { cash, debt } = useAppSelector(financeSelector);
     const cargo = useAppSelector(cargoTotalSelector);
     const player = useAppSelector(playerSelector);
 

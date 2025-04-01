@@ -1,7 +1,7 @@
 import * as R from "remeda";
 
 import * as rng from "./rng";
-import { GameScreen, GameState, Tea, TeaInfo, Town } from "./types";
+import { GameScreen, GameState, Tea, TeaInfo, Town, TownFeature } from "./types";
 
 export const MAX_TURNS = 19;
 export const STARTING_CASH = 100;
@@ -82,6 +82,10 @@ export const teaInfo: Readonly<TeaInfo> = {
         lowPrice: 100,
         highPrice: 150,
     },
+};
+
+export const townFeatures: Partial<Record<Town, TownFeature>> = {
+    [Town.London]: TownFeature.Bank,
 };
 
 export const SMALL_PIRATE = {

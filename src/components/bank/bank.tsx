@@ -1,17 +1,15 @@
 import { useState } from "react";
 
+import { useAppSelector } from "../../game-logic/hooks";
+import { financeSelector } from "../../game-logic/game-reducer";
 import Cash from "../cash/cash";
 
 import styles from "./bank.module.css";
 
-interface BankProps {
-    totalDebt: number;
-    availableCash: number;
-    onRepay: (amount: number) => void;
-}
+export function Bank() {
+    const { cash, debt } = useAppSelector(financeSelector);
 
-export function Bank({ totalDebt, availableCash, onRepay }: BankProps) {
-    const maxRepayment = Math.min(totalDebt, availableCash);
+    const maxRepayment = Math.min(debt, cash);
     const [repaymentAmount, setRepaymentAmount] = useState(0);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +25,8 @@ export function Bank({ totalDebt, availableCash, onRepay }: BankProps) {
         <div>
             <div>
                 <p>
-                    Repay debt to bank. You owe <Cash amount={totalDebt} /> and
-                    have <Cash amount={availableCash} /> available.
+                    Repay debt to bank. You owe <Cash amount={debt} /> and have{" "}
+                    <Cash amount={cash} /> available.
                 </p>
                 <input
                     type="text"
@@ -51,7 +49,7 @@ export function Bank({ totalDebt, availableCash, onRepay }: BankProps) {
                 />
             </div>
             <button
-                onClick={() => onRepay(repaymentAmount)}
+                // onClick={() => onRepay(repaymentAmount)}
                 disabled={repaymentAmount <= 0}
             >
                 Repay

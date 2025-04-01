@@ -118,6 +118,8 @@ export const showEndGameModal = createAction("showEndGameModal");
 
 export const closeModal = createAction("closeModal");
 
+export const showBankModal = createAction("showBankModal");
+
 export const endSpecialEvent = createAction("endSpecialEvent");
 
 export const buyArmor = createAction<{
@@ -460,6 +462,9 @@ export const gameReducer = (seed: string) =>
                 } else if (action.payload === DebugAction.ShowBank) {
                     state.modal = { modalType: "BankModal" };
                 }
+            })
+            .addCase(showBankModal, (state) => {
+                state.modal = { modalType: "BankModal" };
             });
     });
 
@@ -575,5 +580,12 @@ export const priceMessagesSelector = createSelector(
 
         // add one to current turn as we want the prices messages for the next turn
         return getPriceMessages(currentTurn + 1, town, rngTables);
+    },
+);
+
+export const financeSelector = createSelector(
+    [cashSelector, (state: RootState) => state.debt],
+    (cash, debt) => {
+        return { cash, debt };
     },
 );

@@ -132,6 +132,10 @@ export enum Town {
     Newcastle = "Newcastle",
 }
 
+export enum TownFeature {
+    Bank,
+}
+
 export enum Tea {
     Assam = "Assam",
     Ceylon = "Ceylon",
