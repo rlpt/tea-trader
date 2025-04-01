@@ -1,13 +1,14 @@
 import { useState } from "react";
 
-import { useAppSelector } from "../../game-logic/hooks";
-import { financeSelector } from "../../game-logic/game-reducer";
+import { useAppDispatch, useAppSelector } from "../../game-logic/hooks";
+import { financeSelector, repayBank } from "../../game-logic/game-reducer";
 import Cash from "../cash/cash";
 
 import styles from "./bank.module.css";
 
 export function Bank() {
     const { cash, debt } = useAppSelector(financeSelector);
+    const dispatch = useAppDispatch();
 
     const maxRepayment = Math.min(debt, cash);
     const [repaymentAmount, setRepaymentAmount] = useState(0);
@@ -49,7 +50,7 @@ export function Bank() {
                 />
             </div>
             <button
-                // onClick={() => onRepay(repaymentAmount)}
+                onClick={() => dispatch(repayBank({ repaymentAmount }))}
                 disabled={repaymentAmount <= 0}
             >
                 Repay

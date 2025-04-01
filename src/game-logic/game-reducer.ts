@@ -147,6 +147,8 @@ export const showMenu = createAction<boolean>("showMenu");
 
 export const backToGame = createAction("backToGame");
 
+export const repayBank = createAction<{ repaymentAmount: number }>("repayBank");
+
 // TODO move to types
 export enum FightInput {
     FightClicked,
@@ -465,6 +467,12 @@ export const gameReducer = (seed: string) =>
             })
             .addCase(showBankModal, (state) => {
                 state.modal = { modalType: "BankModal" };
+            })
+            .addCase(repayBank, (state, action) => {
+                state.cash -= action.payload.repaymentAmount;
+                state.debt -= action.payload.repaymentAmount;
+
+                state.modal = { modalType: "NoModal" };
             });
     });
 
